@@ -1,0 +1,2136 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.1.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.1.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.1.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.1.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.1.1" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.1.1',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="第二篇  公式与函数的应用★★7.公式的基础应用7.1在工作表中输入公式打开产品折扣单素材 选中G2单元格输入公式 1=C2*D2+E2 按Enter,然后使用填充功能填充G3到G10的内容 7.2修改公式直接单击公式单元格,重新选择即可 7.3除了使用&amp;lt;=&amp;gt;开头外的其他输入公式在Excel中只要输入&amp;lt;=&amp;gt;符号,Excel会默认你要输入公式 也有以 + - 开头的,+代表整">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Mr kuai">
+<meta property="og:url" content="http://yoursite.com/2019/04/29/第二篇  公式与函数的应用/index.html">
+<meta property="og:site_name" content="Mr kuai">
+<meta property="og:description" content="第二篇  公式与函数的应用★★7.公式的基础应用7.1在工作表中输入公式打开产品折扣单素材 选中G2单元格输入公式 1=C2*D2+E2 按Enter,然后使用填充功能填充G3到G10的内容 7.2修改公式直接单击公式单元格,重新选择即可 7.3除了使用&amp;lt;=&amp;gt;开头外的其他输入公式在Excel中只要输入&amp;lt;=&amp;gt;符号,Excel会默认你要输入公式 也有以 + - 开头的,+代表整">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://yoursite.com/2019/04/29/第二篇%20%20公式与函数的应用/photo/901.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/29/第二篇%20%20公式与函数的应用/photo/902.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/29/第二篇%20%20公式与函数的应用/photo/903.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/29/第二篇%20%20公式与函数的应用/photo/904.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/29/第二篇%20%20公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/905_1.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/29/第二篇%20%20公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/905_2.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/29/第二篇%20%20公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/905_3.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/29/第二篇%20%20公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/906_1.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/29/第二篇%20%20公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/906.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/29/第二篇%20%20公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/907_1.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/29/第二篇%20%20公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/907_2.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/29/第二篇%20%20公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/97.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/29/第二篇%20%20公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/98.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/29/第二篇%20%20公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/101.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/29/第二篇%20%20公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/102.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/29/第二篇%20%20公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/103_1.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/29/第二篇%20%20公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/103_2.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/29/第二篇%20%20公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/104.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/29/第二篇%20%20公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/104_2.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/29/第二篇%20%20公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/105_1.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/29/第二篇%20%20公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/105_2.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/29/第二篇%20%20公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/106.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/29/第二篇%20%20公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/107.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/29/第二篇%20%20公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/108_1.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/29/第二篇%20%20公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/108_2.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/29/第二篇%20%20公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/109.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/29/第二篇%20%20公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/1010.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/29/第二篇%20%20公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/1010_2.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/29/第二篇%20%20公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/1011.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/29/第二篇%20%20公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/1012.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/29/第二篇%20%20公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/1013.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/29/第二篇%20%20公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/1014.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/29/第二篇%20%20公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/1015_1.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/29/第二篇%20%20公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/1015_2.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/29/第二篇%20%20公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/1015_3.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/29/第二篇%20%20公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/1015_4.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/29/第二篇%20%20公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/1016.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/29/第二篇%20%20公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/1101.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/29/第二篇%20%20公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/1102.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/29/第二篇%20%20公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/1103.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/29/第二篇%20%20公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/1104.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/29/第二篇%20%20公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/1105.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/29/第二篇%20%20公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/1201.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/29/第二篇%20%20公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/1202.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/29/第二篇%20%20公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/1203.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/29/第二篇%20%20公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/1204.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/29/第二篇%20%20公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/1205_1.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/29/第二篇%20%20公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/1205_2.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/29/第二篇%20%20公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/1206.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/29/第二篇%20%20公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/1207_1.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/29/第二篇%20%20公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/1207_2.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/29/第二篇%20%20公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/1208.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/29/第二篇%20%20公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/1301.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/29/第二篇%20%20公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/1302.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/29/第二篇%20%20公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/1303.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/29/第二篇%20%20公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/1304.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/29/第二篇%20%20公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/1305.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/29/第二篇%20%20公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/1306_1.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/29/第二篇%20%20公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/1306_2.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/29/第二篇%20%20公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/1401_1.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/29/第二篇%20%20公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/1401_2.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/29/第二篇%20%20公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/1401_3.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/29/第二篇%20%20公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/1402_1.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/29/第二篇%20%20公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/1402_2.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/29/第二篇%20%20公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/1402_3.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/29/第二篇%20%20公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/1403.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/29/第二篇%20%20公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/1404.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/29/第二篇%20%20公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/1405.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/29/第二篇%20%20公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/1406.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/29/第二篇%20%20公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/1407.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/29/第二篇%20%20公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/1408.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/29/第二篇%20%20公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/1409.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/29/第二篇%20%20公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/1410.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/29/第二篇%20%20公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/1411.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/29/第二篇%20%20公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/1412.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/29/第二篇%20%20公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/1413.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/29/第二篇%20%20公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/1414.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/29/第二篇%20%20公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/1415_1.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/29/第二篇%20%20公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/1415_2.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/29/第二篇%20%20公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/1416.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/29/第二篇%20%20公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/1417.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/29/第二篇%20%20公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/1418.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/29/第二篇%20%20公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/1419_1.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/29/第二篇%20%20公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/1419_2.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/29/第二篇%20%20公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/1420_1.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/29/第二篇%20%20公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/1420_2.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/29/第二篇%20%20公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/1421_1.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/29/第二篇%20%20公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/1421_2.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/29/第二篇%20%20公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/1422_1.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/29/第二篇%20%20公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/1422_2.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/29/第二篇%20%20公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/1501.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/29/第二篇%20%20公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/1502_1.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/29/第二篇%20%20公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/1502_2.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/29/第二篇%20%20公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/1503.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/29/第二篇%20%20公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/1504_1.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/29/第二篇%20%20公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/1504_2.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/29/第二篇%20%20公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/1505_1.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/29/第二篇%20%20公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/1505_2.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/29/第二篇%20%20公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/1506.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/29/第二篇%20%20公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/1507.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/29/第二篇%20%20公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/1508_1.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/29/第二篇%20%20公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/1508_2.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/29/第二篇%20%20公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/1601.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/29/第二篇%20%20公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/1602.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/29/第二篇%20%20公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/1603.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/29/第二篇%20%20公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/1604.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/29/第二篇%20%20公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/1605.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/29/第二篇%20%20公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/1606.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/29/第二篇%20%20公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/1607_1.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/29/第二篇%20%20公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/1607_2.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/29/第二篇%20%20公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/1608.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/29/第二篇%20%20公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/1609.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/29/第二篇%20%20公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/1610.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/29/第二篇%20%20公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/1611.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/29/第二篇%20%20公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/1612_1.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/29/第二篇%20%20公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/1612.png">
+<meta property="og:updated_time" content="2019-04-28T08:44:49.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Mr kuai">
+<meta name="twitter:description" content="第二篇  公式与函数的应用★★7.公式的基础应用7.1在工作表中输入公式打开产品折扣单素材 选中G2单元格输入公式 1=C2*D2+E2 按Enter,然后使用填充功能填充G3到G10的内容 7.2修改公式直接单击公式单元格,重新选择即可 7.3除了使用&amp;lt;=&amp;gt;开头外的其他输入公式在Excel中只要输入&amp;lt;=&amp;gt;符号,Excel会默认你要输入公式 也有以 + - 开头的,+代表整">
+<meta name="twitter:image" content="http://yoursite.com/2019/04/29/第二篇%20%20公式与函数的应用/photo/901.png">
+
+
+
+
+
+  
+  
+  <link rel="canonical" href="http://yoursite.com/2019/04/29/第二篇  公式与函数的应用/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title> | Mr kuai</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Mr kuai</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">追忆似水流年</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-meh-o"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-legal"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-ravelry"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-snowflake-o"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/29/第二篇  公式与函数的应用/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="kl">
+      <meta itemprop="description" content="66其实不太6">
+      <meta itemprop="image" content="/images/head.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mr kuai">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-04-29 08:56:25" itemprop="dateCreated datePublished" datetime="2019-04-29T08:56:25+08:00">2019-04-29</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-04-28 16:44:49" itemprop="dateModified" datetime="2019-04-28T16:44:49+08:00">2019-04-28</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon">
+            <i class="fa fa-eye"></i>
+             阅读次数： 
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="第二篇-公式与函数的应用"><a href="#第二篇-公式与函数的应用" class="headerlink" title="第二篇  公式与函数的应用"></a>第二篇  公式与函数的应用</h2><h3 id="★★7-公式的基础应用"><a href="#★★7-公式的基础应用" class="headerlink" title="★★7.公式的基础应用"></a>★★7.公式的基础应用</h3><h4 id="7-1在工作表中输入公式"><a href="#7-1在工作表中输入公式" class="headerlink" title="7.1在工作表中输入公式"></a>7.1在工作表中输入公式</h4><p>打开产品折扣单素材</p>
+<p>选中G2单元格输入公式</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">=C2*D2+E2</span><br></pre></td></tr></table></figure>
+<p>按Enter,然后使用填充功能填充G3到G10的内容</p>
+<h4 id="7-2修改公式"><a href="#7-2修改公式" class="headerlink" title="7.2修改公式"></a>7.2修改公式</h4><p>直接单击公式单元格,重新选择即可</p>
+<h4 id="7-3除了使用-lt-gt-开头外的其他输入公式"><a href="#7-3除了使用-lt-gt-开头外的其他输入公式" class="headerlink" title="7.3除了使用&lt;=&gt;开头外的其他输入公式"></a>7.3除了使用&lt;=&gt;开头外的其他输入公式</h4><p>在Excel中只要输入&lt;=&gt;符号,Excel会默认你要输入公式</p>
+<p>也有以 + - 开头的,+代表整数,-代表负数,回车Excel会默认在前面加&lt;=&gt;符号进行运算</p>
+<h4 id="7-4通过状态栏进行常规计算"><a href="#7-4通过状态栏进行常规计算" class="headerlink" title="7.4通过状态栏进行常规计算"></a>7.4通过状态栏进行常规计算</h4><p>在Excel最下方的状态栏右键选择计数平均值求和,当你选中一组数据即可在右下方看到结果</p>
+<h3 id="★★8-公式计算的高级应用"><a href="#★★8-公式计算的高级应用" class="headerlink" title="★★8.公式计算的高级应用"></a>★★8.公式计算的高级应用</h3><h4 id="8-1为成绩统计表创建连接到其他工作表中的公式"><a href="#8-1为成绩统计表创建连接到其他工作表中的公式" class="headerlink" title="8.1为成绩统计表创建连接到其他工作表中的公式"></a>8.1为成绩统计表创建连接到其他工作表中的公式</h4><p>注:这个功能主要应用于同类型的表格对比使用</p>
+<p>打开16级月考成绩统计表素材</p>
+<p>打开第二次月考工作表,在C34单元格输入=</p>
+<p>选中第一次月考C33单元格,按下Enter即可,在使用填充功能填充D33到K33区域</p>
+<h4 id="8-2在表中定义单元格名称"><a href="#8-2在表中定义单元格名称" class="headerlink" title="8.2在表中定义单元格名称"></a>8.2在表中定义单元格名称</h4><p>打开现金日记账素材</p>
+<p>选中所有存款金额单元格名称</p>
+<p>公式—-&gt;定义名称(定义名称)—-&gt;定义名称(存款)确定</p>
+<p>在E23单元格输入文本存款总金额</p>
+<p>选中F23单元格,在单元格中输入公式</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">=SUM(存款)</span><br></pre></td></tr></table></figure>
+<p>按下Enter键即可出现结果</p>
+<h4 id="8-3-在销售提成表中将公式定义为名称"><a href="#8-3-在销售提成表中将公式定义为名称" class="headerlink" title="8.3 在销售提成表中将公式定义为名称"></a>8.3 在销售提成表中将公式定义为名称</h4><p>打开销售提成表素材</p>
+<p>公式—-&gt;定义名称(定义名称)—-&gt;提成率—-&gt;输入公式(1%)后确定</p>
+<p>选中G2单元格输入公式</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">=提成率*F2</span><br></pre></td></tr></table></figure>
+<p>按下Enter回车,在使用填充功能填充G3到G11单元格</p>
+<h4 id="8-4显示应用中的公式"><a href="#8-4显示应用中的公式" class="headerlink" title="8.4显示应用中的公式"></a>8.4显示应用中的公式</h4><p>公式—-&gt;公式审核(显示公式)</p>
+<p>工作表即可显示应用的公式</p>
+<h4 id="8-5如何同时对多个单元格执行相同计算"><a href="#8-5如何同时对多个单元格执行相同计算" class="headerlink" title="8.5如何同时对多个单元格执行相同计算"></a>8.5如何同时对多个单元格执行相同计算</h4><p>在空白单元格输入一个数字,复制</p>
+<p>选中要运算的多个单元区域,在粘贴选项中选择&lt;选择性粘贴&gt;,在里面选择运算的加减乘除,点击确定,即可完成运算</p>
+<h3 id="★★9函数的基础使用"><a href="#★★9函数的基础使用" class="headerlink" title="★★9函数的基础使用"></a>★★9函数的基础使用</h3><h4 id="9-1使用AVERAGE函数求取一组数字的平均值"><a href="#9-1使用AVERAGE函数求取一组数字的平均值" class="headerlink" title="9.1使用AVERAGE函数求取一组数字的平均值"></a>9.1使用AVERAGE函数求取一组数字的平均值</h4><p>语法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">AVERAGE(number1, [number2], ...)</span><br><span class="line">AVERAGE 函数语法具有下列参数：</span><br><span class="line">Number1    必需。 要计算平均值的第一个数字、单元格引用或单元格区域。</span><br><span class="line">Number2, ...    可选。 要计算平均值的其他数字、单元格引用或单元格区域，最多可包含 255 个。</span><br><span class="line">返回参数的平均值（算术平均值）。 例如，如果范围A1:A20 包含数字，则公式 =AVERAGE(A1:A20) 将返回这些数字的平均值。</span><br></pre></td></tr></table></figure>
+<p>打开销售业绩表素材</p>
+<p>在H1单元格输入文本:各季度平均销售</p>
+<p>在H2单元格插入公式</p>
+<p>公式—-&gt;插入函数—-&gt;搜索函数(输入:求平均值,转到)—-&gt;选择函数:AVERAGE—-&gt;确定</p>
+<p>函数参数—-&gt;Number1(选择要求平均值的选框)—-&gt;确定</p>
+<p>一行或一列的平均值,鼠标光标移至右下角变成十字后下拉或者右拉即可</p>
+<p>如图:</p>
+<p><img src="/2019/04/29/第二篇  公式与函数的应用/./photo/901.png" alt>.</p>
+<h4 id="9-2使用COUNT函数统计参数中包含数字的个数"><a href="#9-2使用COUNT函数统计参数中包含数字的个数" class="headerlink" title="9.2使用COUNT函数统计参数中包含数字的个数"></a>9.2使用COUNT函数统计参数中包含数字的个数</h4><p>打开销售业绩表素材</p>
+<p>在A17输入文本:销售人员数量:</p>
+<p>选中B17 </p>
+<p>公式—-&gt;自动求和(下拉选框)—-&gt;计数—-&gt;选择B2到B15区域,回车(Enter)即可</p>
+<p>如图:</p>
+<p><img src="/2019/04/29/第二篇  公式与函数的应用/./photo/902.png" alt></p>
+<h4 id="9-3使用MAX函数返回一组数字中的最大值"><a href="#9-3使用MAX函数返回一组数字中的最大值" class="headerlink" title="9.3使用MAX函数返回一组数字中的最大值"></a>9.3使用MAX函数返回一组数字中的最大值</h4><p>打开销售业绩表素材</p>
+<p>在A18单元格输入文本:季度最高销售额:</p>
+<p>在B18单元格插入公式</p>
+<p>公式—-&gt;自动求和(下拉选框)—-&gt;最大值—-&gt;选择C2到F15区域,回车(Enter)即可</p>
+<p>如图:</p>
+<p><img src="/2019/04/29/第二篇  公式与函数的应用/./photo/903.png" alt></p>
+<h4 id="9-4使用MIN函数返回一组数字中的最小值"><a href="#9-4使用MIN函数返回一组数字中的最小值" class="headerlink" title="9.4使用MIN函数返回一组数字中的最小值"></a>9.4使用MIN函数返回一组数字中的最小值</h4><p>打开销售业绩表素材</p>
+<p>选中A19单元格输入文本:年度最低销售额:</p>
+<p>选中B19单元格插入公式</p>
+<p>公式—-&gt;自动求和(下拉选框)—-&gt;最小值—-&gt;选择C2到F15区域,回车(Enter)即可</p>
+<p>如图:</p>
+<p><img src="/2019/04/29/第二篇  公式与函数的应用/./photo/904.png" alt></p>
+<h4 id="9-5使用IF函数根据指定的条件返回不同的结果"><a href="#9-5使用IF函数根据指定的条件返回不同的结果" class="headerlink" title="9.5使用IF函数根据指定的条件返回不同的结果"></a>9.5使用IF函数根据指定的条件返回不同的结果</h4><p>说明</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">IF 函数是 Excel 中最常用的函数之一，它可以对值和期待值进行逻辑比较。</span><br><span class="line">因此 IF 语句可能有两个结果。 第一个结果是比较结果为 True，第二个结果是比较结果为 False。</span><br></pre></td></tr></table></figure>
+<p>函数参数:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Logical_test(任何可能被计算为TRUE或FALSE的数值或表达式) </span><br><span class="line">Value_if_true(是Logical_test为TRUE时的返回值,如果忽略,则返回TRUE.IF函数最多嵌套七层 )  </span><br><span class="line">Value_if_false(是当Logical_test为FALSE时的返回值.如果忽略,则返回FALSE )</span><br></pre></td></tr></table></figure>
+<p>打开各产品销售情况分析素材</p>
+<p>选中E2单元格</p>
+<p>公式—-&gt;插入函数—-&gt;IF(确定)</p>
+<p>求销售单价</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">示例:Logical_test(D2=0)</span><br><span class="line">示例:Value_if_true(0)  </span><br><span class="line">示例:Value_if_false(B2/D2)</span><br></pre></td></tr></table></figure>
+<p>然后使用填充功能下拉填充E3至E9单元格,如图</p>
+<p><img src="/2019/04/29/第二篇  公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/905_1.png" alt></p>
+<p>选中F2单元格</p>
+<p>公式—-&gt;插入函数—-&gt;IF(确定)</p>
+<p>求单价成本</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">示例:Logical_test(D2=0) </span><br><span class="line">示例:Value_if_true(0)  </span><br><span class="line">示例:Value_if_false(C2/D2)</span><br></pre></td></tr></table></figure>
+<p>然后使用填充功能下拉填充F3至F9单元格,如图</p>
+<p><img src="/2019/04/29/第二篇  公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/905_2.png" alt></p>
+<p>选中G2单元格</p>
+<p>公式—-&gt;插入函数—-&gt;IF(确定)</p>
+<p>求销售成本率</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">示例:Logical_test(B2=0) </span><br><span class="line">示例:Value_if_true(0)  </span><br><span class="line">示例:Value_if_false(C2/B2)</span><br></pre></td></tr></table></figure>
+<p>然后使用填充功能下拉填充G3至G9单元格,如图</p>
+<p><img src="/2019/04/29/第二篇  公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/905_3.png" alt></p>
+<h4 id="9-6使用SUMIF函数按给定条件对指定单元格求和"><a href="#9-6使用SUMIF函数按给定条件对指定单元格求和" class="headerlink" title="9.6使用SUMIF函数按给定条件对指定单元格求和"></a>9.6使用SUMIF函数按给定条件对指定单元格求和</h4><p>功能:可以使用 <strong>SUMIF</strong> 函数对 范围 中符合指定条件的值求和。 </p>
+<p>语法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">SUMIF(range, criteria, [sum_range])</span><br><span class="line">SUMIF 函数语法具有以下参数：</span><br><span class="line">range   必需。 要按条件计算的单元格区域。 每个区域中的单元格都必须是数字, 或者是包含数字的名称、数组或引用。 空白和文本值将被忽略。 所选区域可能包含标准 Excel 格式的日期 (下面的示例)。</span><br><span class="line"></span><br><span class="line">criteria查询   必需。 定义哪些单元格将被添加的数字、表达式、单元格引用、文本或函数形式的条件。 例如, 条件可以表示为32、&quot;&gt;32&quot;、B5、&quot;32&quot;、&quot;苹果&quot; 或 TODAY ()。</span><br><span class="line">	注意: 任何文本条件或任何含有逻辑或数学符号的条件都必须使用双引号 (&quot;) 括起来。 如果条件为数字，则无需使		用双引号。</span><br><span class="line"></span><br><span class="line">sum_range   可选。 要添加的实际单元格 (如果要添加的单元格不在range参数中指定的单元格)。 如果省略了sum_range参数, 则 Excel 将添加在range参数中指定的单元格 (与应用条件的单元格相同的单元格)。</span><br><span class="line">可以在 criteria 参数中使用通配符 （包括问号 (?) 和星号 (*)）。 问号匹配任意单个字符；星号匹配任意一串字符。 如果要查找实际的问号或星号，请在该字符前键入波形符 (~)。</span><br></pre></td></tr></table></figure>
+<p>打开员工加班记录表素材</p>
+<p>新建部门加班费统计工作表,如图</p>
+<p><img src="/2019/04/29/第二篇  公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/906_1.png" alt></p>
+<p>选中B3单元格插入公式</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">=SUMIF(加班记录表!$D$3:$D$28,部门加班费统计!A3,加班记录表!$I$3:$I$28)</span><br></pre></td></tr></table></figure>
+<p>操作如下:公式—-&gt;数学和三角函数—-&gt;在下拉选项里面选择<sumif></sumif></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">range 加班记录表!$D$3:$D$28</span><br><span class="line">criteria 部门加班费统计!A3</span><br><span class="line">sum_range 加班记录表!$I$3:$I$28</span><br></pre></td></tr></table></figure>
+<p>$符号为绝对引入</p>
+<p>回车后,使用填充功能填充B4至B7的内容</p>
+<p>如图:</p>
+<p><img src="/2019/04/29/第二篇  公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/906.png" alt></p>
+<h4 id="9-7使用VLOOKUP函数在区域或数组的列中查找数据"><a href="#9-7使用VLOOKUP函数在区域或数组的列中查找数据" class="headerlink" title="9.7使用VLOOKUP函数在区域或数组的列中查找数据"></a>9.7使用VLOOKUP函数在区域或数组的列中查找数据</h4><p>语法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">如果需要在表格或区域中按行查找内容，可使用 VLOOKUP，它是一个查找和引用函数。</span><br><span class="line">=VLOOKUP（要查找的值、要在其中查找值的区域、区域中包含返回值的列号、精确匹配或近似匹配 – 指定为 0/FALSE 或 1/TRUE）。</span><br><span class="line">您需要四条信息才能构建 VLOOKUP 语法：</span><br><span class="line">要查找的值，也被称为查阅值。</span><br><span class="line">查阅值所在的区域。 请记住，查阅值应该始终位于所在区域的第一列，这样 VLOOKUP 才能正常工作。 例如，如果查阅值位于单元格 C2 内，那么您的区域应该以 C 开头。</span><br><span class="line">区域中包含返回值的列号。 例如，如果指定 B2：D11 作为区域，那么应该将 B 算作第一列，C 作为第二列，以此类推。</span><br><span class="line">（可选）如果需要返回值的近似匹配，可以指定 TRUE；如果需要返回值的精确匹配，则指定 FALSE。 如果没有指定任何内容，默认值将始终为 TRUE 或近似匹配。</span><br><span class="line">现在将上述所有内容集中在一起，如下所示：</span><br><span class="line">=VLOOKUP（查阅值、包含查阅值的区域、区域中包含返回值的列号以及（可选）为近似匹配指定 TRUE 或者为精确匹配指定 FALSE）。</span><br></pre></td></tr></table></figure>
+<p>打开销售业绩表素材</p>
+<p>新建一张业绩查询表,简历销售人员和销售业绩字段,如图:</p>
+<p><img src="/2019/04/29/第二篇  公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/907_1.png" alt></p>
+<p>选中C3单元格插入公式</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">=VLOOKUP(C3,Sheet1!B2:G15,2,FALSE)</span><br></pre></td></tr></table></figure>
+<p>操作如下,</p>
+<p>公式—-&gt;插入函数—-&gt;或选择类别里面选择&lt;查找与引用&gt;—–&gt;选择VLOOKUP函数确定</p>
+<p>函数参数:</p>
+<p>Lookup_value:C3  以这个单元格为中心求值</p>
+<p>Table_array:Sheet1!B2:G15  选中销售业绩表中的销售信息</p>
+<p>Col_index_num: 2  </p>
+<p>Range_lookup:FALSE  (FALSE:代表全部查找精准查找,TRUE代表部分查找,一般情况下选择FALSE)</p>
+<p>可以设置Lookup_value与Table_array为绝对引用</p>
+<p>下面二三四以及汇总 要把Col_index_num参数依次改成 3,4,5,6</p>
+<p>最后在B1单元格输入销售人员的名字即可,如图</p>
+<p><img src="/2019/04/29/第二篇  公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/907_2.png" alt></p>
+<h4 id="9-8让公式与函数实现混合运算"><a href="#9-8让公式与函数实现混合运算" class="headerlink" title="9.8让公式与函数实现混合运算"></a>9.8让公式与函数实现混合运算</h4><p>插播一个四舍五入的函数ROUND</p>
+<p>用法:ROUND(求值的单元格,保留几位小数)</p>
+<p>打开销售业绩表,新建 各季度平均销售与超出年平均销售额两个字段</p>
+<p>用AVERAGE函数求个季度销售平均值,</p>
+<p>超出年平均销售额公式为=G2-AVERAGE($G$2:$G$15)</p>
+<p>G2为全年汇总字段</p>
+<p> AVERAGE($G$2:$G$15)结果为全年平均销售额</p>
+<p>如图:</p>
+<p><img src="/2019/04/29/第二篇  公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/97.png" alt></p>
+<h4 id="9-9嵌套函数"><a href="#9-9嵌套函数" class="headerlink" title="9.9嵌套函数"></a>9.9嵌套函数</h4><p>IF函数参数:</p>
+<p>Logical_test(任何可能被计算为TRUE或FALSE的数值或表达式) </p>
+<p>Value_if_true(是Logical_test为TRUE时的返回值,如果忽略,则返回TRUE.IF函数最多嵌套七层 )  </p>
+<p>Value_if_false(是当Logical_test为FALSE时的返回值.如果忽略,则返回FALSE )</p>
+<p>打开销售业绩表,新建评定结果字段,需求为全年汇总大于30000为优,大于20000为良,否则为差</p>
+<p>选中J2字段</p>
+<p>插入IF函数</p>
+<p>Logical_test(SUM(C2:F2)&gt;30000) </p>
+<p>Value_if_true(“优”)</p>
+<p>Value_if_false(IF(SUM(C2:F2)&gt;20000,”良”,”差”))</p>
+<p>如图:</p>
+<p><img src="/2019/04/29/第二篇  公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/98.png" alt></p>
+<h3 id="10-文本函数应用技巧"><a href="#10-文本函数应用技巧" class="headerlink" title="10.文本函数应用技巧"></a>10.文本函数应用技巧</h3><h4 id="★★10-1使用EXACT函数比较两个字符串是否相同"><a href="#★★10-1使用EXACT函数比较两个字符串是否相同" class="headerlink" title="★★10.1使用EXACT函数比较两个字符串是否相同"></a>★★10.1使用EXACT函数比较两个字符串是否相同</h4><p>用法:EXACT(值1单元格,值二单元格)</p>
+<p>打开比较字符串素材表<br>选中C2单元格</p>
+<p>插入函数选择文本函数或者直接找EXACT函数都可以</p>
+<p>=EXACT(A2,B2)</p>
+<p>回车即可,其他比较结果直接下拉即可显示</p>
+<p>如图:</p>
+<p><img src="/2019/04/29/第二篇  公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/101.png" alt></p>
+<h4 id="★★10-2使用LEN函数计算文本中的字符个数"><a href="#★★10-2使用LEN函数计算文本中的字符个数" class="headerlink" title="★★10.2使用LEN函数计算文本中的字符个数"></a>★★10.2使用LEN函数计算文本中的字符个数</h4><p>len函数的语法格式=Len( text)</p>
+<p>需求:设计一个计算文本框只能输入60个字,随着输入显示还能输入多少个文字</p>
+<p>新建文本发布窗口</p>
+<p>选中A11单元格</p>
+<p>=”还可以输入”&amp;(60-LEN(A2)&amp;”个字符”)</p>
+<p>&amp;符号合并的意思</p>
+<p>如图:</p>
+<p><img src="/2019/04/29/第二篇  公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/102.png" alt></p>
+<h4 id="10-3使用REPT函数按给定次数重复文本"><a href="#10-3使用REPT函数按给定次数重复文本" class="headerlink" title="10.3使用REPT函数按给定次数重复文本"></a>10.3使用REPT函数按给定次数重复文本</h4><p>语法</p>
+<p>REPT(text, number_times)</p>
+<p>REPT 函数语法具有下列参数：</p>
+<p>Text   必需。 需要重复显示的文本。</p>
+<p>Number_times   必需。 用于指定文本重复次数的正数。</p>
+<p>打开素材文件报销单,并且复制新建一个工作表为打印报销单<br>选择C7单元格,写入公式</p>
+<p>=(报销单!C7&amp;REPT(“*”,24-LEN(报销单!C7)))</p>
+<p>如图:修改前</p>
+<p><img src="/2019/04/29/第二篇  公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/103_1.png" alt></p>
+<p>如图:修改后</p>
+<p><img src="/2019/04/29/第二篇  公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/103_2.png" alt></p>
+<h4 id="10-4使用FIXED函数将数字按指定的小数位数取整"><a href="#10-4使用FIXED函数将数字按指定的小数位数取整" class="headerlink" title="10.4使用FIXED函数将数字按指定的小数位数取整"></a>10.4使用FIXED函数将数字按指定的小数位数取整</h4><p>语法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">FIXED(number, [decimals], [no_commas])</span><br><span class="line">FIXED 函数语法具有下列参数：</span><br><span class="line">- Number    必需。 要进行舍入并转换为文本的数字。</span><br><span class="line">- decimals    可选。 小数点右边的位数。</span><br><span class="line">- no_commas    可选。 一个逻辑值，如果为 TRUE，则会禁止 FIXED 在返回的文本中包含逗号。</span><br></pre></td></tr></table></figure>
+<p>需求:求取总奖金前三位人员,四舍五入保留两位小数</p>
+<p>​    求取总业绩,五舍五入保留两位小数点</p>
+<p>打开素材业绩销售表,建立红榜工作表</p>
+<p>选中G5单元格,输入公式</p>
+<p>=FIXED(业绩表!E2,-2)/10000&amp;”万元”</p>
+<p>下拉平铺G6,G7单元格</p>
+<p>如图</p>
+<p><img src="/2019/04/29/第二篇  公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/104.png" alt></p>
+<p>选中D9单元格,输入公式</p>
+<p>=FIXED(SUM(业绩表!D2:D15)/10000,2)&amp;”万元”</p>
+<p>如图</p>
+<p><img src="/2019/04/29/第二篇  公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/104_2.png" alt></p>
+<h4 id="10-5使用LEFT函数从文本左侧起提取指定个数的字符"><a href="#10-5使用LEFT函数从文本左侧起提取指定个数的字符" class="headerlink" title="10.5使用LEFT函数从文本左侧起提取指定个数的字符"></a>10.5使用LEFT函数从文本左侧起提取指定个数的字符</h4><p>语法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">LEFT(text,num_chars)</span><br><span class="line">Text     是包含要提取字符的文本字符串。</span><br><span class="line">Num_chars    指定要由 LEFT 提取的字符数。Num_chars 必须大于或等于零。如果 num_chars 大于文本长度，则 LEFT 返回所有文本。如果省略 num_chars，则假定其值为 1。</span><br></pre></td></tr></table></figure>
+<p>打开员工档案表素材</p>
+<p>在B列单元格右侧插入一列,字段名为姓氏,在C2单元格输入公式=LEFT(B2),回车,其他内容使用Excel填充功能即可</p>
+<p>如图:</p>
+<p><img src="/2019/04/29/第二篇  公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/105_1.png" alt></p>
+<p>在I列单元格右侧插入一列,输入表头祖籍,选择J2单元格,输入公式=LEFT(K2,2),回车,其他其他内容使用Excel填充功能即可</p>
+<p>如图:</p>
+<p><img src="/2019/04/29/第二篇  公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/105_2.png" alt></p>
+<h4 id="10-6使用MID函数从文本指定位置起提取指定个数的字符"><a href="#10-6使用MID函数从文本指定位置起提取指定个数的字符" class="headerlink" title="10.6使用MID函数从文本指定位置起提取指定个数的字符"></a>10.6使用MID函数从文本指定位置起提取指定个数的字符</h4><p>语法</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">MID(text, start_num, num_chars)</span><br><span class="line">文本    必需。 包含要提取字符的文本字符串。</span><br><span class="line">start_num    必需。 文本中要提取的第一个字符的位置。 文本中第一个字符的 start_num 为 <span class="number">1</span>，以此类推。</span><br><span class="line">num_chars    必需。 指定希望 MID 从文本中返回字符的个数。</span><br></pre></td></tr></table></figure>
+<p>打开员工档案表素材</p>
+<p>在G列单元格右侧插入一列,输入表头生日月份,选择H2单元格,输入公式=IF(LEN(G2)=15,MID(G2,9,2),MID(G2,11,2)),回车,其他其他内容使用Excel填充功能即可</p>
+<p>如图</p>
+<p><img src="/2019/04/29/第二篇  公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/106.png" alt></p>
+<p>10.7使用RIGHT函数从文本右侧起提取指定个数的字符</p>
+<p>语法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">RIGHT(text,[num_chars])</span><br><span class="line">RIGHTB(text,[num_bytes])</span><br><span class="line">文本    必需。 包含要提取字符的文本字符串。</span><br><span class="line">num_chars    可选。 指定希望 RIGHT 提取的字符数。</span><br></pre></td></tr></table></figure>
+<p>打开产品价目表素材</p>
+<p>在C列右侧插入单元格,输入表头规格（g/支）,在D2单元格输入公式=RIGHT(C2,4),回车,其他其他内容使用Excel填充功能即可</p>
+<p>如图:</p>
+<p><img src="/2019/04/29/第二篇  公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/107.png" alt></p>
+<p>10.8</p>
+<p>语法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ASC(text)</span><br><span class="line">ASC 函数语法具有以下参数：</span><br><span class="line">Text    必需。文本或对包含要更改文本的单元格的引用。如果文本不包含任何全角字母，则不会对文本进行转换。</span><br></pre></td></tr></table></figure>
+<p>打开产品明细表素材</p>
+<p>新建一个工作表,选择A1到E20,在文本处输入公式=ASC(选中之前的工作表位置),按Ctrl+Shift+Enter,内容即可转换完成,剩余把工作表在美化一下即可完成</p>
+<p>如图</p>
+<p><img src="/2019/04/29/第二篇  公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/108_1.png" alt></p>
+<p><img src="/2019/04/29/第二篇  公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/108_2.png" alt></p>
+<h4 id="10-9使用RMB函数将数字转换为带人民币符号￥的文本"><a href="#10-9使用RMB函数将数字转换为带人民币符号￥的文本" class="headerlink" title="10.9使用RMB函数将数字转换为带人民币符号￥的文本"></a>10.9使用RMB函数将数字转换为带人民币符号￥的文本</h4><p>语法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">RMB(number, [decimals])</span><br><span class="line">number :需要转换的参数</span><br><span class="line">decimals:保留的小数点位数</span><br></pre></td></tr></table></figure>
+<p>打开产品价目表素材</p>
+<p>在F2单元格输入公式,=RMB(E2,2),回车,其他其他内容使用Excel填充功能即可,然后把E2至E17复制,粘贴选择值,复制到F2至F17单元格,随后删除DE2至17单元格即可</p>
+<p>如图:</p>
+<p><img src="/2019/04/29/第二篇  公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/109.png" alt></p>
+<h4 id="★★10-10使用T函数将参数转换为文本"><a href="#★★10-10使用T函数将参数转换为文本" class="headerlink" title="★★10.10使用T函数将参数转换为文本"></a>★★10.10使用T函数将参数转换为文本</h4><p>语法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">T(value)</span><br><span class="line">T 函数语法具有下列参数：</span><br><span class="line">- 值    必需。 要测试的值。</span><br></pre></td></tr></table></figure>
+<p>新建工作簿纯文本留言板</p>
+<p>如图:</p>
+<p><img src="/2019/04/29/第二篇  公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/1010.png" alt></p>
+<p>在A1单元格输入公式</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">=IF(T(A2)=&quot;&quot;,&quot;您只能输入文本信息&quot;,&quot;正在提交你的留言&quot;)</span><br></pre></td></tr></table></figure>
+<p>在A2单元格输入数字,则A1输出”您只能输入文本信息”,若输入文本信息,则会出现下图逻辑条件</p>
+<p>如图:</p>
+<p><img src="/2019/04/29/第二篇  公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/1010_2.png" alt></p>
+<h4 id="10-11使用LOWER函数将文本转换为小写"><a href="#10-11使用LOWER函数将文本转换为小写" class="headerlink" title="10.11使用LOWER函数将文本转换为小写"></a>10.11使用LOWER函数将文本转换为小写</h4><p>语法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">LOWER(text)</span><br><span class="line">LOWER 函数语法具有下列参数：</span><br><span class="line">Text    必需。 要转换为小写字母的文本。 LOWER 不改变文本中的非字母字符。</span><br></pre></td></tr></table></figure>
+<p>打开英文歌词素材</p>
+<p>在A2单元格输入公式</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">=LOWER(A1)</span><br></pre></td></tr></table></figure>
+<p>回车,其他内容使用Excel填充功能即可</p>
+<p>如图:</p>
+<p><img src="/2019/04/29/第二篇  公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/1011.png" alt></p>
+<h4 id="10-12使用PROPER函数将文本中每个单词的首字母转换为大写"><a href="#10-12使用PROPER函数将文本中每个单词的首字母转换为大写" class="headerlink" title="10.12使用PROPER函数将文本中每个单词的首字母转换为大写"></a>10.12使用PROPER函数将文本中每个单词的首字母转换为大写</h4><p>语法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">PROPER(text)</span><br><span class="line">PROPER 函数语法具有下列参数：</span><br><span class="line">文本    必需。 用引号括起来的文本、返回文本值的公式，或者对包含要进行部分大写转换文本的单元格的引用。</span><br></pre></td></tr></table></figure>
+<p>打开英文歌词素材,</p>
+<p>在C2单元格输入公式</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">=PROPER(B1)</span><br></pre></td></tr></table></figure>
+<p>回车,其他内容使用Excel填充功能即可</p>
+<p>如图:</p>
+<p><img src="/2019/04/29/第二篇  公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/1012.png" alt></p>
+<h4 id="★★10-13使用FIND函数以字符为单位并区分大小写地查找指定字符的位置"><a href="#★★10-13使用FIND函数以字符为单位并区分大小写地查找指定字符的位置" class="headerlink" title="★★10.13使用FIND函数以字符为单位并区分大小写地查找指定字符的位置"></a>★★10.13使用FIND函数以字符为单位并区分大小写地查找指定字符的位置</h4><p>语法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">FIND(find_text, within_text, [start_num])</span><br><span class="line">find_text    必需。 要查找的文本。</span><br><span class="line">within_text    必需。 包含要查找文本的文本。</span><br><span class="line">start_num    可选。 指定开始进行查找的字符。 within_text 中的首字符是编号为 1 的字符。 如果省略 start_num，则假定其值为 1。</span><br></pre></td></tr></table></figure>
+<p>打开邀请函发送记录素材</p>
+<p>在F3单元格输入公式</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">=IF(ISERROR(FIND(B3,$H$3)),&quot;未邀请&quot;,&quot;已经邀请&quot;)</span><br></pre></td></tr></table></figure>
+<p>回车,其他内容使用Excel填充功能即可</p>
+<p>如图:</p>
+<p><img src="/2019/04/29/第二篇  公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/1013.png" alt></p>
+<h4 id="10-14使用FINDB函数以字节为单位并区分大小写地查找指定字符的位置"><a href="#10-14使用FINDB函数以字节为单位并区分大小写地查找指定字符的位置" class="headerlink" title="10.14使用FINDB函数以字节为单位并区分大小写地查找指定字符的位置"></a>10.14使用FINDB函数以字节为单位并区分大小写地查找指定字符的位置</h4><p>语法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">FIND(find_text, within_text, [start_num])</span><br><span class="line">FINDB(find_text, within_text, [start_num])</span><br><span class="line">FIND 和 FINDB 函数语法具有下列参数：</span><br><span class="line">find_text    必需。 要查找的文本。</span><br><span class="line">within_text    必需。 包含要查找文本的文本。</span><br><span class="line">start_num    可选。 指定开始进行查找的字符。 within_text 中的首字符是编号为 1 的字符。 如果省略 start_num，则假定其值为 1。</span><br><span class="line">FIND 适用于使用单字节字符集 (SBCS) 的语言，而 FINDB 适用于使用双字节字符集 (DBCS) 的语言。</span><br></pre></td></tr></table></figure>
+<p>打开英文歌词素材</p>
+<p>在D1单元格输入公式</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">=IFERROR(LEFT(C1,FINDB(&quot; &quot;,C1)-1),C1)</span><br></pre></td></tr></table></figure>
+<p>回车,其他内容使用Excel填充功能即可</p>
+<p>如图:</p>
+<p><img src="/2019/04/29/第二篇  公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/1014.png" alt></p>
+<h4 id="10-15使用SEARCH函数以字符为单位查找指定字符的位置"><a href="#10-15使用SEARCH函数以字符为单位查找指定字符的位置" class="headerlink" title="10.15使用SEARCH函数以字符为单位查找指定字符的位置"></a>10.15使用SEARCH函数以字符为单位查找指定字符的位置</h4><p>语法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">SEARCH(find_text,within_text,[start_num])</span><br><span class="line">SEARCHB(find_text,within_text,[start_num])</span><br><span class="line">SEARCH 和 SEARCHB 函数具有下列参数：</span><br><span class="line">- **find_text**    必需。要查找的文本。</span><br><span class="line">- **within_text**    必需。要在其中搜索 **find_text** 参数的值的文本。</span><br><span class="line">- **start_num**    可选。**within_text** 参数中从之开始搜索的字符编号。</span><br></pre></td></tr></table></figure>
+<p>打开会议邀请函发起记录素材</p>
+<p>在H21单元格输入公式</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">=IF(ISERROR(SEARCH(&quot;孙??&quot;,$H$3)),&quot;搜索完毕&quot;,SEARCH(&quot;孙??&quot;,$H$3))</span><br></pre></td></tr></table></figure>
+<p>结果为44,代表符合条件的字符串在文本框的第44位</p>
+<p>如图:</p>
+<p><img src="/2019/04/29/第二篇  公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/1015_1.png" alt></p>
+<p>在I21单元格输入公式</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">=IF(H21=&quot;搜索完毕&quot;,&quot;未找到&quot;,MID($H$3,H21,3))</span><br></pre></td></tr></table></figure>
+<p>即可看到搜索的结果为孙晓斌</p>
+<p>如图:</p>
+<p><img src="/2019/04/29/第二篇  公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/1015_2.png" alt></p>
+<p>在J21单元格输入公式</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">=IF(OR(H21+4&gt;LEN($H$3),ISERROR(SEARCH(&quot;孙??&quot;,$H$3,H21+1))),&quot;搜索完毕&quot;,SEARCH(&quot;孙??&quot;,$H$3,H21+1))</span><br></pre></td></tr></table></figure>
+<p>即可查看到搜索的结果为128</p>
+<p>如图:</p>
+<p><img src="/2019/04/29/第二篇  公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/1015_3.png" alt></p>
+<p>在K21单元格输入公式</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">=IF(J21=&quot;搜索完毕&quot;,&quot;未找到&quot;,MID(H3,J21,3))</span><br></pre></td></tr></table></figure>
+<p>即可查看到搜索的结果为孙秦、,选中J21K21单元格向右填充</p>
+<p>如图:</p>
+<p><img src="/2019/04/29/第二篇  公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/1015_4.png" alt></p>
+<h4 id="★★10-16使用REPLACE函数以字符为单位根据指定位置进行替换"><a href="#★★10-16使用REPLACE函数以字符为单位根据指定位置进行替换" class="headerlink" title="★★10.16使用REPLACE函数以字符为单位根据指定位置进行替换"></a>★★10.16使用REPLACE函数以字符为单位根据指定位置进行替换</h4><p>语法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">REPLACE(old_text, start_num, num_chars, new_text)</span><br><span class="line">REPLACEB(old_text, start_num, num_bytes, new_text)</span><br><span class="line">REPLACE 和 REPLACEB 函数语法具有下列参数：</span><br><span class="line">- old_text    必需。 要替换其部分字符的文本。</span><br><span class="line">- start_num    必需。 old_text 中要替换为 new_text 的字符位置。</span><br><span class="line">- num_chars    必需。 old_text 中希望 REPLACE 使用 new_text 来进行替换的字符数。</span><br><span class="line">- Num_bytes    必需。old_text 中希望 REPLACEB 使用 new_text 来进行替换的字节数。</span><br><span class="line">- new_text    必需。 将替换 old_text 中字符的文本。</span><br></pre></td></tr></table></figure>
+<p>打开会议邀请函发起记录素材</p>
+<p>在J3单元格输入公式</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">=IF(EXACT(F3,&quot;已经邀请&quot;),REPLACE(F3,1,4,&quot;√&quot;),F3)</span><br></pre></td></tr></table></figure>
+<p>即可将F3单元格中的已经邀请转换为√,在视同填充功能把其他单元格补充</p>
+<p>如图:</p>
+<p><img src="/2019/04/29/第二篇  公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/1016.png" alt></p>
+<h3 id="★★11-逻辑函数应用技巧"><a href="#★★11-逻辑函数应用技巧" class="headerlink" title="★★11.逻辑函数应用技巧"></a>★★11.逻辑函数应用技巧</h3><h4 id="11-1使用FALSE函数返回逻辑值FALSE"><a href="#11-1使用FALSE函数返回逻辑值FALSE" class="headerlink" title="11.1使用FALSE函数返回逻辑值FALSE"></a>11.1使用FALSE函数返回逻辑值FALSE</h4><p>打开抽样检查素材</p>
+<p>在D2单元格输入公式</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">=IF(B2&gt;$C$2,FALSE(),TRUE())</span><br></pre></td></tr></table></figure>
+<p>返回的结果为TRUE,即可判断出产品密度是达标的,使用填充功能,即可查看其他产品密度是否达标</p>
+<p>如图:</p>
+<p><img src="/2019/04/29/第二篇  公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/1101.png" alt></p>
+<h4 id="11-2使用AND函数判断指定的多个条件是否同时成立"><a href="#11-2使用AND函数判断指定的多个条件是否同时成立" class="headerlink" title="11.2使用AND函数判断指定的多个条件是否同时成立"></a>11.2使用AND函数判断指定的多个条件是否同时成立</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">它是一个逻辑函数，用于确定测试中的所有条件是否均为 TRUE。</span><br></pre></td></tr></table></figure>
+<p>打开审核购买资格素材</p>
+<p>在F2单元格输入公式</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">=IF(AND(C2&gt;3,D2&lt;15,E2&lt;35200),&quot;可申请&quot;,&quot;&quot;)</span><br></pre></td></tr></table></figure>
+<p>即可查看申请经适房资格,使用填充功能即可查看所有申购资格</p>
+<p>如图:</p>
+<p><img src="/2019/04/29/第二篇  公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/1102.png" alt></p>
+<h4 id="11-3使用OR函数判断指定的任一条件是为真，即返回真"><a href="#11-3使用OR函数判断指定的任一条件是为真，即返回真" class="headerlink" title="11.3使用OR函数判断指定的任一条件是为真，即返回真"></a>11.3使用OR函数判断指定的任一条件是为真，即返回真</h4><p>语法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">它是一个逻辑函数，用于确定测试中的所有条件是否均为 TRUE。</span><br></pre></td></tr></table></figure>
+<p>打开体育成绩登记素材</p>
+<p>合并H1和I1单元格输入表头记录标准</p>
+<p>在H2I2H3I3单元格分别输入优秀,85,及格60</p>
+<p>在F2单元格输入公式</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">=IF(OR(C2&gt;=$I$2,D2&gt;=$I$2,E2&gt;=$I$2),&quot;优秀&quot;,IF(OR(C2&gt;=$I$3,D2=$I$3,E2&gt;=$I$3),&quot;及格&quot;,&quot;不及格&quot;))</span><br></pre></td></tr></table></figure>
+<p>即可查看成绩为及格,使用填充功能将其他单元格显示</p>
+<p>如图:</p>
+<p><img src="/2019/04/29/第二篇  公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/1103.png" alt></p>
+<h4 id="11-4使用NOT函数对逻辑值求反"><a href="#11-4使用NOT函数对逻辑值求反" class="headerlink" title="11.4使用NOT函数对逻辑值求反"></a>11.4使用NOT函数对逻辑值求反</h4><p>语法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">如果你想确保一个值不等同于另一值，请使用 NOT 函数</span><br></pre></td></tr></table></figure>
+<p>打开体育成绩登记素材</p>
+<p>在G2单元格输入公式</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">=IF(NOT(MAX(C2:E2)&lt;$I$2),&quot;优秀&quot;,IF(NOT(MAX(C2:E2)&lt;$I$3),&quot;及格&quot;,&quot;不及格&quot;))</span><br></pre></td></tr></table></figure>
+<p>即可查看成绩为及格,使用填充功能将其他单元格显示</p>
+<p>如图:</p>
+<p><img src="/2019/04/29/第二篇  公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/1104.png" alt></p>
+<h4 id="11-5使用IFERROR函数对错误结果进行处理"><a href="#11-5使用IFERROR函数对错误结果进行处理" class="headerlink" title="11.5使用IFERROR函数对错误结果进行处理"></a>11.5使用IFERROR函数对错误结果进行处理</h4><p>语法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">IFERROR(value, value_if_error)</span><br><span class="line">IFERROR 函数语法具有下列参数：</span><br><span class="line">值    必需。 检查是否存在错误的参数。</span><br><span class="line">Value_if_error    必需。 公式的计算结果错误时返回的值。 计算以下错误类型：#N/A、#VALUE!、#REF!、#DIV/0!、#NUM!、 #NAME? 或 #NULL!。</span><br></pre></td></tr></table></figure>
+<p>打开检查公式素材</p>
+<p>单击公式—-&gt;显示公式</p>
+<p>选择B2单元格输入公式</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">=IFERROR(A2,&quot;公式出错&quot;)</span><br></pre></td></tr></table></figure>
+<p>使用填充功能填充B3和B7单元格,再次单击显示公式按钮,即可看到检查结果</p>
+<p>如图:</p>
+<p><img src="/2019/04/29/第二篇  公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/1105.png" alt></p>
+<h3 id="12-日期和时间函数应用技巧"><a href="#12-日期和时间函数应用技巧" class="headerlink" title="12.日期和时间函数应用技巧"></a>12.日期和时间函数应用技巧</h3><h4 id="★★12-1使用TODAY函数返回当前日期"><a href="#★★12-1使用TODAY函数返回当前日期" class="headerlink" title="★★12.1使用TODAY函数返回当前日期"></a>★★12.1使用TODAY函数返回当前日期</h4><p>语法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">TODAY()</span><br><span class="line">TODAY 函数语法没有参数。</span><br><span class="line">**注意:** Excel 可将日期存储为可用于计算的连续序列号。 默认情况下，1900 年 1 月 1 日的序列号为 1，2008 年 1 月 1 日的序列号为 39,448，这是因为它距 1900 年 1 月 1 日有 39,447 天。</span><br></pre></td></tr></table></figure>
+<p>打开项目进度跟踪表素材</p>
+<p>在C2单元格输入公式</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">=B2-TODAY()</span><br></pre></td></tr></table></figure>
+<p>使用填充功能显示C3到C9,点击开始—-&gt;数字(下拉选框里面选择常规)</p>
+<p>如图:</p>
+<p><img src="/2019/04/29/第二篇  公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/1201.png" alt></p>
+<h4 id="★★12-2使用TIME函数返回某一特定时间的小数值"><a href="#★★12-2使用TIME函数返回某一特定时间的小数值" class="headerlink" title="★★12.2使用TIME函数返回某一特定时间的小数值"></a>★★12.2使用TIME函数返回某一特定时间的小数值</h4><p>语法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">TIME(hour, minute, second)</span><br><span class="line">TIME 函数语法具有下列参数：</span><br><span class="line">小时    必需。 0（零）到 32767 之间的数字，代表小时。 任何大于 23 的值都会除以 24，余数将作为小时值。 例如，TIME(27,0,0) = TIME(3,0,0) = .125 或 3:00 AM。</span><br><span class="line">分钟    必需。 0 到 32767 之间的数字，代表分钟。 任何大于 59 的值将转换为小时和分钟。 例如，TIME(0,750,0) = TIME(12,30,0) = .520833 或 12:30 PM。</span><br><span class="line">秒    必需。 0 到 32767 之间的数字，代表秒。 任何大于 59 的值将转换为小时、分钟和秒。 例如，TIME(0,0,2000) = TIME(0,33,22) = .023148 或 12:33:20 AM</span><br></pre></td></tr></table></figure>
+<p>打开自制上下班时间表素材</p>
+<p>选中C2单元格输入公式</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">=B2+TIME(8,0,0)</span><br></pre></td></tr></table></figure>
+<p>使用填充功能显示C3到C15单元格内容</p>
+<p>如图:</p>
+<p><img src="/2019/04/29/第二篇  公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/1202.png" alt></p>
+<h4 id="★★12-3使用YEAR函数返回某日期对应的年份"><a href="#★★12-3使用YEAR函数返回某日期对应的年份" class="headerlink" title="★★12.3使用YEAR函数返回某日期对应的年份"></a>★★12.3使用YEAR函数返回某日期对应的年份</h4><p>语法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">YEAR(serial_number)</span><br><span class="line">YEAR 函数语法具有下列参数：</span><br><span class="line">Serial_number    必需。 要查找的年份的日期。 应使用 DATE 函数输入日期，或者将日期作为其他公式或函数的结果输入。 例如，使用函数 DATE(2008,5,23) 输入 2008 年 5 月 23 日。 如果日期以文本形式输入，则会出现问题。</span><br></pre></td></tr></table></figure>
+<p>打开员工档案表素材</p>
+<p>选中K2单元格输入公式</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">=YEAR(TODAY())-YEAR(J2)</span><br></pre></td></tr></table></figure>
+<p>使用填充功能填充K2到K31单元格,在开始—-&gt;数字(下拉选框选择常规)</p>
+<p>如图:</p>
+<p><img src="/2019/04/29/第二篇  公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/1203.png" alt></p>
+<h4 id="★★12-4使用MONTH函数返回某日期对应的月份"><a href="#★★12-4使用MONTH函数返回某日期对应的月份" class="headerlink" title="★★12.4使用MONTH函数返回某日期对应的月份"></a>★★12.4使用MONTH函数返回某日期对应的月份</h4><p>语法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">MONTH(serial_number)</span><br><span class="line">MONTH 函数语法具有下列参数：</span><br><span class="line">Serial_number    必需。要查找的月份日期。应使用 DATE 函数输入日期，或将日期作为其他公式或函数的结果输入。例如，使用函数 DATE(2008,5,23) 输入 2008 年 5 月 23 日。如果日期以文本形式输入，则会出现问题。</span><br><span class="line">返回日期（以序列数表示）中的月份。 月份是介于 1（一月）到 12（十二月）之间的整数。</span><br></pre></td></tr></table></figure>
+<p>打开判断闰年素材</p>
+<p>选中A2到A13单元格,单击公式—-&gt;定义的名称—-&gt;根据所选的内容创建—-&gt;勾选首行,确定</p>
+<p>选中B3单元格输入公式</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">=IF(MONTH(DATE(年份,2,29))=2,&quot;闰年&quot;,&quot;平年&quot;)</span><br></pre></td></tr></table></figure>
+<p>使用填充功能填充B4到B13单元格的内容</p>
+<p>如图:</p>
+<p><img src="/2019/04/29/第二篇  公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/1204.png" alt></p>
+<h4 id="12-5使用DAYS360函数以360天为准计算两个日期间天数"><a href="#12-5使用DAYS360函数以360天为准计算两个日期间天数" class="headerlink" title="12.5使用DAYS360函数以360天为准计算两个日期间天数"></a>12.5使用DAYS360函数以360天为准计算两个日期间天数</h4><p>语法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">DAYS360(start_date,end_date,[method])</span><br><span class="line">DAYS360 函数语法具有下列参数：</span><br><span class="line">Start_date、end_date    必需。 用于计算期间天数的起止日期。 如果 start_date 在 end_date 之后，则 DAYS360 函数将返回一个负数。 应使用 DATE 函数输入日期，或者将从其他公式或函数派生日期。 例如，使用函数 DATE(2008,5,23) 以返回 2008 年 5 月 23 日。 如果日期以文本形式输入，则会出现问题。</span><br><span class="line">方法    可选。 逻辑值，用于指定在计算中是采用美国方法 还是欧洲方法。</span><br><span class="line">按照一年 360 天的算法（每个月以 30 天计，一年共计 12 个月），DAYS360 函数返回两个日期间相差的天数，这在一些会计计算中将会用到。 如果财会系统是基于一年 12 个月，每月 30 天，可使用此函数帮助计算支付款项。</span><br></pre></td></tr></table></figure>
+<p>打开计算存款时间和存款利息素材</p>
+<p>选中C6单元格输入公式</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">=DAYS360(B3,C3)</span><br></pre></td></tr></table></figure>
+<p>计算出存款时长</p>
+<p>如图:</p>
+<p><img src="/2019/04/29/第二篇  公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/1205_1.png" alt></p>
+<p>选中D6单元格输入公式</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">=A3*(C6/360)*D3</span><br></pre></td></tr></table></figure>
+<p>即可计算出利息</p>
+<p>如图:</p>
+<p><img src="/2019/04/29/第二篇  公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/1205_2.png" alt></p>
+<h4 id="12-6使用NETWORKDAYS函数计算日期间所有工作日数"><a href="#12-6使用NETWORKDAYS函数计算日期间所有工作日数" class="headerlink" title="12.6使用NETWORKDAYS函数计算日期间所有工作日数"></a>12.6使用NETWORKDAYS函数计算日期间所有工作日数</h4><p>语法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">NETWORKDAYS(start_date, end_date, [holidays])</span><br><span class="line">NETWORKDAYS 函数语法具有下列参数：</span><br><span class="line">Start_date    必需。 一个代表开始日期的日期。</span><br><span class="line">End_date    必需。 一个代表终止日期的日期。</span><br><span class="line">Holidays    可选。不在工作日历中的一个或多个日期所构成的可选区域，例如：省/市/自治区和国家/地区的法定假日以及其他非法定假日。该列表可以是包含日期的单元格区域，或是表示日期的序列号的数组常量。</span><br><span class="line">返回参数 start_date 和 end_date 之间完整的工作日数值。 工作日不包括周末和专门指定的假期。 可以使用函数 NETWORKDAYS，根据某一特定时期内雇员的工作天数，计算其应计的报酬。</span><br></pre></td></tr></table></figure>
+<p>打开计算项目可开展的工作日数素材</p>
+<p>选中B9单元格输入公式</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">=NETWORKDAYS(A2,B2,C2:C6)</span><br></pre></td></tr></table></figure>
+<p>即可计算出结果</p>
+<p>如图:</p>
+<p><img src="/2019/04/29/第二篇  公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/1206.png" alt></p>
+<h4 id="12-7使用WORKDAY函数计算指定日期向前或向后数个工作日后的日期"><a href="#12-7使用WORKDAY函数计算指定日期向前或向后数个工作日后的日期" class="headerlink" title="12.7使用WORKDAY函数计算指定日期向前或向后数个工作日后的日期"></a>12.7使用WORKDAY函数计算指定日期向前或向后数个工作日后的日期</h4><p>语法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">WORKDAY(start_date, days, [holidays])</span><br><span class="line">WORKDAY 函数语法具有下列参数：</span><br><span class="line">Start_date    必需。 一个代表开始日期的日期。</span><br><span class="line">Days    必需。 start_date 之前或之后不含周末及节假日的天数。 Days 为正值将生成未来日期；为负值生成过去日期。</span><br><span class="line">Holidays    可选。一个可选列表，其中包含需要从工作日历中排除的一个或多个日期，例如各种省/市/自治区和国家/地区的法定假日及非法定假日。该列表可以是包含日期的单元格区域，也可以是由代表日期的序列号所构成的数组常量。</span><br><span class="line">重要: 应使用 DATE 函数输入日期，或者将日期作为其他公式或函数的结果输入。 例如，使用函数 DATE(2008,5,23) 输入 2008 年 5 月 23 日。 如果日期以文本形式输入，则会出现问题。</span><br><span class="line">返回在某日期（起始日期）之前或之后、与该日期相隔指定工作日的某一日期的日期值。 工作日不包括周末和专门指定的假日。 在计算发票到期日、预期交货时间或工作天数时，可以使用函数 WORKDAY 来扣除周末或假日。</span><br></pre></td></tr></table></figure>
+<p>新建计算项目预计结束的日期工作簿,如图<br><img src="/2019/04/29/第二篇  公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/1207_1.png" alt></p>
+<p>选中B2单元格,输入公式</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">=WORKDAY(A2,150,C2:C7)</span><br></pre></td></tr></table></figure>
+<p>点击开始—-&gt;数字(在选项框里面选择短日期),即可显示结果</p>
+<p>如图:</p>
+<p><img src="/2019/04/29/第二篇  公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/1207_2.png" alt></p>
+<h4 id="12-8使用YEARFRAC函数计算从开始日期到结束日期所经历的天数占全年天数的"><a href="#12-8使用YEARFRAC函数计算从开始日期到结束日期所经历的天数占全年天数的" class="headerlink" title="12.8使用YEARFRAC函数计算从开始日期到结束日期所经历的天数占全年天数的"></a>12.8使用YEARFRAC函数计算从开始日期到结束日期所经历的天数占全年天数的</h4><p>语法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">YEARFRAC(start_date, end_date, [basis])</span><br><span class="line">YEARFRAC 函数语法具有下列参数：</span><br><span class="line">Start_date    必需。 一个代表开始日期的日期。</span><br><span class="line">End_date    必需。 一个代表终止日期的日期。</span><br><span class="line">Basis    可选。 要使用的日计数基准类型。</span><br><span class="line">Basis			日计数基准</span><br><span class="line">0 或省略		  US (NASD) 30/360</span><br><span class="line">1				实际/实际</span><br><span class="line">2				实际/360</span><br><span class="line">3				实际/365</span><br><span class="line">4				欧洲 30/36</span><br><span class="line">重要: </span><br><span class="line">应使用 DATE 函数输入日期，或者将日期作为其他公式或函数的结果输入。 例如，使用函数 DATE(2018,5,23) 输入 2018 年 5 月 23 日。 如果日期以文本形式输入，则会出现问题。</span><br><span class="line">如果使用 US (NASD) 30/360 基准，且 start_date 是二月的最后一天，则 YEARFRAC 函数可能会返回错误的结果。</span><br><span class="line">YEARFRAC 可计算两个日期（start_date 和 end_date）之间的天数（取整天数）占一年的比例。 例如，可使用 YEARFRAC 确定某一特定条件下全年效益或债务的比例。</span><br></pre></td></tr></table></figure>
+<p>打开股票交易信息统计素材</p>
+<p>在C2单元格中输入公式</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">=YEARFRAC(A2,B2,3)</span><br></pre></td></tr></table></figure>
+<p>使用填充功能填充C3到C7的单元格,点击开始—-&gt;数字(选项框里面选择百分比)</p>
+<p>如图:</p>
+<p><img src="/2019/04/29/第二篇  公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/1208.png" alt></p>
+<h3 id="13-查找与引用函数应用技巧"><a href="#13-查找与引用函数应用技巧" class="headerlink" title="13.查找与引用函数应用技巧"></a>13.查找与引用函数应用技巧</h3><h4 id="★★13-1使用CHOOSE函数根据序号从列表中选择对应的内容"><a href="#★★13-1使用CHOOSE函数根据序号从列表中选择对应的内容" class="headerlink" title="★★13.1使用CHOOSE函数根据序号从列表中选择对应的内容"></a>★★13.1使用CHOOSE函数根据序号从列表中选择对应的内容</h4><p>语法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">CHOOSE(index_num, value1, [value2], ...)</span><br><span class="line">CHOOSE 函数语法具有以下参数：</span><br><span class="line">index_num    必需。 用于指定所选定的数值参数。 index_num 必须是介于 1 到 254 之间的数字，或是包含 1 到 254 之间的数字的公式或单元格引用。</span><br><span class="line">如果 index_num 为 1，则 CHOOSE 返回 value1；如果为 2，则 CHOOSE 返回 value2，以此类推。</span><br><span class="line">如果 index_num 小于 1 或大于列表中最后一个值的索引号，则 CHOOSE 返回 #VALUE! 错误值。</span><br><span class="line">如果 index_num 为小数，则在使用前将被截尾取整。</span><br><span class="line">value1, value2, ...    Value1 是必需的，后续值是可选的。 1 到 254 个数值参数，CHOOSE 将根据 index_num 从中选择一个数值或一项要执行的操作。 参数可以是数字、单元格引用、定义的名称、公式、函数或文本</span><br><span class="line">使用 index_num 返回数值参数列表中的数值。 使用 CHOOSE 可以根据索引号从最多 254 个数值中选择一个。 例如，如果 value1 到 value7 表示一周的 7 天，那么将 1 到 7 之间的数字用作 index_num 时，CHOOSE 将返回其中的某一天。</span><br></pre></td></tr></table></figure>
+<p>打开工资表素材</p>
+<p>为当前工作表命名为工资表</p>
+<p>新建一个名为工资条的工作表</p>
+<p>选择A1单元格输入公式</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">=OFFSET(工资表!$A$1,CHOOSE(MOD(ROW(工资表!A1)-1,3)+1,0,(ROW(工资表!A1)-1)/3+1,65535),COLUMN()-1)&amp;&quot;&quot;</span><br></pre></td></tr></table></figure>
+<p>使用填充功能填充B1到K1的单元格内容,鼠标放置K1单元格右下角,再次使用填充功能下拉到45行,填充完所有内容</p>
+<p>如图:</p>
+<p><img src="/2019/04/29/第二篇  公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/1301.png" alt></p>
+<h4 id="13-2使用HLOOKUP函数在区域或数组的行中查找数据"><a href="#13-2使用HLOOKUP函数在区域或数组的行中查找数据" class="headerlink" title="13.2使用HLOOKUP函数在区域或数组的行中查找数据"></a>13.2使用HLOOKUP函数在区域或数组的行中查找数据</h4><p>语法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">HLOOKUP(lookup_value, table_array, row_index_num, [range_lookup])</span><br><span class="line">HLOOKUP 函数语法具有下列参数：</span><br><span class="line">Lookup_value    必需。 要在表格的第一行中查找的值。 Lookup_value 可以是数值、引用或文本字符串。</span><br><span class="line">Table_array    必需。 在其中查找数据的信息表。 使用对区域或区域名称的引用。</span><br><span class="line">Table_array 的第一行的数值可以为文本、数字或逻辑值。</span><br><span class="line">如果 range_lookup 为 TRUE，则 table_array 的第一行的数值必须按升序排列：...-2、-1、0、1、2、...、A-Z、FALSE、TRUE；否则，HLOOKUP 将不能给出正确的数值。 如果 range_lookup 为 FALSE，则 table_array 不必进行排序。</span><br><span class="line">文本不区分大小写。</span><br><span class="line">将数值从左到右按升序排序。有关详细信息，请参阅对区域或表中的数据排序。</span><br><span class="line">Row_index_num    必需。 table_array 中将返回的匹配值的行号。 row_index_num 为 1 时，返回 table_array 的第一行的值；row_index_num 为 2 时，返回 table_array 第二行中的值，依此类推。 如果 row_index_num 小于 1，则 HLOOKUP 返回 错误值 #VALUE!；如果 row_index_num 大于 table_array 的行数，则 HLOOKUP 返回 错误值 #REF!。</span><br><span class="line">Range_lookup    可选。 一个逻辑值，指定希望 HLOOKUP 查找精确匹配值还是近似匹配值。 如果为 TRUE 或省略，则返回近似匹配值。 换言之，如果找不到精确匹配值，则返回小于 lookup_value 的最大值。 如果为 False，则 HLOOKUP 将查找精确匹配值。 如果找不到精确匹配值，则返回错误值 #N/A。</span><br></pre></td></tr></table></figure>
+<p>打开工资计算表素材</p>
+<p>选择8月工作表的E2单元格输入公式</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">=HLOOKUP(C2,工资标准!$A$2:$E$3,2,0)*D2</span><br></pre></td></tr></table></figure>
+<p>使用填充功能填充E3到E13的单元格内容</p>
+<p>如图:</p>
+<p><img src="/2019/04/29/第二篇  公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/1302.png" alt></p>
+<p>13.3使用LOOKUP函数以向量形式在单行单列中查找</p>
+<p>语法:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">LOOKUP(lookup_value, lookup_vector, [result_vector])</span><br><span class="line">LOOKUP 函数向量形式语法具有以下参数：</span><br><span class="line">lookup_value    必需。 LOOKUP 在第一个向量中搜索的值。 Lookup_value 可以是数字、文本、逻辑值、名称或对值的引用。</span><br><span class="line">lookup_vector    必需。 只包含一行或一列的区域。 lookup_vector 中的值可以是文本、数字或逻辑值。</span><br><span class="line">重要: lookup_vector 中的值必须按升序排列：..., -2, -1, 0, 1, 2, ..., A-Z, FALSE, TRUE；否则，LOOKUP 可能无法返回正确的值。 文本不区分大小写。</span><br><span class="line">result_vector    可选。只包含一行或一列的区域。result_vector 参数必须与 lookup_vector 参数大小相同。其大小必须相同。</span><br></pre></td></tr></table></figure>
+<p>打开产品销量统计表素材</p>
+<p>在A14和B14分别写入表头编号和2017年销量</p>
+<p>在B15单元格输入公式</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">=LOOKUP(A15,A2:A11,D2:D11)</span><br></pre></td></tr></table></figure>
+<p>在A15单元格输入编号,B15单元格即可显示销量</p>
+<p>如图:</p>
+<p><img src="/2019/04/29/第二篇  公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/1303.png" alt></p>
+<h4 id="★★13-4使用MATCH函数返回指定内容所在的位置"><a href="#★★13-4使用MATCH函数返回指定内容所在的位置" class="headerlink" title="★★13.4使用MATCH函数返回指定内容所在的位置"></a>★★13.4使用MATCH函数返回指定内容所在的位置</h4><p>语法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">MATCH(lookup_value, lookup_array, [match_type])</span><br><span class="line">MATCH 函数语法具有下列参数：</span><br><span class="line">lookup_value    必需。 要在 lookup_array 中匹配的值。 例如，如果要在电话簿中查找某人的电话号码，则应该将姓名作为查找值，但实际上需要的是电话号码。</span><br><span class="line">lookup_value 参数可以为值（数字、文本或逻辑值）或对数字、文本或逻辑值的单元格引用。</span><br><span class="line">lookup_array    必需。 要搜索的单元格区域。</span><br><span class="line">match_type    可选。 数字 -1、0 或 1。 match_type 参数指定 Excel 如何将 lookup_value 与 lookup_array 中的值匹配。 此参数的默认值为 1。</span><br></pre></td></tr></table></figure>
+<p>打开员工考评成绩素材</p>
+<p>在H1单元格输入表头 排序</p>
+<p>选中H2到H7区域,输入公式</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">=INDEX($A$2:$A$7,MATCH(LARGE($G$2:$G$7,ROW()-1),$G$2:$G$7,0))</span><br></pre></td></tr></table></figure>
+<p>即可显示员工从高到低的总成绩</p>
+<p>如图:</p>
+<p><img src="/2019/04/29/第二篇  公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/1304.png" alt></p>
+<h4 id="★★13-5使用TRANSPOSE函数转置数据区域的行列位置"><a href="#★★13-5使用TRANSPOSE函数转置数据区域的行列位置" class="headerlink" title="★★13.5使用TRANSPOSE函数转置数据区域的行列位置"></a>★★13.5使用TRANSPOSE函数转置数据区域的行列位置</h4><p>语法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">TRANSPOSE(array)</span><br><span class="line">TRANSPOSE 函数语法具有以下参数：</span><br><span class="line">数组   必备.要转置的工作表上的数组或单元格区域。通过使用数组的第一行作为新数组的第一列, 数组的第二行作为新数组的第二列, 依此类推, 创建数组的转置。如果你不确定如何输入数组公式, 请参阅创建数组公式。</span><br></pre></td></tr></table></figure>
+<p>打开产品生产方案表素材</p>
+<p>选中A8到E12区域</p>
+<p>输入公式</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">=TRANSPOSE(A1:E5)</span><br></pre></td></tr></table></figure>
+<p>按下Ctrl+Shift+Enter组合件,即可对原来工作表进行转置</p>
+<p>如图:</p>
+<p><img src="/2019/04/29/第二篇  公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/1305.png" alt></p>
+<h4 id="13-6使用INDIRECT函数返回由文本值指定的引用"><a href="#13-6使用INDIRECT函数返回由文本值指定的引用" class="headerlink" title="13.6使用INDIRECT函数返回由文本值指定的引用"></a>13.6使用INDIRECT函数返回由文本值指定的引用</h4><p>语法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">INDIRECT(ref_text, [a1])</span><br><span class="line">INDIRECT 函数语法具有以下参数：</span><br><span class="line">Ref_text    必需。对单元格的引用，此单元格包含 A1 样式的引用、R1C1 样式的引用、定义为引用的名称或对作为文本字符串的单元格的引用。如果 ref_text 不是合法的单元格引用，则 INDIRECT 返回 错误值。</span><br><span class="line">如果 ref_text 是对另一个工作簿的引用（外部引用），则被引用的工作簿必须已打开。如果源工作簿没有打开，则 INDIRECT 返回错误值 #REF!。</span><br><span class="line">注意    Excel Web App 中不支持外部引用。</span><br><span class="line">如果 ref_text 引用的单元格区域超出 1,048,576 这一行限制或 16,384 (XFD) 这一列限制，则 INDIRECT 返回错误 #REF!。</span><br><span class="line">注意    此行为不同于 Microsoft Office Excel 2007 之前的 Excel 版本，早期的版本会忽略超出的限制并返回一个值。</span><br><span class="line">A1    可选。一个逻辑值，用于指定包含在单元格 ref_text 中的引用的类型。</span><br><span class="line">如果 a1 为 TRUE 或省略，ref_text 被解释为 A1-样式的引用。</span><br><span class="line">如果 a1 为 FALSE，则将 ref_text 解释为 R1C1 样式的引用。</span><br><span class="line">返回由文本字符串指定的引用。此函数立即对引用进行计算，并显示其内容。如果需要更改公式中对单元格的引用，而不更改公式本身，请使用函数 INDIRECT。</span><br></pre></td></tr></table></figure>
+<p>打开学生成绩表素材</p>
+<p>选中A1到G11单元格,单击公式—-&gt;定义的名称—-&gt;根据所选的内容创建—-&gt;勾选首行,确定</p>
+<p>在I1到K7区域创建要查找的学生成绩,如图:</p>
+<p><img src="/2019/04/29/第二篇  公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/1306_1.png" alt></p>
+<p>在K3单元格输入公式</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">=VLOOKUP(I3,$B$1:$G$11,COLUMN(INDIRECT(J3))-1,FALSE)</span><br></pre></td></tr></table></figure>
+<p>使用填充功能填充K4到K7的单元格内容</p>
+<p>如图:</p>
+<p><img src="/2019/04/29/第二篇  公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/1306_2.png" alt></p>
+<h3 id="14财务函数应用技巧"><a href="#14财务函数应用技巧" class="headerlink" title="14财务函数应用技巧"></a>14财务函数应用技巧</h3><h4 id="14-1使用FV函数计算一笔投资的期值"><a href="#14-1使用FV函数计算一笔投资的期值" class="headerlink" title="14.1使用FV函数计算一笔投资的期值"></a>14.1使用FV函数计算一笔投资的期值</h4><p>语法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">FV(rate,nper,pmt,[pv],[type])</span><br><span class="line">有关函数 FV 中各参数以及年金函数的详细信息，请参阅函数 PV。</span><br><span class="line">FV 函数语法具有下列参数：</span><br><span class="line">Rate    必需。 各期利率。</span><br><span class="line">Nper    必需。年金的付款总期数。</span><br><span class="line">Pmt    必需。 各期所应支付的金额，在整个年金期间保持不变。 通常 pmt 包括本金和利息，但不包括其他费用或税款。 如果省略 pmt，则必须包括 pv 参数。</span><br><span class="line">pv    可选。 现值，或一系列未来付款的当前值的累积和。 如果省略 pv，则假定其值为 0（零），并且必须包括 pmt 参数。</span><br><span class="line">Type    可选。 数字 0 或 1，用以指定各期的付款时间是在期初还是期末。 如果省略 type，则假定其值为 0。</span><br><span class="line">FV 是一个财务函数，用于根据固定利率计算投资的未来值。 可以将 FV 与定期付款、固定付款或一次付清总额付款结合使用。</span><br></pre></td></tr></table></figure>
+<p>打开项目投资未来值计算素材</p>
+<p>重命名当前工作表为A公司投资项目</p>
+<p>在B5单元格输入公式</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">=FV(B3,B4,,-B2)</span><br></pre></td></tr></table></figure>
+<p>即可计算投资未来值</p>
+<p>如图:</p>
+<p><img src="/2019/04/29/第二篇  公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/1401_1.png" alt></p>
+<p>创建B公司投资项目工作表,创建内容,如图所示</p>
+<p><img src="/2019/04/29/第二篇  公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/1401_2.png" alt></p>
+<p>在B5单元格输入公式</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">=FV(B3,B4,-B2,,1)</span><br></pre></td></tr></table></figure>
+<p>即可显示B公司投资未来值</p>
+<p>如图:</p>
+<p><img src="/2019/04/29/第二篇  公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/1401_3.png" alt></p>
+<h4 id="14-2使用PV函数计算投资的现值"><a href="#14-2使用PV函数计算投资的现值" class="headerlink" title="14.2使用PV函数计算投资的现值"></a>14.2使用PV函数计算投资的现值</h4><p>语法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">PV(rate, nper, pmt, [fv], [type])</span><br><span class="line">PV 函数语法具有下列参数：</span><br><span class="line">Rate    必需。 各期利率。 例如，如果您获得年利率为 10% 的汽车贷款，并且每月还款一次，则每月的利率为 10%/12（即 0.83%）。 您需要在公式中输入 10%/12（即 0.83%）或 0.0083 作为利率。</span><br><span class="line">Nper    必需。 年金的付款总期数。 例如，如果您获得为期四年的汽车贷款，每月还款一次，则贷款期数为 4*12（即 48）期。 您需要在公式中输入 48 作为 nper。</span><br><span class="line">Pmt    必需。 每期的付款金额，在年金周期内不能更改。 通常，pmt 包括本金和利息，但不含其他费用或税金。 例如，对于金额为 ￥100,000、利率为 12% 的四年期汽车贷款，每月付款为 ￥2633.30。 您需要在公式中输入 -2633.30 作为 pmt。 如果省略 pmt，则必须包括 fv 参数。</span><br><span class="line">fv    可选。 未来值，或在最后一次付款后希望得到的现金余额。 如果省略 fv，则假定其值为 0（例如，贷款的未来值是 0）。 例如，如果要在 18 年中为支付某个特殊项目而储蓄 ￥500,000，则 ￥500,000 就是未来值。 然后，您可以对利率进行保守的猜测，并确定每月必须储蓄的金额。 如果省略 fv，则必须包括 pmt 参数。</span><br><span class="line">类型    可选。 数字 0 或 1，用以指定各期的付款时间是在期初还是期末。</span><br><span class="line">PV 是一个财务函数，用于根据固定利率计算贷款或投资的现值。 可以将 PV 与定期付款、固定付款（如按揭或其他贷款）或投资目标的未来值结合使用。</span><br></pre></td></tr></table></figure>
+<p>打开预期未来值的现值计算素材</p>
+<p>修改当前工作表名称为教育预备金</p>
+<p>A5输入文本现值,B5输入公式</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">=PV(B3,B4,,-B2,)</span><br></pre></td></tr></table></figure>
+<p>即可计算现值结果</p>
+<p>如图:</p>
+<p><img src="/2019/04/29/第二篇  公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/1402_1.png" alt></p>
+<p>新建工作表房租代付金</p>
+<p>输入下图文本</p>
+<p><img src="/2019/04/29/第二篇  公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/1402_2.png" alt></p>
+<p>在B5单元格输入公式</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">=PV(B3,B4,-B2,,)</span><br></pre></td></tr></table></figure>
+<p>即可计算现值结果</p>
+<p>如图:</p>
+<p><img src="/2019/04/29/第二篇  公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/1402_3.png" alt></p>
+<h4 id="14-3使用RATE函数计算年金的各期利率"><a href="#14-3使用RATE函数计算年金的各期利率" class="headerlink" title="14.3使用RATE函数计算年金的各期利率"></a>14.3使用RATE函数计算年金的各期利率</h4><p>语法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">RATE(nper, pmt, pv, [fv], [type], [guess])</span><br><span class="line">注意: 有关参数 nper、pmt、pv、fv 和 type 的详细说明，请参阅 PV。</span><br><span class="line">RATE 函数语法具有下列参数：</span><br><span class="line">Nper    必需。年金的付款总期数。</span><br><span class="line">Pmt    必需。 每期的付款金额，在年金周期内不能更改。 通常，pmt 包括本金和利息，但不含其他费用或税金。 如果省略 pmt，则必须包括 fv 参数。</span><br><span class="line">pv    必需。现值即一系列未来付款当前值的总和。</span><br><span class="line">Fv    可选。未来值，或在最后一次付款后希望得到的现金余额。如果省略 fv，则假定其值为 0（例如，贷款的未来值是 0）。如果省略 fv，则必须包括 pmt 参数。</span><br><span class="line">类型    可选。 数字 0 或 1，用以指定各期的付款时间是在期初还是期末。</span><br><span class="line">Guess    可选。 预期利率。</span><br><span class="line">如果省略 guess，则假定其值为 10%。</span><br><span class="line">如果 RATE 不能收敛，请尝试不同的 guess 值。 如果 guess 在 0 和 1 之间，RATE 通常会收敛。</span><br></pre></td></tr></table></figure>
+<p>打开项目投资的月利率和年利率计算素材</p>
+<p>在A5和A6分别输入月投资利率和年投资利率</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">在B5单元格输入公式,=RATE(B4*12,-B3,B2),即可计算月投资利率</span><br><span class="line">在B6单元格输入公式,=RATE(B412,-B3,B2)12,即可计算月投资利率</span><br></pre></td></tr></table></figure>
+<p>如图:</p>
+<p><img src="/2019/04/29/第二篇  公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/1403.png" alt></p>
+<h4 id="14-4使用NPER函数计算还款次数"><a href="#14-4使用NPER函数计算还款次数" class="headerlink" title="14.4使用NPER函数计算还款次数"></a>14.4使用NPER函数计算还款次数</h4><p>语法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">NPER(rate,pmt,pv,[fv],[type])</span><br><span class="line">有关 NPER 中各参数的详细说明及有关年金函数的详细信息，请参阅 PV。</span><br><span class="line">NPER 函数语法具有下列参数：</span><br><span class="line">Rate    必需。 各期利率。</span><br><span class="line">Pmt    必需。 各期所应支付的金额，在整个年金期间保持不变。 通常 pmt 包括本金和利息，但不包括其他费用或税款。</span><br><span class="line">Pv    必需。 现值，或一系列未来付款的当前值的累积和。</span><br><span class="line">Fv    可选。 未来值，或在最后一次付款后希望得到的现金余额。 如果省略 fv，则假定其值为 0（例如，贷款的未来值是 0）。</span><br><span class="line">类型    可选。 数字 0 或 1，用以指定各期的付款时间是在期初还是期末。</span><br><span class="line">基于固定利率及等额分期付款方式，返回某项投资的总期数。</span><br></pre></td></tr></table></figure>
+<p>打开计算积攒一笔存款需要的时间素材</p>
+<p>在B6单元格中输入公式</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">=INT(NPER(B2,-B3,-B4,B5,1))+1</span><br></pre></td></tr></table></figure>
+<p>即可显示年限结果</p>
+<p>如图:</p>
+<p><img src="/2019/04/29/第二篇  公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/1404.png" alt></p>
+<h4 id="14-5使用PMT函数计算贷款的每期付款额"><a href="#14-5使用PMT函数计算贷款的每期付款额" class="headerlink" title="14.5使用PMT函数计算贷款的每期付款额"></a>14.5使用PMT函数计算贷款的每期付款额</h4><p>语法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">PMT(rate, nper, pv, [fv], [type])</span><br><span class="line">注意: 有关 PMT 参数的更完整的说明，请参阅 PV 函数。</span><br><span class="line">PMT 函数语法具有下列参数：</span><br><span class="line">rate    必需。 贷款利率。</span><br><span class="line">Nper    必需。 该项贷款的付款总数。</span><br><span class="line">pv    必需。 现值，或一系列未来付款额现在所值的总额，也叫本金。</span><br><span class="line">fv    可选。 未来值，或在最后一次付款后希望得到的现金余额。 如果省略 fv，则假定其值为 0（零），即贷款的未来值是 0。</span><br><span class="line">类型    可选。 数字 0（零）或 1 指示支付时间。</span><br><span class="line">PMT 是一个财务函数，用于根据固定付款额和固定利率计算贷款的付款额。</span><br></pre></td></tr></table></figure>
+<p>打开项目贷款不同年限的每期还款额素材</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">在B8单元格中输入公式,=PMT(E3/12,C3*12,A3),即可计算出20年限每月的结果</span><br><span class="line">在E8单元格中输入公式,=PMT(E3,C3,A3),即可计算出20年限每年的结果</span><br><span class="line">在B9单元格中输入公式,=PMT(E3/12,C4*12,A3),即可计算出30年限每月的结果</span><br><span class="line">在E9单元格中输入公式,=PMT(E3,C4,A3),即可计算出20年限每年的结果</span><br></pre></td></tr></table></figure>
+<p>如图</p>
+<p><img src="/2019/04/29/第二篇  公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/1405.png" alt></p>
+<h4 id="14-6使用IPMT函数计算贷款在给定期间内支付的利息"><a href="#14-6使用IPMT函数计算贷款在给定期间内支付的利息" class="headerlink" title="14.6使用IPMT函数计算贷款在给定期间内支付的利息"></a>14.6使用IPMT函数计算贷款在给定期间内支付的利息</h4><p>语法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">IPMT(rate, per, nper, pv, [fv], [type])</span><br><span class="line">IPMT 函数语法具有以下参数：</span><br><span class="line">Rate    必需。 各期利率。</span><br><span class="line">Per    必需。 用于计算其利息数额的期数，必须在 1 到 nper 之间。</span><br><span class="line">Nper    必需。年金的付款总期数。</span><br><span class="line">Pv    必需。 现值，或一系列未来付款的当前值的累积和。</span><br><span class="line">Fv    可选。 未来值，或在最后一次付款后希望得到的现金余额。 如果省略 fv，则假定其值为 0（例如，贷款的未来值是 0）。</span><br><span class="line">Type    可选。 数字 0 或 1，用以指定各期的付款时间是在期初还是期末。 如果省略 type，则假定其值为 0。</span><br><span class="line">基于固定利率及等额分期付款方式，返回给定期数内对投资的利息偿还额。</span><br></pre></td></tr></table></figure>
+<p>打开房贷分析素材</p>
+<p>在C8单元格中输入公式</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">=IPMT($E$3,A8,$C$3,$A$3)</span><br></pre></td></tr></table></figure>
+<p>使用填充功能填充C9到C27单元格区域</p>
+<p>如图:</p>
+<p><img src="/2019/04/29/第二篇  公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/1406.png" alt></p>
+<h4 id="14-7使用PPMT函数计算贷款在给定期间内偿还的本金"><a href="#14-7使用PPMT函数计算贷款在给定期间内偿还的本金" class="headerlink" title="14.7使用PPMT函数计算贷款在给定期间内偿还的本金"></a>14.7使用PPMT函数计算贷款在给定期间内偿还的本金</h4><p>语法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">PPMT(rate, per, nper, pv, [fv], [type])</span><br><span class="line">注意: 有关 PPMT 中参数的详细说明，请参阅 PV。</span><br><span class="line">PPMT 函数语法具有下列参数：</span><br><span class="line">Rate    必需。 各期利率。</span><br><span class="line">per    必需。 指定期数，该值必须在 1 到 nper 范围内。</span><br><span class="line">Nper    必需。年金的付款总期数。</span><br><span class="line">pv    必需。现值即一系列未来付款当前值的总和。</span><br><span class="line">fv    可选。 未来值，或在最后一次付款后希望得到的现金余额。 如果省略 fv，则假定其值为 0（零），即贷款的未来值是 0。</span><br><span class="line">类型    可选。 数字 0 或 1，用以指定各期的付款时间是在期初还是期末。</span><br><span class="line">返回根据定期固定付款和固定利率而定的投资在已知期间内的本金偿付额。</span><br></pre></td></tr></table></figure>
+<p>打开房贷分析素材</p>
+<p>在E8单元格中输入公式</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">=PPMT($E$3,A8,$C$3,$A$3)</span><br></pre></td></tr></table></figure>
+<p>使用填充功能填充E9到E27单元格区域</p>
+<p>如图:</p>
+<p><img src="/2019/04/29/第二篇  公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/1407.png" alt></p>
+<h4 id="14-8使用ISPMT函数计算特定投资期内支付的利息"><a href="#14-8使用ISPMT函数计算特定投资期内支付的利息" class="headerlink" title="14.8使用ISPMT函数计算特定投资期内支付的利息"></a>14.8使用ISPMT函数计算特定投资期内支付的利息</h4><p>语法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">ISPMT(rate, per, nper, pv)</span><br><span class="line">ISPMT 函数语法具有下列参数：</span><br><span class="line">参数			描述</span><br><span class="line">费率			必填。投资利率。</span><br><span class="line">Per			  必填。为其您想要查找感兴趣，并且必须介于 1 到 Nper 之间时间段。</span><br><span class="line">Nper		  必填。投资的付款期总数。</span><br><span class="line">Pv			  必填。投资的现值。对于贷款，Pv 是贷款金额。</span><br><span class="line">计算利率支付 （或接收） 给定期间内的贷款 （或投资） 甚至本金付款。</span><br></pre></td></tr></table></figure>
+<p>打开房贷分析素材</p>
+<p>在G8单元格中输入公式</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">=ISPMT($E$3,A8,$C$3,$A$3)</span><br></pre></td></tr></table></figure>
+<p>使用填充功能填充G9到G27单元格区域</p>
+<p>如图:</p>
+<p><img src="/2019/04/29/第二篇  公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/1408.png" alt></p>
+<h4 id="14-9使用CUMIPMT函数计算两个付款期之间累积支付的利息"><a href="#14-9使用CUMIPMT函数计算两个付款期之间累积支付的利息" class="headerlink" title="14.9使用CUMIPMT函数计算两个付款期之间累积支付的利息"></a>14.9使用CUMIPMT函数计算两个付款期之间累积支付的利息</h4><p>语法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">CUMIPMT(rate, nper, pv, start_period, end_period, type)</span><br><span class="line">CUMIPMT 函数语法具有下列参数：</span><br><span class="line">Rate    必需。 利率。</span><br><span class="line">Nper    必需。 总付款期数。</span><br><span class="line">pv    必需。 现值。</span><br><span class="line">Start_period    必需。 计算中的首期。 付款期数从 1 开始计数。</span><br><span class="line">End_period    必需。 计算中的末期。</span><br><span class="line">Type    必需。 付款时间类型。</span><br><span class="line">返回一笔贷款在给定的 start_period 到 end_period 期间累计偿还的利息数额。</span><br></pre></td></tr></table></figure>
+<p>打开房贷分析素材,合并A30和B30单元格,输入文本前三年累积偿还的利息</p>
+<p>在C30单元格输入公式</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">=CUMIPMT(E3/12,C3*12,A3,1,36,0)</span><br></pre></td></tr></table></figure>
+<p>如图</p>
+<p><img src="/2019/04/29/第二篇  公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/1409.png" alt></p>
+<h4 id="14-10使用CUMPRINC函数计算两个付款期之间累积支付的本金"><a href="#14-10使用CUMPRINC函数计算两个付款期之间累积支付的本金" class="headerlink" title="14.10使用CUMPRINC函数计算两个付款期之间累积支付的本金"></a>14.10使用CUMPRINC函数计算两个付款期之间累积支付的本金</h4><p>语法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">CUMPRINC(rate, nper, pv, start_period, end_period, type)</span><br><span class="line">CUMPRINC 函数语法具有下列参数：</span><br><span class="line">Rate    必需。 利率。</span><br><span class="line">Nper    必需。 总付款期数。</span><br><span class="line">pv    必需。 现值。</span><br><span class="line">Start_period    必需。 计算中的首期。 付款期数从 1 开始计数。</span><br><span class="line">End_period    必需。 计算中的末期。</span><br><span class="line">Type    必需。 付款时间类型。</span><br><span class="line">返回一笔贷款在给定的 start_period 到 end_period 期间累计偿还的本金数额。</span><br></pre></td></tr></table></figure>
+<p>打开房贷分析素材,合并A31和B31单元格,输入文本前四年累积偿还的本金</p>
+<p>在C31单元格输入公式</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">=CUMPRINC(E3/12,C3*12,A3,1,36,0)</span><br></pre></td></tr></table></figure>
+<p>如图:</p>
+<p><img src="/2019/04/29/第二篇  公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/1410.png" alt></p>
+<h4 id="14-11通过FVSCHEDULE函数使用一系列复利率计算初始本金的未来值"><a href="#14-11通过FVSCHEDULE函数使用一系列复利率计算初始本金的未来值" class="headerlink" title="14.11通过FVSCHEDULE函数使用一系列复利率计算初始本金的未来值"></a>14.11通过FVSCHEDULE函数使用一系列复利率计算初始本金的未来值</h4><p>语法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">FVSCHEDULE(principal, schedule)</span><br><span class="line">FVSCHEDULE 函数语法具有下列参数：</span><br><span class="line">Principal    必需。 现值。</span><br><span class="line">计划    必需。 要应用的利率数组。</span><br><span class="line">返回应用一系列复利率计算的初始本金的未来值。 使用 FVSCHEDULE 通过变量或可调节利率计算某项投资未来的价值。</span><br></pre></td></tr></table></figure>
+<p>打开根据预测的变动利率计算存款的未来值素材</p>
+<p>在B8单元格输入公式</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">=FVSCHEDULE(B2,B3:B6)</span><br></pre></td></tr></table></figure>
+<p>如图:</p>
+<p><img src="/2019/04/29/第二篇  公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/1411.png" alt></p>
+<h4 id="14-12基于一系列定期的现金流和贴现率，使用NPV函数计算投资的净现值"><a href="#14-12基于一系列定期的现金流和贴现率，使用NPV函数计算投资的净现值" class="headerlink" title="14.12基于一系列定期的现金流和贴现率，使用NPV函数计算投资的净现值"></a>14.12基于一系列定期的现金流和贴现率，使用NPV函数计算投资的净现值</h4><p>语法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">NPV(rate,value1,[value2],...)</span><br><span class="line">NPV 函数语法具有下列参数：</span><br><span class="line">rate    必需。某一期间的贴现率。</span><br><span class="line">value1, value2, ...    Value1 是必需的，后续值是可选的。这些是代表支出及收入的 1 到 254 个参数。</span><br><span class="line">Value1, value2, ...在时间上必须具有相等间隔，并且都发生在期末。</span><br><span class="line">NPV 使用 value1, value2,... 的顺序来说明现金流的顺序。一定要按正确的顺序输入支出值和收益值。</span><br><span class="line">忽略以下类型的参数：参数为空白单元格、逻辑值、数字的文本表示形式、错误值或不能转化为数值的文本。</span><br><span class="line">如果参数是一个数组或引用，则只计算其中的数字。数组或引用中的空白单元格、逻辑值、文本或错误值将被忽略。</span><br><span class="line">使用贴现率和一系列未来支出（负值）和收益（正值）来计算一项投资的净现值。</span><br></pre></td></tr></table></figure>
+<p>打开计算投资项目的净现值素材,在净现值工作表的A8单元格输入文本净现值</p>
+<p>在B8单元格输入公式</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">=NPV(B1,-B2,B4,B5,B6,)-B2</span><br></pre></td></tr></table></figure>
+<p>如图:</p>
+<p><img src="/2019/04/29/第二篇  公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/1412.png" alt></p>
+<h4 id="14-13使用XNPV函数计算一组未必定期发生的现金流的净现值"><a href="#14-13使用XNPV函数计算一组未必定期发生的现金流的净现值" class="headerlink" title="14.13使用XNPV函数计算一组未必定期发生的现金流的净现值"></a>14.13使用XNPV函数计算一组未必定期发生的现金流的净现值</h4><p>语法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">XNPV(rate, values, dates)</span><br><span class="line">XNPV 函数语法具有下列参数：</span><br><span class="line">Rate    必需。 应用于现金流的贴现率。</span><br><span class="line">值    必需。 与 dates 中的支付时间相对应的一系列现金流。 首期支付是可选的，并与投资开始时的成本或支付有关。 如果第一个值是成本或支付，则它必须是负值。 所有后续支付都基于 365 天/年贴现。 数值系列必须至少要包含一个正数和一个负数。</span><br><span class="line">日期    必需。 与现金流支付相对应的支付日期表。 第一个支付日期代表支付表的开始日期。 其他所有日期应晚于该日期，但可按任何顺序排列。</span><br></pre></td></tr></table></figure>
+<p>打开计算投资项目的净现值素材,在投资净现值工作表的A8单元格输入文本投资净现值</p>
+<p>在B8单元格输入公式</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">=XNPV(B1,B4:B9,A4:A9)</span><br></pre></td></tr></table></figure>
+<p>如图:</p>
+<p><img src="/2019/04/29/第二篇  公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/1413.png" alt></p>
+<h4 id="14-14使用IRR函数计算一系列现金流的内部收益率"><a href="#14-14使用IRR函数计算一系列现金流的内部收益率" class="headerlink" title="14.14使用IRR函数计算一系列现金流的内部收益率"></a>14.14使用IRR函数计算一系列现金流的内部收益率</h4><p>语法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">IRR(values, [guess])</span><br><span class="line">IRR 函数语法具有下列参数：</span><br><span class="line">Values    必需。 数组或单元格的引用，这些单元格包含用来计算内部收益率的数字。</span><br><span class="line">Values 必须包含至少一个正值和一个负值，以计算返回的内部收益率。</span><br><span class="line">IRR 使用值的顺序来说明现金流的顺序。 一定要按您需要的顺序输入支出值和收益值。</span><br><span class="line">如果数组或引用包含文本、逻辑值或空白单元格，这些数值将被忽略。</span><br><span class="line">Guess    可选。 对函数 IRR 计算结果的估计值。</span><br><span class="line">Microsoft Excel 使用迭代法计算函数 IRR。 从 guess 开始，IRR 不断修正计算结果，直至其精度小于 0.00001%。 如果 IRR 运算 20 次，仍未找到结果，则返回 错误值 #NUM!。</span><br><span class="line">多数情况下，不必为 IRR 计算提供 guess 值。 如果省略 guess，则假定它为 0.1 (10%)。</span><br><span class="line">如果 IRR 返回 错误值 #NUM!，或结果不接近您预期的值，可用另一个 guess 值重试。</span><br><span class="line">返回由值中的数字表示的一系列现金流的内部收益率。 这些现金流不必等同，因为它们可能作为年金。 但是，现金流必须定期（如每月或每年）出现。 内部收益率是针对包含付款（负值）和收入（正值）的定期投资收到的利率。</span><br></pre></td></tr></table></figure>
+<p>打开计算内部收益率素材的内部收益率工作表</p>
+<p>在B7单元格输入公式</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">=IRR(B1:B4)</span><br></pre></td></tr></table></figure>
+<p>计算3年后的内部收益率结果</p>
+<p>在B8单元格输入公式</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">=IRR(B1:B5)</span><br></pre></td></tr></table></figure>
+<p>计算4年后的内部收益率结果</p>
+<p>如图:</p>
+<p><img src="/2019/04/29/第二篇  公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/1414.png" alt></p>
+<h4 id="14-15使用MIRR函数计算正负现金流在不同利率下支付的内部收益率"><a href="#14-15使用MIRR函数计算正负现金流在不同利率下支付的内部收益率" class="headerlink" title="14.15使用MIRR函数计算正负现金流在不同利率下支付的内部收益率"></a>14.15使用MIRR函数计算正负现金流在不同利率下支付的内部收益率</h4><p>语法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">MIRR(values, finance_rate, reinvest_rate)</span><br><span class="line">MIRR 函数语法具有下列参数：</span><br><span class="line">Values    必需。 数组或对包含数字的单元格的引用。 这些数值代表一系列定期支出（负值）和收益（正值）。</span><br><span class="line">值必须包含至少一个正值和一个负值, 以计算修改后的内部收益率。 否则, MIRR 将返回 #DIV/0! 错误值。</span><br><span class="line">如果数组或引用参数包含文本、逻辑值或空白单元格，则这些值将被忽略；但包含零值的单元格将计算在内。</span><br><span class="line">Finance_rate    必需。 现金流中使用的资金支付的利率。</span><br><span class="line">Reinvest_rate    必需。 将现金流再投资的收益率。</span><br><span class="line">返回一系列定期现金流的已修改内部收益率。 MIRR 认为投资的成本和 reinvestment 在现金上收到的利息。</span><br></pre></td></tr></table></figure>
+<p>打开计算内部收益率素材</p>
+<p>新建修正后的内部收益率工作表,如图所示</p>
+<p><img src="/2019/04/29/第二篇  公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/1415_1.png" alt></p>
+<p>在B10单元格输入公式,</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">=MIRR(B1:B4,B7,B8)</span><br></pre></td></tr></table></figure>
+<p>计算出修正后的三年内部收益率</p>
+<p>在B11单元格输入公式</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">=MIRR(B1:B5,B7,B8)</span><br></pre></td></tr></table></figure>
+<p>计算出修正后的四年内部收益率</p>
+<p>如图:</p>
+<p><img src="/2019/04/29/第二篇  公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/1415_2.png" alt></p>
+<h4 id="14-16使用XIRR函数计算一组未必定期发生的现金流的内部收益率"><a href="#14-16使用XIRR函数计算一组未必定期发生的现金流的内部收益率" class="headerlink" title="14.16使用XIRR函数计算一组未必定期发生的现金流的内部收益率"></a>14.16使用XIRR函数计算一组未必定期发生的现金流的内部收益率</h4><p>语法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">XIRR(values, dates, [guess])</span><br><span class="line">XIRR 函数语法具有下列参数：</span><br><span class="line">值    必需。 与 dates 中的支付时间相对应的一系列现金流。 首期支付是可选的，并与投资开始时的成本或支付有关。 如果第一个值是成本或支付，则它必须是负值。 所有后续支付都基于 365 天/年贴现。 值系列中必须至少包含一个正值和一个负值。</span><br><span class="line">日期    必需。 与现金流支付相对应的支付日期表。 日期可按任何顺序排列。 应使用 DATE 函数输入日期，或者将日期作为其他公式或函数的结果输入。 例如，使用函数 DATE(2008,5,23) 输入 2008 年 5 月 23 日。 如果日期以文本形式输入，则会出现问题 。</span><br><span class="line">Guess    可选。 对函数 XIRR 计算结果的估计值。</span><br><span class="line">返回一组不一定定期发生的现金流的内部收益率。 若要计算一组定期现金流的内部收益率，请使用函数 IRR。</span><br></pre></td></tr></table></figure>
+<p>打开计算不定期现金流条件下的内部收益率素材</p>
+<p>在B8单元格输入公式</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">=XIRR(B2:B6,A2:A6)</span><br></pre></td></tr></table></figure>
+<p>如图:</p>
+<p><img src="/2019/04/29/第二篇  公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/1416.png" alt></p>
+<h4 id="14-17根据资产的耐用年限，使用AMORDEGRC函数计算每个结算期间的折旧值"><a href="#14-17根据资产的耐用年限，使用AMORDEGRC函数计算每个结算期间的折旧值" class="headerlink" title="14.17根据资产的耐用年限，使用AMORDEGRC函数计算每个结算期间的折旧值"></a>14.17根据资产的耐用年限，使用AMORDEGRC函数计算每个结算期间的折旧值</h4><p>语法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">AMORDEGRC(cost, date_purchased, first_period, salvage, period, rate, [basis])</span><br><span class="line">重要: 应使用 DATE 函数输入日期，或者将日期作为其他公式或函数的结果输入。 例如，使用函数 DATE(2008,5,23) 输入 2008 年 5 月 23 日。 如果日期以文本形式输入，则会出现问题。</span><br><span class="line">AMORDEGRC 函数语法具有下列参数：</span><br><span class="line">Cost    必需。 资产原值。</span><br><span class="line">Date_purchased    必需。 购入资产的日期。</span><br><span class="line">First_period    必需。 第一个期间结束时的日期。</span><br><span class="line">Salvage    必需。 资产在使用寿命结束时的残值。</span><br><span class="line">Period    必需。 期间。</span><br><span class="line">Rate    必需。 折旧率。</span><br><span class="line">Basis    可选。 要使用的年基准。</span><br><span class="line">返回每个结算期间的折旧值。 该函数主要为法国会计系统提供。 如果某项资产是在该结算期的中期购入的，则按直线折旧法计算。 该函数与函数 AMORLINC 相似，不同之处在于该函数中用于计算的折旧系数取决于资产的寿命。</span><br></pre></td></tr></table></figure>
+<p>打开计算电脑的折旧值素材</p>
+<p>在B8单元格输入公式,</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">=AMORDEGRC(B1,B2,B3,B4,B5,B6,3)</span><br></pre></td></tr></table></figure>
+<p>如图:</p>
+<p><img src="/2019/04/29/第二篇  公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/1417.png" alt></p>
+<h4 id="14-18使用固定余额递减法，使用DB函数计算一笔资产在给定期间内的折旧值"><a href="#14-18使用固定余额递减法，使用DB函数计算一笔资产在给定期间内的折旧值" class="headerlink" title="14.18使用固定余额递减法，使用DB函数计算一笔资产在给定期间内的折旧值"></a>14.18使用固定余额递减法，使用DB函数计算一笔资产在给定期间内的折旧值</h4><p>语法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">DB(cost, salvage, life, period, [month])</span><br><span class="line">DB 函数语法具有下列参数：</span><br><span class="line">Cost    必需。 资产原值。</span><br><span class="line">Salvage    必需。 折旧末尾时的值（有时也称为资产残值）。</span><br><span class="line">Life    必需。 资产的折旧期数（有时也称作资产的使用寿命）。</span><br><span class="line">Period    必需。 您要计算折旧的时期。 Period 必须使用与 life 相同的单位。</span><br><span class="line">Month    可选。 第一年的月份数。 如果省略月份，则假定其值为 12。</span><br><span class="line">使用固定余额递减法，计算一笔资产在给定期间内的折旧值。</span><br></pre></td></tr></table></figure>
+<p>打开计算一批设备的折旧值素材的DB工作表</p>
+<p>在E2单元格输入公式</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">=DB($B$1,$B$2,$B$3,D2,$B$4)</span><br></pre></td></tr></table></figure>
+<p>使用填充功能填充E3到E11单元格区域的内容</p>
+<p>如图:</p>
+<p><img src="/2019/04/29/第二篇  公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/1418.png" alt></p>
+<h4 id="14-19使用双倍余额递减法或其他指定方法，使用DDB函数计算一笔资产在给定期间内的折旧值"><a href="#14-19使用双倍余额递减法或其他指定方法，使用DDB函数计算一笔资产在给定期间内的折旧值" class="headerlink" title="14.19使用双倍余额递减法或其他指定方法，使用DDB函数计算一笔资产在给定期间内的折旧值"></a>14.19使用双倍余额递减法或其他指定方法，使用DDB函数计算一笔资产在给定期间内的折旧值</h4><p>语法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">DDB(cost, salvage, life, period, [factor])</span><br><span class="line">DDB 函数语法具有下列参数：</span><br><span class="line">Cost    必需。 资产原值。</span><br><span class="line">Salvage    必需。 折旧末尾时的值（有时也称为资产残值）。 该值可以是 0。</span><br><span class="line">Life    必需。 资产的折旧期数（有时也称作资产的使用寿命）。</span><br><span class="line">Period    必需。 您要计算折旧的时期。 Period 必须使用与 life 相同的单位。</span><br><span class="line">Factor    可选。 余额递减速率 如果省略 factor，则假定其值为 2（双倍余额递减法）。</span><br><span class="line">重要: 这五个参数都必须是正数。</span><br><span class="line">用双倍余额递减法或其他指定方法，返回指定期间内某项固定资产的折旧值。</span><br></pre></td></tr></table></figure>
+<p>打开计算一批设备的折旧值素材,创建DDB工作表,如图所示</p>
+<p><img src="/2019/04/29/第二篇  公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/1419_1.png" alt></p>
+<p>在B7单元格中输入公式</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">=DDB(B1,B2,B3*365,1)</span><br></pre></td></tr></table></figure>
+<p>在B8单元格中输入公式</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">=DDB(B1,B2,B3*12,1,2)</span><br></pre></td></tr></table></figure>
+<p>在B9单元格中输入公式</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">=DDB(B1,B2,B3,1,2)</span><br></pre></td></tr></table></figure>
+<p>在B10 单元格中输入公式</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">=DDB(B1,B2,B3,10)</span><br></pre></td></tr></table></figure>
+<p>如图:</p>
+<p><img src="/2019/04/29/第二篇  公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/1419_2.png" alt></p>
+<h4 id="14-20使用余额递减法，使用VDB函数计算一笔资产在给定期间或部分期间内的折旧值"><a href="#14-20使用余额递减法，使用VDB函数计算一笔资产在给定期间或部分期间内的折旧值" class="headerlink" title="14.20使用余额递减法，使用VDB函数计算一笔资产在给定期间或部分期间内的折旧值"></a>14.20使用余额递减法，使用VDB函数计算一笔资产在给定期间或部分期间内的折旧值</h4><p>语法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">VDB(cost, salvage, life, start_period, end_period, [factor], [no_switch])</span><br><span class="line">VDB 函数语法具有下列参数：</span><br><span class="line">Cost    必需。 资产原值。</span><br><span class="line">Salvage    必需。 折旧末尾时的值（有时也称为资产残值）。 该值可以是 0。</span><br><span class="line">Life    必需。 资产的折旧期数（有时也称作资产的使用寿命）。</span><br><span class="line">Start_period    必需。 您要计算折旧的起始时期。 Start_period 必须与 life 使用相同的单位。</span><br><span class="line">End_period    必需。 您要计算折旧的终止时期。 End_period 必须与 life 使用相同的单位。</span><br><span class="line">Factor    可选。 余额递减速率。 如果省略影响因素，则假定为 2（双倍余额递减法）。 如果不想使用双倍余额递减法，请更改余额递减速率。 有关双倍余额递减法的说明，请参阅 DDB。</span><br><span class="line">No_switch    可选。 逻辑值，指定当折旧值大于余额递减计算值时，是否转用直线折旧法。</span><br><span class="line">如果 no_switch 为 TRUE，即使折旧值大于余额递减计算值，Microsoft Excel 也不转用直线折旧法。</span><br><span class="line">如果 no_switch 为 FALSE 或被忽略，且折旧值大于余额递减计算值时，Excel 将转用线性折旧法。</span><br><span class="line">重要: 除 no_switch 外的所有参数必须为正数。</span><br><span class="line">使用双倍余额递减法或其他指定方法，返回一笔资产在给定期间（包括部分期间）内的折旧值。 函数 VDB 代表可变余额递减法。</span><br></pre></td></tr></table></figure>
+<p>打开计算一批设备的折旧值素材,创建VDB工作表,如图所示</p>
+<p><img src="/2019/04/29/第二篇  公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/1420_1.png" alt></p>
+<p>在E2单元格中输入公式</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">=VDB($B$1,$B$2,$B$3,0,D2,$B$4,1)</span><br></pre></td></tr></table></figure>
+<p>使用填充功能,填充E3到E11的区域内容</p>
+<p>如图</p>
+<p><img src="/2019/04/29/第二篇  公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/1420_2.png" alt></p>
+<h4 id="14-21使用SLN函数计算某项资产在一个期间内的线性折旧值"><a href="#14-21使用SLN函数计算某项资产在一个期间内的线性折旧值" class="headerlink" title="14.21使用SLN函数计算某项资产在一个期间内的线性折旧值"></a>14.21使用SLN函数计算某项资产在一个期间内的线性折旧值</h4><p>语法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">SLN(cost, salvage, life)</span><br><span class="line">SLN 函数语法具有下列参数：</span><br><span class="line">Cost    必需。 资产原值。</span><br><span class="line">Salvage    必需。 折旧末尾时的值（有时也称为资产残值）。</span><br><span class="line">Life    必需。 资产的折旧期数（有时也称作资产的使用寿命）。</span><br><span class="line">返回一个期间内的资产的直线折旧。</span><br></pre></td></tr></table></figure>
+<p>打开计算一批设备的折旧值素材,创建SLN工作表,如图所示</p>
+<p><img src="/2019/04/29/第二篇  公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/1421_1.png" alt></p>
+<p>在B4单元格中输入公式</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">=SLN(B1,B2,B3)</span><br></pre></td></tr></table></figure>
+<p>如图:</p>
+<p><img src="/2019/04/29/第二篇  公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/1421_2.png" alt></p>
+<h4 id="14-22使用SYD函数计算某项资产按年限总和折旧法计算的指定期间的折旧值"><a href="#14-22使用SYD函数计算某项资产按年限总和折旧法计算的指定期间的折旧值" class="headerlink" title="14.22使用SYD函数计算某项资产按年限总和折旧法计算的指定期间的折旧值"></a>14.22使用SYD函数计算某项资产按年限总和折旧法计算的指定期间的折旧值</h4><p>语法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">SYD(cost, salvage, life, per)</span><br><span class="line">SYD 函数语法具有下列参数：</span><br><span class="line">&lt;c0&gt;Cost&lt;/c0&gt;    必需。 资产原值。</span><br><span class="line">&lt;c0&gt;Salvage&lt;/c0&gt;    必需。 折旧末尾时的值（有时也称为资产残值）。</span><br><span class="line">&lt;c0&gt;Life&lt;/c0&gt;    必需。 资产的折旧期数（有时也称作资产的使用寿命）。</span><br><span class="line">&lt;c0&gt;per&lt;/c0&gt;    必需。 期间，必须与 life 使用相同的单位。</span><br><span class="line">返回在指定期间内资产按年限总和折旧法计算的折旧。</span><br></pre></td></tr></table></figure>
+<p>打开计算一批设备的折旧值素材,创建SYD工作表,如图所示</p>
+<p><img src="/2019/04/29/第二篇  公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/1422_1.png" alt></p>
+<p>在E1单元格中输入公式</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">=SYD($B$1,$B$2,$B$3,D2)</span><br></pre></td></tr></table></figure>
+<p>使用填充功能填充E3到E11区域</p>
+<p>如图:</p>
+<p><img src="/2019/04/29/第二篇  公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/1422_2.png" alt></p>
+<h3 id="15数学和三角函数应用技巧"><a href="#15数学和三角函数应用技巧" class="headerlink" title="15数学和三角函数应用技巧"></a>15数学和三角函数应用技巧</h3><h4 id="15-1使用SQRT函数计算正平方根"><a href="#15-1使用SQRT函数计算正平方根" class="headerlink" title="15.1使用SQRT函数计算正平方根"></a>15.1使用SQRT函数计算正平方根</h4><p>语法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">SQRT(number)</span><br><span class="line">SQRT 函数语法具有下列参数：</span><br><span class="line">Number    必需。 要计算其平方根的数字。</span><br><span class="line">返回正的平方根。</span><br></pre></td></tr></table></figure>
+<p>新建推算圆半径工作簿</p>
+<p>A1单元格输入文本    已知圆面积</p>
+<p>A2                            220</p>
+<p>B1计算圆面积</p>
+<p>在B2单元格输入公式          </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">=SQRT(A2/PI())</span><br></pre></td></tr></table></figure>
+<p>如图:</p>
+<p><img src="/2019/04/29/第二篇  公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/1501.png" alt></p>
+<h4 id="15-2使用QUOTIENT函数返回商的整数部分"><a href="#15-2使用QUOTIENT函数返回商的整数部分" class="headerlink" title="15.2使用QUOTIENT函数返回商的整数部分"></a>15.2使用QUOTIENT函数返回商的整数部分</h4><p>语法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">QUOTIENT(numerator, denominator)</span><br><span class="line">QUOTIENT 函数语法具有下列参数：</span><br><span class="line">Numerator    必需。 被除数。</span><br><span class="line">Denominator    必需。 除数。</span><br><span class="line">返回除法的整数部分。 要放弃除法的余数时，可使用此函数。</span><br></pre></td></tr></table></figure>
+<p>新建牛奶包装盒需求量工作簿,如图</p>
+<p><img src="/2019/04/29/第二篇  公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/1502_1.png" alt></p>
+<p>在C1单元格输入公式</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">=QUOTIENT(A2,B2)</span><br></pre></td></tr></table></figure>
+<p>如图:</p>
+<p><img src="/2019/04/29/第二篇  公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/1502_2.png" alt></p>
+<h4 id="15-3使用SUMPRODUCT函数计算数组元素的乘积之和"><a href="#15-3使用SUMPRODUCT函数计算数组元素的乘积之和" class="headerlink" title="15.3使用SUMPRODUCT函数计算数组元素的乘积之和"></a>15.3使用SUMPRODUCT函数计算数组元素的乘积之和</h4><p>语法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">SUMPRODUCT(array1, [array2], [array3], ...)</span><br><span class="line">SUMPRODUCT 函数语法具有下列参数：</span><br><span class="line">Array1    必需。 其相应元素需要进行相乘并求和的第一个数组参数。</span><br><span class="line">Array2, array3,...    可选。 2 到 255 个数组参数，其相应元素需要进行相乘并求和。</span><br><span class="line">在给定的几组数组中，将数组间对应的元素相乘，并返回乘积之和。</span><br></pre></td></tr></table></figure>
+<p>打开日销售记录表</p>
+<p>在B23单元格输入公式</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">=SUMPRODUCT(($C$2:$C$19=A23)*($F$2:$F$19)*($G$2:$G$19))</span><br></pre></td></tr></table></figure>
+<p>使用填充功能填充B24B25单元格</p>
+<p>如图:</p>
+<p><img src="/2019/04/29/第二篇  公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/1503.png" alt></p>
+<h4 id="15-4使用SUMSQ函数计算参数的平方和"><a href="#15-4使用SUMSQ函数计算参数的平方和" class="headerlink" title="15.4使用SUMSQ函数计算参数的平方和"></a>15.4使用SUMSQ函数计算参数的平方和</h4><p>语法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">SUMSQ(number1, [number2], ...)</span><br><span class="line">SUMSQ 函数语法具有下列参数：</span><br><span class="line">number1, number2, ...    Number1 是必需的，后续数字是可选的。 要对其求平方和的 1 到 255 个参数。 也可以用单一数组或对某个数组的引用来代替用逗号分隔的参数。</span><br><span class="line">返回参数的平方和。</span><br></pre></td></tr></table></figure>
+<p>新建计算参数的平方和工作簿,如图<br><img src="/2019/04/29/第二篇  公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/1504_1.png" alt></p>
+<p>在A6单元格输入公式</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">=SUMSQ(A3,B3)</span><br></pre></td></tr></table></figure>
+<p>在C3单元格输入公式</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">=SQRT(A6)</span><br></pre></td></tr></table></figure>
+<p>如图:</p>
+<p><img src="/2019/04/29/第二篇  公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/1504_2.png" alt></p>
+<h4 id="15-5使用CEILING函数按条件向上舍入"><a href="#15-5使用CEILING函数按条件向上舍入" class="headerlink" title="15.5使用CEILING函数按条件向上舍入"></a>15.5使用CEILING函数按条件向上舍入</h4><p>语法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">CEILING(number, significance)</span><br><span class="line">CEILING 函数语法具有以下参数：</span><br><span class="line">Number    必需。 要舍入的值。</span><br><span class="line">significance    必需。 要舍入到的倍数。</span><br><span class="line">返回将参数 number 向上舍入（沿绝对值增大的方向）为最接近的指定基数的倍数。 例如，如果您不希望在价格使用所有“分”值，当产品价格为 $4.42 时，则可以使用公式 =CEILING(4.42,0.05) 将价格向上舍入到最接近的 5 美分。</span><br></pre></td></tr></table></figure>
+<p>新建活动酒水账单,如图</p>
+<p><img src="/2019/04/29/第二篇  公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/1505_1.png" alt></p>
+<p>在D2单元格和E2单元格输入公式</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">#D2</span><br><span class="line">=CEILING(B2,C2)</span><br><span class="line">#E2</span><br><span class="line">=D2/C2</span><br></pre></td></tr></table></figure>
+<p>分别计算出数量和箱数,在使用填充功能填充D3至E7区域</p>
+<p>如图</p>
+<p><img src="/2019/04/29/第二篇  公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/1505_2.png" alt></p>
+<h4 id="15-6使用FLOOR函数按条件向下舍入"><a href="#15-6使用FLOOR函数按条件向下舍入" class="headerlink" title="15.6使用FLOOR函数按条件向下舍入"></a>15.6使用FLOOR函数按条件向下舍入</h4><p>语法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">FLOOR(number, significance)</span><br><span class="line">FLOOR 函数语法具有下列参数：</span><br><span class="line">Number    必需。 要舍入的数值。</span><br><span class="line">significance    必需。 要舍入到的倍数.</span><br><span class="line">将参数 number 向下舍入（沿绝对值减小的方向）为最接近的 significance 的倍数。</span><br></pre></td></tr></table></figure>
+<p>打开活动酒水账单素材,更改刚才的工作表为方案一,复制方案一工作表更名为方案二,清除数量和箱数的内容,在D2单元格和E2单元格输入公式</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">#D2</span><br><span class="line">=FLOOR(B2,C2)</span><br><span class="line">#E2</span><br><span class="line">=D2/C2</span><br></pre></td></tr></table></figure>
+<p>分别计算出数量和箱数,在使用填充功能填充D3至E7区域</p>
+<p>如图:</p>
+<p><img src="/2019/04/29/第二篇  公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/1506.png" alt></p>
+<h4 id="15-7使用SIGN函数获取数值的符号"><a href="#15-7使用SIGN函数获取数值的符号" class="headerlink" title="15.7使用SIGN函数获取数值的符号"></a>15.7使用SIGN函数获取数值的符号</h4><p>语法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">SIGN(number)</span><br><span class="line">SIGN 函数语法具有下列参数：</span><br><span class="line">Number    必需。 任意实数。</span><br><span class="line">确定数字的符号。 如果数字为正数，则返回 1；如果数字为 0，则返回零 (0)；如果数字为负数，则返回 -1。</span><br></pre></td></tr></table></figure>
+<p>打开销售情况统计表素材</p>
+<p>在D2单元格输入公式</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">=IF(SIGN(B2-C2)&gt;=0,&quot;完成任务&quot;,&quot;未完成任务&quot;)</span><br></pre></td></tr></table></figure>
+<p>在E2单元格输入公式</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">=IF(D2=&quot;未完成任务&quot;,C2-B2,&quot;&quot;)</span><br></pre></td></tr></table></figure>
+<p>使用填充功能填充D3至E9的区域</p>
+<p>如图:</p>
+<p><img src="/2019/04/29/第二篇  公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/1507.png" alt></p>
+<h4 id="15-8使用MOD函数计算两数相除的余数"><a href="#15-8使用MOD函数计算两数相除的余数" class="headerlink" title="15.8使用MOD函数计算两数相除的余数"></a>15.8使用MOD函数计算两数相除的余数</h4><p>语法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">MOD(number, divisor)</span><br><span class="line">MOD 函数语法具有下列参数：</span><br><span class="line">Number    必需。 要计算余数的被除数。</span><br><span class="line">Divisor    必需。 除数。</span><br><span class="line">返回两数相除的余数。 结果的符号与除数相同。</span><br></pre></td></tr></table></figure>
+<p>新建沙石搬运问题工作簿,如图</p>
+<p><img src="/2019/04/29/第二篇  公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/1508_1.png" alt></p>
+<p>在C2单元格输入公式</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">=MOD(A2,B2)</span><br></pre></td></tr></table></figure>
+<p>如图:</p>
+<p><img src="/2019/04/29/第二篇  公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/1508_2.png" alt></p>
+<h3 id="16其他函数应用技巧"><a href="#16其他函数应用技巧" class="headerlink" title="16其他函数应用技巧"></a>16其他函数应用技巧</h3><h4 id="★★16-1使用COUNTA函数计算参数中包含非空值的个数"><a href="#★★16-1使用COUNTA函数计算参数中包含非空值的个数" class="headerlink" title="★★16.1使用COUNTA函数计算参数中包含非空值的个数"></a>★★16.1使用COUNTA函数计算参数中包含非空值的个数</h4><p>语法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">COUNTA(value1, [value2], ...)</span><br><span class="line">COUNTA 函数语法具有下列参数：</span><br><span class="line">value1    必需。 表示要计数的值的第一个参数。</span><br><span class="line">value2, ...    可选。 表示要计数的值的其他参数，最多可包含 255 个参数。</span><br><span class="line">COUNTA 函数计算范围中不为空的单元格的个数。</span><br></pre></td></tr></table></figure>
+<p>打开员工奖金表素材</p>
+<p>在A21单元格输入文本,有奖金的人数：</p>
+<p>在B21单元格输入公式</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">=COUNTA(D2:D19)</span><br></pre></td></tr></table></figure>
+<p>即可查询到有奖金到人数,如图:</p>
+<p><img src="/2019/04/29/第二篇  公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/1601.png" alt></p>
+<h4 id="16-2使用COUNTBLANK函数计算区域中空白单元格的个数"><a href="#16-2使用COUNTBLANK函数计算区域中空白单元格的个数" class="headerlink" title="16.2使用COUNTBLANK函数计算区域中空白单元格的个数"></a>16.2使用COUNTBLANK函数计算区域中空白单元格的个数</h4><p>语法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">COUNTBLANK（区域）</span><br><span class="line">COUNTBLANK函数语法具有下列参数：</span><br><span class="line">范围    必需。 需要计算其中空白单元格个数的区域。</span><br><span class="line">COUNTBLANK函数，其中一个统计函数，用于计算单元格区域中的空单元格的个数。</span><br></pre></td></tr></table></figure>
+<p>打开员工奖金表素材</p>
+<p>在A22中输入文本,没有奖金的人数:</p>
+<p>在B22单元格输入公式</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">=COUNTBLANK(D2:D19)</span><br></pre></td></tr></table></figure>
+<p>即可查看没有奖金的人数,如图:</p>
+<p><img src="/2019/04/29/第二篇  公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/1602.png" alt></p>
+<h4 id="★★16-3使用COUNTIF函数计算满足给定条件的单元格的个数"><a href="#★★16-3使用COUNTIF函数计算满足给定条件的单元格的个数" class="headerlink" title="★★16.3使用COUNTIF函数计算满足给定条件的单元格的个数"></a>★★16.3使用COUNTIF函数计算满足给定条件的单元格的个数</h4><p>语法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">COUNTIF(range, criteria)</span><br><span class="line">参数名称				说明</span><br><span class="line">range（必需）			要进行计数的单元格组。 区域可以包括数字、数组、命名区域或包含数字的引用。 空白和					    文本值将被忽略。</span><br><span class="line">					   了解如何选择工作表中的区域。</span><br><span class="line">criteria   （必需）       用于决定要统计哪些单元格的数量的数字、表达式、单元格引用或文本字符串。</span><br><span class="line">						例如，可以使用 32 之类数字，“&gt;32”之类比较，B4 之类单元格，或“苹果”之类单词。</span><br><span class="line">					    COUNTIF 仅使用一个条件。 如果要使用多个条件，请使用 COUNTIFS。</span><br><span class="line">COUNTIF 是一个统计函数，用于统计满足某个条件的单元格的数量；例如，统计特定城市在客户列表中出现的次数。</span><br></pre></td></tr></table></figure>
+<p>打开员工奖金表素材</p>
+<p>在A23单元格输入文本行政部</p>
+<p>在B23单元格输入公式</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">=COUNTIF(C2:C19,&quot;行政部&quot;)</span><br></pre></td></tr></table></figure>
+<p>即可查看行政部的人数,如图</p>
+<p><img src="/2019/04/29/第二篇  公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/1603.png" alt></p>
+<h4 id="16-4使用COUNTIFS函数计算满足多个给定条件的单元格的个数"><a href="#16-4使用COUNTIFS函数计算满足多个给定条件的单元格的个数" class="headerlink" title="16.4使用COUNTIFS函数计算满足多个给定条件的单元格的个数"></a>16.4使用COUNTIFS函数计算满足多个给定条件的单元格的个数</h4><p>语法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">COUNTIFS(criteria_range1, criteria1, [criteria_range2, criteria2],…)</span><br><span class="line">COUNTIFS 函数语法具有以下参数：</span><br><span class="line">&lt;c0&gt;criteria_range1&lt;/c0&gt;    必需。 在其中计算关联条件的第一个区域。</span><br><span class="line">&lt;c0&gt;criteria1&lt;/c0&gt;    必需。 条件的形式为数字、表达式、单元格引用或文本，它定义了要计数的单元格范围。 例如，条件可以表示为 32、&quot;&gt;32&quot;、B4、&quot;apples&quot;或 &quot;32&quot;。</span><br><span class="line">&lt;c0&gt;criteria_range2, criteria2, ...&lt;/c0&gt;    可选。 附加的区域及其关联条件。 最多允许 127 个区域/条件对。</span><br><span class="line">COUNTIFS 函数将条件应用于跨多个区域的单元格，然后统计满足所有条件的次数。</span><br></pre></td></tr></table></figure>
+<p>打开员工档案表文件</p>
+<p>合并A18至D18单元格,输入文本,2009年前入职的四川籍男员工人数:</p>
+<p>在E18单元格输入公式</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">=COUNTIFS(B2:B16,&quot;&lt;2009-1-1&quot;,D2:D16,&quot;=男&quot;,J2:J16,&quot;=四川&quot;)</span><br></pre></td></tr></table></figure>
+<p>如图:</p>
+<p><img src="/2019/04/29/第二篇  公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/1604.png" alt></p>
+<h4 id="★★16-5使用SUMIFS函数计算多重条件的和"><a href="#★★16-5使用SUMIFS函数计算多重条件的和" class="headerlink" title="★★16.5使用SUMIFS函数计算多重条件的和"></a>★★16.5使用SUMIFS函数计算多重条件的和</h4><p>语法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">SUMIFS(sum_range, criteria_range1, criteria1, [criteria_range2, criteria2], ...)</span><br><span class="line">参数名称					说明</span><br><span class="line">Sum_range（必需）			 要求和的单元格区域。</span><br><span class="line">Criteria_range1（必需）		  使用 Criteria1 测试的区域。</span><br><span class="line">							Criteria_range1 和 Criteria1 设置用于搜索某个区域是否符合特定条件的搜索							 对。 一旦在该区域中找到了项，将计算 Sum_range 中的相应值的和。</span><br><span class="line">							</span><br><span class="line">Criteria1（必需）			定义将计算 Criteria_range1 中的哪些单元格的和的条件。 例如，可以将条件输入							为 32、&quot;&gt;32&quot;、B4、&quot;苹果&quot; 或 &quot;32&quot;。</span><br><span class="line"></span><br><span class="line">Criteria_range2, 			附加的区域及其关联条件。 最多可以输入 127 个区域/条件对。</span><br><span class="line">criteria2, …    (optional)</span><br><span class="line">SUMIFS 函数是一个数学与三角函数，用于计算其满足多个条件的全部参数的总量。 例如，可以使用 SUMIFS 计算一个国家/地区内 (1) 邮政编码为同一个且 (2) 利润超过了特定美元值的零售商的总量。</span><br></pre></td></tr></table></figure>
+<p>打开电器销售表素材</p>
+<p>在A42输入文本,6升商用型洗衣机的总销量:</p>
+<p>在B42输入公式</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">=SUMIFS(D2:D40,A2:A40,&quot;=*商用型&quot;,B2:B40,&quot;6&quot;)</span><br></pre></td></tr></table></figure>
+<p>如图:</p>
+<p><img src="/2019/04/29/第二篇  公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/1605.png" alt></p>
+<h4 id="★★16-6使用AVERAGEA函数计算参数中非空值的平均值"><a href="#★★16-6使用AVERAGEA函数计算参数中非空值的平均值" class="headerlink" title="★★16.6使用AVERAGEA函数计算参数中非空值的平均值"></a>★★16.6使用AVERAGEA函数计算参数中非空值的平均值</h4><p>语法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">AVERAGEA(value1, [value2], ...)</span><br><span class="line">AVERAGEA 函数语法具有以下参数：</span><br><span class="line">Value1, value2, ...    Value1 是必需的，后续值是可选的。 需要计算平均值的 1 到 255 个单元格、单元格区域或值。</span><br><span class="line">计算参数列表中数值的平均值（算术平均值）。</span><br></pre></td></tr></table></figure>
+<p>打开员工奖金表,复制当前单元格,把空的单元格输入文本:无</p>
+<p>合并A21B21单元格,输入文本:所有员工的奖金平均值:</p>
+<p>在C21单元格输入公式</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">=AVERAGEA(D2:D19)</span><br></pre></td></tr></table></figure>
+<p>合并A22B22单元格,输入文本:所有获奖员工的奖金平均值:</p>
+<p>在C22单元格输入公式:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">=AVERAGE(D2:D19)</span><br></pre></td></tr></table></figure>
+<p>在A23单元格输入文本:最低奖金</p>
+<p>在C23单元格输入公式</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">=MIN(D2:D19)</span><br></pre></td></tr></table></figure>
+<p>如图:</p>
+<p><img src="/2019/04/29/第二篇  公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/1606.png" alt></p>
+<h4 id="★★16-7使用AVERAGEIF函数计算满足给定条件的单元格的平均值"><a href="#★★16-7使用AVERAGEIF函数计算满足给定条件的单元格的平均值" class="headerlink" title="★★16.7使用AVERAGEIF函数计算满足给定条件的单元格的平均值"></a>★★16.7使用AVERAGEIF函数计算满足给定条件的单元格的平均值</h4><p>语法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">AVERAGEIF(range, criteria, [average_range])</span><br><span class="line">AVERAGEIF 函数语法具有下列参数：</span><br><span class="line">Range    必需。 要计算平均值的一个或多个单元格，其中包含数字或包含数字的名称、数组或引用。</span><br><span class="line">Criteria    必需。 形式为数字、表达式、单元格引用或文本的条件，用来定义将计算平均值的单元格。 例如，条件可以表示为 32、&quot;32&quot;、&quot;&gt;32&quot;、&quot;苹果&quot; 或 B4。</span><br><span class="line">Average_range    可选。 计算平均值的实际单元格组。 如果省略，则使用 range。</span><br><span class="line">返回某个区域内满足给定条件的所有单元格的平均值（算术平均值）。</span><br></pre></td></tr></table></figure>
+<p>打开员工奖金表素材的Sheet1 (2)工作表</p>
+<p>在F1至G6区域创建各部门获奖情况分析区域,如图:</p>
+<p><img src="/2019/04/29/第二篇  公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/1607_1.png" alt></p>
+<p>在G2单元格输入公式</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">=AVERAGEIF(C2:C19,F2,D2:D19)</span><br></pre></td></tr></table></figure>
+<p>使用填充功能填充G3到G6区域,选择不带格式填充</p>
+<p>如图:</p>
+<p><img src="/2019/04/29/第二篇  公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/1607_2.png" alt></p>
+<h4 id="★★16-8使用RANK-EQ函数返回一个数字在一组数字中的排位"><a href="#★★16-8使用RANK-EQ函数返回一个数字在一组数字中的排位" class="headerlink" title="★★16.8使用RANK.EQ函数返回一个数字在一组数字中的排位"></a>★★16.8使用RANK.EQ函数返回一个数字在一组数字中的排位</h4><p>语法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">RANK.EQ(number,ref,[order])</span><br><span class="line">RANK.EQ 函数语法具有下列参数：</span><br><span class="line">Number    必需。 要找到其排位的数字。</span><br><span class="line">Ref    必需。 数字列表的数组，对数字列表的引用。 Ref 中的非数字值会被忽略。</span><br><span class="line">Order    可选。 一个指定数字排位方式的数字。</span><br><span class="line">返回一列数字的数字排位。 其大小与列表中其他值相关；如果多个值具有相同的排位，则返回该组值的最高排位。</span><br><span class="line">如果要对列表进行排序，则数字排位可作为其位置。</span><br></pre></td></tr></table></figure>
+<p>打开16级月考成绩统计表素材</p>
+<p>在K1单元格输入文本排序</p>
+<p>在K2单元格输入公式</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">=RANK.EQ(J2,$J$2:$J$31)</span><br></pre></td></tr></table></figure>
+<p>使用填充功能填充K3到K31区域的内容</p>
+<p>如图:</p>
+<p><img src="/2019/04/29/第二篇  公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/1608.png" alt></p>
+<h4 id="16-9使用RANK-AVG函数返回一个数字在一组数字中的排位"><a href="#16-9使用RANK-AVG函数返回一个数字在一组数字中的排位" class="headerlink" title="16.9使用RANK.AVG函数返回一个数字在一组数字中的排位"></a>16.9使用RANK.AVG函数返回一个数字在一组数字中的排位</h4><p>语法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">RANK.AVG(number,ref,[order])</span><br><span class="line">RANK.AVG 函数语法具有下列参数：</span><br><span class="line">Number    必需。 要找到其排位的数字。</span><br><span class="line">Ref    必需。 数字列表的数组，对数字列表的引用。 Ref 中的非数字值会被忽略。</span><br><span class="line">Order    可选。 一个指定数字排位方式的数字。</span><br><span class="line">返回一列数字的数字排位：数字的排位是其大小与列表中其他值的比值；如果多个值具有相同的排位，则将返回平均排位。</span><br></pre></td></tr></table></figure>
+<p>打开16级月考成绩统计表素材</p>
+<p>在L2单元格输入公式</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">=RANK.AVG(J2,$J$2:$J$31)</span><br></pre></td></tr></table></figure>
+<p>使用填充功能填充L3到L31区域的内容</p>
+<p>如图:</p>
+<p><img src="/2019/04/29/第二篇  公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/1609.png" alt></p>
+<h4 id="★★16-10使用DELTA函数测试两个值是否相等"><a href="#★★16-10使用DELTA函数测试两个值是否相等" class="headerlink" title="★★16.10使用DELTA函数测试两个值是否相等"></a>★★16.10使用DELTA函数测试两个值是否相等</h4><p>语法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">DELTA(number1, [number2])</span><br><span class="line">DELTA 函数语法具有下列参数：</span><br><span class="line">Number1    必需。 第一个数字。</span><br><span class="line">Number2    可选。 第二个数字。 如果省略，则假设 Number2 值为零。</span><br><span class="line">检验两个值是否相等。 如果 number1=number2，则返回 1；否则返回 0。 可以使用此函数来筛选一组值。 例如，通过对几个 DELTA 函数进行求和，可计算相等对的数量。 此函数也称为 Kronecker Delta 函数。</span><br></pre></td></tr></table></figure>
+<p>打开简单数学计算得分统计素材</p>
+<p>在C2单元格输入公式</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">=DELTA(A2,B2)</span><br></pre></td></tr></table></figure>
+<p>使用填充功能填充C3至C31的区域</p>
+<p>在A33输入文本:统计得分</p>
+<p>在B33单元格输入公式</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">=SUM(C2:C31)</span><br></pre></td></tr></table></figure>
+<p>得出正确答案的数量,如图</p>
+<p><img src="/2019/04/29/第二篇  公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/1610.png" alt></p>
+<h4 id="16-11使用GESTEP函数测试某值是否大于阈值"><a href="#16-11使用GESTEP函数测试某值是否大于阈值" class="headerlink" title="16.11使用GESTEP函数测试某值是否大于阈值"></a>16.11使用GESTEP函数测试某值是否大于阈值</h4><p>语法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">GESTEP(number, [step])</span><br><span class="line">GESTEP 函数语法具有下列参数：</span><br><span class="line">Number    必需。 要针对步骤进行测试的值。</span><br><span class="line">Step    可选。 阈值。 如果省略 step 值，则 GESTEP 使用零。</span><br><span class="line">如果 number ≥ step，则返回 1；否则返回 0（零）。 可以使用此函数来筛选一组值。 例如，通过对几个 GESTEP 函数进行求和，可计算超过阈值的值的计数。</span><br></pre></td></tr></table></figure>
+<p>打开一周工作量统计素材</p>
+<p>合并A9B9C9单元格输入文本:完成任务的天数：</p>
+<p>在D9单元格输入公式</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">=SUM(GESTEP(B2,100),GESTEP(B3,100),GESTEP(B4,100),GESTEP(B5,100),GESTEP(B6,100))</span><br></pre></td></tr></table></figure>
+<p>如图:</p>
+<p><img src="/2019/04/29/第二篇  公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/1611.png" alt></p>
+<h4 id="16-12使用IS类函数检验指定值"><a href="#16-12使用IS类函数检验指定值" class="headerlink" title="16.12使用IS类函数检验指定值"></a>16.12使用IS类函数检验指定值</h4><p>语法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">ISBLANK(value)</span><br><span class="line">ISERR(value)</span><br><span class="line">ISERROR(value)</span><br><span class="line">ISLOGICAL(value)</span><br><span class="line">ISNA(value)</span><br><span class="line">ISNONTEXT(value)</span><br><span class="line">ISNUMBER(value)</span><br><span class="line">ISREF(value)</span><br><span class="line">ISTEXT(value)</span><br><span class="line">IS 函数语法具有下列参数：</span><br><span class="line">value    必需。 指的是要测试的值。 参数 value 可以是空白（空单元格）、错误值、逻辑值、文本、数字、引用值，或者引用要测试的以上任意值的名称。</span><br></pre></td></tr></table></figure>
+<p>参数图:</p>
+<p><img src="/2019/04/29/第二篇  公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/1612_1.png" alt></p>
+<p>说明</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">这些函数统称为 IS 函数，此类函数可检验指定值并根据结果返回 TRUE 或 FALSE。 例如，如果参数 value 引用的是空单元格，则 ISBLANK 函数返回逻辑值 TRUE；否则，返回 FALSE。</span><br><span class="line">在对某一值执行计算或执行其他操作之前，可以使用 IS 函数获取该值的相关信息。 例如，通过将 ISERROR 函数与 IF 函数结合使用，可以在出现错误时执行其他操作：</span><br><span class="line">= IF ( ISERROR (A1), &quot;出现错误。&quot;, A1 * 2)</span><br><span class="line">此公式检验单元格 A1 中是否存在错误情形。 如果存在，则 IF 函数返回消息“出现错误”。 如果不存在，则 IF 函数执行计算 A1*2。</span><br></pre></td></tr></table></figure>
+<p>打开成绩登记表素材</p>
+<p>在F2单元格输入公式</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">=IF(OR(ISBLANK(C2),ISBLANK(D2),ISBLANK(E2)),&quot;不及格&quot;,MAX(C2:E2))</span><br></pre></td></tr></table></figure>
+<p>使用填充功能填充F3至F24单元格</p>
+<p>如图</p>
+<p><img src="/2019/04/29/第二篇  公式与函数的应用/C:/Users/AL_DAI/Desktop/Excel/%E6%93%8D%E4%BD%9C%E7%AB%A0/photo/1612.png" alt></p>
+<p>### </p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/03/18/13 元组/" rel="next" title>
+                <i class="fa fa-chevron-left"></i> 
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/05/06/hello-world/" rel="prev" title="Hello World">
+                Hello World <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC80NDExNC8yMDY0OQ=="></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/head.jpg" alt="kl">
+            
+              <p class="site-author-name" itemprop="name">kl</p>
+              <div class="site-description motion-element" itemprop="description">66其实不太6</div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">5</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                      <a href="/categories/">
+                    
+                  
+                    
+                    
+                      
+                    
+                    <span class="site-state-item-count">1</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#第二篇-公式与函数的应用"><span class="nav-number">1.</span> <span class="nav-text">第二篇  公式与函数的应用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#★★7-公式的基础应用"><span class="nav-number">1.1.</span> <span class="nav-text">★★7.公式的基础应用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#7-1在工作表中输入公式"><span class="nav-number">1.1.1.</span> <span class="nav-text">7.1在工作表中输入公式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-2修改公式"><span class="nav-number">1.1.2.</span> <span class="nav-text">7.2修改公式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-3除了使用-lt-gt-开头外的其他输入公式"><span class="nav-number">1.1.3.</span> <span class="nav-text">7.3除了使用&lt;=&gt;开头外的其他输入公式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-4通过状态栏进行常规计算"><span class="nav-number">1.1.4.</span> <span class="nav-text">7.4通过状态栏进行常规计算</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#★★8-公式计算的高级应用"><span class="nav-number">1.2.</span> <span class="nav-text">★★8.公式计算的高级应用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#8-1为成绩统计表创建连接到其他工作表中的公式"><span class="nav-number">1.2.1.</span> <span class="nav-text">8.1为成绩统计表创建连接到其他工作表中的公式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#8-2在表中定义单元格名称"><span class="nav-number">1.2.2.</span> <span class="nav-text">8.2在表中定义单元格名称</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#8-3-在销售提成表中将公式定义为名称"><span class="nav-number">1.2.3.</span> <span class="nav-text">8.3 在销售提成表中将公式定义为名称</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#8-4显示应用中的公式"><span class="nav-number">1.2.4.</span> <span class="nav-text">8.4显示应用中的公式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#8-5如何同时对多个单元格执行相同计算"><span class="nav-number">1.2.5.</span> <span class="nav-text">8.5如何同时对多个单元格执行相同计算</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#★★9函数的基础使用"><span class="nav-number">1.3.</span> <span class="nav-text">★★9函数的基础使用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#9-1使用AVERAGE函数求取一组数字的平均值"><span class="nav-number">1.3.1.</span> <span class="nav-text">9.1使用AVERAGE函数求取一组数字的平均值</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-2使用COUNT函数统计参数中包含数字的个数"><span class="nav-number">1.3.2.</span> <span class="nav-text">9.2使用COUNT函数统计参数中包含数字的个数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-3使用MAX函数返回一组数字中的最大值"><span class="nav-number">1.3.3.</span> <span class="nav-text">9.3使用MAX函数返回一组数字中的最大值</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-4使用MIN函数返回一组数字中的最小值"><span class="nav-number">1.3.4.</span> <span class="nav-text">9.4使用MIN函数返回一组数字中的最小值</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-5使用IF函数根据指定的条件返回不同的结果"><span class="nav-number">1.3.5.</span> <span class="nav-text">9.5使用IF函数根据指定的条件返回不同的结果</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-6使用SUMIF函数按给定条件对指定单元格求和"><span class="nav-number">1.3.6.</span> <span class="nav-text">9.6使用SUMIF函数按给定条件对指定单元格求和</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-7使用VLOOKUP函数在区域或数组的列中查找数据"><span class="nav-number">1.3.7.</span> <span class="nav-text">9.7使用VLOOKUP函数在区域或数组的列中查找数据</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-8让公式与函数实现混合运算"><span class="nav-number">1.3.8.</span> <span class="nav-text">9.8让公式与函数实现混合运算</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-9嵌套函数"><span class="nav-number">1.3.9.</span> <span class="nav-text">9.9嵌套函数</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-文本函数应用技巧"><span class="nav-number">1.4.</span> <span class="nav-text">10.文本函数应用技巧</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#★★10-1使用EXACT函数比较两个字符串是否相同"><span class="nav-number">1.4.1.</span> <span class="nav-text">★★10.1使用EXACT函数比较两个字符串是否相同</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#★★10-2使用LEN函数计算文本中的字符个数"><span class="nav-number">1.4.2.</span> <span class="nav-text">★★10.2使用LEN函数计算文本中的字符个数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#10-3使用REPT函数按给定次数重复文本"><span class="nav-number">1.4.3.</span> <span class="nav-text">10.3使用REPT函数按给定次数重复文本</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#10-4使用FIXED函数将数字按指定的小数位数取整"><span class="nav-number">1.4.4.</span> <span class="nav-text">10.4使用FIXED函数将数字按指定的小数位数取整</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#10-5使用LEFT函数从文本左侧起提取指定个数的字符"><span class="nav-number">1.4.5.</span> <span class="nav-text">10.5使用LEFT函数从文本左侧起提取指定个数的字符</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#10-6使用MID函数从文本指定位置起提取指定个数的字符"><span class="nav-number">1.4.6.</span> <span class="nav-text">10.6使用MID函数从文本指定位置起提取指定个数的字符</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#10-9使用RMB函数将数字转换为带人民币符号￥的文本"><span class="nav-number">1.4.7.</span> <span class="nav-text">10.9使用RMB函数将数字转换为带人民币符号￥的文本</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#★★10-10使用T函数将参数转换为文本"><span class="nav-number">1.4.8.</span> <span class="nav-text">★★10.10使用T函数将参数转换为文本</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#10-11使用LOWER函数将文本转换为小写"><span class="nav-number">1.4.9.</span> <span class="nav-text">10.11使用LOWER函数将文本转换为小写</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#10-12使用PROPER函数将文本中每个单词的首字母转换为大写"><span class="nav-number">1.4.10.</span> <span class="nav-text">10.12使用PROPER函数将文本中每个单词的首字母转换为大写</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#★★10-13使用FIND函数以字符为单位并区分大小写地查找指定字符的位置"><span class="nav-number">1.4.11.</span> <span class="nav-text">★★10.13使用FIND函数以字符为单位并区分大小写地查找指定字符的位置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#10-14使用FINDB函数以字节为单位并区分大小写地查找指定字符的位置"><span class="nav-number">1.4.12.</span> <span class="nav-text">10.14使用FINDB函数以字节为单位并区分大小写地查找指定字符的位置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#10-15使用SEARCH函数以字符为单位查找指定字符的位置"><span class="nav-number">1.4.13.</span> <span class="nav-text">10.15使用SEARCH函数以字符为单位查找指定字符的位置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#★★10-16使用REPLACE函数以字符为单位根据指定位置进行替换"><span class="nav-number">1.4.14.</span> <span class="nav-text">★★10.16使用REPLACE函数以字符为单位根据指定位置进行替换</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#★★11-逻辑函数应用技巧"><span class="nav-number">1.5.</span> <span class="nav-text">★★11.逻辑函数应用技巧</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#11-1使用FALSE函数返回逻辑值FALSE"><span class="nav-number">1.5.1.</span> <span class="nav-text">11.1使用FALSE函数返回逻辑值FALSE</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#11-2使用AND函数判断指定的多个条件是否同时成立"><span class="nav-number">1.5.2.</span> <span class="nav-text">11.2使用AND函数判断指定的多个条件是否同时成立</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#11-3使用OR函数判断指定的任一条件是为真，即返回真"><span class="nav-number">1.5.3.</span> <span class="nav-text">11.3使用OR函数判断指定的任一条件是为真，即返回真</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#11-4使用NOT函数对逻辑值求反"><span class="nav-number">1.5.4.</span> <span class="nav-text">11.4使用NOT函数对逻辑值求反</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#11-5使用IFERROR函数对错误结果进行处理"><span class="nav-number">1.5.5.</span> <span class="nav-text">11.5使用IFERROR函数对错误结果进行处理</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#12-日期和时间函数应用技巧"><span class="nav-number">1.6.</span> <span class="nav-text">12.日期和时间函数应用技巧</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#★★12-1使用TODAY函数返回当前日期"><span class="nav-number">1.6.1.</span> <span class="nav-text">★★12.1使用TODAY函数返回当前日期</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#★★12-2使用TIME函数返回某一特定时间的小数值"><span class="nav-number">1.6.2.</span> <span class="nav-text">★★12.2使用TIME函数返回某一特定时间的小数值</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#★★12-3使用YEAR函数返回某日期对应的年份"><span class="nav-number">1.6.3.</span> <span class="nav-text">★★12.3使用YEAR函数返回某日期对应的年份</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#★★12-4使用MONTH函数返回某日期对应的月份"><span class="nav-number">1.6.4.</span> <span class="nav-text">★★12.4使用MONTH函数返回某日期对应的月份</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#12-5使用DAYS360函数以360天为准计算两个日期间天数"><span class="nav-number">1.6.5.</span> <span class="nav-text">12.5使用DAYS360函数以360天为准计算两个日期间天数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#12-6使用NETWORKDAYS函数计算日期间所有工作日数"><span class="nav-number">1.6.6.</span> <span class="nav-text">12.6使用NETWORKDAYS函数计算日期间所有工作日数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#12-7使用WORKDAY函数计算指定日期向前或向后数个工作日后的日期"><span class="nav-number">1.6.7.</span> <span class="nav-text">12.7使用WORKDAY函数计算指定日期向前或向后数个工作日后的日期</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#12-8使用YEARFRAC函数计算从开始日期到结束日期所经历的天数占全年天数的"><span class="nav-number">1.6.8.</span> <span class="nav-text">12.8使用YEARFRAC函数计算从开始日期到结束日期所经历的天数占全年天数的</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#13-查找与引用函数应用技巧"><span class="nav-number">1.7.</span> <span class="nav-text">13.查找与引用函数应用技巧</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#★★13-1使用CHOOSE函数根据序号从列表中选择对应的内容"><span class="nav-number">1.7.1.</span> <span class="nav-text">★★13.1使用CHOOSE函数根据序号从列表中选择对应的内容</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#13-2使用HLOOKUP函数在区域或数组的行中查找数据"><span class="nav-number">1.7.2.</span> <span class="nav-text">13.2使用HLOOKUP函数在区域或数组的行中查找数据</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#★★13-4使用MATCH函数返回指定内容所在的位置"><span class="nav-number">1.7.3.</span> <span class="nav-text">★★13.4使用MATCH函数返回指定内容所在的位置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#★★13-5使用TRANSPOSE函数转置数据区域的行列位置"><span class="nav-number">1.7.4.</span> <span class="nav-text">★★13.5使用TRANSPOSE函数转置数据区域的行列位置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#13-6使用INDIRECT函数返回由文本值指定的引用"><span class="nav-number">1.7.5.</span> <span class="nav-text">13.6使用INDIRECT函数返回由文本值指定的引用</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#14财务函数应用技巧"><span class="nav-number">1.8.</span> <span class="nav-text">14财务函数应用技巧</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#14-1使用FV函数计算一笔投资的期值"><span class="nav-number">1.8.1.</span> <span class="nav-text">14.1使用FV函数计算一笔投资的期值</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#14-2使用PV函数计算投资的现值"><span class="nav-number">1.8.2.</span> <span class="nav-text">14.2使用PV函数计算投资的现值</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#14-3使用RATE函数计算年金的各期利率"><span class="nav-number">1.8.3.</span> <span class="nav-text">14.3使用RATE函数计算年金的各期利率</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#14-4使用NPER函数计算还款次数"><span class="nav-number">1.8.4.</span> <span class="nav-text">14.4使用NPER函数计算还款次数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#14-5使用PMT函数计算贷款的每期付款额"><span class="nav-number">1.8.5.</span> <span class="nav-text">14.5使用PMT函数计算贷款的每期付款额</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#14-6使用IPMT函数计算贷款在给定期间内支付的利息"><span class="nav-number">1.8.6.</span> <span class="nav-text">14.6使用IPMT函数计算贷款在给定期间内支付的利息</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#14-7使用PPMT函数计算贷款在给定期间内偿还的本金"><span class="nav-number">1.8.7.</span> <span class="nav-text">14.7使用PPMT函数计算贷款在给定期间内偿还的本金</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#14-8使用ISPMT函数计算特定投资期内支付的利息"><span class="nav-number">1.8.8.</span> <span class="nav-text">14.8使用ISPMT函数计算特定投资期内支付的利息</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#14-9使用CUMIPMT函数计算两个付款期之间累积支付的利息"><span class="nav-number">1.8.9.</span> <span class="nav-text">14.9使用CUMIPMT函数计算两个付款期之间累积支付的利息</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#14-10使用CUMPRINC函数计算两个付款期之间累积支付的本金"><span class="nav-number">1.8.10.</span> <span class="nav-text">14.10使用CUMPRINC函数计算两个付款期之间累积支付的本金</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#14-11通过FVSCHEDULE函数使用一系列复利率计算初始本金的未来值"><span class="nav-number">1.8.11.</span> <span class="nav-text">14.11通过FVSCHEDULE函数使用一系列复利率计算初始本金的未来值</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#14-12基于一系列定期的现金流和贴现率，使用NPV函数计算投资的净现值"><span class="nav-number">1.8.12.</span> <span class="nav-text">14.12基于一系列定期的现金流和贴现率，使用NPV函数计算投资的净现值</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#14-13使用XNPV函数计算一组未必定期发生的现金流的净现值"><span class="nav-number">1.8.13.</span> <span class="nav-text">14.13使用XNPV函数计算一组未必定期发生的现金流的净现值</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#14-14使用IRR函数计算一系列现金流的内部收益率"><span class="nav-number">1.8.14.</span> <span class="nav-text">14.14使用IRR函数计算一系列现金流的内部收益率</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#14-15使用MIRR函数计算正负现金流在不同利率下支付的内部收益率"><span class="nav-number">1.8.15.</span> <span class="nav-text">14.15使用MIRR函数计算正负现金流在不同利率下支付的内部收益率</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#14-16使用XIRR函数计算一组未必定期发生的现金流的内部收益率"><span class="nav-number">1.8.16.</span> <span class="nav-text">14.16使用XIRR函数计算一组未必定期发生的现金流的内部收益率</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#14-17根据资产的耐用年限，使用AMORDEGRC函数计算每个结算期间的折旧值"><span class="nav-number">1.8.17.</span> <span class="nav-text">14.17根据资产的耐用年限，使用AMORDEGRC函数计算每个结算期间的折旧值</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#14-18使用固定余额递减法，使用DB函数计算一笔资产在给定期间内的折旧值"><span class="nav-number">1.8.18.</span> <span class="nav-text">14.18使用固定余额递减法，使用DB函数计算一笔资产在给定期间内的折旧值</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#14-19使用双倍余额递减法或其他指定方法，使用DDB函数计算一笔资产在给定期间内的折旧值"><span class="nav-number">1.8.19.</span> <span class="nav-text">14.19使用双倍余额递减法或其他指定方法，使用DDB函数计算一笔资产在给定期间内的折旧值</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#14-20使用余额递减法，使用VDB函数计算一笔资产在给定期间或部分期间内的折旧值"><span class="nav-number">1.8.20.</span> <span class="nav-text">14.20使用余额递减法，使用VDB函数计算一笔资产在给定期间或部分期间内的折旧值</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#14-21使用SLN函数计算某项资产在一个期间内的线性折旧值"><span class="nav-number">1.8.21.</span> <span class="nav-text">14.21使用SLN函数计算某项资产在一个期间内的线性折旧值</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#14-22使用SYD函数计算某项资产按年限总和折旧法计算的指定期间的折旧值"><span class="nav-number">1.8.22.</span> <span class="nav-text">14.22使用SYD函数计算某项资产按年限总和折旧法计算的指定期间的折旧值</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#15数学和三角函数应用技巧"><span class="nav-number">1.9.</span> <span class="nav-text">15数学和三角函数应用技巧</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#15-1使用SQRT函数计算正平方根"><span class="nav-number">1.9.1.</span> <span class="nav-text">15.1使用SQRT函数计算正平方根</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#15-2使用QUOTIENT函数返回商的整数部分"><span class="nav-number">1.9.2.</span> <span class="nav-text">15.2使用QUOTIENT函数返回商的整数部分</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#15-3使用SUMPRODUCT函数计算数组元素的乘积之和"><span class="nav-number">1.9.3.</span> <span class="nav-text">15.3使用SUMPRODUCT函数计算数组元素的乘积之和</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#15-4使用SUMSQ函数计算参数的平方和"><span class="nav-number">1.9.4.</span> <span class="nav-text">15.4使用SUMSQ函数计算参数的平方和</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#15-5使用CEILING函数按条件向上舍入"><span class="nav-number">1.9.5.</span> <span class="nav-text">15.5使用CEILING函数按条件向上舍入</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#15-6使用FLOOR函数按条件向下舍入"><span class="nav-number">1.9.6.</span> <span class="nav-text">15.6使用FLOOR函数按条件向下舍入</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#15-7使用SIGN函数获取数值的符号"><span class="nav-number">1.9.7.</span> <span class="nav-text">15.7使用SIGN函数获取数值的符号</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#15-8使用MOD函数计算两数相除的余数"><span class="nav-number">1.9.8.</span> <span class="nav-text">15.8使用MOD函数计算两数相除的余数</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#16其他函数应用技巧"><span class="nav-number">1.10.</span> <span class="nav-text">16其他函数应用技巧</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#★★16-1使用COUNTA函数计算参数中包含非空值的个数"><span class="nav-number">1.10.1.</span> <span class="nav-text">★★16.1使用COUNTA函数计算参数中包含非空值的个数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#16-2使用COUNTBLANK函数计算区域中空白单元格的个数"><span class="nav-number">1.10.2.</span> <span class="nav-text">16.2使用COUNTBLANK函数计算区域中空白单元格的个数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#★★16-3使用COUNTIF函数计算满足给定条件的单元格的个数"><span class="nav-number">1.10.3.</span> <span class="nav-text">★★16.3使用COUNTIF函数计算满足给定条件的单元格的个数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#16-4使用COUNTIFS函数计算满足多个给定条件的单元格的个数"><span class="nav-number">1.10.4.</span> <span class="nav-text">16.4使用COUNTIFS函数计算满足多个给定条件的单元格的个数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#★★16-5使用SUMIFS函数计算多重条件的和"><span class="nav-number">1.10.5.</span> <span class="nav-text">★★16.5使用SUMIFS函数计算多重条件的和</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#★★16-6使用AVERAGEA函数计算参数中非空值的平均值"><span class="nav-number">1.10.6.</span> <span class="nav-text">★★16.6使用AVERAGEA函数计算参数中非空值的平均值</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#★★16-7使用AVERAGEIF函数计算满足给定条件的单元格的平均值"><span class="nav-number">1.10.7.</span> <span class="nav-text">★★16.7使用AVERAGEIF函数计算满足给定条件的单元格的平均值</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#★★16-8使用RANK-EQ函数返回一个数字在一组数字中的排位"><span class="nav-number">1.10.8.</span> <span class="nav-text">★★16.8使用RANK.EQ函数返回一个数字在一组数字中的排位</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#16-9使用RANK-AVG函数返回一个数字在一组数字中的排位"><span class="nav-number">1.10.9.</span> <span class="nav-text">16.9使用RANK.AVG函数返回一个数字在一组数字中的排位</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#★★16-10使用DELTA函数测试两个值是否相等"><span class="nav-number">1.10.10.</span> <span class="nav-text">★★16.10使用DELTA函数测试两个值是否相等</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#16-11使用GESTEP函数测试某值是否大于阈值"><span class="nav-number">1.10.11.</span> <span class="nav-text">16.11使用GESTEP函数测试某值是否大于阈值</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#16-12使用IS类函数检验指定值"><span class="nav-number">1.10.12.</span> <span class="nav-text">16.12使用IS类函数检验指定值</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">kl</span>
+
+  
+
+  
+</div>
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-user"></i>
+    </span>
+    <span class="site-uv" title="总访客量">
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+  
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-eye"></i>
+    </span>
+    <span class="site-pv" title="总访问量">
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    
+    
+      
+    
+  
+  <script color="0,0,0" opacity="0.8" zindex="-1" count="99" src="//cdn.jsdelivr.net/gh/theme-next/theme-next-canvas-nest@1/canvas-nest.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.1.1"></script>
+
+  <script src="/js/motion.js?v=7.1.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/affix.js?v=7.1.1"></script>
+
+  <script src="/js/schemes/pisces.js?v=7.1.1"></script>
+
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.1.1"></script>
+<script src="/js/post-details.js?v=7.1.1"></script>
+
+
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.1.1"></script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+    <script>
+  window.livereOptions = {
+    refer: '2019/04/29/第二篇  公式与函数的应用/'
+  };
+  (function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+    if (typeof LivereTower === 'function') { return; }
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+    e.parentNode.insertBefore(j, e);
+  })(document, 'script');
+</script>
+
+  
+
+
+  
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/assets/haruto.model.json"},"display":{"position":"right","width":200,"height":500},"mobile":{"show":true}});</script></body>
+</html>
+<script type="text/javascript" src="/js/src/clicklove.js"></script>
