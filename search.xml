@@ -1,9 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Excel数据分析]]></title>
+    <url>%2F2019%2F05%2F09%2FExcel%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%2F</url>
+    <content type="text"><![CDATA[思维导图网址:https://www.processon.com/view/link/5cd42b66e4b0841b84517467]]></content>
+      <categories>
+        <category>python</category>
+      </categories>
+      <tags>
+        <tag>Excel</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Excel数据分析之基础操作章]]></title>
     <url>%2F2019%2F05%2F09%2FExcel%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E4%B9%8B%E5%9F%BA%E7%A1%80%E6%93%8D%E4%BD%9C%E7%AB%A0%2F</url>
-    <content type="text"></content>
+    <content type="text"><![CDATA[1.使用AVERAGE函数求取一组数字的平均值公式—-&gt;插入函数—-&gt;搜索函数(输入:求平均值,转到)—-&gt;选择函数:AVERAGE—-&gt;确定 函数参数—-&gt;Number1(选择要求平均值的选框)—-&gt;确定 一行或一列的平均值,鼠标光标移至右下角变成十字后下拉或者右拉即可 2使用COUNT函数统计参数中包含数字的个数公式—-&gt;自动求和(下拉选框)—-&gt;计数—-&gt;选择B2到B15区域,回车(Enter)即可 3使用MAX函数返回一组数字中的最大值公式—-&gt;自动求和(下拉选框)—-&gt;最大值—-&gt;选择C2到F15区域,回车(Enter)即可 4使用MIN函数返回一组数字中的最小值公式—-&gt;自动求和(下拉选框)—-&gt;最小值—-&gt;选择C2到F15区域,回车(Enter)即可 5.使用IF函数根据指定的条件返回不同的结果公式—-&gt;插入函数—-&gt;IF(确定) 6.使用SUMIF函数按给定条件对指定单元格求和SUMIF(range, criteria, [sum_range])range 要按条件计算的单元格区域。criteria 定义哪些单元格将被添加的数字、表达式、单元格引用、文本或函数形式的条件。sum_range 要添加的实际单元格 操作如下:公式—-&gt;数学和三角函数—-&gt;在下拉选项里面选择 7.使用VLOOKUP函数在区域或数组的列中查找数据VLOOKUP（要查找的值、要在其中查找值的区域、区域中包含返回值的列号、精确匹配或近似匹配 – 指定为 0/FALSE 或 1/TRUE） 公式—-&gt;插入函数—-&gt;或选择类别里面选择&lt;查找与引用&gt;—–&gt;选择VLOOKUP函数确定 8.让公式与函数实现混合运算插播一个四舍五入的函数ROUND 用法:ROUND(求值的单元格,保留几位小数) 9.使用EXACT函数比较两个字符串是否相同用法:EXACT(值1单元格,值二单元格) 插入函数选择文本函数或者直接找EXACT函数都可以 EXACT(A2,B2) 10.使用LEN函数计算文本中的字符个数len函数的语法格式=Len( text) 11.使用T函数将参数转换为文本T(value) 值 要测试的值。 12.使用FIND函数以字符为单位并区分大小写地查找指定字符的位置FIND(find_text, within_text, [start_num])find_text 要查找的文本。within_text 包含要查找文本的文本。start_num 指定开始进行查找的字符 13.使用REPLACE函数以字符为单位根据指定位置进行替换REPLACE(old_text, start_num, num_chars, new_text) old_text 要替换其部分字符的文本。 start_num old_text 中要替换为 new_text 的字符位置。 num_chars old_text 中希望 REPLACE 使用 new_text 来进行替换的字符数。 Num_bytes old_text 中希望 REPLACEB 使用 new_text 来进行替换的字节数。 new_text 将替换 old_text 中字符的文本。 14.使用FALSE函数返回逻辑值FALSEIF(B2&gt;$C$2,FALSE(),TRUE()) 15.使用AND函数判断指定的多个条件是否同时成立用于确定测试中的所有条件是否均为 TRUE IF(AND(C2&gt;3,D2&lt;15,E2&lt;35200),”可申请”,””) 16.使用OR函数判断指定的任一条件是为真，即返回真用于确定测试中的所有条件是否均为 TRUE IF(OR(C2&gt;=$I$2,D2&gt;=$I$2,E2&gt;=$I$2),”优秀”,IF(OR(C2&gt;=$I$3,D2=$I$3,E2&gt;=$I$3),”及格”,”不及格”)) 17.使用NOT函数对逻辑值求反确保一个值不等同于另一值 IF(NOT(MAX(C2:E2)&lt;$I$2),”优秀”,IF(NOT(MAX(C2:E2)&lt;$I$3),”及格”,”不及格”)) 18.使用IFERROR函数对错误结果进行处理IFERROR(value, value_if_error)值 检查是否存在错误的参数。Value_if_error 公式的计算结果错误时返回的值。 IFERROR(A2,”公式出错”) 19.使用TODAY函数返回当前日期用法:TODAY() 20.使用TIME函数返回某一特定时间的小数值TIME(hour, minute, second)hour 代表小时。minute 代表分钟。second 代表秒。 =B2+TIME(8,0,0) 19.使用YEAR函数返回某日期对应的年份YEAR(serial_number)Serial_number 要查找的年份的日期 YEAR(TODAY())-YEAR(J2) 开始—-&gt;数字(下拉选框选择常规) 20.使用MONTH函数返回某日期对应的月份MONTH(serial_number)Serial_number 要查找的月份日期 单击公式—-&gt;定义的名称—-&gt;根据所选的内容创建—-&gt;勾选首行,确定 IF(MONTH(DATE(年份,2,29))=2,”闰年”,”平年”) 21.使用CHOOSE函数根据序号从列表中选择对应的内容CHOOSE(index_num, value1, [value2], …)index_num 用于指定所选定的数值参数如果 index_num 为 1，则 CHOOSE 返回 value1；如果为 2，则 CHOOSE 返回 value2，以此类推如果 index_num 小于 1 或大于列表中最后一个值的索引号，则 CHOOSE 返回 #VALUE! 错误值如果 index_num 为小数，则在使用前将被截尾取整value1, value2, … Value1 是必需的，后续值是可选的 OFFSET(工资表!$A$1,CHOOSE(MOD(ROW(工资表!A1)-1,3)+1,0,(ROW(工资表!A1)-1)/3+1,65535),COLUMN()-1)&amp;”” 22.使用MATCH函数返回指定内容所在的位置MATCH(lookup_value, lookup_array, [match_type])lookup_value 要在 lookup_array 中匹配的值lookup_value 参数可以为值（数字、文本或逻辑值）或对数字、文本或逻辑值的单元格引用。lookup_array 要搜索的单元格区域match_type 数字 -1、0 或 1。 match_type 参数指定 Excel 如何将 lookup_value 与 lookup_array 中的值匹配。 此参数的默认值为 1。 INDEX($A$2:$A$7,MATCH(LARGE($G$2:$G$7,ROW()-1),$G$2:$G$7,0)) 23.使用TRANSPOSE函数转置数据区域的行列位置TRANSPOSE(array)数组 要转置的工作表上的数组或单元格区域 TRANSPOSE(A1:E5) 按下Ctrl+Shift+Enter组合件,即可对原来工作表进行转置 24.使用COUNTA函数计算参数中包含非空值的个数COUNTA(value1, [value2], …)value1 表示要计数的值的第一个参数。value2, … 表示要计数的值的其他参数，最多可包含 255 个参数。COUNTA 函数计算范围中不为空的单元格的个数。 =COUNTA(D2:D19) 25.使用COUNTIF函数计算满足给定条件的单元格的个COUNTIF(range, criteria)range 要进行计数的单元格组criteria 用于决定要统计哪些单元格的数量的数字、表达式、单元格引用或文本字符串。COUNTIF 是一个统计函数，用于统计满足某个条件的单元格的数量； =COUNTIF(C2:C19,”行政部”) 26.使用SUMIFS函数计算多重条件的SUMIFS(sum_range, criteria_range1, criteria1, [criteria_range2, criteria2], …)Sum_rang 要求和的单元格区域Criteria_range1 使用 Criteria1 测试的区域Criteria1 定义将计算 Criteria_range1 中的哪些单元格的和的条件 Criteria_range2, 附加的区域及其关联条件。 最多可以输入 127 个区域/条件对。criteria2, … (optional)SUMIFS 函数是一个数学与三角函数，用于计算其满足多个条件的全部参数的总量 SUMIFS(D2:D40,A2:A40,”=*商用型”,B2:B40,”6”) 27.使用AVERAGEA函数计算参数中非空值的平均值AVERAGEA(value1, [value2], …)Value1, value2, … Value1 是必需的，后续值是可选的 =AVERAGEA(D2:D19) 28.使用AVERAGEIF函数计算满足给定条件的单元格的平均值AVERAGEIF(range, criteria, [average_range])Range 要计算平均值的一个或多个单元格Criteria 形式为数字、表达式、单元格引用或文本的条件，用来定义将计算平均值的单元格Average_rang计算平均值的实际单元格组 AVERAGEIF(C2:C19,F2,D2:D19) 29.使用RANK.EQ函数返回一个数字在一组数字中的排位RANK.EQ(number,ref,[order])Number 要找到其排位的数字。Ref 数字列表的数组，对数字列表的引用。Order 一个指定数字排位方式的数字。 =RANK.EQ(J2,$J$2:$J​$31) 30.使用DELTA函数测试两个值是否相等DELTA(number1, [number2])Number1 第一个数字。Number2 第二个数字。检验两个值是否相等。 DELTA(A2,B2) 思维导图地址:https://www.processon.com/view/link/5cd4352fe4b059e20a1a2d9f]]></content>
       <categories>
         <category>python</category>
       </categories>
@@ -14,7 +25,7 @@
   <entry>
     <title><![CDATA[爬虫阶段mysql]]></title>
     <url>%2F2019%2F05%2F09%2F%E7%88%AC%E8%99%AB%E9%98%B6%E6%AE%B5mysql%2F</url>
-    <content type="text"><![CDATA[]]></content>
+    <content type="text"><![CDATA[思维导图网址: https://www.processon.com/view/link/5cd42958e4b09a3e45bd6a52]]></content>
       <categories>
         <category>python</category>
       </categories>
