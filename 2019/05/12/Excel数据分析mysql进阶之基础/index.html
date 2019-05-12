@@ -106,7 +106,7 @@
 <meta property="og:site_name" content="Mr kuai">
 <meta property="og:description" content="检索单个列  select name from user 检索多个列  select id,name,age,sex from user 检索所有列  select * from user  使用通配符 一般除非你确实需要表中的每个列，否则最好别使用*通配符 检索不同的行 DISTINCT  select distinct classid from user类似于group by 分组  例如:">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-05-12T06:08:51.921Z">
+<meta property="og:updated_time" content="2019-05-12T07:52:30.665Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Excel数据分析mysql进阶之基础">
 <meta name="twitter:description" content="检索单个列  select name from user 检索多个列  select id,name,age,sex from user 检索所有列  select * from user  使用通配符 一般除非你确实需要表中的每个列，否则最好别使用*通配符 检索不同的行 DISTINCT  select distinct classid from user类似于group by 分组  例如:">
@@ -402,7 +402,7 @@
                 
               
 
-              <time title="创建时间：2019-05-12 14:06:16 / 修改时间：14:08:51" itemprop="dateCreated datePublished" datetime="2019-05-12T14:06:16+08:00">2019-05-12</time>
+              <time title="创建时间：2019-05-12 14:06:16 / 修改时间：15:52:30" itemprop="dateCreated datePublished" datetime="2019-05-12T14:06:16+08:00">2019-05-12</time>
             
 
             
@@ -517,7 +517,7 @@
 </tr>
 </tbody>
 </table>
-<h3 id="AND与OR"><a href="#AND与OR" class="headerlink" title="AND与OR"></a>AND与OR</h3><p>SQL在处理OR操作符前，优先处理AND操作符。<br>  <code>select name from user where (classid=18 or classid =19) and sex=&#39;m&#39;</code><br>  因为圆括号具有较AND或OR操作符高的计算次序，数据库首先过滤圆括号内的OR条件。<br>  这时，SQL语句变成了<strong>获取18期或19期的学员并且要求是女生</strong></p>
+<h3 id="AND与OR"><a href="#AND与OR" class="headerlink" title="AND与OR"></a>AND与OR</h3><p>SQL在处理OR操作符前，优先处理AND操作符。<br>  <code>select name from user where (classid=18 or classid =19) and sex=&#39;m&#39;</code><br>  因为圆括号具有较AND或OR操作符高的计算次序，数据库首先过滤圆括号内的OR条件。</p>
 <h3 id="IN与NOT"><a href="#IN与NOT" class="headerlink" title="IN与NOT"></a>IN与NOT</h3><p>  <code>select name from user where classid in (18,19)</code><br>IN WHERE子句中用来指定要匹配值的清单的关键字，功能与OR相当<br>  <code>select user from user where classid not in (18,19)</code><br>在与IN操作符联合使用时，NOT使找出与条件列表不匹配的行非常简单。</p>
 <h3 id="LIKE与通配符"><a href="#LIKE与通配符" class="headerlink" title="LIKE与通配符"></a>LIKE与通配符</h3><ul>
 <li>百分号（%）通配符 在搜索串中，%表示任何字符出现任意次数<br><code>select name from user where name like &#39;a%&#39;</code></li>
@@ -655,6 +655,10 @@
 
           <div class="post-nav-prev post-nav-item">
             
+              <a href="/2019/05/12/爬虫阶段网页和网络基本知识/" rel="prev" title="爬虫阶段网页和网络基本知识">
+                爬虫阶段网页和网络基本知识 <i class="fa fa-chevron-right"></i>
+              </a>
+            
           </div>
         </div>
       
@@ -729,7 +733,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">7</span>
+                    <span class="site-state-item-count">8</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
