@@ -98,20 +98,23 @@
 
 
 
-  <meta name="description" content="1.使用AVERAGE函数求取一组数字的平均值公式—-&amp;gt;插入函数—-&amp;gt;搜索函数(输入:求平均值,转到)—-&amp;gt;选择函数:AVERAGE—-&amp;gt;确定 函数参数—-&amp;gt;Number1(选择要求平均值的选框)—-&amp;gt;确定 一行或一列的平均值,鼠标光标移至右下角变成十字后下拉或者右拉即可 2使用COUNT函数统计参数中包含数字的个数公式—-&amp;gt;自动求和(下拉选框)—-&amp;gt">
+  <meta name="description" content="一、MySQL中索引的语法创建索引 在创建表的时候添加索引 12345CREATE TABLE mytable(      ID INT NOT NULL,       username VARCHAR(16) NOT NULL,      INDEX [indexName] (username(length))  ); 在创建表以后添加索引 123ALTER TABLE my_table ADD">
 <meta name="keywords" content="Excel">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Excel数据分析之基础操作章">
-<meta property="og:url" content="http://kl66.top/2019/05/09/Excel数据分析之基础操作章/index.html">
+<meta property="og:title" content="Excel-mysql索引和B-Tree">
+<meta property="og:url" content="http://kl66.top/2019/05/15/Excel-mysql索引和B-Tree/index.html">
 <meta property="og:site_name" content="Mr kuai">
-<meta property="og:description" content="1.使用AVERAGE函数求取一组数字的平均值公式—-&amp;gt;插入函数—-&amp;gt;搜索函数(输入:求平均值,转到)—-&amp;gt;选择函数:AVERAGE—-&amp;gt;确定 函数参数—-&amp;gt;Number1(选择要求平均值的选框)—-&amp;gt;确定 一行或一列的平均值,鼠标光标移至右下角变成十字后下拉或者右拉即可 2使用COUNT函数统计参数中包含数字的个数公式—-&amp;gt;自动求和(下拉选框)—-&amp;gt">
+<meta property="og:description" content="一、MySQL中索引的语法创建索引 在创建表的时候添加索引 12345CREATE TABLE mytable(      ID INT NOT NULL,       username VARCHAR(16) NOT NULL,      INDEX [indexName] (username(length))  ); 在创建表以后添加索引 123ALTER TABLE my_table ADD">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://kl66.top/2019/05/09/Excel数据分析之基础操作章/33.jpg">
-<meta property="og:updated_time" content="2019-05-10T05:37:59.478Z">
+<meta property="og:image" content="http://kl66.top/2019/05/15/Excel-mysql索引和B-Tree/D:/Python学习素材及资源/xdl共享文件/正式/Excel数据分析/mysql/软件和资料/Python_Excel.pdf/MySQL&SQL/imgs/B-Tree.%E7%B4%A2%E5%BC%95.png">
+<meta property="og:image" content="http://kl66.top/2019/05/15/Excel-mysql索引和B-Tree/D:/Python学习素材及资源/xdl共享文件/正式/Excel数据分析/mysql/软件和资料/Python_Excel.pdf/MySQL&SQL/imgs/B+Tree.%E7%B4%A2%E5%BC%95.png">
+<meta property="og:image" content="http://kl66.top/2019/05/15/Excel-mysql索引和B-Tree/D:/Python学习素材及资源/xdl共享文件/正式/Excel数据分析/mysql/软件和资料/Python_Excel.pdf/MySQL&SQL/imgs/Myisam-%E9%9D%9E%E8%81%9A%E7%B0%87png.png">
+<meta property="og:image" content="http://kl66.top/2019/05/15/Excel-mysql索引和B-Tree/D:/Python学习素材及资源/xdl共享文件/正式/Excel数据分析/mysql/软件和资料/Python_Excel.pdf/MySQL&SQL/imgs/innodb-%E8%81%9A%E7%B0%87%E4%B8%8E%E9%9D%9E%E8%81%9A%E7%B0%87.png">
+<meta property="og:updated_time" content="2019-05-15T02:35:45.713Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Excel数据分析之基础操作章">
-<meta name="twitter:description" content="1.使用AVERAGE函数求取一组数字的平均值公式—-&amp;gt;插入函数—-&amp;gt;搜索函数(输入:求平均值,转到)—-&amp;gt;选择函数:AVERAGE—-&amp;gt;确定 函数参数—-&amp;gt;Number1(选择要求平均值的选框)—-&amp;gt;确定 一行或一列的平均值,鼠标光标移至右下角变成十字后下拉或者右拉即可 2使用COUNT函数统计参数中包含数字的个数公式—-&amp;gt;自动求和(下拉选框)—-&amp;gt">
-<meta name="twitter:image" content="http://kl66.top/2019/05/09/Excel数据分析之基础操作章/33.jpg">
+<meta name="twitter:title" content="Excel-mysql索引和B-Tree">
+<meta name="twitter:description" content="一、MySQL中索引的语法创建索引 在创建表的时候添加索引 12345CREATE TABLE mytable(      ID INT NOT NULL,       username VARCHAR(16) NOT NULL,      INDEX [indexName] (username(length))  ); 在创建表以后添加索引 123ALTER TABLE my_table ADD">
+<meta name="twitter:image" content="http://kl66.top/2019/05/15/Excel-mysql索引和B-Tree/D:/Python学习素材及资源/xdl共享文件/正式/Excel数据分析/mysql/软件和资料/Python_Excel.pdf/MySQL&SQL/imgs/B-Tree.%E7%B4%A2%E5%BC%95.png">
 
 
 
@@ -119,7 +122,7 @@
 
   
   
-  <link rel="canonical" href="http://kl66.top/2019/05/09/Excel数据分析之基础操作章/">
+  <link rel="canonical" href="http://kl66.top/2019/05/15/Excel-mysql索引和B-Tree/">
 
 
 
@@ -129,7 +132,7 @@
   };
 </script>
 
-  <title>Excel数据分析之基础操作章 | Mr kuai</title>
+  <title>Excel-mysql索引和B-Tree | Mr kuai</title>
   
 
 
@@ -361,7 +364,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://kl66.top/2019/05/09/Excel数据分析之基础操作章/">
+    <link itemprop="mainEntityOfPage" href="http://kl66.top/2019/05/15/Excel-mysql索引和B-Tree/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="kl">
@@ -378,7 +381,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Excel数据分析之基础操作章
+          <h1 class="post-title" itemprop="name headline">Excel-mysql索引和B-Tree
 
               
             
@@ -404,24 +407,12 @@
                 
               
 
-              <time title="创建时间：2019-05-09 20:09:12" itemprop="dateCreated datePublished" datetime="2019-05-09T20:09:12+08:00">2019-05-09</time>
+              <time title="创建时间：2019-05-15 10:28:30 / 修改时间：10:35:45" itemprop="dateCreated datePublished" datetime="2019-05-15T10:28:30+08:00">2019-05-15</time>
             
 
             
               
 
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-05-10 13:37:59" itemprop="dateModified" datetime="2019-05-10T13:37:59+08:00">2019-05-10</time>
               
             
           </span>
@@ -480,74 +471,97 @@
       
 
       
-        <h4 id="1-使用AVERAGE函数求取一组数字的平均值"><a href="#1-使用AVERAGE函数求取一组数字的平均值" class="headerlink" title="1.使用AVERAGE函数求取一组数字的平均值"></a>1.使用AVERAGE函数求取一组数字的平均值</h4><p>公式—-&gt;插入函数—-&gt;搜索函数(输入:求平均值,转到)—-&gt;选择函数:AVERAGE—-&gt;确定</p>
-<p>函数参数—-&gt;Number1(选择要求平均值的选框)—-&gt;确定</p>
-<p>一行或一列的平均值,鼠标光标移至右下角变成十字后下拉或者右拉即可</p>
-<h4 id="2使用COUNT函数统计参数中包含数字的个数"><a href="#2使用COUNT函数统计参数中包含数字的个数" class="headerlink" title="2使用COUNT函数统计参数中包含数字的个数"></a>2使用COUNT函数统计参数中包含数字的个数</h4><p>公式—-&gt;自动求和(下拉选框)—-&gt;计数—-&gt;选择B2到B15区域,回车(Enter)即可</p>
-<h4 id="3使用MAX函数返回一组数字中的最大值"><a href="#3使用MAX函数返回一组数字中的最大值" class="headerlink" title="3使用MAX函数返回一组数字中的最大值"></a>3使用MAX函数返回一组数字中的最大值</h4><p>公式—-&gt;自动求和(下拉选框)—-&gt;最大值—-&gt;选择C2到F15区域,回车(Enter)即可</p>
-<h4 id="4使用MIN函数返回一组数字中的最小值"><a href="#4使用MIN函数返回一组数字中的最小值" class="headerlink" title="4使用MIN函数返回一组数字中的最小值"></a>4使用MIN函数返回一组数字中的最小值</h4><p>公式—-&gt;自动求和(下拉选框)—-&gt;最小值—-&gt;选择C2到F15区域,回车(Enter)即可</p>
-<h4 id="5-使用IF函数根据指定的条件返回不同的结果"><a href="#5-使用IF函数根据指定的条件返回不同的结果" class="headerlink" title="5.使用IF函数根据指定的条件返回不同的结果"></a>5.使用IF函数根据指定的条件返回不同的结果</h4><p>公式—-&gt;插入函数—-&gt;IF(确定)</p>
-<h4 id="6-使用SUMIF函数按给定条件对指定单元格求和"><a href="#6-使用SUMIF函数按给定条件对指定单元格求和" class="headerlink" title="6.使用SUMIF函数按给定条件对指定单元格求和"></a>6.使用SUMIF函数按给定条件对指定单元格求和</h4><p>SUMIF(range, criteria, [sum_range])<br>range 要按条件计算的单元格区域。<br>criteria 定义哪些单元格将被添加的数字、表达式、单元格引用、文本或函数形式的条件。<br>sum_range  要添加的实际单元格</p>
-<p>操作如下:公式—-&gt;数学和三角函数—-&gt;在下拉选项里面选择</p>
-<h4 id="7-使用VLOOKUP函数在区域或数组的列中查找数据"><a href="#7-使用VLOOKUP函数在区域或数组的列中查找数据" class="headerlink" title="7.使用VLOOKUP函数在区域或数组的列中查找数据"></a>7.使用VLOOKUP函数在区域或数组的列中查找数据</h4><p>VLOOKUP（要查找的值、要在其中查找值的区域、区域中包含返回值的列号、精确匹配或近似匹配 – 指定为 0/FALSE 或 1/TRUE）</p>
-<p>公式—-&gt;插入函数—-&gt;或选择类别里面选择&lt;查找与引用&gt;—–&gt;选择VLOOKUP函数确定</p>
-<h4 id="8-让公式与函数实现混合运算"><a href="#8-让公式与函数实现混合运算" class="headerlink" title="8.让公式与函数实现混合运算"></a>8.让公式与函数实现混合运算</h4><p>插播一个四舍五入的函数ROUND</p>
-<p>用法:ROUND(求值的单元格,保留几位小数)</p>
-<h4 id="9-使用EXACT函数比较两个字符串是否相同"><a href="#9-使用EXACT函数比较两个字符串是否相同" class="headerlink" title="9.使用EXACT函数比较两个字符串是否相同"></a>9.使用EXACT函数比较两个字符串是否相同</h4><p>用法:EXACT(值1单元格,值二单元格)</p>
-<p>插入函数选择文本函数或者直接找EXACT函数都可以</p>
-<p>EXACT(A2,B2)</p>
-<h4 id="10-使用LEN函数计算文本中的字符个数"><a href="#10-使用LEN函数计算文本中的字符个数" class="headerlink" title="10.使用LEN函数计算文本中的字符个数"></a>10.使用LEN函数计算文本中的字符个数</h4><p>len函数的语法格式=Len( text)</p>
-<h4 id="11-使用T函数将参数转换为文本"><a href="#11-使用T函数将参数转换为文本" class="headerlink" title="11.使用T函数将参数转换为文本"></a>11.使用T函数将参数转换为文本</h4><p>T(value)</p>
-<p>值   要测试的值。</p>
-<h4 id="12-使用FIND函数以字符为单位并区分大小写地查找指定字符的位置"><a href="#12-使用FIND函数以字符为单位并区分大小写地查找指定字符的位置" class="headerlink" title="12.使用FIND函数以字符为单位并区分大小写地查找指定字符的位置"></a>12.使用FIND函数以字符为单位并区分大小写地查找指定字符的位置</h4><p>FIND(find_text, within_text, [start_num])<br>find_text   要查找的文本。<br>within_text    包含要查找文本的文本。<br>start_num    指定开始进行查找的字符</p>
-<h4 id="13-使用REPLACE函数以字符为单位根据指定位置进行替换"><a href="#13-使用REPLACE函数以字符为单位根据指定位置进行替换" class="headerlink" title="13.使用REPLACE函数以字符为单位根据指定位置进行替换"></a>13.使用REPLACE函数以字符为单位根据指定位置进行替换</h4><p>REPLACE(old_text, start_num, num_chars, new_text)</p>
-<p>old_text    要替换其部分字符的文本。</p>
-<p>start_num   old_text 中要替换为 new_text 的字符位置。</p>
-<p>num_chars   old_text 中希望 REPLACE 使用 new_text 来进行替换的字符数。</p>
-<p>Num_bytes   old_text 中希望 REPLACEB 使用 new_text 来进行替换的字节数。</p>
-<p>new_text    将替换 old_text 中字符的文本。</p>
-<h4 id="14-使用FALSE函数返回逻辑值FALSE"><a href="#14-使用FALSE函数返回逻辑值FALSE" class="headerlink" title="14.使用FALSE函数返回逻辑值FALSE"></a>14.使用FALSE函数返回逻辑值FALSE</h4><p>IF(B2&gt;$C$2,FALSE(),TRUE())</p>
-<h4 id="15-使用AND函数判断指定的多个条件是否同时成立"><a href="#15-使用AND函数判断指定的多个条件是否同时成立" class="headerlink" title="15.使用AND函数判断指定的多个条件是否同时成立"></a>15.使用AND函数判断指定的多个条件是否同时成立</h4><p>用于确定测试中的所有条件是否均为 TRUE</p>
-<p>IF(AND(C2&gt;3,D2&lt;15,E2&lt;35200),”可申请”,””)</p>
-<h4 id="16-使用OR函数判断指定的任一条件是为真，即返回真"><a href="#16-使用OR函数判断指定的任一条件是为真，即返回真" class="headerlink" title="16.使用OR函数判断指定的任一条件是为真，即返回真"></a>16.使用OR函数判断指定的任一条件是为真，即返回真</h4><p>用于确定测试中的所有条件是否均为 TRUE</p>
-<p>IF(OR(C2&gt;=$I$2,D2&gt;=$I$2,E2&gt;=$I$2),”优秀”,IF(OR(C2&gt;=$I$3,D2=$I$3,E2&gt;=$I$3),”及格”,”不及格”))</p>
-<h4 id="17-使用NOT函数对逻辑值求反"><a href="#17-使用NOT函数对逻辑值求反" class="headerlink" title="17.使用NOT函数对逻辑值求反"></a>17.使用NOT函数对逻辑值求反</h4><p>确保一个值不等同于另一值</p>
-<p>IF(NOT(MAX(C2:E2)&lt;$I$2),”优秀”,IF(NOT(MAX(C2:E2)&lt;$I$3),”及格”,”不及格”))</p>
-<h4 id="18-使用IFERROR函数对错误结果进行处理"><a href="#18-使用IFERROR函数对错误结果进行处理" class="headerlink" title="18.使用IFERROR函数对错误结果进行处理"></a>18.使用IFERROR函数对错误结果进行处理</h4><p>IFERROR(value, value_if_error)<br>值     检查是否存在错误的参数。<br>Value_if_error    公式的计算结果错误时返回的值。</p>
-<p>IFERROR(A2,”公式出错”)</p>
-<h4 id="19-使用TODAY函数返回当前日期"><a href="#19-使用TODAY函数返回当前日期" class="headerlink" title="19.使用TODAY函数返回当前日期"></a>19.使用TODAY函数返回当前日期</h4><p>用法:TODAY()</p>
-<h4 id="20-使用TIME函数返回某一特定时间的小数值"><a href="#20-使用TIME函数返回某一特定时间的小数值" class="headerlink" title="20.使用TIME函数返回某一特定时间的小数值"></a>20.使用TIME函数返回某一特定时间的小数值</h4><p>TIME(hour, minute, second)<br>hour  代表小时。<br>minute  代表分钟。<br>second  代表秒。</p>
-<p>=B2+TIME(8,0,0)</p>
-<h4 id="21-使用YEAR函数返回某日期对应的年份"><a href="#21-使用YEAR函数返回某日期对应的年份" class="headerlink" title="21.使用YEAR函数返回某日期对应的年份"></a>21.使用YEAR函数返回某日期对应的年份</h4><p>YEAR(serial_number)<br>Serial_number   要查找的年份的日期</p>
-<p>YEAR(TODAY())-YEAR(J2)</p>
-<p>开始—-&gt;数字(下拉选框选择常规)</p>
-<h4 id="22-使用MONTH函数返回某日期对应的月份"><a href="#22-使用MONTH函数返回某日期对应的月份" class="headerlink" title="22.使用MONTH函数返回某日期对应的月份"></a>22.使用MONTH函数返回某日期对应的月份</h4><p>MONTH(serial_number)<br>Serial_number 要查找的月份日期</p>
-<p>单击公式—-&gt;定义的名称—-&gt;根据所选的内容创建—-&gt;勾选首行,确定</p>
-<p>IF(MONTH(DATE(年份,2,29))=2,”闰年”,”平年”)</p>
-<h4 id="23-使用CHOOSE函数根据序号从列表中选择对应的内容"><a href="#23-使用CHOOSE函数根据序号从列表中选择对应的内容" class="headerlink" title="23.使用CHOOSE函数根据序号从列表中选择对应的内容"></a>23.使用CHOOSE函数根据序号从列表中选择对应的内容</h4><p>CHOOSE(index_num, value1, [value2], …)<br>index_num     用于指定所选定的数值参数<br>如果 index_num 为 1，则 CHOOSE 返回 value1；如果为 2，则 CHOOSE 返回 value2，以此类推<br>如果 index_num 小于 1 或大于列表中最后一个值的索引号，则 CHOOSE 返回 #VALUE! 错误值<br>如果 index_num 为小数，则在使用前将被截尾取整<br>value1, value2, …    Value1 是必需的，后续值是可选的</p>
-<p>OFFSET(工资表!$A$1,CHOOSE(MOD(ROW(工资表!A1)-1,3)+1,0,(ROW(工资表!A1)-1)/3+1,65535),COLUMN()-1)&amp;””</p>
-<h4 id="24-使用MATCH函数返回指定内容所在的位置"><a href="#24-使用MATCH函数返回指定内容所在的位置" class="headerlink" title="24.使用MATCH函数返回指定内容所在的位置"></a>24.使用MATCH函数返回指定内容所在的位置</h4><p>MATCH(lookup_value, lookup_array, [match_type])<br>lookup_value     要在 lookup_array 中匹配的值<br>lookup_value 参数可以为值（数字、文本或逻辑值）或对数字、文本或逻辑值的单元格引用。<br>lookup_array    要搜索的单元格区域<br>match_type    数字 -1、0 或 1。 match_type 参数指定 Excel 如何将 lookup_value 与 lookup_array 中的值匹配。 此参数的默认值为 1。</p>
-<p>INDEX($A$2:$A$7,MATCH(LARGE($G$2:$G$7,ROW()-1),$G$2:$G$7,0))</p>
-<h4 id="25-使用TRANSPOSE函数转置数据区域的行列位置"><a href="#25-使用TRANSPOSE函数转置数据区域的行列位置" class="headerlink" title="25.使用TRANSPOSE函数转置数据区域的行列位置"></a>25.使用TRANSPOSE函数转置数据区域的行列位置</h4><p>TRANSPOSE(array)<br>数组   要转置的工作表上的数组或单元格区域</p>
-<p>TRANSPOSE(A1:E5)</p>
-<p>按下Ctrl+Shift+Enter组合件,即可对原来工作表进行转置</p>
-<h4 id="26-使用COUNTA函数计算参数中包含非空值的个数"><a href="#26-使用COUNTA函数计算参数中包含非空值的个数" class="headerlink" title="26.使用COUNTA函数计算参数中包含非空值的个数"></a>26.使用COUNTA函数计算参数中包含非空值的个数</h4><p>COUNTA(value1, [value2], …)<br>value1     表示要计数的值的第一个参数。<br>value2, …    表示要计数的值的其他参数，最多可包含 255 个参数。<br>COUNTA 函数计算范围中不为空的单元格的个数。</p>
-<p>=COUNTA(D2:D19)</p>
-<h4 id="27-使用COUNTIF函数计算满足给定条件的单元格的个"><a href="#27-使用COUNTIF函数计算满足给定条件的单元格的个" class="headerlink" title="27.使用COUNTIF函数计算满足给定条件的单元格的个"></a>27.使用COUNTIF函数计算满足给定条件的单元格的个</h4><p>COUNTIF(range, criteria)<br>range    要进行计数的单元格组<br>criteria   用于决定要统计哪些单元格的数量的数字、表达式、单元格引用或文本字符串。<br>COUNTIF 是一个统计函数，用于统计满足某个条件的单元格的数量；</p>
-<p>=COUNTIF(C2:C19,”行政部”)</p>
-<h4 id="28-使用SUMIFS函数计算多重条件的"><a href="#28-使用SUMIFS函数计算多重条件的" class="headerlink" title="28.使用SUMIFS函数计算多重条件的"></a>28.使用SUMIFS函数计算多重条件的</h4><p>SUMIFS(sum_range, criteria_range1, criteria1, [criteria_range2, criteria2], …)<br>Sum_rang  要求和的单元格区域<br>Criteria_range1 使用 Criteria1 测试的区域<br>Criteria1 定义将计算 Criteria_range1 中的哪些单元格的和的条件</p>
-<p>Criteria_range2,     附加的区域及其关联条件。 最多可以输入 127 个区域/条件对。<br>criteria2, …    (optional)<br>SUMIFS 函数是一个数学与三角函数，用于计算其满足多个条件的全部参数的总量</p>
-<p>SUMIFS(D2:D40,A2:A40,”=*商用型”,B2:B40,”6”)</p>
-<h4 id="29-使用AVERAGEA函数计算参数中非空值的平均值"><a href="#29-使用AVERAGEA函数计算参数中非空值的平均值" class="headerlink" title="29.使用AVERAGEA函数计算参数中非空值的平均值"></a>29.使用AVERAGEA函数计算参数中非空值的平均值</h4><p>AVERAGEA(value1, [value2], …)<br>Value1, value2, …    Value1 是必需的，后续值是可选的</p>
-<p>=AVERAGEA(D2:D19)</p>
-<h4 id="30-使用AVERAGEIF函数计算满足给定条件的单元格的平均值"><a href="#30-使用AVERAGEIF函数计算满足给定条件的单元格的平均值" class="headerlink" title="30.使用AVERAGEIF函数计算满足给定条件的单元格的平均值"></a>30.使用AVERAGEIF函数计算满足给定条件的单元格的平均值</h4><p>AVERAGEIF(range, criteria, [average_range])<br>Range    要计算平均值的一个或多个单元格<br>Criteria   形式为数字、表达式、单元格引用或文本的条件，用来定义将计算平均值的单元格<br>Average_rang计算平均值的实际单元格组</p>
-<p>AVERAGEIF(C2:C19,F2,D2:D19)</p>
-<h4 id="31-使用RANK-EQ函数返回一个数字在一组数字中的排位"><a href="#31-使用RANK-EQ函数返回一个数字在一组数字中的排位" class="headerlink" title="31.使用RANK.EQ函数返回一个数字在一组数字中的排位"></a>31.使用RANK.EQ函数返回一个数字在一组数字中的排位</h4><p>RANK.EQ(number,ref,[order])<br>Number    要找到其排位的数字。<br>Ref    数字列表的数组，对数字列表的引用。<br>Order   一个指定数字排位方式的数字。</p>
-<p>=RANK.EQ(J2,$J$2:$J​$31)</p>
-<h4 id="32-使用DELTA函数测试两个值是否相等"><a href="#32-使用DELTA函数测试两个值是否相等" class="headerlink" title="32.使用DELTA函数测试两个值是否相等"></a>32.使用DELTA函数测试两个值是否相等</h4><p>DELTA(number1, [number2])<br>Number1     第一个数字。<br>Number2     第二个数字。<br>检验两个值是否相等。</p>
-<p>DELTA(A2,B2)</p>
-<p><img src="/2019/05/09/Excel数据分析之基础操作章/33.jpg" alt></p>
-<p> 思维导图地址:<a href="https://www.processon.com/view/link/5cd4352fe4b059e20a1a2d9f" target="_blank" rel="noopener">https://www.processon.com/view/link/5cd4352fe4b059e20a1a2d9f</a></p>
+        <h2 id="一、MySQL中索引的语法"><a href="#一、MySQL中索引的语法" class="headerlink" title="一、MySQL中索引的语法"></a>一、MySQL中索引的语法</h2><p><strong>创建索引</strong></p>
+<p>在创建表的时候添加索引</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> mytable(  </span><br><span class="line">    <span class="keyword">ID</span> <span class="built_in">INT</span> <span class="keyword">NOT</span> <span class="literal">NULL</span>,   </span><br><span class="line">    username <span class="built_in">VARCHAR</span>(<span class="number">16</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span>,  </span><br><span class="line">    <span class="keyword">INDEX</span> [indexName] (username(<span class="keyword">length</span>))  </span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+<p>在创建表以后添加索引</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> my_table <span class="keyword">ADD</span> [<span class="keyword">UNIQUE</span>] <span class="keyword">INDEX</span> index_name(column_name);</span><br><span class="line"><span class="comment">-- 或者</span></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">INDEX</span> index_name <span class="keyword">ON</span> my_table(column_name);</span><br></pre></td></tr></table></figure>
+<p><strong>注意：</strong></p>
+<p>1、索引需要占用<strong>磁盘空间</strong></p>
+<p>2、创建索引时需要<strong>对表加锁</strong></p>
+<p><strong>删除索引</strong></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">DROP</span> <span class="keyword">INDEX</span> my_index <span class="keyword">ON</span> tablename；(无法删除主键)</span><br><span class="line"><span class="comment">-- 或者</span></span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> table_name <span class="keyword">DROP</span> <span class="keyword">INDEX</span> index_name;(删除主键先去掉唯一约束)</span><br></pre></td></tr></table></figure>
+<p><strong>查看表中的索引</strong></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SHOW</span> <span class="keyword">INDEX</span> <span class="keyword">FROM</span> tablename;</span><br></pre></td></tr></table></figure>
+<h2 id="二、索引的优缺点"><a href="#二、索引的优缺点" class="headerlink" title="二、索引的优缺点"></a>二、索引的优缺点</h2><p><strong>优势：</strong>可以快速检索，减少I/O次数,加快分组和排序；</p>
+<p><strong>劣势：    </strong>1.占用存储空间</p>
+<p>​        2.成本随着数据量增大而增大</p>
+<p>​        3.降低数据表的修改操作（删除，添加，修改）的效率</p>
+<h2 id="三、索引的分类"><a href="#三、索引的分类" class="headerlink" title="三、索引的分类"></a>三、索引的分类</h2><p><strong>常见的索引类型有：主键索引、唯一索引、普通索引、全文索引、组合索引</strong></p>
+<p>1、主键索引：即主索引，根据主键pk_clolum（length）建立索引，<strong>不允许重复，不允许空值</strong>；</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> <span class="string">'table_name'</span> <span class="keyword">ADD</span> PRIMARY <span class="keyword">KEY</span> pk_index(<span class="string">'col'</span>)；</span><br><span class="line">secondary <span class="keyword">key</span></span><br></pre></td></tr></table></figure>
+<p>2、唯一索引：用来建立索引的列的值必须是<strong>唯一的，允许空值</strong></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> <span class="string">'table_name'</span> <span class="keyword">ADD</span> <span class="keyword">UNIQUE</span> index_name(<span class="string">'col'</span>)；</span><br></pre></td></tr></table></figure>
+<p>3、普通索引：用表中的普通列构建的索引，没有任何限制</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> <span class="string">'table_name'</span> <span class="keyword">ADD</span> <span class="keyword">INDEX</span> index_name(<span class="string">'col'</span>)；</span><br></pre></td></tr></table></figure>
+<p>4、全文索引：用大文本对象的列构建的索引</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> <span class="string">'table_name'</span> <span class="keyword">ADD</span> FULLTEXT <span class="keyword">INDEX</span> ft_index(<span class="string">'col'</span>)；</span><br><span class="line"><span class="comment">-- 5.6版本前的MySQL自带的全文索引只能用于MyISAM存储引擎，如果是其它数据引擎，那么全文索引不会生效。--- 5.6版本之后InnoDB存储引擎开始支持全文索引</span></span><br><span class="line"><span class="comment">-- 在MySQL中，全文索引支队英文有用，目前对中文还不支持。5.7版本之后通过使用ngram插件开始支持中文。</span></span><br></pre></td></tr></table></figure>
+<p>5、组合索引：用多个列组合构建的索引，这多个列中的值不允许有空值</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> <span class="string">'table_name'</span> <span class="keyword">ADD</span> <span class="keyword">INDEX</span> index_name(<span class="string">'col1'</span>,<span class="string">'col2'</span>,<span class="string">'col3'</span>)；</span><br></pre></td></tr></table></figure>
+<p>*遵循“最左前缀”原则，把最常用作为检索或排序的列放在最左，依次递减，组合索引<strong>相当于建立了col1,col1col2,col1col2col3三个索引</strong>，而col2或者col3是不能使用索引的。</p>
+<p>*在使用组合索引的时候可能因为列名长度过长而导致索引的key太大，导致效率降低，在允许的情况下，可以只取col1和col2的前几个字符作为索引</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> <span class="string">'table_name'</span> <span class="keyword">ADD</span> <span class="keyword">INDEX</span> index_name(col1(<span class="number">4</span>),col2（<span class="number">3</span>))；</span><br><span class="line"><span class="comment">--表示使用col1的前4个字符和col2的前3个字符作为索引</span></span><br></pre></td></tr></table></figure>
+<h2 id="四、索引的实现原理"><a href="#四、索引的实现原理" class="headerlink" title="四、索引的实现原理"></a>四、索引的实现原理</h2><h3 id="1、哈希索引："><a href="#1、哈希索引：" class="headerlink" title="1、哈希索引："></a>1、哈希索引：</h3><p>只有memory（内存）存储引擎支持哈希索引，哈希索引用索引列的值计算该值的hashCode，然后在hashCode相应的位置存执该值所在行数据的物理位置，因为使用散列算法，因此访问速度非常快，但是一个值只能对应一个hashCode，而且是散列的分布方式，<strong>因此哈希索引不支持范围查找和排序的功能</strong></p>
+<h3 id="2、B-Tree索引"><a href="#2、B-Tree索引" class="headerlink" title="2、B+Tree索引"></a>2、B+Tree索引</h3><blockquote>
+<p>正常情况下，如果不指定索引的类型，那么一般是指B+Tree索引（或者B+Tree索引）。</p>
+<p>存储引擎以不同的方式使用B+Tree索引。性能也各有不同，但是InnoDB按照原数据格式进行存储。</p>
+<p>B+Tree 索引能够加快数据的读取速度，因为存储引擎不再需要进行全表扫描来获取需要的数据，相反是从索引的根节点开始进行搜索，通过相应的指针移动，最终存储引擎要么找到了对应的值，要么该记录不存在。树的深度与表的大小直接相关。</p>
+<p>B+Tree索引是按照顺序组织存储的，所以适合范围查找数据</p>
+<p>B+Tree索引使用与全键值、键值范围或者键前缀查找，其中键前缀进适用于根据最左前缀的查找。</p>
+</blockquote>
+<ul>
+<li><p>B-Tree   40  22  56  15  35  45 55 75 5 8 48 58</p>
+<p><img src="/2019/05/15/Excel-mysql索引和B-Tree/D:/Python学习素材及资源\xdl共享文件\正式\Excel数据分析\mysql\软件和资料\Python_Excel.pdf\MySQL&amp;SQL\imgs\B-Tree.%E7%B4%A2%E5%BC%95.png" alt></p>
+</li>
+</ul>
+<ul>
+<li><p>B+Tree</p>
+<p><img src="/2019/05/15/Excel-mysql索引和B-Tree/D:/Python学习素材及资源\xdl共享文件\正式\Excel数据分析\mysql\软件和资料\Python_Excel.pdf\MySQL&amp;SQL\imgs\B+Tree.%E7%B4%A2%E5%BC%95.png" alt></p>
+</li>
+</ul>
+<h3 id="为什么使用B-树而不是B树"><a href="#为什么使用B-树而不是B树" class="headerlink" title="为什么使用B+树而不是B树"></a>为什么使用B+树而不是B树</h3><h4 id="1-磁盘读写代价更低"><a href="#1-磁盘读写代价更低" class="headerlink" title="1.磁盘读写代价更低"></a>1.磁盘读写代价更低</h4><blockquote>
+<p>在计算机中,所有与空间相关的东西都是按照块(block)进行存取和操作的.每次读取都意味着一次I/O</p>
+<p>假设计算机中每个块的大小为4K,行的大小为1k,索引的大小为0.06K,就可以计算并得出结果</p>
+</blockquote>
+<ul>
+<li>B树的数据和索引都在同一个节点上,那么意味着每一个块(block)中包含的索引是少量的,如果想要取出比较深层的数据就意味着要读取很多的快,才能得到想要的索引和数据,那就是I/O的次数会多</li>
+<li>而B+树中每一个块能够存储的索引数量是B树的很多倍,那么获取比较深层的数据只需要读取少量的快(block)就可以做到.那就是I/O的次数会少很多</li>
+</ul>
+<h4 id="2-随机I-O的次数更少"><a href="#2-随机I-O的次数更少" class="headerlink" title="2.随机I/O的次数更少"></a>2.随机I/O的次数更少</h4><blockquote>
+<p>随机I/O是指读写操作时间连续，但访问地址不连续,时长约为 10ms</p>
+<p>顺序I/O是指读取和写入操作基于逻辑块逐个连续访问来自相邻地址的数据,时长约为 0.1ms</p>
+</blockquote>
+<ul>
+<li>在相同情况下,B树要进行更多的随机IO,而B+树需要更多的顺序IO,因此B+树,效率也更快</li>
+</ul>
+<h4 id="3-查询速度更稳定"><a href="#3-查询速度更稳定" class="headerlink" title="3.查询速度更稳定"></a>3.查询速度更稳定</h4><p>由于B+Tree非叶子节点不存储数据（data），因此所有的数据都要查询至叶子节点，而叶子节点的高度都是相同的，因此所有数据的查询速度都是一样的。</p>
+<h4 id="3-聚簇索引和非聚簇索引"><a href="#3-聚簇索引和非聚簇索引" class="headerlink" title="3,聚簇索引和非聚簇索引"></a>3,聚簇索引和非聚簇索引</h4><blockquote>
+<p>在索引的分类中，我们可以按照索引的键是否为主键来分为“主索引”和“辅助索引”，使用主键键值建立的索引称为“主索引”，其它的称为“辅助索引”。因此主索引只能有一个，辅助索引可以有很多个。</p>
+</blockquote>
+<h5 id="MyISAM——非聚簇索引"><a href="#MyISAM——非聚簇索引" class="headerlink" title="MyISAM——非聚簇索引"></a><strong>MyISAM——非聚簇索引</strong></h5><blockquote>
+<p>MyISAM存储引擎采用的是非聚簇索引，非聚簇索引的主索引和辅助索引几乎是一样的，只是主索引不允许重复，不允许空值，他们的叶子结点的key都存储指向键值对应的数据的物理地址。</p>
+<p>非聚簇索引的主索引和辅助索引的叶子节点的data都是存储的数据的物理地址，也就是说索引和数据并不是存储在一起的，数据的顺序和索引的顺序并没有任何关系，也就是索引顺序与数据物理排列顺序无关。</p>
+</blockquote>
+<p><img src="/2019/05/15/Excel-mysql索引和B-Tree/D:/Python学习素材及资源\xdl共享文件\正式\Excel数据分析\mysql\软件和资料\Python_Excel.pdf\MySQL&amp;SQL\imgs\Myisam-%E9%9D%9E%E8%81%9A%E7%B0%87png.png" alt></p>
+<h5 id="InnoDB——聚簇索引"><a href="#InnoDB——聚簇索引" class="headerlink" title="InnoDB——聚簇索引"></a><strong>InnoDB——聚簇索引</strong></h5><blockquote>
+<p>聚簇索引的主索引的叶子结点存储的是键值对应的数据本身，辅助索引的叶子结点存储的是键值对应的数据的主键键值。因此主键的值长度越小越好，类型越简单越好。</p>
+<p>聚簇索引的辅助索引的叶子节点的data存储的是主键的值，主索引的叶子节点的data存储的是数据本身，也就是说数据和索引存储在一起，并且索引查询到的地方就是数据（data）本身，那么索引的顺序和数据本身的顺序就是相同的；</p>
+</blockquote>
+<p><img src="/2019/05/15/Excel-mysql索引和B-Tree/D:/Python学习素材及资源\xdl共享文件\正式\Excel数据分析\mysql\软件和资料\Python_Excel.pdf\MySQL&amp;SQL\imgs\innodb-%E8%81%9A%E7%B0%87%E4%B8%8E%E9%9D%9E%E8%81%9A%E7%B0%87.png" alt></p>
+<h2 id="五、索引的使用策略"><a href="#五、索引的使用策略" class="headerlink" title="五、索引的使用策略"></a>五、索引的使用策略</h2><blockquote>
+<p>B+Tree索引是按照顺序组织存储的，所以适合范围查找数据</p>
+<p>B+Tree索引使用与全键值、键值范围或者键前缀查找，其中键前缀进适用于根据最左前缀的查找。</p>
+</blockquote>
+<p>a、 全值匹配</p>
+<p>b、 匹配最左前缀。</p>
+<p>c、 匹配列前缀.(组合索引)</p>
+<p>d、 匹配范围值</p>
+<p>e、 精确匹配某一列并范围匹配另外一列。</p>
+<p>f、 只访问索引的查询（覆盖索引）</p>
+<p>B-Tree索引的限制：</p>
+<p>a、 如果不是按照索引的最左列开始查找，那么无法使用索引</p>
+<p>b、 不能跳过索引中的某些列。</p>
+<p>c、 如果查询中使用了某个列的范围查询，那么该列右边的所有列都无法使用索引。</p>
 
       
     </div>
@@ -584,8 +598,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/05/09/爬虫阶段mysql/" rel="next" title="爬虫阶段mysql">
-                <i class="fa fa-chevron-left"></i> 爬虫阶段mysql
+              <a href="/2019/05/14/Excel-mysql事务/" rel="next" title="Excel-mysql事务">
+                <i class="fa fa-chevron-left"></i> Excel-mysql事务
               </a>
             
           </div>
@@ -593,10 +607,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/05/09/Excel数据分析/" rel="prev" title="Excel数据分析">
-                Excel数据分析 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -752,7 +762,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-使用AVERAGE函数求取一组数字的平均值"><span class="nav-number">1.</span> <span class="nav-text">1.使用AVERAGE函数求取一组数字的平均值</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2使用COUNT函数统计参数中包含数字的个数"><span class="nav-number">2.</span> <span class="nav-text">2使用COUNT函数统计参数中包含数字的个数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3使用MAX函数返回一组数字中的最大值"><span class="nav-number">3.</span> <span class="nav-text">3使用MAX函数返回一组数字中的最大值</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4使用MIN函数返回一组数字中的最小值"><span class="nav-number">4.</span> <span class="nav-text">4使用MIN函数返回一组数字中的最小值</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-使用IF函数根据指定的条件返回不同的结果"><span class="nav-number">5.</span> <span class="nav-text">5.使用IF函数根据指定的条件返回不同的结果</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-使用SUMIF函数按给定条件对指定单元格求和"><span class="nav-number">6.</span> <span class="nav-text">6.使用SUMIF函数按给定条件对指定单元格求和</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-使用VLOOKUP函数在区域或数组的列中查找数据"><span class="nav-number">7.</span> <span class="nav-text">7.使用VLOOKUP函数在区域或数组的列中查找数据</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#8-让公式与函数实现混合运算"><span class="nav-number">8.</span> <span class="nav-text">8.让公式与函数实现混合运算</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-使用EXACT函数比较两个字符串是否相同"><span class="nav-number">9.</span> <span class="nav-text">9.使用EXACT函数比较两个字符串是否相同</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#10-使用LEN函数计算文本中的字符个数"><span class="nav-number">10.</span> <span class="nav-text">10.使用LEN函数计算文本中的字符个数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#11-使用T函数将参数转换为文本"><span class="nav-number">11.</span> <span class="nav-text">11.使用T函数将参数转换为文本</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#12-使用FIND函数以字符为单位并区分大小写地查找指定字符的位置"><span class="nav-number">12.</span> <span class="nav-text">12.使用FIND函数以字符为单位并区分大小写地查找指定字符的位置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#13-使用REPLACE函数以字符为单位根据指定位置进行替换"><span class="nav-number">13.</span> <span class="nav-text">13.使用REPLACE函数以字符为单位根据指定位置进行替换</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#14-使用FALSE函数返回逻辑值FALSE"><span class="nav-number">14.</span> <span class="nav-text">14.使用FALSE函数返回逻辑值FALSE</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#15-使用AND函数判断指定的多个条件是否同时成立"><span class="nav-number">15.</span> <span class="nav-text">15.使用AND函数判断指定的多个条件是否同时成立</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#16-使用OR函数判断指定的任一条件是为真，即返回真"><span class="nav-number">16.</span> <span class="nav-text">16.使用OR函数判断指定的任一条件是为真，即返回真</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#17-使用NOT函数对逻辑值求反"><span class="nav-number">17.</span> <span class="nav-text">17.使用NOT函数对逻辑值求反</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#18-使用IFERROR函数对错误结果进行处理"><span class="nav-number">18.</span> <span class="nav-text">18.使用IFERROR函数对错误结果进行处理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#19-使用TODAY函数返回当前日期"><span class="nav-number">19.</span> <span class="nav-text">19.使用TODAY函数返回当前日期</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#20-使用TIME函数返回某一特定时间的小数值"><span class="nav-number">20.</span> <span class="nav-text">20.使用TIME函数返回某一特定时间的小数值</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#21-使用YEAR函数返回某日期对应的年份"><span class="nav-number">21.</span> <span class="nav-text">21.使用YEAR函数返回某日期对应的年份</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#22-使用MONTH函数返回某日期对应的月份"><span class="nav-number">22.</span> <span class="nav-text">22.使用MONTH函数返回某日期对应的月份</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#23-使用CHOOSE函数根据序号从列表中选择对应的内容"><span class="nav-number">23.</span> <span class="nav-text">23.使用CHOOSE函数根据序号从列表中选择对应的内容</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#24-使用MATCH函数返回指定内容所在的位置"><span class="nav-number">24.</span> <span class="nav-text">24.使用MATCH函数返回指定内容所在的位置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#25-使用TRANSPOSE函数转置数据区域的行列位置"><span class="nav-number">25.</span> <span class="nav-text">25.使用TRANSPOSE函数转置数据区域的行列位置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#26-使用COUNTA函数计算参数中包含非空值的个数"><span class="nav-number">26.</span> <span class="nav-text">26.使用COUNTA函数计算参数中包含非空值的个数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#27-使用COUNTIF函数计算满足给定条件的单元格的个"><span class="nav-number">27.</span> <span class="nav-text">27.使用COUNTIF函数计算满足给定条件的单元格的个</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#28-使用SUMIFS函数计算多重条件的"><span class="nav-number">28.</span> <span class="nav-text">28.使用SUMIFS函数计算多重条件的</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#29-使用AVERAGEA函数计算参数中非空值的平均值"><span class="nav-number">29.</span> <span class="nav-text">29.使用AVERAGEA函数计算参数中非空值的平均值</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#30-使用AVERAGEIF函数计算满足给定条件的单元格的平均值"><span class="nav-number">30.</span> <span class="nav-text">30.使用AVERAGEIF函数计算满足给定条件的单元格的平均值</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#31-使用RANK-EQ函数返回一个数字在一组数字中的排位"><span class="nav-number">31.</span> <span class="nav-text">31.使用RANK.EQ函数返回一个数字在一组数字中的排位</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#32-使用DELTA函数测试两个值是否相等"><span class="nav-number">32.</span> <span class="nav-text">32.使用DELTA函数测试两个值是否相等</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、MySQL中索引的语法"><span class="nav-number">1.</span> <span class="nav-text">一、MySQL中索引的语法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、索引的优缺点"><span class="nav-number">2.</span> <span class="nav-text">二、索引的优缺点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、索引的分类"><span class="nav-number">3.</span> <span class="nav-text">三、索引的分类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四、索引的实现原理"><span class="nav-number">4.</span> <span class="nav-text">四、索引的实现原理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、哈希索引："><span class="nav-number">4.1.</span> <span class="nav-text">1、哈希索引：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、B-Tree索引"><span class="nav-number">4.2.</span> <span class="nav-text">2、B+Tree索引</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#为什么使用B-树而不是B树"><span class="nav-number">4.3.</span> <span class="nav-text">为什么使用B+树而不是B树</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-磁盘读写代价更低"><span class="nav-number">4.3.1.</span> <span class="nav-text">1.磁盘读写代价更低</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-随机I-O的次数更少"><span class="nav-number">4.3.2.</span> <span class="nav-text">2.随机I/O的次数更少</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-查询速度更稳定"><span class="nav-number">4.3.3.</span> <span class="nav-text">3.查询速度更稳定</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-聚簇索引和非聚簇索引"><span class="nav-number">4.3.4.</span> <span class="nav-text">3,聚簇索引和非聚簇索引</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#MyISAM——非聚簇索引"><span class="nav-number">4.3.4.1.</span> <span class="nav-text">MyISAM——非聚簇索引</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#InnoDB——聚簇索引"><span class="nav-number">4.3.4.2.</span> <span class="nav-text">InnoDB——聚簇索引</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#五、索引的使用策略"><span class="nav-number">5.</span> <span class="nav-text">五、索引的使用策略</span></a></li></ol></div>
             
 
           </div>
@@ -934,7 +944,7 @@
   
     <script>
   window.livereOptions = {
-    refer: '2019/05/09/Excel数据分析之基础操作章/'
+    refer: '2019/05/15/Excel-mysql索引和B-Tree/'
   };
   (function(d, s) {
     var j, e = d.getElementsByTagName(s)[0];
