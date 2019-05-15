@@ -106,15 +106,15 @@
 <meta property="og:site_name" content="Mr kuai">
 <meta property="og:description" content="一、MySQL中索引的语法创建索引 在创建表的时候添加索引 12345CREATE TABLE mytable(      ID INT NOT NULL,       username VARCHAR(16) NOT NULL,      INDEX [indexName] (username(length))  ); 在创建表以后添加索引 123ALTER TABLE my_table ADD">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://kl66.top/2019/05/15/Excel-mysql索引和B-Tree/D:/Python学习素材及资源/xdl共享文件/正式/Excel数据分析/mysql/软件和资料/Python_Excel.pdf/MySQL&SQL/imgs/B-Tree.%E7%B4%A2%E5%BC%95.png">
-<meta property="og:image" content="http://kl66.top/2019/05/15/Excel-mysql索引和B-Tree/D:/Python学习素材及资源/xdl共享文件/正式/Excel数据分析/mysql/软件和资料/Python_Excel.pdf/MySQL&SQL/imgs/B+Tree.%E7%B4%A2%E5%BC%95.png">
+<meta property="og:image" content="http://kl66.top/2019/05/15/Excel-mysql索引和B-Tree/btreebuild.gif">
+<meta property="og:image" content="http://kl66.top/2019/05/15/Excel-mysql索引和B-Tree/Bplustreebuild.gif">
 <meta property="og:image" content="http://kl66.top/2019/05/15/Excel-mysql索引和B-Tree/D:/Python学习素材及资源/xdl共享文件/正式/Excel数据分析/mysql/软件和资料/Python_Excel.pdf/MySQL&SQL/imgs/Myisam-%E9%9D%9E%E8%81%9A%E7%B0%87png.png">
 <meta property="og:image" content="http://kl66.top/2019/05/15/Excel-mysql索引和B-Tree/D:/Python学习素材及资源/xdl共享文件/正式/Excel数据分析/mysql/软件和资料/Python_Excel.pdf/MySQL&SQL/imgs/innodb-%E8%81%9A%E7%B0%87%E4%B8%8E%E9%9D%9E%E8%81%9A%E7%B0%87.png">
-<meta property="og:updated_time" content="2019-05-15T02:35:45.713Z">
+<meta property="og:updated_time" content="2019-05-15T03:27:17.217Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Excel-mysql索引和B-Tree">
 <meta name="twitter:description" content="一、MySQL中索引的语法创建索引 在创建表的时候添加索引 12345CREATE TABLE mytable(      ID INT NOT NULL,       username VARCHAR(16) NOT NULL,      INDEX [indexName] (username(length))  ); 在创建表以后添加索引 123ALTER TABLE my_table ADD">
-<meta name="twitter:image" content="http://kl66.top/2019/05/15/Excel-mysql索引和B-Tree/D:/Python学习素材及资源/xdl共享文件/正式/Excel数据分析/mysql/软件和资料/Python_Excel.pdf/MySQL&SQL/imgs/B-Tree.%E7%B4%A2%E5%BC%95.png">
+<meta name="twitter:image" content="http://kl66.top/2019/05/15/Excel-mysql索引和B-Tree/btreebuild.gif">
 
 
 
@@ -407,7 +407,7 @@
                 
               
 
-              <time title="创建时间：2019-05-15 10:28:30 / 修改时间：10:35:45" itemprop="dateCreated datePublished" datetime="2019-05-15T10:28:30+08:00">2019-05-15</time>
+              <time title="创建时间：2019-05-15 10:28:30 / 修改时间：11:27:17" itemprop="dateCreated datePublished" datetime="2019-05-15T10:28:30+08:00">2019-05-15</time>
             
 
             
@@ -509,16 +509,9 @@
 <p>B+Tree索引是按照顺序组织存储的，所以适合范围查找数据</p>
 <p>B+Tree索引使用与全键值、键值范围或者键前缀查找，其中键前缀进适用于根据最左前缀的查找。</p>
 </blockquote>
-<ul>
-<li><p>B-Tree   40  22  56  15  35  45 55 75 5 8 48 58</p>
-<p><img src="/2019/05/15/Excel-mysql索引和B-Tree/D:/Python学习素材及资源\xdl共享文件\正式\Excel数据分析\mysql\软件和资料\Python_Excel.pdf\MySQL&amp;SQL\imgs\B-Tree.%E7%B4%A2%E5%BC%95.png" alt></p>
-</li>
-</ul>
-<ul>
-<li><p>B+Tree</p>
-<p><img src="/2019/05/15/Excel-mysql索引和B-Tree/D:/Python学习素材及资源\xdl共享文件\正式\Excel数据分析\mysql\软件和资料\Python_Excel.pdf\MySQL&amp;SQL\imgs\B+Tree.%E7%B4%A2%E5%BC%95.png" alt></p>
-</li>
-</ul>
+<p><img src="/2019/05/15/Excel-mysql索引和B-Tree/btreebuild.gif" alt="treebuil"></p>
+<p>B+Tree</p>
+<p><img src="/2019/05/15/Excel-mysql索引和B-Tree/Bplustreebuild.gif" alt="plustreebuil"></p>
 <h3 id="为什么使用B-树而不是B树"><a href="#为什么使用B-树而不是B树" class="headerlink" title="为什么使用B+树而不是B树"></a>为什么使用B+树而不是B树</h3><h4 id="1-磁盘读写代价更低"><a href="#1-磁盘读写代价更低" class="headerlink" title="1.磁盘读写代价更低"></a>1.磁盘读写代价更低</h4><blockquote>
 <p>在计算机中,所有与空间相关的东西都是按照块(block)进行存取和操作的.每次读取都意味着一次I/O</p>
 <p>假设计算机中每个块的大小为4K,行的大小为1k,索引的大小为0.06K,就可以计算并得出结果</p>
