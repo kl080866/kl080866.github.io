@@ -110,7 +110,7 @@
 <meta property="og:image" content="http://kl66.top/2019/05/15/Excel-mysql索引和B-Tree/Bplustreebuild.gif">
 <meta property="og:image" content="http://kl66.top/2019/05/15/Excel-mysql索引和B-Tree/D:/Python学习素材及资源/xdl共享文件/正式/Excel数据分析/mysql/软件和资料/Python_Excel.pdf/MySQL&SQL/imgs/Myisam-%E9%9D%9E%E8%81%9A%E7%B0%87png.png">
 <meta property="og:image" content="http://kl66.top/2019/05/15/Excel-mysql索引和B-Tree/D:/Python学习素材及资源/xdl共享文件/正式/Excel数据分析/mysql/软件和资料/Python_Excel.pdf/MySQL&SQL/imgs/innodb-%E8%81%9A%E7%B0%87%E4%B8%8E%E9%9D%9E%E8%81%9A%E7%B0%87.png">
-<meta property="og:updated_time" content="2019-05-15T03:27:17.217Z">
+<meta property="og:updated_time" content="2019-05-15T12:57:44.621Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Excel-mysql索引和B-Tree">
 <meta name="twitter:description" content="一、MySQL中索引的语法创建索引 在创建表的时候添加索引 12345CREATE TABLE mytable(      ID INT NOT NULL,       username VARCHAR(16) NOT NULL,      INDEX [indexName] (username(length))  ); 在创建表以后添加索引 123ALTER TABLE my_table ADD">
@@ -407,7 +407,7 @@
                 
               
 
-              <time title="创建时间：2019-05-15 10:28:30 / 修改时间：11:27:17" itemprop="dateCreated datePublished" datetime="2019-05-15T10:28:30+08:00">2019-05-15</time>
+              <time title="创建时间：2019-05-15 10:28:30 / 修改时间：20:57:44" itemprop="dateCreated datePublished" datetime="2019-05-15T10:28:30+08:00">2019-05-15</time>
             
 
             
@@ -509,26 +509,11 @@
 <p>B+Tree索引是按照顺序组织存储的，所以适合范围查找数据</p>
 <p>B+Tree索引使用与全键值、键值范围或者键前缀查找，其中键前缀进适用于根据最左前缀的查找。</p>
 </blockquote>
+<p>B-Tree</p>
 <p><img src="/2019/05/15/Excel-mysql索引和B-Tree/btreebuild.gif" alt="treebuil"></p>
 <p>B+Tree</p>
 <p><img src="/2019/05/15/Excel-mysql索引和B-Tree/Bplustreebuild.gif" alt="plustreebuil"></p>
-<h3 id="为什么使用B-树而不是B树"><a href="#为什么使用B-树而不是B树" class="headerlink" title="为什么使用B+树而不是B树"></a>为什么使用B+树而不是B树</h3><h4 id="1-磁盘读写代价更低"><a href="#1-磁盘读写代价更低" class="headerlink" title="1.磁盘读写代价更低"></a>1.磁盘读写代价更低</h4><blockquote>
-<p>在计算机中,所有与空间相关的东西都是按照块(block)进行存取和操作的.每次读取都意味着一次I/O</p>
-<p>假设计算机中每个块的大小为4K,行的大小为1k,索引的大小为0.06K,就可以计算并得出结果</p>
-</blockquote>
-<ul>
-<li>B树的数据和索引都在同一个节点上,那么意味着每一个块(block)中包含的索引是少量的,如果想要取出比较深层的数据就意味着要读取很多的快,才能得到想要的索引和数据,那就是I/O的次数会多</li>
-<li>而B+树中每一个块能够存储的索引数量是B树的很多倍,那么获取比较深层的数据只需要读取少量的快(block)就可以做到.那就是I/O的次数会少很多</li>
-</ul>
-<h4 id="2-随机I-O的次数更少"><a href="#2-随机I-O的次数更少" class="headerlink" title="2.随机I/O的次数更少"></a>2.随机I/O的次数更少</h4><blockquote>
-<p>随机I/O是指读写操作时间连续，但访问地址不连续,时长约为 10ms</p>
-<p>顺序I/O是指读取和写入操作基于逻辑块逐个连续访问来自相邻地址的数据,时长约为 0.1ms</p>
-</blockquote>
-<ul>
-<li>在相同情况下,B树要进行更多的随机IO,而B+树需要更多的顺序IO,因此B+树,效率也更快</li>
-</ul>
-<h4 id="3-查询速度更稳定"><a href="#3-查询速度更稳定" class="headerlink" title="3.查询速度更稳定"></a>3.查询速度更稳定</h4><p>由于B+Tree非叶子节点不存储数据（data），因此所有的数据都要查询至叶子节点，而叶子节点的高度都是相同的，因此所有数据的查询速度都是一样的。</p>
-<h4 id="3-聚簇索引和非聚簇索引"><a href="#3-聚簇索引和非聚簇索引" class="headerlink" title="3,聚簇索引和非聚簇索引"></a>3,聚簇索引和非聚簇索引</h4><blockquote>
+<h3 id="为什么使用B-树而不是B树"><a href="#为什么使用B-树而不是B树" class="headerlink" title="为什么使用B+树而不是B树"></a>为什么使用B+树而不是B树</h3><h4 id="1-磁盘读写代价更低"><a href="#1-磁盘读写代价更低" class="headerlink" title="1.磁盘读写代价更低"></a>1.磁盘读写代价更低</h4><h4 id="2-随机I-O的次数更少"><a href="#2-随机I-O的次数更少" class="headerlink" title="2.随机I/O的次数更少"></a>2.随机I/O的次数更少</h4><h4 id="3-查询速度更稳定"><a href="#3-查询速度更稳定" class="headerlink" title="3.查询速度更稳定"></a>3.查询速度更稳定</h4><h4 id="3-聚簇索引和非聚簇索引"><a href="#3-聚簇索引和非聚簇索引" class="headerlink" title="3,聚簇索引和非聚簇索引"></a>3,聚簇索引和非聚簇索引</h4><blockquote>
 <p>在索引的分类中，我们可以按照索引的键是否为主键来分为“主索引”和“辅助索引”，使用主键键值建立的索引称为“主索引”，其它的称为“辅助索引”。因此主索引只能有一个，辅助索引可以有很多个。</p>
 </blockquote>
 <h5 id="MyISAM——非聚簇索引"><a href="#MyISAM——非聚簇索引" class="headerlink" title="MyISAM——非聚簇索引"></a><strong>MyISAM——非聚簇索引</strong></h5><blockquote>
@@ -540,21 +525,13 @@
 <p>聚簇索引的主索引的叶子结点存储的是键值对应的数据本身，辅助索引的叶子结点存储的是键值对应的数据的主键键值。因此主键的值长度越小越好，类型越简单越好。</p>
 <p>聚簇索引的辅助索引的叶子节点的data存储的是主键的值，主索引的叶子节点的data存储的是数据本身，也就是说数据和索引存储在一起，并且索引查询到的地方就是数据（data）本身，那么索引的顺序和数据本身的顺序就是相同的；</p>
 </blockquote>
-<p><img src="/2019/05/15/Excel-mysql索引和B-Tree/D:/Python学习素材及资源\xdl共享文件\正式\Excel数据分析\mysql\软件和资料\Python_Excel.pdf\MySQL&amp;SQL\imgs\innodb-%E8%81%9A%E7%B0%87%E4%B8%8E%E9%9D%9E%E8%81%9A%E7%B0%87.png" alt></p>
-<h2 id="五、索引的使用策略"><a href="#五、索引的使用策略" class="headerlink" title="五、索引的使用策略"></a>五、索引的使用策略</h2><blockquote>
+<p><img src="/2019/05/15/Excel-mysql索引和B-Tree/D:/Python学习素材及资源\xdl共享文件\正式\Excel数据分析\mysql\软件和资料\Python_Excel.pdf\MySQL&amp;SQL\imgs\innodb-%E8%81%9A%E7%B0%87%E4%B8%8E%E9%9D%9E%E8%81%9A%E7%B0%87.png" alt>、索引的使用策略</p>
+<blockquote>
 <p>B+Tree索引是按照顺序组织存储的，所以适合范围查找数据</p>
 <p>B+Tree索引使用与全键值、键值范围或者键前缀查找，其中键前缀进适用于根据最左前缀的查找。</p>
 </blockquote>
-<p>a、 全值匹配</p>
-<p>b、 匹配最左前缀。</p>
-<p>c、 匹配列前缀.(组合索引)</p>
-<p>d、 匹配范围值</p>
-<p>e、 精确匹配某一列并范围匹配另外一列。</p>
-<p>f、 只访问索引的查询（覆盖索引）</p>
-<p>B-Tree索引的限制：</p>
-<p>a、 如果不是按照索引的最左列开始查找，那么无法使用索引</p>
-<p>b、 不能跳过索引中的某些列。</p>
-<p>c、 如果查询中使用了某个列的范围查询，那么该列右边的所有列都无法使用索引。</p>
+<p>– varchar char区别<br>varchar不能超长度存储,但依然是变长的<br>你可以限制长度为10,存储不能超过10 ,但是可以少于10 ,而存储的长度就是你字符的实际长度<br>char 定长存储,不能超长存储数据,存储数据不管是否符合长度要求,都占指定长度空间</p>
+<p>索引的优势就是提高了数据检索速度,不要浪费索引<br>有索引但是用不上情况:<br>    1.like 模糊查询, 当不符合最左前缀原则时,有索引也不用上<br>    select <em> from users where email = ‘zl@%’  ok<br>    select </em> from users where email = ‘%l@’  NO<br>    以下语句为什么没有用到索引?<br>    select * from users where phone = 13701383017<br>    2.phone是一个字符串类型的列,在查询时给定的参数是int类型</p>
 
       
     </div>
@@ -755,7 +732,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、MySQL中索引的语法"><span class="nav-number">1.</span> <span class="nav-text">一、MySQL中索引的语法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、索引的优缺点"><span class="nav-number">2.</span> <span class="nav-text">二、索引的优缺点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、索引的分类"><span class="nav-number">3.</span> <span class="nav-text">三、索引的分类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四、索引的实现原理"><span class="nav-number">4.</span> <span class="nav-text">四、索引的实现原理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、哈希索引："><span class="nav-number">4.1.</span> <span class="nav-text">1、哈希索引：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、B-Tree索引"><span class="nav-number">4.2.</span> <span class="nav-text">2、B+Tree索引</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#为什么使用B-树而不是B树"><span class="nav-number">4.3.</span> <span class="nav-text">为什么使用B+树而不是B树</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-磁盘读写代价更低"><span class="nav-number">4.3.1.</span> <span class="nav-text">1.磁盘读写代价更低</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-随机I-O的次数更少"><span class="nav-number">4.3.2.</span> <span class="nav-text">2.随机I/O的次数更少</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-查询速度更稳定"><span class="nav-number">4.3.3.</span> <span class="nav-text">3.查询速度更稳定</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-聚簇索引和非聚簇索引"><span class="nav-number">4.3.4.</span> <span class="nav-text">3,聚簇索引和非聚簇索引</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#MyISAM——非聚簇索引"><span class="nav-number">4.3.4.1.</span> <span class="nav-text">MyISAM——非聚簇索引</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#InnoDB——聚簇索引"><span class="nav-number">4.3.4.2.</span> <span class="nav-text">InnoDB——聚簇索引</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#五、索引的使用策略"><span class="nav-number">5.</span> <span class="nav-text">五、索引的使用策略</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、MySQL中索引的语法"><span class="nav-number">1.</span> <span class="nav-text">一、MySQL中索引的语法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、索引的优缺点"><span class="nav-number">2.</span> <span class="nav-text">二、索引的优缺点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、索引的分类"><span class="nav-number">3.</span> <span class="nav-text">三、索引的分类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四、索引的实现原理"><span class="nav-number">4.</span> <span class="nav-text">四、索引的实现原理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、哈希索引："><span class="nav-number">4.1.</span> <span class="nav-text">1、哈希索引：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、B-Tree索引"><span class="nav-number">4.2.</span> <span class="nav-text">2、B+Tree索引</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#为什么使用B-树而不是B树"><span class="nav-number">4.3.</span> <span class="nav-text">为什么使用B+树而不是B树</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-磁盘读写代价更低"><span class="nav-number">4.3.1.</span> <span class="nav-text">1.磁盘读写代价更低</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-随机I-O的次数更少"><span class="nav-number">4.3.2.</span> <span class="nav-text">2.随机I/O的次数更少</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-查询速度更稳定"><span class="nav-number">4.3.3.</span> <span class="nav-text">3.查询速度更稳定</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-聚簇索引和非聚簇索引"><span class="nav-number">4.3.4.</span> <span class="nav-text">3,聚簇索引和非聚簇索引</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#MyISAM——非聚簇索引"><span class="nav-number">4.3.4.1.</span> <span class="nav-text">MyISAM——非聚簇索引</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#InnoDB——聚簇索引"><span class="nav-number">4.3.4.2.</span> <span class="nav-text">InnoDB——聚簇索引</span></a></li></ol></li></ol></li></ol></li></ol></div>
             
 
           </div>
