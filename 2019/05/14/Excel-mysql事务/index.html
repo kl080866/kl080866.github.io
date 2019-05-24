@@ -98,18 +98,18 @@
 
 
 
-  <meta name="description" content="概述事务（Transaction）是由一系列对系统中数据进行访问与更新的操作所组成的一个程序执行逻辑单元。 一,事务的语法 start transaction;/ begin; commit; 使得当前的修改确认 rollback; 使得当前的修改被放弃二,事务的ACID特性1. 原子性（Atomicity）事务的原子性是指事务必须是一个原子的操作序列单元   全部执行成功 全部执行失败2. 一致">
+  <meta name="description" content="概述事务（Transaction）是由一系列对系统中数据进行访问与更新的操作所组成的一个程序执行逻辑单元。 一,事务的语法 start transaction   /  begin commit;  使得当前的修改确认 rollback;  使得当前的修改被放弃二,事务的ACID特性1. 原子性（Atomicity）事务的原子性是指事务必须是一个原子的操作序列单元   全部执行成功 全部执行失败2">
 <meta name="keywords" content="Excel">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Excel-mysql事务">
 <meta property="og:url" content="http://kl66.top/2019/05/14/Excel-mysql事务/index.html">
 <meta property="og:site_name" content="Mr kuai">
-<meta property="og:description" content="概述事务（Transaction）是由一系列对系统中数据进行访问与更新的操作所组成的一个程序执行逻辑单元。 一,事务的语法 start transaction;/ begin; commit; 使得当前的修改确认 rollback; 使得当前的修改被放弃二,事务的ACID特性1. 原子性（Atomicity）事务的原子性是指事务必须是一个原子的操作序列单元   全部执行成功 全部执行失败2. 一致">
+<meta property="og:description" content="概述事务（Transaction）是由一系列对系统中数据进行访问与更新的操作所组成的一个程序执行逻辑单元。 一,事务的语法 start transaction   /  begin commit;  使得当前的修改确认 rollback;  使得当前的修改被放弃二,事务的ACID特性1. 原子性（Atomicity）事务的原子性是指事务必须是一个原子的操作序列单元   全部执行成功 全部执行失败2">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-05-14T15:31:06.792Z">
+<meta property="og:updated_time" content="2019-05-24T12:06:46.501Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Excel-mysql事务">
-<meta name="twitter:description" content="概述事务（Transaction）是由一系列对系统中数据进行访问与更新的操作所组成的一个程序执行逻辑单元。 一,事务的语法 start transaction;/ begin; commit; 使得当前的修改确认 rollback; 使得当前的修改被放弃二,事务的ACID特性1. 原子性（Atomicity）事务的原子性是指事务必须是一个原子的操作序列单元   全部执行成功 全部执行失败2. 一致">
+<meta name="twitter:description" content="概述事务（Transaction）是由一系列对系统中数据进行访问与更新的操作所组成的一个程序执行逻辑单元。 一,事务的语法 start transaction   /  begin commit;  使得当前的修改确认 rollback;  使得当前的修改被放弃二,事务的ACID特性1. 原子性（Atomicity）事务的原子性是指事务必须是一个原子的操作序列单元   全部执行成功 全部执行失败2">
 
 
 
@@ -402,12 +402,24 @@
                 
               
 
-              <time title="创建时间：2019-05-14 23:23:27 / 修改时间：23:31:06" itemprop="dateCreated datePublished" datetime="2019-05-14T23:23:27+08:00">2019-05-14</time>
+              <time title="创建时间：2019-05-14 23:23:27" itemprop="dateCreated datePublished" datetime="2019-05-14T23:23:27+08:00">2019-05-14</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-05-24 20:06:46" itemprop="dateModified" datetime="2019-05-24T20:06:46+08:00">2019-05-24</time>
               
             
           </span>
@@ -468,9 +480,9 @@
       
         <h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>事务（Transaction）是由一系列对系统中数据进行访问与更新的操作所组成的一个程序执行逻辑单元。</p>
 <h2 id="一-事务的语法"><a href="#一-事务的语法" class="headerlink" title="一,事务的语法"></a>一,事务的语法</h2><ol>
-<li>start transaction;/ begin;</li>
-<li>commit; 使得当前的修改确认</li>
-<li>rollback; 使得当前的修改被放弃<h2 id="二-事务的ACID特性"><a href="#二-事务的ACID特性" class="headerlink" title="二,事务的ACID特性"></a>二,事务的ACID特性</h2><h4 id="1-原子性（Atomicity）"><a href="#1-原子性（Atomicity）" class="headerlink" title="1. 原子性（Atomicity）"></a>1. 原子性（Atomicity）</h4>事务的原子性是指事务必须是一个原子的操作序列单元</li>
+<li>start transaction   /  begin</li>
+<li>commit;  使得当前的修改确认</li>
+<li>rollback;  使得当前的修改被放弃<h2 id="二-事务的ACID特性"><a href="#二-事务的ACID特性" class="headerlink" title="二,事务的ACID特性"></a>二,事务的ACID特性</h2><h4 id="1-原子性（Atomicity）"><a href="#1-原子性（Atomicity）" class="headerlink" title="1. 原子性（Atomicity）"></a>1. 原子性（Atomicity）</h4>事务的原子性是指事务必须是一个原子的操作序列单元</li>
 </ol>
 <ul>
 <li>全部执行成功</li>
@@ -620,7 +632,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">16</span>
+                    <span class="site-state-item-count">17</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
