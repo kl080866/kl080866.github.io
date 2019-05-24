@@ -106,7 +106,7 @@
 <meta property="og:site_name" content="Mr kuai">
 <meta property="og:description" content="用一条SQL语句查询出每门课都大于80分的学生姓名    name kecheng fenshu     张三 语文 81   张三 数学 75   李四 语文 76   李四 数学 90   王五 语文 81   王五 数学 100   王五 英语 90    1234567891011121314151617181920212223242526272829-- 建表语句CREATE TABLE">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-05-23T10:53:58.900Z">
+<meta property="og:updated_time" content="2019-05-24T11:23:07.427Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="mysql面试题">
 <meta name="twitter:description" content="用一条SQL语句查询出每门课都大于80分的学生姓名    name kecheng fenshu     张三 语文 81   张三 数学 75   李四 语文 76   李四 数学 90   王五 语文 81   王五 数学 100   王五 英语 90    1234567891011121314151617181920212223242526272829-- 建表语句CREATE TABLE">
@@ -402,12 +402,24 @@
                 
               
 
-              <time title="创建时间：2019-05-23 18:52:52 / 修改时间：18:53:58" itemprop="dateCreated datePublished" datetime="2019-05-23T18:52:52+08:00">2019-05-23</time>
+              <time title="创建时间：2019-05-23 18:52:52" itemprop="dateCreated datePublished" datetime="2019-05-23T18:52:52+08:00">2019-05-23</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-05-24 19:23:07" itemprop="dateModified" datetime="2019-05-24T19:23:07+08:00">2019-05-24</time>
               
             
           </span>
@@ -930,11 +942,21 @@
 <p>(1)查询前3条纪录。</p>
 <p>(2)查询所有纪录，并按照字段age降序排列。</p>
 <p> 请描述MySQL中left join和inner joinc的区别。</p>
+<p> left join 左连接,以左边的表为基础</p>
+<p>inner join 自连接\内连接 以公共部分为基础</p>
 <p> 请写出你知道MySQL储存引擎和区别。</p>
 <p> 请列出你最常使用的mysql版本，mysql默认端口号是多少？请写出你最常用的mysql数据库备份和恢复命令。</p>
+<p> mysql 3306</p>
+<p>mongodb 27017</p>
+<p>redis 6379</p>
 <p> 数据库A:datahn，其中具有表c、表d。 数据库B:datapubhn，现想要在数据库B中对数据库A中表c与表d中的字段进行增删改查。如何授权？</p>
 <p> 对于处理高复杂sql，数据库查询特别慢，你有什么高招？</p>
-<p> 以下哪条语句在数据库sql书写时最为高效( )</p>
+<p>1.优化sql语句==避免子查询,避免使用join连接</p>
+<p>2.适当使用索引</p>
+<p>3.优化数据库结构</p>
+<p>4.优化系统配置</p>
+<p>5.优化服务器结构</p>
+<p> 以下哪条语句在数据库sql书写时最为高效( b )</p>
 <p>A.select * from emp where dep&gt;3</p>
 <p>B.select * from emp where dep&gt;=4</p>
 <p>C.select * from emp where dep≥4</p>
@@ -944,38 +966,38 @@
 <p>B.名称</p>
 <p>C.表空间</p>
 <p>D.临时表空间</p>
-<p> 数据库中执行删除操作，若要删除表中的所有行，建议使用( )</p>
+<p> 数据库中执行删除操作，若要删除表中的所有行，建议使用( b )</p>
 <p>A.delete 语句</p>
 <p>B.turncate 语句</p>
 <p>C.drop 语句</p>
 <p>D.commit 语句</p>
 <p>2在查询语句的select子句中尽量避免使用__来表示全部列名。</p>
 <p> SQL中增加、删除、修改对应的命令是什么？</p>
-<p> 查找条件为：姓名不是NULL的纪录( )</p>
+<p> 查找条件为：姓名不是NULL的纪录( c )</p>
 <p>A.WHERE NAME ! NULL</p>
 <p>B.WHERE NAME NOT NULL</p>
 <p>C.WHERE NAME IS NOT NULL</p>
 <p>D.WHERE NAME!=NULL</p>
-<p> 在SQL语言中，子查询是( )</p>
+<p> 在SQL语言中，子查询是( d )</p>
 <p>A.选取单表中字段子集的查询语句</p>
 <p>B.选取多表中字段子集的查询语句</p>
 <p>C.返回单表中数据子集的查询语言</p>
 <p>D.嵌入到另一个查询语句之中的查询语句</p>
-<p> 以下能够删除一列的是( )</p>
+<p> 以下能够删除一列的是( b )</p>
 <p>A.alter table emp remove addcolumn</p>
 <p>B.alter table emp drop column addcolumn</p>
 <p>C.alter table emp delete column addcolumn</p>
 <p>D.alter table emp delete addcolumn</p>
-<p> 学生关系模型S(S#,Sname,Sex,Age),S的属性分别表示学生的学号、姓名、性别、年龄。要在表S中删除一个属性”年龄”,可选用的SQL语句是( )</p>
+<p> 学生关系模型S(S#,Sname,Sex,Age),S的属性分别表示学生的学号、姓名、性别、年龄。要在表S中删除一个属性”年龄”,可选用的SQL语句是( d )</p>
 <p>A.UPDATE S Age</p>
 <p>B.DELETE Age from S</p>
 <p>C.ALTER TABLE S ‘Age’</p>
 <p>D.ALTER TABLE S DROP Age</p>
-<p> 补全语句:select vend_id,count(*) as num_prods from products group by________;</p>
+<p> 补全语句:select vend_id,count(*) as num_prods from products group by______vend_id__;</p>
 <p> SELECT distinct 部门名称，count(员工编号)，sum(个人工资) FROM 工资表 GROUP BY 部门名称 having count (员工编号&gt;10);查询结果是<strong>___</strong>。</p>
 <p> 用SELECT进行模糊查询时，可以使用匹配符，但要在条件值中使用__或%等通配符来配合查询。</p>
-<p> MySQL是一种____(多用户、单用户)的数据库管理系统。</p>
-<p> 对一个超过200个汉字的内容，应用一个____型的字段来存放。</p>
+<p> MySQL是一种___多用户 _(多用户、单用户)的数据库管理系统。</p>
+<p> 对一个超过200个汉字的内容，应用一个<strong>varchar或者text</strong>型的字段来存放。</p>
 <p> 查看当前数据库中表名语句是<strong><strong>_</strong></strong>;</p>
 <p> Mysql数据库GD2312、utf8\utf8mb4字符集的区别<strong>___</strong>。</p>
 
