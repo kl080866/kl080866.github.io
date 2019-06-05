@@ -1,6 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Typora常用语法]]></title>
+    <url>%2F2019%2F06%2F05%2FTypora%E5%B8%B8%E7%94%A8%E8%AF%AD%E6%B3%95%2F</url>
+    <content type="text"><![CDATA[标题的使用格式12345\# 一阶标题 或者快捷键Ctrl+1\##二阶标题 或者快捷键Ctrl+2\###三阶标题 或者快捷键Ctrl+3\####四阶标题 或者快捷键Ctrl+4\#####五阶标题 或者快捷键Ctrl+5 文本居中使用格式1\&lt;center\&gt;这是要居中的文本内容\&lt;/center\&gt;1 下划线使用格式1\下划线的内容\&lt;\u&gt; 或者快捷键 Ctrl+U 或者格式里面的下划线 删除线使用格式1\~\~删除线的内容\~\~ 或者格式里面的删除线 字体加粗使用格式1**加粗字体** 或者快捷键Ctrl+B 或者格式里面加粗 字体倾斜使用格式1*字体倾斜了* 或者快捷键Ctrl+I 图片的插入1可以直接拖进去,或者插入里面选择图像 超链接使用格式1快捷键Ctrl+K 或者格式里面的超链接 代码区域Typora支持对多种语言的代码区域进行语法高亮。这些语言可以说是涵盖了绝大部分经常使用的编程语言，包括C++，Python，MATLAB，甚至包含spreadsheet（也就是Excel电子表格）。用Typora记编程笔记，看起来一清二楚。如果设置代码语言为flow，那么可以直接画出一个流程图；还可以使用相应的方法画出时序图等图表。 代码区域的使用格式1​```内容```python 任务列表使用格式1- [ ] 文字 （注：注意用空格隔开） 任务列表在typora中的显示形式 JAVA C C++ Python 列表的使用格式1\+ 、- 、* 创建无序列，任意数字开始+空格创建有序列表 Python 数学表达式Typora支持加入用LaTeX写成的数学公式，并且在软件界面下用MathJax直接渲染。数学公式分为两种：一种是行内公式(inline math)，可以在偏好设置中单独打开，由一个美元符号$将公式围起来；一种是行外公式，直接按Ctrl+Shift+M；注：上标和下标可以使用数学表达式来获取 水平分割线的使用格式***或者- - - 水平分割线在typora中显示形式 引用的使用格式>+空格 与天奋斗，其乐无穷！与地奋斗，其乐无穷！与人奋斗，其乐无穷！ 注释的使用格式要添加注释的文字[1](https://log.csdn.net/mollen/article/details/84110708#fn:) 注释在typora中显示形式中国2 表情的使用格式:单词 表情在typora中的显示形式:smiley: Typora快捷键 快捷键 作用 快捷键 作用 Ctrl+1 一阶标题 Ctrl+B 字体加粗 Ctrl+2 二阶标题 Ctrl+I 字体倾斜 Ctrl+3 三阶标题 Ctrl+U 下划线 Ctrl+4 四阶标题 Ctrl+Home 返回Typora顶部 Ctrl+5 五阶标题 Ctrl+End 返回Typora底部 Ctrl+6 六阶标题 Ctrl+T 创建表格 Ctrl+L 选中某句话 Ctrl+K 创建超链接 Ctrl+D 选中某个单词 Ctrl+F 搜索 Ctrl+E 选中相同格式的文字 Ctrl+H 搜索并替换 Alt+Shift+5 删除线 Ctrl+Shift+I 插入图片]]></content>
+      <categories>
+        <category>软件</category>
+      </categories>
+      <tags>
+        <tag>Typora语法</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[python绘图]]></title>
+    <url>%2F2019%2F06%2F05%2Fpython%E7%BB%98%E5%9B%BE%2F</url>
+    <content type="text"><![CDATA[Matplotlibimport matplotlib.pyplot as plt若无法显示图画记得要放在一起写不要分开写 #####创建画布方法1:创建简单画布figure_1 = plt.figure()方法2:创建复杂画布figure_1 = plt.figure(1,(8,4),dpi=140,facecolor=’red’,edgecolor=’yellow’,frameon=True)注释: 1代表画布编号,8,4表示宽高比,dpi表示像素,facecolor表示底色,edgecolor表示边角色frameon=Teue表示是绘制边框 #####创建画框①分割画布创建画框aapic_1 = figure_1.add_subplot(2,2,1) #表示分成2行2列,其中的编号1的画框,编号顺序从左到右从上到下aapic_1 = figure_1.add_subplot(2,2,2)aapic_1 = figure_1.add_subplot(2,2,3)aapic_1 = figure_1.add_subplot(2,2,4)plt.show() 画线状图创建一个画布figure_2 = plt.figure(1,(6,4),dpi=140,frameon=True)创建一个画框axes1 = figure_2.add_subplot(1,1,1)形成线图axes1.plot(np.arange(0,10),np.random.normal(3,1.6,10,’b-‘)b表示线颜色为蓝色,表示点为*,-表示线为实线]]></content>
+      <categories>
+        <category>python</category>
+      </categories>
+      <tags>
+        <tag>数据分析</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Pandas]]></title>
+    <url>%2F2019%2F06%2F05%2FPandas%2F</url>
+    <content type="text"><![CDATA[PandasSeries:(适用于一维的)12345678910111213141516171819202122232425262728293031323334Series数据的建立pddata_1=pd.Series([1,2,3]) 对应数据格式:0 11 22 3pddata_1=pd.Series([[1,2],[3,4]])对应数据格式:0 [1, 2]1 [3, 4]pddata_1=pd.Series([[1,2],[3,4]],index=[&apos;345&apos;,&apos;2342&apos;])对应数据格式:345 [1, 2]2342 [3, 4]pddata_1=pd.Series(((1,2),(3,4)),index=[&apos;345&apos;,&apos;2342&apos;])对应数据格式:345 (1, 2)2342 (3, 4)pddata_1=pd.Series([np.random.randint(1,100,6),np.random.randint(1,100,6)])对应数据格式:0 [15, 24, 43, 57, 97, 36]1 [67, 12, 69, 61, 9, 18]pddata_1=pd.Series(&#123;1:&apos;foo&apos;,3:&apos;drt&apos;,8:&apos;tyue&apos;&#125;) =====不需要加索引index否则会使得数据的值变成nan,冲突了对应数据格式:1 foo3 drt8 tyuepddata_1=pd.Series(list(zip(np.array(list1),np.array(list2)))对应数据格式:0 (1, 3)1 (2, 4)2 (3, 5)3 (4, 6)​ 1#### Series常用的方法 s1.values 以数组形式查看所有值s1.index 查看所有索引通过索引取值 s1[‘索引名’]Series过滤 s1[s1&gt;2] 返回索引以及对应的数据(numpy过滤的实现通过布尔数组实现)`Series更新 s1.update(pd.Series([12,23],index = [3,4])) Series追加 s1.append(pd.Series([-123,-234,-56],ignore_index=True)) ignore_index=True表示形成默认的索引]]></content>
+      <categories>
+        <category>python</category>
+      </categories>
+      <tags>
+        <tag>数据分析</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[布尔数组、数组排序、数组去重]]></title>
     <url>%2F2019%2F06%2F03%2F%E5%B8%83%E5%B0%94%E6%95%B0%E7%BB%84%E3%80%81%E6%95%B0%E7%BB%84%E6%8E%92%E5%BA%8F%E3%80%81%E6%95%B0%E7%BB%84%E5%8E%BB%E9%87%8D%2F</url>
     <content type="text"><![CDATA[数据离散数据:名目数据(名字、目录,能直接描述的事物)或者是顺序数据(称为带顺序的名目数据) 连续数据:区间数据(等距数据)和等比数据(连续性的数据),区间数据没有自然0点,其0值点是人为规定的,等比数据有自然0点.温度和时间为区间数据大部分都是等比数据如身高、年龄等等 布尔数组（可用来判断空值、满足条件个数、以及是否满足条件等）bool_1.sum() 统计true值的个数 list(bool_1).count(True)也可以实现计数bool_1.sum(1） 按列计算（不同其他）bool_1.sum(0） 按行计算bool_1.any() 判断是否有Truebool_1.all() 判断是否全是True对于大混合数据（包含各种类型）需要使用dtype去声明为object类型否则会产生各种问题 如spirit_ar=np.array(daten1,dtype=object 对数据进行操作的时候尽量使用新变量和copy进行原数据的保护 数据的删除np.delete(a1,j,0) a1表示待操作的数组，j表示待操作的行索引或者列索引，0代表对行操作，1代表对列操作 多行\多列删除np.delete(a1,[2,3,4,5,6]，0) 当使用遍历数据并且进行删除的时候需要倒着删否则因为索引变化导致删除数据出现错误np.where(条件) 只有条件返回的为一个元组，两个数据分别存放着行和列数组np.arange(1,9) = np.array(range(1,9)) 数组的排序a1.sort() 默认按行排序===但是会破环数据结构a1.sort(0) 按列进行排序（小到大，里面有参数可以改为从大到小排）a1.sort(1) 按行进行排序np.sort(a1,轴参数) ==================与sort属性方法相比，函数是一次性排序而属性方法是永久排序，破环了原来的数据 数组的拼接np.vstack((a1,a2)) 垂直拼接，将数组按行拼接（列数必须相同）np.hstack((a1,a2)) 水平拼接，像数据按列拼接（行数必须相等）np.column_stack(a1,a2) 水平拼接，数据按列拼接注意：对于大数据都是分块读取的然后拼接而不是一下子读取全部 数组的去重删除重复行：np.unique(a1,axis=0) 0表示删除重复行，并对第一列进行排序删除重复列：np.unique(a1,axis=1) 1表示删除重复列，并对第一行进行排序（注意对于数据的删除操作对应的0，1不是常见的逐行按列和逐列按行） np.in1d() 一维数组的批量查询np.in1d(a1,[查询目标1，查询目标2…..])======返回的为布尔数组，找到的对应为True,没找到的为Falsea1查询对象可以为列表，可以为数组（注意数据类型）也可以通过布尔值使用布尔值索引去找对应的数据 数组当作集合操作 np.intersect1d(a1,a2) 两个集合的交集 返回的为公共的数据np.union1d(a1,a2) 集合的并集 【常用于一维数组】np.setdiff1d(a1,a2) a1对a2的差集np.setxor1d(a1,a2) 交集的补集（并集去掉交集）]]></content>
