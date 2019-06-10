@@ -106,7 +106,7 @@
 <meta property="og:site_name" content="Mr kuai">
 <meta property="og:description" content="Matplotlibimport matplotlib.pyplot as plt若无法显示图画记得要放在一起写不要分开写 #####创建画布方法1:创建简单画布figure_1 = plt.figure()方法2:创建复杂画布figure_1 = plt.figure(1,(8,4),dpi=140,facecolor=’red’,edgecolor=’yellow’,frameon=True)">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-06-05T11:59:07.722Z">
+<meta property="og:updated_time" content="2019-06-10T07:57:46.405Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="python绘图">
 <meta name="twitter:description" content="Matplotlibimport matplotlib.pyplot as plt若无法显示图画记得要放在一起写不要分开写 #####创建画布方法1:创建简单画布figure_1 = plt.figure()方法2:创建复杂画布figure_1 = plt.figure(1,(8,4),dpi=140,facecolor=’red’,edgecolor=’yellow’,frameon=True)">
@@ -402,12 +402,24 @@
                 
               
 
-              <time title="创建时间：2019-06-05 19:32:12 / 修改时间：19:59:07" itemprop="dateCreated datePublished" datetime="2019-06-05T19:32:12+08:00">2019-06-05</time>
+              <time title="创建时间：2019-06-05 19:32:12" itemprop="dateCreated datePublished" datetime="2019-06-05T19:32:12+08:00">2019-06-05</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-06-10 15:57:46" itemprop="dateModified" datetime="2019-06-10T15:57:46+08:00">2019-06-10</time>
               
             
           </span>
@@ -470,6 +482,10 @@
 <p>#####创建画布<br>方法1:创建简单画布<br>figure_1 = plt.figure()<br>方法2:创建复杂画布<br>figure_1 = plt.figure(1,(8,4),dpi=140,facecolor=’red’,edgecolor=’yellow’,frameon=True)<br>注释: 1代表画布编号,8,4表示宽高比,dpi表示像素,facecolor表示底色,edgecolor表示边角色frameon=Teue表示是绘制边框</p>
 <p>#####创建画框<br>①分割画布创建画框<br>aapic_1 = figure_1.add_subplot(2,2,1)  #表示分成2行2列,其中的编号1的画框,编号顺序从左到右从上到下<br>aapic_1 = figure_1.add_subplot(2,2,2)<br>aapic_1 = figure_1.add_subplot(2,2,3)<br>aapic_1 = figure_1.add_subplot(2,2,4)<br>plt.show()</p>
 <h5 id="画线状图"><a href="#画线状图" class="headerlink" title="画线状图"></a>画线状图</h5><p>创建一个画布<br>figure_2 = plt.figure(1,(6,4),dpi=140,frameon=True)<br>创建一个画框<br>axes1 = figure_2.add_subplot(1,1,1)<br>形成线图<br>axes1.plot(np.arange(0,10),np.random.normal(3,1.6,10,’b<em>-‘)<br>b表示线颜色为蓝色,</em>表示点为*,-表示线为实线</p>
+<h5 id="画直方图"><a href="#画直方图" class="headerlink" title="画直方图"></a>画直方图</h5><p>fgs = np.random.randn(1000)<br>创建一个画布<br>figure_2 = plt.figure(1,(6,4),dpi=140,frameon=True)<br>创建一个画框<br>axes1 = figure_2.add_subplot(1,1,1)<br>创建直方图<br>axes1.hist(fgs,bins=20)  #bins表示分成多少组</p>
+<h5 id="散点图"><a href="#散点图" class="headerlink" title="散点图"></a>散点图</h5><p>x = np.linspace(-3,3,100)<br>一步创建画框画布<br>sfg,axes = plt.subplots(1,1,dpi=140,figsize(6,4))<br>绘制散点图<br>axes1.scatter(x,np.cos(x),c=’b’,marker=’*‘)  #x表示x轴,np.cos(x)表示纵轴,c=’b’表示颜色为蓝色,,marker=’*‘表示外形为*.</p>
+<p>饼图<br>Asx,sd=plt.subplots(1,1)   #一行一列遵循数组编号<br>sd.pie(np.arange(4,9),explode=[0.2,0.1,0.3,0.4,0.3],labels=[‘1’,’2’,’3’,’4,’5’],colors=[‘m’,’r’,’g’,’c’,’b’],autopct=’%.2f%%’,pctdistance=1,shadow=True,labeldistance=1.6,startangle=30,radius=1,frame=True,rotatelabels=True)<br>np.arange(4,9)用来分块分成5块,explode表示爆炸系数,labels表示标签名,colors表示各个标签对应图的颜色,shadow表示阴影,radius圆半径,autopct指定数值的显示方式,labeldistance每一项的名称label和距离圆心的半径,pctdistance每一项的比例autopct和距离圆心的半径,frame表的轴框架,rotatelabels旋转每个label到指定的角度,startanglex轴逆时针旋转饼图的开始角度.</p>
+<h4 id="线型和marker表格："><a href="#线型和marker表格：" class="headerlink" title="线型和marker表格："></a>线型和marker表格：</h4><p>‘-‘ solid line style<br>‘–’ dashed line style<br>‘-.’ dash-dot line style<br>‘:’ dotted line style<br>‘.’ point marker<br>‘,’ pixel marker<br>‘o’ circle marker<br>‘v’ triangle_down marker<br>‘^’ triangle_up marker<br>‘&lt;’ triangle_left marker<br>‘&gt;’ triangle_right marker<br>‘1’ tri_down marker<br>‘2’ tri_up marker<br>‘3’ tri_left marker<br>‘4’ tri_right marker<br>‘s’ square marker<br>‘p’ pentagon marker<br>‘*’ star marker<br>‘h’ hexagon1 marker<br>‘H’ hexagon2 marker<br>‘+’ plus marker<br>‘x’ x marker<br>‘D’ diamond marker<br>‘d’ thin_diamond marker<br>‘|’ vline marker<br>‘_’ hline marker<br>颜色表格：<br>‘b’ blue<br>‘g’ green<br>‘r’ red<br>‘c’ cyan<br>‘m’ magenta<br>‘y’ yellow<br>‘k’ black<br>‘w’ white</p>
 
       
     </div>
@@ -688,7 +704,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Matplotlib"><span class="nav-number">1.</span> <span class="nav-text">Matplotlib</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#画线状图"><span class="nav-number">1.0.1.</span> <span class="nav-text">画线状图</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Matplotlib"><span class="nav-number">1.</span> <span class="nav-text">Matplotlib</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#画线状图"><span class="nav-number">1.0.1.</span> <span class="nav-text">画线状图</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#画直方图"><span class="nav-number">1.0.2.</span> <span class="nav-text">画直方图</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#散点图"><span class="nav-number">1.0.3.</span> <span class="nav-text">散点图</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#线型和marker表格："><span class="nav-number">1.1.</span> <span class="nav-text">线型和marker表格：</span></a></li></ol></div>
             
 
           </div>
