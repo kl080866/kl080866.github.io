@@ -106,7 +106,7 @@
 <meta property="og:site_name" content="Mr kuai">
 <meta property="og:description" content="数据离散数据:名目数据(名字、目录,能直接描述的事物)或者是顺序数据(称为带顺序的名目数据) 连续数据:区间数据(等距数据)和等比数据(连续性的数据),区间数据没有自然0点,其0值点是人为规定的,等比数据有自然0点.温度和时间为区间数据大部分都是等比数据如身高、年龄等等 布尔数组（可用来判断空值、满足条件个数、以及是否满足条件等）bool_1.sum()   统计true值的个数  list(bo">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-06-03T10:50:25.672Z">
+<meta property="og:updated_time" content="2019-06-10T15:09:23.627Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="布尔数组、数组排序、数组去重">
 <meta name="twitter:description" content="数据离散数据:名目数据(名字、目录,能直接描述的事物)或者是顺序数据(称为带顺序的名目数据) 连续数据:区间数据(等距数据)和等比数据(连续性的数据),区间数据没有自然0点,其0值点是人为规定的,等比数据有自然0点.温度和时间为区间数据大部分都是等比数据如身高、年龄等等 布尔数组（可用来判断空值、满足条件个数、以及是否满足条件等）bool_1.sum()   统计true值的个数  list(bo">
@@ -402,12 +402,24 @@
                 
               
 
-              <time title="创建时间：2019-06-03 16:51:50 / 修改时间：18:50:25" itemprop="dateCreated datePublished" datetime="2019-06-03T16:51:50+08:00">2019-06-03</time>
+              <time title="创建时间：2019-06-03 16:51:50" itemprop="dateCreated datePublished" datetime="2019-06-03T16:51:50+08:00">2019-06-03</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-06-10 23:09:23" itemprop="dateModified" datetime="2019-06-10T23:09:23+08:00">2019-06-10</time>
               
             
           </span>
@@ -475,7 +487,7 @@
 <h2 id="数组的排序"><a href="#数组的排序" class="headerlink" title="数组的排序"></a>数组的排序</h2><p>a1.sort()   默认按行排序===但是会破环数据结构<br>a1.sort(0)  按列进行排序（小到大，里面有参数可以改为从大到小排）<br>a1.sort(1)  按行进行排序<br>np.sort(a1,轴参数)  ==================与sort属性方法相比，函数是一次性排序而属性方法是永久排序，破环了原来的数据</p>
 <h3 id="数组的拼接"><a href="#数组的拼接" class="headerlink" title="数组的拼接"></a>数组的拼接</h3><p>np.vstack((a1,a2))  垂直拼接，将数组按行拼接（列数必须相同）<br>np.hstack((a1,a2))  水平拼接，像数据按列拼接（行数必须相等）<br>np.column_stack(a1,a2)  水平拼接，数据按列拼接<br>注意：对于大数据都是分块读取的然后拼接而不是一下子读取全部</p>
 <h3 id="数组的去重"><a href="#数组的去重" class="headerlink" title="数组的去重"></a>数组的去重</h3><p>删除重复行：np.unique(a1,axis=0)    0表示删除重复行，并对第一列进行排序<br>删除重复列：np.unique(a1,axis=1)    1表示删除重复列，并对第一行进行排序<br>（注意对于数据的删除操作对应的0，1不是常见的逐行按列和逐列按行）</p>
-<p><strong>np.in1d()</strong>  一维数组的批量查询<br>np.in1d(a1,[查询目标1，查询目标2…..])======返回的为布尔数组，找到的对应为True,没找到的为False<br>a1查询对象可以为列表，可以为数组（注意数据类型）也可以通过布尔值使用布尔值索引去找对应的数据</p>
+<p><strong>np.in1d()</strong>  一维数组的批量查询<br>np.in1d(a1,[查询目标1，查询目标2…..])======返回的为布尔数组，找到的对应为True,没找到的为False,对每一个数据比较,满足任意一个即为True<br>a1查询对象可以为列表，可以为数组（注意数据类型）也可以通过布尔值使用布尔值索引去找对应的数据</p>
 <p><strong>数组当作集合操作</strong></p>
 <p>np.intersect1d(a1,a2)  两个集合的交集  返回的为公共的数据<br>np.union1d(a1,a2) 集合的并集 【常用于一维数组】<br>np.setdiff1d(a1,a2)  a1对a2的差集<br>np.setxor1d(a1,a2)   交集的补集（并集去掉交集）</p>
 
@@ -602,7 +614,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">27</span>
+                    <span class="site-state-item-count">28</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>

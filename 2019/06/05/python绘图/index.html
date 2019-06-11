@@ -106,7 +106,7 @@
 <meta property="og:site_name" content="Mr kuai">
 <meta property="og:description" content="Matplotlibimport matplotlib.pyplot as plt若无法显示图画记得要放在一起写不要分开写 #####创建画布方法1:创建简单画布figure_1 = plt.figure()方法2:创建复杂画布figure_1 = plt.figure(1,(8,4),dpi=140,facecolor=’red’,edgecolor=’yellow’,frameon=True)">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-06-10T07:57:46.405Z">
+<meta property="og:updated_time" content="2019-06-11T10:15:19.054Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="python绘图">
 <meta name="twitter:description" content="Matplotlibimport matplotlib.pyplot as plt若无法显示图画记得要放在一起写不要分开写 #####创建画布方法1:创建简单画布figure_1 = plt.figure()方法2:创建复杂画布figure_1 = plt.figure(1,(8,4),dpi=140,facecolor=’red’,edgecolor=’yellow’,frameon=True)">
@@ -419,7 +419,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-06-10 15:57:46" itemprop="dateModified" datetime="2019-06-10T15:57:46+08:00">2019-06-10</time>
+                <time title="修改时间：2019-06-11 18:15:19" itemprop="dateModified" datetime="2019-06-11T18:15:19+08:00">2019-06-11</time>
               
             
           </span>
@@ -484,7 +484,9 @@
 <h5 id="画线状图"><a href="#画线状图" class="headerlink" title="画线状图"></a>画线状图</h5><p>创建一个画布<br>figure_2 = plt.figure(1,(6,4),dpi=140,frameon=True)<br>创建一个画框<br>axes1 = figure_2.add_subplot(1,1,1)<br>形成线图<br>axes1.plot(np.arange(0,10),np.random.normal(3,1.6,10,’b<em>-‘)<br>b表示线颜色为蓝色,</em>表示点为*,-表示线为实线</p>
 <h5 id="画直方图"><a href="#画直方图" class="headerlink" title="画直方图"></a>画直方图</h5><p>fgs = np.random.randn(1000)<br>创建一个画布<br>figure_2 = plt.figure(1,(6,4),dpi=140,frameon=True)<br>创建一个画框<br>axes1 = figure_2.add_subplot(1,1,1)<br>创建直方图<br>axes1.hist(fgs,bins=20)  #bins表示分成多少组</p>
 <h5 id="散点图"><a href="#散点图" class="headerlink" title="散点图"></a>散点图</h5><p>x = np.linspace(-3,3,100)<br>一步创建画框画布<br>sfg,axes = plt.subplots(1,1,dpi=140,figsize(6,4))<br>绘制散点图<br>axes1.scatter(x,np.cos(x),c=’b’,marker=’*‘)  #x表示x轴,np.cos(x)表示纵轴,c=’b’表示颜色为蓝色,,marker=’*‘表示外形为*.</p>
-<p>饼图<br>Asx,sd=plt.subplots(1,1)   #一行一列遵循数组编号<br>sd.pie(np.arange(4,9),explode=[0.2,0.1,0.3,0.4,0.3],labels=[‘1’,’2’,’3’,’4,’5’],colors=[‘m’,’r’,’g’,’c’,’b’],autopct=’%.2f%%’,pctdistance=1,shadow=True,labeldistance=1.6,startangle=30,radius=1,frame=True,rotatelabels=True)<br>np.arange(4,9)用来分块分成5块,explode表示爆炸系数,labels表示标签名,colors表示各个标签对应图的颜色,shadow表示阴影,radius圆半径,autopct指定数值的显示方式,labeldistance每一项的名称label和距离圆心的半径,pctdistance每一项的比例autopct和距离圆心的半径,frame表的轴框架,rotatelabels旋转每个label到指定的角度,startanglex轴逆时针旋转饼图的开始角度.</p>
+<h5 id="饼图"><a href="#饼图" class="headerlink" title="饼图"></a>饼图</h5><p>Asx,sd=plt.subplots(1,1)   #一行一列遵循数组编号<br>sd.pie(np.arange(4,9),explode=[0.2,0.1,0.3,0.4,0.3],labels=[‘1’,’2’,’3’,’4,’5’],colors=[‘m’,’r’,’g’,’c’,’b’],autopct=’%.2f%%’,pctdistance=1,shadow=True,labeldistance=1.6,startangle=30,radius=1,frame=True,rotatelabels=True)<br>np.arange(4,9)用来分块分成5块,explode表示爆炸系数,labels表示标签名,colors表示各个标签对应图的颜色,shadow表示阴影,radius圆半径,autopct指定数值的显示方式,labeldistance每一项的名称label和距离圆心的半径,pctdistance每一项的比例autopct和距离圆心的半径,frame表的轴框架,rotatelabels旋转每个label到指定的角度,startanglex轴逆时针旋转饼图的开始角度.</p>
+<p>如果不涉及子图的话，无需先设置画布。可直接画出图形：<br>plt.plot(np.random.randn(30).cumsum(),’g<em>–’)<br>等价于Plt.plot(np.random.randn(30).cumsum(),color=’g’,linestyle=’dashed’,marker=’</em>’)<br>plt.plot(data_uique,’r-‘,drawstyle=’steps-post’,label=’line’)====label=’line’标识线型<br>plt.legend(loc=’best’)   线标签的位置放在最好的地方 plt.legend也可以</p>
+<h5 id="刻度和标签"><a href="#刻度和标签" class="headerlink" title="刻度和标签"></a>刻度和标签</h5><p>Xlim（X值范围）、xticks（X轴刻度值）和xticklabels（X轴刻度标签）<br>ticks_1=ax.set_xticks([0,25000,50000,75000,100000])”  分组的组距<br>scale_name=ax.set_xticklabels([‘step1’,’step2’,’step3’,’step4’,’step5’],rotation=45,fontsize=12)  分组对应的标签名<br>ax.set_title(‘Python-03 Practice’)   设置画框标题 ,使用画布加标题不需要set<br>ax.set_xlabel(‘Steps’)   设置x轴标签<br>ax.set_ylabel(‘Values’)  设置y轴标签<br>subpic.text(90,35,’key point one’,fontsize=10)   位置定坐标位置添加注解<br>keymenge=[(67,57,’key point two’),(23,66,’key point two’)]  添加多个注解可以通过循环列表实现<br>subpic.annotate(‘beautyful point’,xy=(5,23),xytext=(5,23)) 宁一种加注解方式<br>plt.savefig(‘Desktop\python_01.png’,dpi=400,bbox_inches=’tight’)  保存图片</p>
 <h4 id="线型和marker表格："><a href="#线型和marker表格：" class="headerlink" title="线型和marker表格："></a>线型和marker表格：</h4><p>‘-‘ solid line style<br>‘–’ dashed line style<br>‘-.’ dash-dot line style<br>‘:’ dotted line style<br>‘.’ point marker<br>‘,’ pixel marker<br>‘o’ circle marker<br>‘v’ triangle_down marker<br>‘^’ triangle_up marker<br>‘&lt;’ triangle_left marker<br>‘&gt;’ triangle_right marker<br>‘1’ tri_down marker<br>‘2’ tri_up marker<br>‘3’ tri_left marker<br>‘4’ tri_right marker<br>‘s’ square marker<br>‘p’ pentagon marker<br>‘*’ star marker<br>‘h’ hexagon1 marker<br>‘H’ hexagon2 marker<br>‘+’ plus marker<br>‘x’ x marker<br>‘D’ diamond marker<br>‘d’ thin_diamond marker<br>‘|’ vline marker<br>‘_’ hline marker<br>颜色表格：<br>‘b’ blue<br>‘g’ green<br>‘r’ red<br>‘c’ cyan<br>‘m’ magenta<br>‘y’ yellow<br>‘k’ black<br>‘w’ white</p>
 
       
@@ -610,7 +612,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">27</span>
+                    <span class="site-state-item-count">28</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -704,7 +706,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Matplotlib"><span class="nav-number">1.</span> <span class="nav-text">Matplotlib</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#画线状图"><span class="nav-number">1.0.1.</span> <span class="nav-text">画线状图</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#画直方图"><span class="nav-number">1.0.2.</span> <span class="nav-text">画直方图</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#散点图"><span class="nav-number">1.0.3.</span> <span class="nav-text">散点图</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#线型和marker表格："><span class="nav-number">1.1.</span> <span class="nav-text">线型和marker表格：</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Matplotlib"><span class="nav-number">1.</span> <span class="nav-text">Matplotlib</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#画线状图"><span class="nav-number">1.0.1.</span> <span class="nav-text">画线状图</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#画直方图"><span class="nav-number">1.0.2.</span> <span class="nav-text">画直方图</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#散点图"><span class="nav-number">1.0.3.</span> <span class="nav-text">散点图</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#饼图"><span class="nav-number">1.0.4.</span> <span class="nav-text">饼图</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#刻度和标签"><span class="nav-number">1.0.5.</span> <span class="nav-text">刻度和标签</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#线型和marker表格："><span class="nav-number">1.1.</span> <span class="nav-text">线型和marker表格：</span></a></li></ol></div>
             
 
           </div>
