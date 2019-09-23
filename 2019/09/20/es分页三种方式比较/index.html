@@ -98,18 +98,18 @@
 
 
 
-  <meta name="description" content="复制表结构:create table del_user like users复制表数据:insert into users select * from del_users  ####Mysql储存过程`是一组为了完成特定功能的SQL语句集，经过编译之后存储在数据库中(类似于函数)1234567891011-- 定义存储过程\d //create procedure p1()beginset @i=">
-<meta name="keywords" content="Excel">
+  <meta name="description" content="(1) from / size : 该查询的实现原理类似于mysql中的limit，比如查询第10001条数据，那么需要将前面的10000条都拿出来，进行过滤，最终才得到数据。(性能较差，实现简单，适用于少量数据，数据量不超过10w)。(2) scroll：该查询实现类似于消息消费的机制，首次查询的时候会在内存中保存一个历史快照以及游标(scroll_id)，记录当前消息查询的终止位置，下次查询的">
+<meta name="keywords" content="数据分析">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Excel-mysql-存储过程、触发器和视图">
-<meta property="og:url" content="http://kl66.top/2019/05/19/Excel-mysql-触发器和视图/index.html">
+<meta property="og:title" content="es分页三种方式比较">
+<meta property="og:url" content="http://kl66.top/2019/09/20/es分页三种方式比较/index.html">
 <meta property="og:site_name" content="Mr kuai">
-<meta property="og:description" content="复制表结构:create table del_user like users复制表数据:insert into users select * from del_users  ####Mysql储存过程`是一组为了完成特定功能的SQL语句集，经过编译之后存储在数据库中(类似于函数)1234567891011-- 定义存储过程\d //create procedure p1()beginset @i=">
+<meta property="og:description" content="(1) from / size : 该查询的实现原理类似于mysql中的limit，比如查询第10001条数据，那么需要将前面的10000条都拿出来，进行过滤，最终才得到数据。(性能较差，实现简单，适用于少量数据，数据量不超过10w)。(2) scroll：该查询实现类似于消息消费的机制，首次查询的时候会在内存中保存一个历史快照以及游标(scroll_id)，记录当前消息查询的终止位置，下次查询的">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-05-20T12:10:09.323Z">
+<meta property="og:updated_time" content="2019-09-20T06:34:06.871Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Excel-mysql-存储过程、触发器和视图">
-<meta name="twitter:description" content="复制表结构:create table del_user like users复制表数据:insert into users select * from del_users  ####Mysql储存过程`是一组为了完成特定功能的SQL语句集，经过编译之后存储在数据库中(类似于函数)1234567891011-- 定义存储过程\d //create procedure p1()beginset @i=">
+<meta name="twitter:title" content="es分页三种方式比较">
+<meta name="twitter:description" content="(1) from / size : 该查询的实现原理类似于mysql中的limit，比如查询第10001条数据，那么需要将前面的10000条都拿出来，进行过滤，最终才得到数据。(性能较差，实现简单，适用于少量数据，数据量不超过10w)。(2) scroll：该查询实现类似于消息消费的机制，首次查询的时候会在内存中保存一个历史快照以及游标(scroll_id)，记录当前消息查询的终止位置，下次查询的">
 
 
 
@@ -117,7 +117,7 @@
 
   
   
-  <link rel="canonical" href="http://kl66.top/2019/05/19/Excel-mysql-触发器和视图/">
+  <link rel="canonical" href="http://kl66.top/2019/09/20/es分页三种方式比较/">
 
 
 
@@ -127,7 +127,7 @@
   };
 </script>
 
-  <title>Excel-mysql-存储过程、触发器和视图 | Mr kuai</title>
+  <title>es分页三种方式比较 | Mr kuai</title>
   
 
 
@@ -359,7 +359,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://kl66.top/2019/05/19/Excel-mysql-触发器和视图/">
+    <link itemprop="mainEntityOfPage" href="http://kl66.top/2019/09/20/es分页三种方式比较/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="kl">
@@ -376,7 +376,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Excel-mysql-存储过程、触发器和视图
+          <h1 class="post-title" itemprop="name headline">es分页三种方式比较
 
               
             
@@ -402,24 +402,12 @@
                 
               
 
-              <time title="创建时间：2019-05-19 14:34:02" itemprop="dateCreated datePublished" datetime="2019-05-19T14:34:02+08:00">2019-05-19</time>
+              <time title="创建时间：2019-09-20 14:21:59 / 修改时间：14:34:06" itemprop="dateCreated datePublished" datetime="2019-09-20T14:21:59+08:00">2019-09-20</time>
             
 
             
               
 
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-05-20 20:10:09" itemprop="dateModified" datetime="2019-05-20T20:10:09+08:00">2019-05-20</time>
               
             
           </span>
@@ -478,14 +466,13 @@
       
 
       
-        <p>复制表结构:create table del_user like users<br>复制表数据:insert into users select * from del_users </p>
-<p>####Mysql储存过程<br>`是一组为了完成特定功能的SQL语句集，经过编译之后存储在数据库中(类似于函数)<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 定义存储过程</span></span><br><span class="line">\d //</span><br><span class="line"><span class="keyword">create</span> <span class="keyword">procedure</span> p1()</span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line"><span class="keyword">set</span> @i=<span class="number">10</span>;</span><br><span class="line">while @i&lt;90 do</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> <span class="keyword">users</span> <span class="keyword">values</span>(<span class="literal">null</span>,<span class="keyword">concat</span>(<span class="string">'user:'</span>,@i),<span class="keyword">concat</span>(<span class="string">'user:'</span>,@i,<span class="string">'@qq.com'</span>),<span class="keyword">concat</span>(<span class="string">'137013730'</span>,@i));</span><br><span class="line"><span class="keyword">set</span> @i=@i+<span class="number">1</span>;</span><br><span class="line"><span class="keyword">end</span> <span class="keyword">while</span>;</span><br><span class="line"><span class="keyword">end</span>;</span><br><span class="line">//</span><br></pre></td></tr></table></figure></p>
-<p>执行储存：call p1<br>查看存储具体信息：show create procedure p1\G<br>删除触发器: drop procedure p1<br>应用场景:<br>分页显示,那么通常情况下是使用limit方式来完成,还可以借助存储过程和游标来实现,在存储过程中去定义并使用游标来获取指定的数据</p>
-<p>####MySQL的触发器<br>含义:提前定义好一个或一组操作,在指定的sql操作前或后来触发指定的sql执行<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">定义：</span><br><span class="line"> <span class="keyword">CREATE</span> <span class="keyword">TRIGGER</span> trigger_name trigger_time trigger_event</span><br><span class="line">   <span class="keyword">ON</span> tbl_name <span class="keyword">FOR</span> <span class="keyword">EACH</span> <span class="keyword">ROW</span> trigger_stmt</span><br><span class="line">说明：</span><br><span class="line"><span class="comment"># trigger_name：触发器名称</span></span><br><span class="line"><span class="comment"># trigger_time:触发时间，可取值：BEFORE或AFTER</span></span><br><span class="line"><span class="comment"># trigger_event：触发事件，可取值：INSERT、UPDATE或DELETE。</span></span><br><span class="line"><span class="comment"># tb1_name：指定在哪个表上</span></span><br><span class="line"><span class="comment"># trigger_stmt：触发处理SQL语句。</span></span><br><span class="line"><span class="comment">-- 查看所有的 触发器</span></span><br><span class="line"><span class="keyword">show</span> <span class="keyword">triggers</span>\G;</span><br><span class="line"><span class="comment">-- 删除触发器</span></span><br><span class="line"><span class="keyword">drop</span> <span class="keyword">trigger</span> trigger_name;</span><br></pre></td></tr></table></figure></p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">触发器举例:</span><br><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> del_users <span class="keyword">like</span> <span class="keyword">users</span>;</span><br><span class="line">\d //</span><br><span class="line"><span class="keyword">create</span> <span class="keyword">trigger</span> deluser <span class="keyword">before</span> <span class="keyword">delete</span> <span class="keyword">on</span> <span class="keyword">users</span> <span class="keyword">for</span> <span class="keyword">each</span> <span class="keyword">row</span></span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> del_users <span class="keyword">values</span>(old.uid,old.uname,old.email,old.phone);</span><br><span class="line"><span class="keyword">end</span>;</span><br><span class="line">//</span><br><span class="line">\d ;</span><br></pre></td></tr></table></figure>
-<p>触发器注意事项:<br>1.在触发器中只想语句,要确保sql语句能正确执行<br>2.在创建一个insert类型触发器时,在触发器中无法使用add来获取原来的数据</p>
-<p>####mysql视图<br>定义:视图是虚拟的表。与包含数据的表不一样，视图只包含使用时动态检索数据的查询。<br>特点:<br>    1.视图仅仅是用来查看存储在别处的数据的一种设施<br>    2.视图本身不包含数据<br>    3.在添加或更改这些表中的数据时，视图将返回改变过的数据<br>视图的作用:<br>    1.重用SQL语句<br>    2.简化复杂的SQL操作<br>    3.使用表的组成部分而不是整个表<br>    4.保护数据<br>    5.更改数据格式和表示<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">视图操作:</span><br><span class="line">创建视图</span><br><span class="line">mysql&gt; create view v_t1 as select * from t1 where id&gt;4 and id&lt;11;</span><br><span class="line">查看当前库中所有的视图</span><br><span class="line"><span class="keyword">show</span> <span class="keyword">tables</span>; <span class="comment">--可以查看到所有的表和视图</span></span><br><span class="line"><span class="keyword">show</span> <span class="keyword">table</span> <span class="keyword">status</span> <span class="keyword">where</span> <span class="keyword">comment</span>=<span class="string">'view'</span>; <span class="comment">--只查看当前库中的所有视图</span></span><br><span class="line">删除视图</span><br><span class="line"><span class="keyword">drop</span> <span class="keyword">view</span> v_t1;</span><br></pre></td></tr></table></figure></p>
-<p>####mysql数据库备份以及恢复<br>1.配置mysql的bin log日志<br>在windows中找到 my.ini  配置文件,在mysqld的配置项配置<br>server_id=123456<br>log_bin = mysql-bin<br>binlog_format = ROW<br>2.配置完成后重启mysql服务<br>3.进入mysql中<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">	重置binlog日志 <span class="keyword">reset</span> <span class="keyword">master</span>;</span><br><span class="line">	查看当前的所有日志 <span class="keyword">show</span> <span class="built_in">binary</span> <span class="keyword">logs</span></span><br><span class="line">	创建数据库 <span class="keyword">create</span> <span class="keyword">database</span> ops</span><br><span class="line">	选择并打开库 <span class="keyword">use</span> ops;</span><br><span class="line"> 	创建表</span><br><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> <span class="keyword">user</span>(</span><br><span class="line">    <span class="keyword">id</span> <span class="built_in">int</span> <span class="keyword">not</span> <span class="literal">null</span> auto_increment,</span><br><span class="line">    <span class="keyword">name</span> <span class="built_in">char</span>(<span class="number">20</span>) <span class="keyword">not</span> <span class="literal">null</span>,</span><br><span class="line">    age <span class="built_in">int</span> <span class="keyword">not</span> <span class="literal">null</span>,</span><br><span class="line">    primary <span class="keyword">key</span>(<span class="keyword">id</span>)</span><br><span class="line">)<span class="keyword">engine</span>=<span class="keyword">InnoDB</span>;</span><br><span class="line">    添加数据</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> <span class="keyword">user</span> <span class="keyword">values</span>(<span class="number">1</span>,<span class="string">"wangbo"</span>,<span class="string">"24"</span>),(<span class="number">2</span>,<span class="string">"guohui"</span>,<span class="string">"22"</span>),(<span class="number">3</span>,<span class="string">"zhangheng"</span>,<span class="string">"27"</span>);</span><br><span class="line">	数据备份</span><br><span class="line">mysqldump -uroot -p -B -F -R -x <span class="comment">--master-data=2 ops &gt;F:\mysql-5.7.25\bf\ops.sql</span></span><br><span class="line">    再添加新的数据</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> <span class="keyword">user</span> <span class="keyword">values</span>(<span class="number">4</span>,<span class="string">"liupeng"</span>,<span class="string">"21"</span>),(<span class="number">5</span>,<span class="string">"xiaoda"</span>,<span class="string">"31"</span>),(<span class="number">6</span>,<span class="string">"fuaiai"</span>,<span class="string">"26"</span>);</span><br><span class="line">	此时误操作，删除了test数据库</span><br><span class="line"><span class="keyword">drop</span> <span class="keyword">database</span> ops;</span><br><span class="line">	binlog文件导出,将binlog文件导出sql文件，删除其中的<span class="keyword">drop</span>语句</span><br><span class="line">mysqlbinlog -d ops F:\mysql<span class="number">-5.7</span><span class="number">.25</span>\<span class="keyword">data</span>\mysql-<span class="keyword">bin</span><span class="number">.000002</span>&gt; F:\mysql<span class="number">-5.7</span><span class="number">.25</span>\bf\<span class="number">002</span>bin.sql</span><br><span class="line">	导入备份的数据文件,</span><br><span class="line">mysql -uroot -p &lt; F:\mysql<span class="number">-5.7</span><span class="number">.25</span>\bf\ops.sql </span><br><span class="line">	再导入删除 <span class="keyword">drop</span>语句后的 <span class="keyword">binlog</span>日志文件</span><br><span class="line">mysql -uroot -p ops &lt; F:\mysql<span class="number">-5.7</span><span class="number">.25</span>\bf\<span class="number">002</span>bin.sql</span><br></pre></td></tr></table></figure></p>
+        <p>(1) from / size : 该查询的实现原理类似于mysql中的limit，比如查询第10001条数据，那么需要将前面的10000条都拿出来，进行过滤，最终才得到数据。(性能较差，实现简单，适用于少量数据，数据量不超过10w)。<br>(2) scroll：该查询实现类似于消息消费的机制，首次查询的时候会在内存中保存一个历史快照以及游标(scroll_id)，记录当前消息查询的终止位置，下次查询的时候将基于游标进行消费(性能良好，维护成本高，在游标失效前，不会更新数据，不够灵活，一旦游标创建size就不可改变，适用于大量数据导出或者索引重建)<br>(3) search_after: 性能优秀，类似于优化后的分页查询，历史条件过滤掉数据。</p>
+<p><strong>scroll</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#scroll深度分页</span></span><br><span class="line">result = es.search(index=[<span class="string">'patent_cn_v71'</span>],body=</span><br><span class="line">     &#123;</span><br><span class="line">         <span class="string">'query'</span>:&#123;</span><br><span class="line">             <span class="string">'match_all'</span>:&#123;&#125;</span><br><span class="line">         &#125;,</span><br><span class="line">         <span class="string">'sort'</span>:&#123;</span><br><span class="line">             <span class="string">'app_text'</span>:<span class="string">'asc'</span></span><br><span class="line">         &#125;</span><br><span class="line">     &#125;,scroll=<span class="string">'1m'</span>,size=<span class="number">10000</span>)</span><br><span class="line">mdata = result.get(<span class="string">"hits"</span>).get(<span class="string">"hits"</span>)</span><br><span class="line">scroll_id = result[<span class="string">"_scroll_id"</span>]</span><br><span class="line">total = result[<span class="string">"hits"</span>][<span class="string">"total"</span>]</span><br><span class="line">j = <span class="number">1</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(total//<span class="number">10</span>):</span><br><span class="line">    res = es.scroll(scroll_id=scroll_id, scroll=<span class="string">'1m'</span>) <span class="comment">#scroll参数必须指定否则会报错</span></span><br><span class="line">    mdata += res[<span class="string">"hits"</span>][<span class="string">"hits"</span>]</span><br><span class="line">    <span class="keyword">break</span></span><br><span class="line"><span class="keyword">for</span>  result <span class="keyword">in</span> mdata:</span><br><span class="line">    print(result[<span class="string">'_source'</span>][<span class="string">'app_text'</span>])</span><br></pre></td></tr></table></figure>
+<p><strong>search_after</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> elasticsearch <span class="keyword">import</span> Elasticsearch</span><br><span class="line"></span><br><span class="line">es = Elasticsearch(hosts=&#123;</span><br><span class="line"></span><br><span class="line">                    <span class="string">'192.168.0.220'</span>,</span><br><span class="line"></span><br><span class="line">                    <span class="string">'192.168.0.225'</span>,</span><br><span class="line"></span><br><span class="line">                    <span class="string">'192.168.0.221'</span>,</span><br><span class="line"></span><br><span class="line">                    &#125;,</span><br><span class="line"></span><br><span class="line">                    timeout=<span class="number">3600</span>)</span><br><span class="line">i = <span class="number">5000</span></span><br><span class="line">next_id = <span class="number">0</span></span><br><span class="line"><span class="keyword">while</span> i == <span class="number">5000</span>:</span><br><span class="line">    result_2 = es.search(index=[<span class="string">'patent_cn_v71'</span>],</span><br><span class="line"></span><br><span class="line">                           body=&#123;</span><br><span class="line">                               <span class="string">"query"</span>: &#123;</span><br><span class="line">                                   <span class="string">"match_all"</span>: &#123;&#125;</span><br><span class="line">                               &#125;,</span><br><span class="line">                                    <span class="string">"sort"</span>: [</span><br><span class="line">                                        &#123;<span class="string">"app_text"</span>: <span class="string">"asc"</span>&#125;</span><br><span class="line">                                    ],</span><br><span class="line">                            <span class="string">"search_after"</span>: [next_id],</span><br><span class="line">                           &#125;,</span><br><span class="line">                            filter_path=[</span><br><span class="line">                               <span class="string">'hits.hits._source.ipcr_text'</span>,</span><br><span class="line">                               <span class="string">'hits.hits._source.ipc_text'</span>,</span><br><span class="line">                               <span class="string">'hits.hits._source.id'</span>,</span><br><span class="line">                               <span class="string">'hits.hits._source.app_text'</span>,</span><br><span class="line">                           ],</span><br><span class="line">                           size=<span class="number">5000</span>,</span><br><span class="line">                           )</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        result_2 = result_2[<span class="string">'hits'</span>][<span class="string">'hits'</span>]</span><br><span class="line">    <span class="keyword">except</span>:</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">    <span class="keyword">for</span> result <span class="keyword">in</span> result_2:</span><br><span class="line">        app_text = result[<span class="string">'_source'</span>][<span class="string">'app_text'</span>]</span><br><span class="line">    i = len(result_2)</span><br></pre></td></tr></table></figure>
+<p><strong>from size</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">i = <span class="number">10</span></span><br><span class="line">j = <span class="number">0</span></span><br><span class="line"><span class="keyword">while</span> i == <span class="number">10</span>:</span><br><span class="line">    result = es.search(index=[<span class="string">'patent_cn_v71'</span>],body=</span><br><span class="line">                      &#123;</span><br><span class="line">                          <span class="string">'query'</span>:&#123;</span><br><span class="line">                              <span class="string">'match_all'</span>:&#123;&#125;</span><br><span class="line">                          &#125;,</span><br><span class="line">                       <span class="string">'sort'</span>:[&#123;</span><br><span class="line">                           <span class="string">'app_text'</span>:<span class="string">'asc'</span></span><br><span class="line">                       &#125;],</span><br><span class="line">                      <span class="string">'from'</span>:j,</span><br><span class="line">                      <span class="string">'size'</span>:<span class="number">10</span></span><br><span class="line">                      &#125;,</span><br><span class="line">                      filter_path = [<span class="string">'hits.hits._source.app_text'</span>],</span><br><span class="line">                      )</span><br><span class="line">    j+=<span class="number">10</span></span><br><span class="line">    i = len(result[<span class="string">'hits'</span>][<span class="string">'hits'</span>])</span><br><span class="line">    print(result)</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -509,7 +496,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Excel/" rel="tag"># Excel</a>
+            <a href="/tags/数据分析/" rel="tag"># 数据分析</a>
           
         </div>
       
@@ -522,8 +509,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/05/16/Excel-mysql-explain和慢查询/" rel="next" title="Excel-mysql-explain和慢查询">
-                <i class="fa fa-chevron-left"></i> Excel-mysql-explain和慢查询
+              <a href="/2019/09/19/pandas常用方法总结/" rel="next" title="pandas常用方法总结">
+                <i class="fa fa-chevron-left"></i> pandas常用方法总结
               </a>
             
           </div>
@@ -531,10 +518,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/05/20/MongoDB/" rel="prev" title="MongoDB">
-                MongoDB <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -880,7 +863,7 @@
   
     <script>
   window.livereOptions = {
-    refer: '2019/05/19/Excel-mysql-触发器和视图/'
+    refer: '2019/09/20/es分页三种方式比较/'
   };
   (function(d, s) {
     var j, e = d.getElementsByTagName(s)[0];
