@@ -106,7 +106,7 @@
 <meta property="og:site_name" content="Mr kuai">
 <meta property="og:description" content="123进程: 进程是资源分配单位 线程: 线程是执行的单位进程池: 当我们的任务非常多时,按照以前的方法,需要创建很多的进程,进程创建过多会发生很多问题,系统会因为频繁切换进程,导致性能下降,进程池能够限制进程生成数量 12345678910111213线程和进程的的关系:	1.进程内部包含所有的程序需要执行的资源	2.线程几乎不包括任何资源信息	3.线程是cpu执行的最小单位	4.进程中最少有一">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-05-24T13:27:36.799Z">
+<meta property="og:updated_time" content="2019-09-25T02:08:13.200Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="线程进程协程">
 <meta name="twitter:description" content="123进程: 进程是资源分配单位 线程: 线程是执行的单位进程池: 当我们的任务非常多时,按照以前的方法,需要创建很多的进程,进程创建过多会发生很多问题,系统会因为频繁切换进程,导致性能下降,进程池能够限制进程生成数量 12345678910111213线程和进程的的关系:	1.进程内部包含所有的程序需要执行的资源	2.线程几乎不包括任何资源信息	3.线程是cpu执行的最小单位	4.进程中最少有一">
@@ -402,12 +402,24 @@
                 
               
 
-              <time title="创建时间：2019-05-24 20:13:08 / 修改时间：21:27:36" itemprop="dateCreated datePublished" datetime="2019-05-24T20:13:08+08:00">2019-05-24</time>
+              <time title="创建时间：2019-05-24 20:13:08" itemprop="dateCreated datePublished" datetime="2019-05-24T20:13:08+08:00">2019-05-24</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-09-25 10:08:13" itemprop="dateModified" datetime="2019-09-25T10:08:13+08:00">2019-09-25</time>
               
             
           </span>
@@ -466,11 +478,14 @@
       
 
       
-        <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">进程: 进程是资源分配单位 </span><br><span class="line">线程: 线程是执行的单位</span><br><span class="line">进程池: 当我们的任务非常多时,按照以前的方法,需要创建很多的进程,进程创建过多会发生很多问题,系统会因为频繁切换进程,导致性能下降,进程池能够限制进程生成数量</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">线程和进程的的关系:</span><br><span class="line">	1.进程内部包含所有的程序需要执行的资源</span><br><span class="line">	2.线程几乎不包括任何资源信息</span><br><span class="line">	3.线程是cpu执行的最小单位</span><br><span class="line">	4.进程中最少有一个线程(进程是包含进程的,可以有多个线程)</span><br><span class="line">推论:</span><br><span class="line">	1.进程和进程的资源是不共享的</span><br><span class="line">	2.同一进程的线程之间资源是共享的</span><br><span class="line">	3.多进程的程序挂掉一个,其他进程不会受影响</span><br><span class="line">	4.同一个进程内的多个线程,如果进程挂了,则线程都不存在了</span><br><span class="line">对编程的推论:</span><br><span class="line">	1.如果两个任务之间不共享任何资源(很少),最好用多进程</span><br><span class="line">	2.如果两个任务共享资源较多,最好用多进程</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">进程和线程创建步骤</span><br><span class="line">	1.新建进程\线程类</span><br><span class="line">	2.启动线程进程</span><br><span class="line">	3.等待进程\线程</span><br><span class="line">多进程:</span><br><span class="line">	from multiprocessing import Process</span><br><span class="line">	P1 = Process(target = 函数名,args = (参数))</span><br><span class="line">	P1.start()</span><br><span class="line">	P1.join()</span><br><span class="line">多线程:</span><br><span class="line">	from Threading import thread</span><br><span class="line">	P1 = Thread(target= , args(,))</span><br><span class="line">	P1.start()</span><br><span class="line">	P1.join()</span><br><span class="line">进程池的代码步骤:</span><br><span class="line">	1.创建进程池的类</span><br><span class="line">	2.将任务放进进程池</span><br><span class="line">	3.关闭进程池等待进程结束</span><br><span class="line">	from multiprocessing import Pool</span><br><span class="line">import time</span><br><span class="line">def hello(name):</span><br><span class="line">    print(&apos;你好啊&#123;&#125;&apos;.format(name))</span><br><span class="line">    time.sleep(5)</span><br><span class="line">    print(&apos;我很好呢!!&apos;)</span><br><span class="line">if __name__ == &apos;__main__&apos;:</span><br><span class="line">    #创建进程池,参数表示最大支持的进程数量</span><br><span class="line">    pool = Pool(3)</span><br><span class="line">    #任务放入进程池</span><br><span class="line">    name_list = [&apos;你&apos;,&apos;我&apos;,&apos;他&apos;]</span><br><span class="line">    for name in name_list:</span><br><span class="line">        pool.apply_async(func=hello,args=(name,))</span><br><span class="line">    #关闭进程池并等待进程池结束</span><br><span class="line">    pool.close()</span><br><span class="line">    pool.join()</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">协程的用处:</span><br><span class="line">	1.线程尽可能多的占用cpu</span><br><span class="line">	2.减少cpu切换线程,提高cpu的使用效果</span><br><span class="line">协程代码:</span><br><span class="line">	import gevent</span><br><span class="line">	g1 = gevent.spawn(函数名,参数)</span><br><span class="line">	gevent.joinall([g1,g2,g3])</span><br><span class="line">猴子补丁:from gevent import monkey</span><br><span class="line">		monkey.patch_all()</span><br><span class="line">猴子补丁的作用:将time.sleep()变成gevent.sleep()从而使效果更直观,除此之外还有很多其他效果</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">多进程若共享资源需要导包:   </span><br><span class="line">from multiprocessing import Manager</span><br><span class="line">queue = Manager.Queue()</span><br><span class="line">queue只有get和put两种操作</span><br><span class="line">eg:	(queue,url) = queue.get(timeout=5)</span><br><span class="line">queue.put((func,url))</span><br><span class="line">多进程添加代理需要注意的问题:</span><br><span class="line">		1&gt;共享资源问题</span><br><span class="line">		2&gt;更新问题,针对response的status的处理</span><br><span class="line">		3&gt;会添加代理</span><br><span class="line">		4&gt;会创建获取proxy和更新proxy的类</span><br></pre></td></tr></table></figure>
+        <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">进程: 进程是资源分配单位 </span><br><span class="line">线程: 线程是执行的单位</span><br><span class="line">进程池: 当我们的任务非常多时,按照以前的方法,需要创建很多的进程,进程创建过多会发生很多问题,系统会因为频繁切换进程,导致性能下降,进程池能够限制进程生成数量</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">线程和进程的的关系:</span><br><span class="line">	<span class="number">1.</span>进程内部包含所有的程序需要执行的资源</span><br><span class="line">	<span class="number">2.</span>线程几乎不包括任何资源信息</span><br><span class="line">	<span class="number">3.</span>线程是cpu执行的最小单位</span><br><span class="line">	<span class="number">4.</span>进程中最少有一个线程(进程是包含进程的,可以有多个线程)</span><br><span class="line">推论:</span><br><span class="line">	<span class="number">1.</span>进程和进程的资源是不共享的</span><br><span class="line">	<span class="number">2.</span>同一进程的线程之间资源是共享的</span><br><span class="line">	<span class="number">3.</span>多进程的程序挂掉一个,其他进程不会受影响</span><br><span class="line">	<span class="number">4.</span>同一个进程内的多个线程,如果进程挂了,则线程都不存在了</span><br><span class="line">对编程的推论:</span><br><span class="line">	<span class="number">1.</span>如果两个任务之间不共享任何资源(很少),最好用多进程</span><br><span class="line">	<span class="number">2.</span>如果两个任务共享资源较多,最好用多进程</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">进程和线程创建步骤</span><br><span class="line">	<span class="number">1.</span>新建进程\线程类</span><br><span class="line">	<span class="number">2.</span>启动线程进程</span><br><span class="line">	<span class="number">3.</span>等待进程\线程</span><br><span class="line">多进程:</span><br><span class="line">	<span class="keyword">from</span> multiprocessing <span class="keyword">import</span> Process</span><br><span class="line">	P1 = Process(target = 函数名,args = (参数))</span><br><span class="line">	P1.start()</span><br><span class="line">	P1.join()</span><br><span class="line">多线程:</span><br><span class="line">	<span class="keyword">from</span> Threading <span class="keyword">import</span> thread</span><br><span class="line">	P1 = Thread(target= , args(,))</span><br><span class="line">	P1.start()</span><br><span class="line">	P1.join()</span><br><span class="line">进程池的代码步骤:</span><br><span class="line">	<span class="number">1.</span>创建进程池的类</span><br><span class="line">	<span class="number">2.</span>将任务放进进程池</span><br><span class="line">	<span class="number">3.</span>关闭进程池等待进程结束</span><br><span class="line">	<span class="keyword">from</span> multiprocessing <span class="keyword">import</span> Pool</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">hello</span><span class="params">(name)</span>:</span></span><br><span class="line">    print(<span class="string">'你好啊&#123;&#125;'</span>.format(name))</span><br><span class="line">    time.sleep(<span class="number">5</span>)</span><br><span class="line">    print(<span class="string">'我很好呢!!'</span>)</span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    <span class="comment">#创建进程池,参数表示最大支持的进程数量</span></span><br><span class="line">    pool = Pool(<span class="number">3</span>)</span><br><span class="line">    <span class="comment">#任务放入进程池</span></span><br><span class="line">    name_list = [<span class="string">'你'</span>,<span class="string">'我'</span>,<span class="string">'他'</span>]</span><br><span class="line">    <span class="keyword">for</span> name <span class="keyword">in</span> name_list:</span><br><span class="line">        pool.apply_async(func=hello,args=(name,))</span><br><span class="line">    <span class="comment">#关闭进程池并等待进程池结束</span></span><br><span class="line">    pool.close()</span><br><span class="line">    pool.join()</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">协程的用处:</span><br><span class="line">	<span class="number">1.</span>线程尽可能多的占用cpu</span><br><span class="line">	<span class="number">2.</span>减少cpu切换线程,提高cpu的使用效果</span><br><span class="line">协程代码:</span><br><span class="line">	<span class="keyword">import</span> gevent</span><br><span class="line">	g1 = gevent.spawn(函数名,参数)</span><br><span class="line">	gevent.joinall([g1,g2,g3])</span><br><span class="line">猴子补丁:<span class="keyword">from</span> gevent <span class="keyword">import</span> monkey</span><br><span class="line">		monkey.patch_all()</span><br><span class="line">猴子补丁的作用:将time.sleep()变成gevent.sleep()从而使效果更直观,除此之外还有很多其他效果</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">多进程若共享资源需要导包:   </span><br><span class="line"><span class="keyword">from</span> multiprocessing <span class="keyword">import</span> Manager</span><br><span class="line">queue = Manager.Queue()</span><br><span class="line">queue只有get和put两种操作</span><br><span class="line">eg:	(queue,url) = queue.get(timeout=<span class="number">5</span>)</span><br><span class="line">queue.put((func,url))</span><br><span class="line">多进程添加代理需要注意的问题:</span><br><span class="line">		<span class="number">1</span>&gt;共享资源问题</span><br><span class="line">		<span class="number">2</span>&gt;更新问题,针对response的status的处理</span><br><span class="line">		<span class="number">3</span>&gt;会添加代理</span><br><span class="line">		<span class="number">4</span>&gt;会创建获取proxy和更新proxy的类</span><br></pre></td></tr></table></figure>
+<p><strong>注意事项：</strong></p>
+<p>1、如果是windows系统， multiprocessing.Process需在if <strong>name</strong> ==  ‘<strong>main</strong>‘:下使用</p>
+<p>2、args后面的参数必须是tuple类型，在这里可以认为是为整数参数20000000添加了小括号和逗号</p>
 
       
     </div>
@@ -586,7 +601,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">43</span>
+                    <span class="site-state-item-count">48</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -617,7 +632,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">7</span>
+                      
+                    
+                    <span class="site-state-item-count">8</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -662,7 +679,17 @@
                     
                       
                     
-                    <span class="site-state-item-count">14</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">19</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
