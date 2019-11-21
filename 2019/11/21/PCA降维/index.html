@@ -106,7 +106,7 @@
 <meta property="og:site_name" content="Mr kuai">
 <meta property="og:description" content="PCA主成分分析1.降维的概念: 123456降维是一种对高维度数据预处理的方法,保留重要的特征,去除噪声和不重要的特征,从而实现提升数据处理速度的目的.降维的方法:1.SVD奇异值分解2.PCA主成分分析(使用最广泛)3.FA因子分析4.ICA独立成分分析 2.PCA的概念 1思想是将n为特征映射到k维上,k维为全新的正交特征,也被称为主成分.第一个坐标轴为原始数据中方差最大的方向,第二个坐标轴">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-11-21T07:34:48.934Z">
+<meta property="og:updated_time" content="2019-11-21T10:28:43.131Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="PCA降维">
 <meta name="twitter:description" content="PCA主成分分析1.降维的概念: 123456降维是一种对高维度数据预处理的方法,保留重要的特征,去除噪声和不重要的特征,从而实现提升数据处理速度的目的.降维的方法:1.SVD奇异值分解2.PCA主成分分析(使用最广泛)3.FA因子分析4.ICA独立成分分析 2.PCA的概念 1思想是将n为特征映射到k维上,k维为全新的正交特征,也被称为主成分.第一个坐标轴为原始数据中方差最大的方向,第二个坐标轴">
@@ -402,7 +402,7 @@
                 
               
 
-              <time title="创建时间：2019-11-21 14:11:06 / 修改时间：15:34:48" itemprop="dateCreated datePublished" datetime="2019-11-21T14:11:06+08:00">2019-11-21</time>
+              <time title="创建时间：2019-11-21 14:11:06 / 修改时间：18:28:43" itemprop="dateCreated datePublished" datetime="2019-11-21T14:11:06+08:00">2019-11-21</time>
             
 
             
@@ -473,7 +473,7 @@
 <p>如何获得主成分</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">计算数据矩阵的协方差矩阵,得到协方差矩阵的特征值、特征向量，选择特征值最大的k个特征所对应的特征向量组成的矩阵。这样就实现了降维。====获取特征值、特征向量的两种方法，特征值分解和奇异值分解</span><br></pre></td></tr></table></figure>
 <p>sklearn调用PCA</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">from sklearn.decomposition import PCA</span><br><span class="line">import numpy as np</span><br><span class="line">X = np.array([[-1,2],[-1,2],[1,2]])</span><br><span class="line">pca=PCA(n_components=1)</span><br><span class="line">pca.fit(X)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.decomposition <span class="keyword">import</span> PCA</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line">X = np.array([[<span class="number">-1</span>,<span class="number">2</span>],[<span class="number">-1</span>,<span class="number">2</span>],[<span class="number">1</span>,<span class="number">2</span>]])</span><br><span class="line">pca=PCA(n_components=<span class="number">1</span>)</span><br><span class="line">pca.fit(X)</span><br></pre></td></tr></table></figure>
 
       
     </div>
