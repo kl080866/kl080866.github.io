@@ -106,7 +106,7 @@
 <meta property="og:site_name" content="Mr kuai">
 <meta property="og:description" content="对于xxx这种格式当我们想要获取title的标题内容的时候,方法一是通过的括号分组实现,宁外一种方法就是断言 pattern = re.compile(‘(?&amp;lt;=title&amp;gt;).*(?=)’)re.findall(pattern,’xxx‘)    断言条件 解释     (?=exp) 匹配exp前面的位置   (?!exp) 匹配后面跟的不是exp的内容   (?&amp;lt;=exp)">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-11-21T10:28:01.975Z">
+<meta property="og:updated_time" content="2020-05-25T03:37:18.489Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="re模块断言">
 <meta name="twitter:description" content="对于xxx这种格式当我们想要获取title的标题内容的时候,方法一是通过的括号分组实现,宁外一种方法就是断言 pattern = re.compile(‘(?&amp;lt;=title&amp;gt;).*(?=)’)re.findall(pattern,’xxx‘)    断言条件 解释     (?=exp) 匹配exp前面的位置   (?!exp) 匹配后面跟的不是exp的内容   (?&amp;lt;=exp)">
@@ -402,12 +402,24 @@
                 
               
 
-              <time title="创建时间：2019-11-21 16:55:51 / 修改时间：18:28:01" itemprop="dateCreated datePublished" datetime="2019-11-21T16:55:51+08:00">2019-11-21</time>
+              <time title="创建时间：2019-11-21 16:55:51" itemprop="dateCreated datePublished" datetime="2019-11-21T16:55:51+08:00">2019-11-21</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2020-05-25 11:37:18" itemprop="dateModified" datetime="2020-05-25T11:37:18+08:00">2020-05-25</time>
               
             
           </span>
@@ -503,6 +515,8 @@
 </tbody>
 </table>
 <p>匹配exp前面后匹配exp后面的可以一起使用,这样就可以获取到中间的数据了</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">.   表示一切字符</span><br><span class="line">\   起转义作用</span><br><span class="line">[...]  方括号中的任意字符</span><br><span class="line">\d   数字0-9</span><br><span class="line">\D    非数字</span><br><span class="line">\w   数字,字母,下划线</span><br><span class="line">\W   非数字,字母下划线</span><br><span class="line">\s   空格换行符等</span><br><span class="line">\S   非空格</span><br><span class="line">*   前面字符&gt;=0</span><br><span class="line">+   &gt;=1</span><br><span class="line">?   0或1</span><br><span class="line">&#123;m&#125;  匹配m次</span><br><span class="line">&#123;m,n&#125; 匹配m到n次</span><br><span class="line">&#123;m,&#125;  至少匹配m次</span><br></pre></td></tr></table></figure>
+<h5 id="re模块字符串匹配"><a href="#re模块字符串匹配" class="headerlink" title="re模块字符串匹配"></a>re模块字符串匹配</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">方式1 :re.findall(r&apos;([a-z]):&apos;,s1,re.I)   #匹配获得所有括号内的内容,re.I表示不分大小写</span><br><span class="line">方式2 :patten = re.compile(r&apos;\d+&apos;)</span><br><span class="line">	  patten.findall(s1)</span><br><span class="line">s = &apos;sim@163.com work-da intrest:pingpang&apos;</span><br><span class="line">re.split(&apos;[@\-:\s+]&apos;,s)</span><br><span class="line">返回结果: [&apos;sim&apos;, &apos;163.com&apos;, &apos;work&apos;, &apos;da&apos;, &apos;intrest&apos;, &apos;pingpang&apos;]</span><br><span class="line">re.sub(&apos;1.5[lLtT]&apos;,&apos;1.5L&apos;,s)  #将1.5l,1.5t,1.5T全部替换为1.5L</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -600,8 +614,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <div class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -618,7 +641,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">60</span>
+                    <span class="site-state-item-count">73</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -736,7 +759,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">28</span>
+                      
+                    
+                    <span class="site-state-item-count">29</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -763,6 +788,23 @@
         </div>
       </div>
 
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#re模块字符串匹配"><span class="nav-number">1.</span> <span class="nav-text">re模块字符串匹配</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
       
 
       
@@ -1310,5 +1352,8 @@
 </body>
 </html>
 <script type="text/javascript" src="/js/src/clicklove.js"></script>
+<!-- <script type="text/javascript" src="/js/src/fish.js"></script> -->
+<!-- <script src='https://blog-static.cnblogs.com/files/elkyo/star.js'></script> -->
+<!-- 雪花特效 -->
 <!-- 雪花特效 -->
 <!-- <script type="text/javascript" src="\js\snow.js"></script> -->

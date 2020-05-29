@@ -1,0 +1,9 @@
+<h1 id="图片下载"><a href="#图片下载" class="headerlink" title="图片下载"></a>图片下载</h1><p>scrapy 内置了一个图片下载的管道，我们只需要在配置文件中加入图片下载管道，并做一些简单的配置就可以下载图片了</p>
+<h1 id="1-在配置文件管道配置中添加"><a href="#1-在配置文件管道配置中添加" class="headerlink" title="1.在配置文件管道配置中添加"></a>1.在配置文件管道配置中添加</h1><p>‘scrapy.pipelines.images.ImagesPipeline’:1</p>
+<h1 id="2-然后配置图片的下载目录"><a href="#2-然后配置图片的下载目录" class="headerlink" title="2.然后配置图片的下载目录"></a>2.然后配置图片的下载目录</h1><pre><code>在配置文件中导入os
+imports os
+获取当前项目的根目录
+BASE_DIR = os.path.dirname(os.path.dirname(__file__))
+</code></pre><h1 id="指定下载的字段"><a href="#指定下载的字段" class="headerlink" title="指定下载的字段"></a>指定下载的字段</h1><p>IMAGES_URLS_FIELD = ‘pic_url’</p>
+<h1 id="设置图片下载路径-注意要在项目目录下创建goods-pic目录"><a href="#设置图片下载路径-注意要在项目目录下创建goods-pic目录" class="headerlink" title="设置图片下载路径  注意要在项目目录下创建goods_pic目录"></a>设置图片下载路径  注意要在项目目录下创建goods_pic目录</h1><p>IMAGES_STORE=os.path.join(BASE_DIR,’goods_pic’)</p>
+<h1 id="3-在item储存数据时要存储列表类型"><a href="#3-在item储存数据时要存储列表类型" class="headerlink" title="3.在item储存数据时要存储列表类型"></a>3.在item储存数据时要存储列表类型</h1><p>item[‘pic_url’]=[pic_url]</p>

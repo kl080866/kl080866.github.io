@@ -1,0 +1,14 @@
+<h1 id="制作-Scrapy-爬虫-一共需要4步："><a href="#制作-Scrapy-爬虫-一共需要4步：" class="headerlink" title="制作 Scrapy 爬虫 一共需要4步："></a>制作 Scrapy 爬虫 一共需要4步：</h1><p>新建项目 (scrapy startproject xxx)：新建一个新的爬虫项目</p>
+<p>明确目标 （编写items.py）：明确你想要抓取的目标</p>
+<p>制作爬虫 （spiders/xxspider.py）：制作爬虫开始爬取网页</p>
+<p>存储内容 （pipelines.py）：设计管道存储爬取内容</p>
+<h1 id="创建项目"><a href="#创建项目" class="headerlink" title="创建项目"></a>创建项目</h1><p>scrapy startproject demo</p>
+<h1 id="启动项目"><a href="#启动项目" class="headerlink" title="启动项目"></a>启动项目</h1><p>scrapy crawl  name</p>
+<h1 id="创建爬虫"><a href="#创建爬虫" class="headerlink" title="创建爬虫"></a>创建爬虫</h1><p>scrapy genspider name 域名</p>
+<h1 id="为了方便调试-我们可以在项目目录下创建一个main-py"><a href="#为了方便调试-我们可以在项目目录下创建一个main-py" class="headerlink" title="为了方便调试 我们可以在项目目录下创建一个main.py"></a>为了方便调试 我们可以在项目目录下创建一个main.py</h1><p>from scrapy import cmdline<br>cmdline.execute(‘scrapy crawl name’.split())</p>
+<h1 id="爬虫shell工具-一般用于调试"><a href="#爬虫shell工具-一般用于调试" class="headerlink" title="爬虫shell工具  一般用于调试"></a>爬虫shell工具  一般用于调试</h1><p>scrapy shell <a href="http://www.baidu.com">http://www.baidu.com</a></p>
+<p>scrapy 提供了xpath 和css</p>
+<p>在命令行中执行 &gt;&gt;&gt; response.xpath(‘//title/text()’)</p>
+<p>[<selector xpath="//title/text()" data="百度一下，你就知道">]</selector></p>
+<p>获取内容：&gt;&gt;&gt; response.xpath(‘//title/text()’)[0].extract()</p>
+<p>‘百度一下，你就知道’</p>

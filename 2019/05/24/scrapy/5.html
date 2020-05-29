@@ -1,0 +1,46 @@
+<h1 id="User-Agent的随机切换"><a href="#User-Agent的随机切换" class="headerlink" title="User-Agent的随机切换"></a>User-Agent的随机切换</h1><p>1.将user-agent写入settings中,在spider文件中导入并发送请求时使用，弊端是第一次请求没办法设置</p>
+<p>2.使用第三方模块fake_useragent 使用此模块必须要有网</p>
+<pre><code>pip install fake_useragent
+from fake_userage import UserAgent
+ua = UserAgent()
+ua.ie  获取ie的内核
+ua.chrome 获取谷歌内核
+ua.random 随机获取内核
+</code></pre><p>3.在中间键配置请求头</p>
+<p>为了减少代码的重复可以将他写入到中间建</p>
+<pre><code>from fake_userage import UserAgent
+class RandomUserAgent(object):
+    def __init__(self):
+        self.ua = UserAjgent()
+    def process_request(self,request,spider):
+        ua = self.ua.random
+        request.headers.setdefault(&apos;User-Agent&apos;,ua)
+</code></pre><p>4.如果要指定使用某一个浏览器的内核</p>
+<p>在配置文件中添加 UA_TYPE = ‘chrome’</p>
+<p>在中间键中导入配置文件</p>
+<pre><code>from fake_userage import UserAgent
+from scrapy.conf import settings   # 导入配置文件的另一种方式
+class RandomUserAgent(object):
+    def __init__(self):
+        self.ua = UserAjgent()
+    def process_request(self,request,spider):
+        # 获取浏览器类型
+        ua_type = settings[&apos;UA_TYPE&apos;]
+        # getattr 获取ua对象下的某一个值
+        ua = getattr(self.ua,ua_type)
+        request.headers.setdefault(&apos;User-Agent&apos;,ua)
+</code></pre><p>5.使用全局的爬虫对象crawlder</p>
+<pre><code>class RandomUserAgent(object):
+    def __init__(self,crawler):  # 接受 from_crawler 传过来的cralwer对象
+        self.ua = UserAjgent()
+        self.cralwer = cralwer  
+    @classmethod
+    def from_crawler(cls,crawler): # 此方法会自动将crawler传递进来
+        # scrapy 可以通过crawler访问 cralwer.settings
+        return cls(crawler)
+    def process_request(self,request,spider):
+        print(dir(self.cralwer))
+        # getattr 获取ua对象下的某一个值
+        ua = getattr(self.ua,self.cralwer.settings[&apos;UA_TYPE&apos;])
+        request.headers.setdefault(&apos;User-Agent&apos;,ua)
+</code></pre>

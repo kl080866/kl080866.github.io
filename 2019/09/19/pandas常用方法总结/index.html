@@ -106,7 +106,7 @@
 <meta property="og:site_name" content="Mr kuai">
 <meta property="og:description" content="to_dict(将dataframe转换成字典格式)===对应的为json格式(十分常用)常用的有records和index12345678910111213141516import pandas as pdimport numpy as npdf = pd.DataFrame(np.arange(12).reshape(3,4),columns=[&apos;A&apos;,&apos;B&apos;,&apos;C&apos;,&apos;D&apos;])df    A">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-04-01T09:05:17.008Z">
+<meta property="og:updated_time" content="2020-05-26T03:45:48.964Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="pandas常用方法总结">
 <meta name="twitter:description" content="to_dict(将dataframe转换成字典格式)===对应的为json格式(十分常用)常用的有records和index12345678910111213141516import pandas as pdimport numpy as npdf = pd.DataFrame(np.arange(12).reshape(3,4),columns=[&apos;A&apos;,&apos;B&apos;,&apos;C&apos;,&apos;D&apos;])df    A">
@@ -419,7 +419,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2020-04-01 17:05:17" itemprop="dateModified" datetime="2020-04-01T17:05:17+08:00">2020-04-01</time>
+                <time title="修改时间：2020-05-26 11:45:48" itemprop="dateModified" datetime="2020-05-26T11:45:48+08:00">2020-05-26</time>
               
             
           </span>
@@ -515,6 +515,7 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">判断某个数据中是否包含指定字符(字符串的模糊筛选)</span><br><span class="line">df[<span class="number">0</span>][df[<span class="number">0</span>].str.contains(<span class="string">'委屈'</span>)]</span><br><span class="line"><span class="number">4</span>     委屈翁</span><br><span class="line"><span class="number">6</span>    委屈翁群</span><br><span class="line">Name: <span class="number">0</span>, dtype: object</span><br><span class="line">多条件筛选用|符号</span><br><span class="line">df[<span class="number">0</span>][df[<span class="number">0</span>].str.contains(<span class="string">'翁|问'</span>)]</span><br><span class="line"><span class="number">4</span>     委屈翁</span><br><span class="line"><span class="number">2</span>    额外请问</span><br><span class="line"><span class="number">3</span>      问问</span><br><span class="line"><span class="number">6</span>    委屈翁群</span><br><span class="line">Name: <span class="number">0</span>, dtype: object</span><br><span class="line">        </span><br><span class="line"> <span class="comment">#参数解释    </span></span><br><span class="line">Series.str.contains(</span><br><span class="line">                    pat,        <span class="comment"># 要查询的字符串、要查询的或者正则表达式</span></span><br><span class="line">                    case=<span class="literal">True</span>,  <span class="comment"># 是否对大小写敏感</span></span><br><span class="line">                    flags=<span class="number">0</span>,    <span class="comment"># 用来传给正则模块的参数，比如 flags=re.INGNORECASE 等价于 case=False</span></span><br><span class="line">                    na=nan,     <span class="comment"># 默认对空值不处理，即输出结果还是 NaN</span></span><br><span class="line">                    regex=<span class="literal">True</span>  <span class="comment"># 即第一个参数 pat部分 要不要按照正则表达式的规则。</span></span><br><span class="line">                                 <span class="comment">#所以针对特殊符号，默认情况下我们必须使用转义符，或者设置 regex=False</span></span><br><span class="line">                    )</span><br></pre></td></tr></table></figure>
 <h5 id="set-index-和-reset-index"><a href="#set-index-和-reset-index" class="headerlink" title="set_index 和 reset_index"></a>set_index 和 reset_index</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">将df1中A这一列设为索引,并且不删除原来的A那一列</span><br><span class="line">df1.set_index(<span class="string">'A'</span>,drop=<span class="literal">False</span>)</span><br><span class="line">将df1中A这一列设为索引,并且删除原来的A那一列</span><br><span class="line">df1.set_index(<span class="string">'A'</span>,drop=<span class="literal">True</span>)</span><br><span class="line">将df1中的索引还原,并且添加一列新的列(原来的索引列)</span><br><span class="line">df1.reset_index(<span class="string">'A'</span>,drop=<span class="literal">False</span>)</span><br><span class="line">将df1中的索引重置,索引那一列直接删除</span><br><span class="line">df1.reset_index(<span class="string">'A'</span>,drop=<span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
 <h5 id="rank"><a href="#rank" class="headerlink" title="rank"></a>rank</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">df.rank()  <span class="comment">#默认按照列排序,返回的结果为对应各自排名的矩阵</span></span><br><span class="line">df.rank(axis=<span class="number">1</span>) <span class="comment">#按照行进行排序</span></span><br><span class="line">df.rank(axis=<span class="number">1</span>,method=<span class="string">'average'</span>) <span class="comment">#数据相同的排名全部取对应排名的平均值</span></span><br><span class="line">df.rank(axis=<span class="number">1</span>,method=<span class="string">'max'</span>) <span class="comment">#取最大排名</span></span><br><span class="line">df.rank(axis=<span class="number">1</span>,method=<span class="string">'first'</span>) 原始数据中出现的顺序进行排名</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sorted(cxy_data, key=<span class="keyword">lambda</span> i: i[<span class="string">'num'</span>], reverse=<span class="literal">True</span>)  按照字典中的某个值倒叙</span><br></pre></td></tr></table></figure>
 <p>补充:其他的常用方法总结<a href="https://www.cnblogs.com/rexyan/p/7975707.html" target="_blank" rel="noopener">https://www.cnblogs.com/rexyan/p/7975707.html</a></p>
 
       
@@ -640,7 +641,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">60</span>
+                    <span class="site-state-item-count">73</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -758,7 +759,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">28</span>
+                      
+                    
+                    <span class="site-state-item-count">29</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -1349,5 +1352,8 @@
 </body>
 </html>
 <script type="text/javascript" src="/js/src/clicklove.js"></script>
+<!-- <script type="text/javascript" src="/js/src/fish.js"></script> -->
+<!-- <script src='https://blog-static.cnblogs.com/files/elkyo/star.js'></script> -->
+<!-- 雪花特效 -->
 <!-- 雪花特效 -->
 <!-- <script type="text/javascript" src="\js\snow.js"></script> -->

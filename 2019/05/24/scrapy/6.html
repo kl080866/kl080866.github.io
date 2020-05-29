@@ -1,0 +1,41 @@
+<h1 id="代理的添加"><a href="#代理的添加" class="headerlink" title="代理的添加"></a>代理的添加</h1><h3 id="1-普通代理的使用"><a href="#1-普通代理的使用" class="headerlink" title="1. 普通代理的使用"></a>1. 普通代理的使用</h3><p>在settings 中头添加</p>
+<p>PROXIEX = [<br>    {‘host’:’<a href="http://ip:port&#39;}">http://ip:port&#39;}</a><br>    …<br>]</p>
+<h3 id="2-在中间件中创建随机代理的中间建"><a href="#2-在中间件中创建随机代理的中间建" class="headerlink" title="2.在中间件中创建随机代理的中间建"></a>2.在中间件中创建随机代理的中间建</h3><pre><code>class RandomProxy(object):
+
+    def __init__(self,cralwer):
+        self.cralwer = cralwer
+
+    @classmethod
+    def from_cralwer(cls,cralwer):
+        return cls(cralwer)
+
+    def process_request(self,request,spider):
+        # 获取代理
+        proxies = self.cralwer.settings[&apos;PROXIES&apos;]
+        proxy = random.chice(proxies)
+
+        request.meta = proxy[&apos;host&apos;] 
+</code></pre><h1 id="3-开启配置文件中的配置信息"><a href="#3-开启配置文件中的配置信息" class="headerlink" title="3.开启配置文件中的配置信息"></a>3.开启配置文件中的配置信息</h1><h3 id="认证代理的使用"><a href="#认证代理的使用" class="headerlink" title="认证代理的使用"></a>认证代理的使用</h3><h3 id="1-配置文件中添加"><a href="#1-配置文件中添加" class="headerlink" title="1.配置文件中添加"></a>1.配置文件中添加</h3><p>AUTH_PROXIES = [<br>    {‘host’:’<a href="http://ip:port&#39;,&#39;auth&#39;:&#39;用户名：密码&#39;}">http://ip:port&#39;,&#39;auth&#39;:&#39;用户名：密码&#39;}</a><br>]</p>
+<h3 id="2-添加中间建"><a href="#2-添加中间建" class="headerlink" title="2.添加中间建"></a>2.添加中间建</h3><pre><code>import base64
+
+class RandomProxy(object):
+    def __init__(self,cralwer):
+        self.cralwer = cralwer
+
+    @classmethod
+    def from_cralwer(cls,cralwer):
+        return cls(cralwer)
+
+    def process_request(self,request,spider):
+        # 获取代理
+        auth_proxies = self.cralwer.settings[&apos;AUTH_PROXIES&apos;]
+        proxy = random.choice(proxies)
+
+        # 设置用户名和密码（用户名密码）  这里需要用到base64下的b4encode(bytes())
+        auth = proxy[&apos;auth&apos;]
+        auth = base64.b64encode(bytes(auth,&apos;&apos;utf-8)).
+        request.headers[&apos;Proxy-Authorization&apos;] = b&apos;Basic &apos; + auth
+
+        # 设置代理ip和端口号
+        request.meta[&apos;proxy&apos;] = proxy[&apos;host&apos;] 
+</code></pre>
