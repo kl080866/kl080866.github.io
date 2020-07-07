@@ -98,13 +98,13 @@
 
 
 
-  <meta name="description" content="Matplotlibimport matplotlib.pyplot as plt若无法显示图画记得要放在一起写不要分开写 #####创建画布方法1:创建简单画布figure_1 = plt.figure()方法2:创建复杂画布figure_1 = plt.figure(1,(8,4),dpi=140,facecolor=’red’,edgecolor=’yellow’,frameon=True)">
+  <meta name="description" content="Matplotlibimport matplotlib.pyplot as plt若无法显示图画记得要放在一起写不要分开写 ######添加数值 for a,b in zip(ls1,ls2):    plt.text(a, b,’%.0f’%b, ha = ‘center’,va = ‘bottom’,fontsize=10) #####创建画布方法1:创建简单画布figure_1 = plt.">
 <meta name="keywords" content="数据分析">
 <meta property="og:type" content="article">
 <meta property="og:title" content="python绘图">
 <meta property="og:url" content="http://kl66.top/2019/06/05/python绘图/index.html">
 <meta property="og:site_name" content="Mr kuai">
-<meta property="og:description" content="Matplotlibimport matplotlib.pyplot as plt若无法显示图画记得要放在一起写不要分开写 #####创建画布方法1:创建简单画布figure_1 = plt.figure()方法2:创建复杂画布figure_1 = plt.figure(1,(8,4),dpi=140,facecolor=’red’,edgecolor=’yellow’,frameon=True)">
+<meta property="og:description" content="Matplotlibimport matplotlib.pyplot as plt若无法显示图画记得要放在一起写不要分开写 ######添加数值 for a,b in zip(ls1,ls2):    plt.text(a, b,’%.0f’%b, ha = ‘center’,va = ‘bottom’,fontsize=10) #####创建画布方法1:创建简单画布figure_1 = plt.">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://kl66.top/2019/06/05/python绘图/series线形图.png">
 <meta property="og:image" content="http://kl66.top/2019/06/05/python绘图/dataframe线形图.png">
@@ -115,10 +115,10 @@
 <meta property="og:image" content="http://kl66.top/2019/06/05/python绘图/曲线图.png">
 <meta property="og:image" content="http://kl66.top/2019/06/05/python绘图/网格图.png">
 <meta property="og:image" content="http://kl66.top/2019/06/05/python绘图/等势线图.png">
-<meta property="og:updated_time" content="2019-06-20T08:19:56.758Z">
+<meta property="og:updated_time" content="2020-06-11T07:47:32.516Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="python绘图">
-<meta name="twitter:description" content="Matplotlibimport matplotlib.pyplot as plt若无法显示图画记得要放在一起写不要分开写 #####创建画布方法1:创建简单画布figure_1 = plt.figure()方法2:创建复杂画布figure_1 = plt.figure(1,(8,4),dpi=140,facecolor=’red’,edgecolor=’yellow’,frameon=True)">
+<meta name="twitter:description" content="Matplotlibimport matplotlib.pyplot as plt若无法显示图画记得要放在一起写不要分开写 ######添加数值 for a,b in zip(ls1,ls2):    plt.text(a, b,’%.0f’%b, ha = ‘center’,va = ‘bottom’,fontsize=10) #####创建画布方法1:创建简单画布figure_1 = plt.">
 <meta name="twitter:image" content="http://kl66.top/2019/06/05/python绘图/series线形图.png">
 
 
@@ -429,7 +429,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-06-20 16:19:56" itemprop="dateModified" datetime="2019-06-20T16:19:56+08:00">2019-06-20</time>
+                <time title="修改时间：2020-06-11 15:47:32" itemprop="dateModified" datetime="2020-06-11T15:47:32+08:00">2020-06-11</time>
               
             
           </span>
@@ -489,6 +489,8 @@
 
       
         <h3 id="Matplotlib"><a href="#Matplotlib" class="headerlink" title="Matplotlib"></a>Matplotlib</h3><p>import matplotlib.pyplot as plt<br>若无法显示图画记得要放在一起写不要分开写</p>
+<p>######添加数值</p>
+<p>for a,b in zip(ls1,ls2):<br>    plt.text(a, b,’%.0f’%b, ha = ‘center’,va = ‘bottom’,fontsize=10)</p>
 <p>#####创建画布<br>方法1:创建简单画布<br>figure_1 = plt.figure()<br>方法2:创建复杂画布<br>figure_1 = plt.figure(1,(8,4),dpi=140,facecolor=’red’,edgecolor=’yellow’,frameon=True)<br>注释: 1代表画布编号,8,4表示宽高比,dpi表示像素,facecolor表示底色,edgecolor表示边角色frameon=Teue表示是绘制边框</p>
 <p>#####创建画框<br>①分割画布创建画框<br>aapic_1 = figure_1.add_subplot(2,2,1) #表示分成2行2列,其中的编号1的画框,编号顺序从左到右从上到下<br>aapic_1 = figure_1.add_subplot(2,2,2)<br>aapic_1 = figure_1.add_subplot(2,2,3)<br>aapic_1 = figure_1.add_subplot(2,2,4)<br>plt.show()</p>
 <h5 id="画线状图"><a href="#画线状图" class="headerlink" title="画线状图"></a>画线状图</h5><p>创建一个画布<br>figure_2 = plt.figure(1,(6,4),dpi=140,frameon=True)<br>创建一个画框<br>axes1 = figure_2.add_subplot(1,1,1)<br>形成线图<br>axes1.plot(np.arange(0,10),np.random.normal(3,1.6,10,’b -‘)<br>b表示线颜色为蓝色, 表示点为 ,-表示线为实线</p>
@@ -641,7 +643,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">68</span>
+                    <span class="site-state-item-count">70</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -688,7 +690,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">15</span>
+                      
+                    
+                    <span class="site-state-item-count">16</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -777,7 +781,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">36</span>
+                      
+                    
+                    <span class="site-state-item-count">37</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>

@@ -98,18 +98,18 @@
 
 
 
-  <meta name="description" content="自然语言处理学习路线 12 TF-IDF算法:代码及原理 https://blog.csdn.net/asialee_bird/article/details/81486700 stop_words 停用词 12概念:搜索的时候会自动忽略这些词作用:有效的提高关键词密度 自然语言处理 1234567概念:是研究人与人交际以及人与计算机交际中的语言问题的一门学科,涉及语言学\计算机科学\数学\自动化">
+  <meta name="description" content="TF-IDF算法:代码及原理 https://blog.csdn.net/asialee_bird/article/details/81486700 stop_words 停用词 12概念:搜索的时候会自动忽略这些词作用:有效的提高关键词密度 自然语言处理 1234567概念:是研究人与人交际以及人与计算机交际中的语言问题的一门学科,涉及语言学\计算机科学\数学\自动化等不同学科.自然语言处理的基">
 <meta name="keywords" content="机器学习">
 <meta property="og:type" content="article">
 <meta property="og:title" content="NLP学习">
 <meta property="og:url" content="http://kl66.top/2019/09/26/NLP学习/index.html">
 <meta property="og:site_name" content="Mr kuai">
-<meta property="og:description" content="自然语言处理学习路线 12 TF-IDF算法:代码及原理 https://blog.csdn.net/asialee_bird/article/details/81486700 stop_words 停用词 12概念:搜索的时候会自动忽略这些词作用:有效的提高关键词密度 自然语言处理 1234567概念:是研究人与人交际以及人与计算机交际中的语言问题的一门学科,涉及语言学\计算机科学\数学\自动化">
+<meta property="og:description" content="TF-IDF算法:代码及原理 https://blog.csdn.net/asialee_bird/article/details/81486700 stop_words 停用词 12概念:搜索的时候会自动忽略这些词作用:有效的提高关键词密度 自然语言处理 1234567概念:是研究人与人交际以及人与计算机交际中的语言问题的一门学科,涉及语言学\计算机科学\数学\自动化等不同学科.自然语言处理的基">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-01-06T02:10:23.756Z">
+<meta property="og:updated_time" content="2020-06-11T08:16:06.633Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="NLP学习">
-<meta name="twitter:description" content="自然语言处理学习路线 12 TF-IDF算法:代码及原理 https://blog.csdn.net/asialee_bird/article/details/81486700 stop_words 停用词 12概念:搜索的时候会自动忽略这些词作用:有效的提高关键词密度 自然语言处理 1234567概念:是研究人与人交际以及人与计算机交际中的语言问题的一门学科,涉及语言学\计算机科学\数学\自动化">
+<meta name="twitter:description" content="TF-IDF算法:代码及原理 https://blog.csdn.net/asialee_bird/article/details/81486700 stop_words 停用词 12概念:搜索的时候会自动忽略这些词作用:有效的提高关键词密度 自然语言处理 1234567概念:是研究人与人交际以及人与计算机交际中的语言问题的一门学科,涉及语言学\计算机科学\数学\自动化等不同学科.自然语言处理的基">
 
 
 
@@ -419,7 +419,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2020-01-06 10:10:23" itemprop="dateModified" datetime="2020-01-06T10:10:23+08:00">2020-01-06</time>
+                <time title="修改时间：2020-06-11 16:16:06" itemprop="dateModified" datetime="2020-06-11T16:16:06+08:00">2020-06-11</time>
               
             
           </span>
@@ -478,15 +478,14 @@
       
 
       
-        <p>自然语言处理学习路线</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>TF-IDF算法:代码及原理</p>
+        <p>TF-IDF算法:代码及原理</p>
 <p><a href="https://blog.csdn.net/asialee_bird/article/details/81486700" target="_blank" rel="noopener">https://blog.csdn.net/asialee_bird/article/details/81486700</a></p>
 <p>stop_words 停用词</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">概念:搜索的时候会自动忽略这些词</span><br><span class="line">作用:有效的提高关键词密度</span><br></pre></td></tr></table></figure>
 <p>自然语言处理</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">概念:是研究人与人交际以及人与计算机交际中的语言问题的一门学科,涉及语言学\计算机科学\数学\自动化等不同学科.</span><br><span class="line">自然语言处理的基本理论:语言模型,隐马尔可夫模型(HMM)</span><br><span class="line">    ·语言模型:根据语言客观事实而进行语言抽象数学建模,是一种对应关系</span><br><span class="line">    ·隐马尔可夫模型:用来描述一个含有隐含未知参数的马尔可夫过程</span><br><span class="line">语言资源:语料库和词汇知识库</span><br><span class="line">自然语言处理研究的内容:<span class="number">1.</span>机器翻译  <span class="number">2.</span>自动文摘  <span class="number">3.</span>信息检索  <span class="number">4.</span>文档分类  <span class="number">5.</span>问答系统  <span class="number">6.</span>信息过滤  <span class="number">7.</span>信息抽取  <span class="number">8.</span>文本挖掘  <span class="number">9.</span>舆情分析  <span class="number">10.</span>隐喻计算  <span class="number">11.</span>文字编辑和自动校对  <span class="number">12.</span>作文自动评分 <span class="number">13.</span>语音识别  <span class="number">14.</span>文语转换  <span class="number">15.</span>人声识别/认证/验证</span><br><span class="line">自然语言处理的困难:①自然语言大量的歧义现象②对于特定的系统可能会出现未知的词汇,未知的结构等未知情况</span><br></pre></td></tr></table></figure>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">分词:单词组成句子,句子之间由空格隔开</span><br><span class="line">中文:字、词、句、段、篇</span><br></pre></td></tr></table></figure>
+<h3 id="NLP训练营"><a href="#NLP训练营" class="headerlink" title="NLP训练营"></a>NLP训练营</h3><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">NLP = NLU + NLG             natural language processing</span><br><span class="line">NLU:语音/文本---&gt;转换成理解  natural language understanding</span><br><span class="line">NLG:理解----&gt;转化为语音/文本 natural language generator</span><br><span class="line">NLP的面临的及格问题:</span><br><span class="line">    <span class="number">1.</span>一个意思多种表达方法</span><br><span class="line">    <span class="number">2.</span>一词多义(苹果,包袱等)</span><br><span class="line">cv computer vision 计算机视觉,所见即所得 因而较nlp简单</span><br><span class="line">机器翻译:基于语料库的统计翻译以及概率--&gt;发展模型</span><br><span class="line">语料库的统计翻译缺点:慢,未考虑语境,未区分一词多义,未考虑上下文,语法问题等</span><br><span class="line">翻译步骤:(如中译英)</span><br><span class="line">    中文---&gt;分词---&gt;TM(transalation Model)----&gt;broken English----&gt;Language Model----&gt;输出</span><br><span class="line">    TM:将每个中文/词翻译成对应的英文(step <span class="number">1</span>)</span><br><span class="line">    LM:将英文排列组合找到最符合人话的句子(概率最高的即为输出)(step <span class="number">2</span>)</span><br><span class="line">缺点:时间复杂度高,比如<span class="number">10</span>个词,排列组合为<span class="number">10</span>!复杂度为指数级别,np hard问题</span><br><span class="line">优化:step1 和 step2合并到一起===&gt;经典算法 decoding Algorithm (viterbi Algorithm)语音识别经典算法(使用贝叶斯公式)p(e/c)</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -584,8 +583,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <div class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -602,7 +610,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">68</span>
+                    <span class="site-state-item-count">70</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -649,7 +657,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">15</span>
+                      
+                    
+                    <span class="site-state-item-count">16</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -738,7 +748,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">36</span>
+                      
+                    
+                    <span class="site-state-item-count">37</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -765,6 +777,23 @@
         </div>
       </div>
 
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#NLP训练营"><span class="nav-number">1.</span> <span class="nav-text">NLP训练营</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
       
 
       
