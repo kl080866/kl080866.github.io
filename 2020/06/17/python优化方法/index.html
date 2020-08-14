@@ -106,7 +106,7 @@
 <meta property="og:site_name" content="Mr kuai">
 <meta property="og:description" content="Python的缺点就是运行特别慢,比其他语言慢2-10倍原因:它是GIL(Global interpreter lock 全局解释器锁)===cpython,其他语言实现的Python可以没有如jpython,为解释型语言,为动态型语言 $\textcolor{red}{静态语言:}$数据类型需要先声明 $\textcolor{red}{动态语言:}$即语言无需声明数据类型直接可以使用的语言 Py">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-07-07T05:05:05.260Z">
+<meta property="og:updated_time" content="2020-07-21T01:56:22.776Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="python优化方法">
 <meta name="twitter:description" content="Python的缺点就是运行特别慢,比其他语言慢2-10倍原因:它是GIL(Global interpreter lock 全局解释器锁)===cpython,其他语言实现的Python可以没有如jpython,为解释型语言,为动态型语言 $\textcolor{red}{静态语言:}$数据类型需要先声明 $\textcolor{red}{动态语言:}$即语言无需声明数据类型直接可以使用的语言 Py">
@@ -419,7 +419,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2020-07-07 13:05:05" itemprop="dateModified" datetime="2020-07-07T13:05:05+08:00">2020-07-07</time>
+                <time title="修改时间：2020-07-21 09:56:22" itemprop="dateModified" datetime="2020-07-21T09:56:22+08:00">2020-07-21</time>
               
             
           </span>
@@ -486,7 +486,7 @@
 <p>Python的解析器 ——<br>含有GIL的有：CPython、PyPy、Psyco；<br>没有GIL的有：JPython，IronPython。</p>
 <p>multiprocessing库的出现很大程度上是为了弥补thread库因为GIL而低效的缺陷</p>
 <p>方便将来$\textcolor{orange}{量化}$或者别的应用场景中的一些$\textcolor{green}{重计算的部分}$单独取出来，然后用Cython改写，独立成模块来提高运算速度</p>
-<p>$\textcolor{red}{Cpython}$</p>
+<p>$\textcolor{red}{cpu密集型}$:也叫计算密集型,，指的是系统的硬盘、内存性能相对CPU要好很多，此时，系统运作大部分的状况是CPU Loading 100%，CPU要读/写I/O(硬盘/内存)，I/O在很短的时间就可以完成，而CPU还有许多运算要处理，CPU Loading很高。<br>$\textcolor{red}{io密集型}$:IO密集型指的是系统的CPU性能相对硬盘、内存要好很多，此时，系统运作，大部分的状况是CPU在等I/O (硬盘/内存) 的读/写操作，此时CPU Loading并不高。<br>$\textcolor{red}{Cpython}$</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span>cpython和ipython的区别:</span><br><span class="line">	CPython是用C语言编写的实现,CPython是使用字节码的解释器，CPython将您的Python代码编译为字节码</span><br><span class="line">	cpython就是我们下载完Python后通过命令行Python进入的解释器</span><br><span class="line">	CPython用&gt;&gt;&gt;作为提示符，而IPython用In [序号]:作为提示符。</span><br><span class="line">	</span><br><span class="line">	使用:</span><br><span class="line">		<span class="number">1.</span>创建名为.pyx后缀的文件,文件内写符合C格式的代码(较难)</span><br><span class="line">		<span class="number">2.</span>创建setup.py文件</span><br><span class="line">		<span class="number">3.</span>python setup.py install 生成.c文件</span><br><span class="line">		<span class="number">4.</span>进入cpython,<span class="keyword">import</span> 模块</span><br><span class="line">	案例:Helloworld</span><br><span class="line">      <span class="number">1.</span>创建一个文件helloworld.pyx,内容如下:</span><br><span class="line">        print(<span class="string">'hello world!'</span>)</span><br><span class="line">      <span class="number">2.</span>创建setup.py文件,内容如下</span><br><span class="line">    	<span class="keyword">from</span> distutils.core <span class="keyword">import</span> setup</span><br><span class="line">        <span class="keyword">from</span> Cython.Build <span class="keyword">import</span> cythonize</span><br><span class="line">        setup(</span><br><span class="line">        	ext_modules = cythonize(<span class="string">"helloworld.pyx))</span></span><br><span class="line"><span class="string">       3.命令行进入到当前的位置,python setup.py install,生成文件</span></span><br><span class="line"><span class="string">       4.命令行使用Python进入cpython,import helloworld会自动输入helloworld</span></span><br><span class="line"><span class="string">          (通常为import fib fib.fib(10)的形式调用函数)</span></span><br><span class="line"><span class="string">2.实现:Cython</span></span><br><span class="line"><span class="string">   一.注意:</span></span><br><span class="line"><span class="string">     1.Cython的扩展名为.pyx</span></span><br><span class="line"><span class="string">     2.引入模块cimport 模块名</span></span><br><span class="line"><span class="string">     3.@cython.boundscheck(False) 和 @cython.wraparound(False) 两个修饰符用来关闭 Cython 的边界检查  </span></span><br><span class="line"><span class="string">	 4.Cython的函数使用cdef定义</span></span><br><span class="line"><span class="string">   二.实现方法1</span></span><br><span class="line"><span class="string">     同上面的helloworld案例</span></span><br><span class="line"><span class="string">   三.实现方法2</span></span><br><span class="line"><span class="string">     1.创建名为.pyx的文件</span></span><br><span class="line"><span class="string">     2.不需要创建setup.py文件,直接在函数里导入</span></span><br><span class="line"><span class="string">        import pyximport </span></span><br><span class="line"><span class="string">        pyximport.install()</span></span><br><span class="line"><span class="string">        import 模块名</span></span><br><span class="line"><span class="string">        导入函数:模块名.函数名(参数)</span></span><br></pre></td></tr></table></figure>
 <p>$\textcolor{red}{Cython}$</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1.在 Cython 中，类型标注对于提升速度是至关重要的</span><br><span class="line">2.C语言在定义函数的时候,参数是要设定类型的,变量使用前需要定义类型</span><br><span class="line">3.难点在代码转换,如何将Python形式的代码转换成C语言形式</span><br></pre></td></tr></table></figure>
@@ -618,7 +618,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">70</span>
+                    <span class="site-state-item-count">77</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -667,7 +667,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">16</span>
+                      
+                    
+                    <span class="site-state-item-count">17</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -758,7 +760,11 @@
                     
                       
                     
-                    <span class="site-state-item-count">37</span>
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">39</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
