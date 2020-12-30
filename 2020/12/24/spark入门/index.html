@@ -110,7 +110,7 @@
 <meta property="og:image" content="http://kl66.top/2020/12/24/spark入门/a5c6525ad8f559b0511319b4e1ec76e.png">
 <meta property="og:image" content="http://kl66.top/2020/12/24/spark入门/spark生态.png">
 <meta property="og:image" content="https://09.imgmini.eastday.com/mobile/20180816/20180816022008_eabed2f30c5de62141c18940932dfe79_4.jpeg">
-<meta property="og:updated_time" content="2020-12-30T09:28:23.311Z">
+<meta property="og:updated_time" content="2020-12-30T09:56:55.783Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="spark入门">
 <meta name="twitter:description" content="Apache重要的三个基金会项目(hadoop,spark,storm)Spark提供了内存计算，减少了迭代计算时的IO开销；虽然，Hadoop已成为大数据的事实标准，但其MapReduce分布式计算模型仍存在诸多缺陷，而Spark不仅具备Hadoop MapReduce所具有的优点，且解决了Hadoop MapReduce的缺陷。 Spark:可以作为一个更加快速、高效的大数据计算平台。基于内存">
@@ -424,7 +424,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2020-12-30 17:28:23" itemprop="dateModified" datetime="2020-12-30T17:28:23+08:00">2020-12-30</time>
+                <time title="修改时间：2020-12-30 17:56:55" itemprop="dateModified" datetime="2020-12-30T17:56:55+08:00">2020-12-30</time>
               
             
           </span>
@@ -492,7 +492,7 @@
 <p>​    5.$任务:$运行在executor上的工作单元</p>
 <p>​    6.$作业:$包含多个RDD及对应RDD上的操作</p>
 <p>​    7.$阶段:$作业的基本调度单位,一个作业会分成多组任务,每组任务称为阶段</p>
-<h5 id="spark运行架构"><a href="#spark运行架构" class="headerlink" title="spark运行架构"></a>spark运行架构</h5><p><img src="/2020/12/24/spark入门/1609144230200.png" alt="1609144230200"></p>
+<h5 id="RDD详解-待补充"><a href="#RDD详解-待补充" class="headerlink" title="RDD详解(待补充)"></a>RDD详解(待补充)</h5><h3 id="pass"><a href="#pass" class="headerlink" title="pass"></a>pass</h3><h5 id="spark运行架构"><a href="#spark运行架构" class="headerlink" title="spark运行架构"></a>spark运行架构</h5><p><img src="/2020/12/24/spark入门/1609144230200.png" alt="1609144230200"></p>
 <p>​    $driver:$每个应用的任务控制节点</p>
 <p>​    $cluster  manager:$集群资源管理器</p>
 <p>​    $node:$运行作业任务的工作节点</p>
@@ -542,8 +542,7 @@
 <p>​    $整体:$</p>
 <p>​        spark最大的优点就是将计算结果,中间数据存储到内存中,大大减少了IO开销.因为spark更适合迭代运算多的数据挖掘和机器学习运算</p>
 <p>​    $总:$尽管整体上spark比hadoop要好,但是无法完全替代hadoop,通常是用来替代hadoop的MapReduce部分</p>
-<p>#####spark生态</p>
-<p><img src="/2020/12/24/spark入门/spark生态.png" alt="spark生态"></p>
+<h5 id="spark生态"><a href="#spark生态" class="headerlink" title="spark生态"></a>spark生态</h5><p><img src="/2020/12/24/spark入门/spark生态.png" alt="spark生态"></p>
 <p>​    spark生态主要包含$\textcolor{red}{Spark Core}$ ,$\textcolor{red}{Spark Sql}$,$\textcolor{red}{Spark Screaming}$,$\textcolor{red}{MLlib}$,$\textcolor{red}{Graphx}$</p>
 <p>​    $\textcolor{red}{Spark Core:}$Spark Core包含Spark的基本功能，如内存计算、任务调度、部署模式、故障恢复、存储管理等。通常所说的Apache Spark，就是指Spark Core</p>
 <p>​    $\textcolor{red}{Spark Sql:}$Spark SQL允许直接处理RDD，同时也可查询Hive、HBase等外部数据源。Spark SQL的一个重要特点是其能够统一处理关系表和RDD，使得开发人员可以轻松地使用SQL命令进行查询，并进行更复杂的数据分析；</p>
@@ -905,7 +904,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#Apache重要的三个基金会项目-hadoop-spark-storm"><span class="nav-number">1.</span> <span class="nav-text">Apache重要的三个基金会项目(hadoop,spark,storm)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#spark的概念"><span class="nav-number">2.</span> <span class="nav-text">spark的概念</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#spark运行架构"><span class="nav-number">3.</span> <span class="nav-text">spark运行架构</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#spark运行基本流程"><span class="nav-number">4.</span> <span class="nav-text">spark运行基本流程</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#spark部署"><span class="nav-number">5.</span> <span class="nav-text">spark部署</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#spark相对hadoop的优势"><span class="nav-number">6.</span> <span class="nav-text">spark相对hadoop的优势</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#在pyspark中执行词频统计"><span class="nav-number">7.</span> <span class="nav-text">在pyspark中执行词频统计</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#编写独立应用程序执行词频统计"><span class="nav-number">8.</span> <span class="nav-text">编写独立应用程序执行词频统计</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#在集群上运行spark"><span class="nav-number">9.</span> <span class="nav-text">在集群上运行spark</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#Apache重要的三个基金会项目-hadoop-spark-storm"><span class="nav-number">1.</span> <span class="nav-text">Apache重要的三个基金会项目(hadoop,spark,storm)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#spark的概念"><span class="nav-number">2.</span> <span class="nav-text">spark的概念</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#RDD详解-待补充"><span class="nav-number">3.</span> <span class="nav-text">RDD详解(待补充)</span></a></li></ol><li class="nav-item nav-level-3"><a class="nav-link" href="#pass"><span class="nav-number"></span> <span class="nav-text">pass</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#spark运行架构"><span class="nav-number">1.</span> <span class="nav-text">spark运行架构</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#spark运行基本流程"><span class="nav-number">2.</span> <span class="nav-text">spark运行基本流程</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#spark部署"><span class="nav-number">3.</span> <span class="nav-text">spark部署</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#spark相对hadoop的优势"><span class="nav-number">4.</span> <span class="nav-text">spark相对hadoop的优势</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#spark生态"><span class="nav-number">5.</span> <span class="nav-text">spark生态</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#在pyspark中执行词频统计"><span class="nav-number">6.</span> <span class="nav-text">在pyspark中执行词频统计</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#编写独立应用程序执行词频统计"><span class="nav-number">7.</span> <span class="nav-text">编写独立应用程序执行词频统计</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#在集群上运行spark"><span class="nav-number">8.</span> <span class="nav-text">在集群上运行spark</span></a></li></ol></li></div>
             
 
           </div>
