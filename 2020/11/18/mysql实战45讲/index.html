@@ -98,19 +98,20 @@
 
 
 
-  <meta name="description" content="title: mysql实战45讲date: 2020-11-18 16:56:33categories: mysqltags: mysql基础 第一讲 Mysql查询执行流程(笔记来自极客时间)1.mysql架构 #####2.架构解释 ​        ①mysql架构由两部分组成,server端和存储引擎 ​                ②    连接器:建立连接,验证权限,维持和管理连接">
+  <meta name="description" content="第一讲 Mysql查询执行流程(笔记来自极客时间)1.mysql架构 2.架构解释​        ①mysql架构由两部分组成,server端和存储引擎 ​                ②    连接器:建立连接,验证权限,维持和管理连接 ​                        分析器:首先分析每个词代表的含义,然后分析整个sql语句的语法 ​">
+<meta name="keywords" content="mysql基础">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Mr kuai">
+<meta property="og:title" content="mysql实战45讲">
 <meta property="og:url" content="http://kl66.top/2020/11/18/mysql实战45讲/index.html">
 <meta property="og:site_name" content="Mr kuai">
-<meta property="og:description" content="title: mysql实战45讲date: 2020-11-18 16:56:33categories: mysqltags: mysql基础 第一讲 Mysql查询执行流程(笔记来自极客时间)1.mysql架构 #####2.架构解释 ​        ①mysql架构由两部分组成,server端和存储引擎 ​                ②    连接器:建立连接,验证权限,维持和管理连接">
+<meta property="og:description" content="第一讲 Mysql查询执行流程(笔记来自极客时间)1.mysql架构 2.架构解释​        ①mysql架构由两部分组成,server端和存储引擎 ​                ②    连接器:建立连接,验证权限,维持和管理连接 ​                        分析器:首先分析每个词代表的含义,然后分析整个sql语句的语法 ​">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://kl66.top/2020/11/18/mysql实战45讲/0d2070e8f84c4801adbfa03bda1f98d9.png">
-<meta property="og:image" content="http://kl66.top/2020/11/18/mysql实战45讲/mysql实战45讲//2e5bff4910ec189fe1ee6e2ecc7b4bbe.png">
-<meta property="og:updated_time" content="2020-12-18T06:43:06.111Z">
+<meta property="og:image" content="http://kl66.top/2020/11/18/mysql实战45讲/2e5bff4910ec189fe1ee6e2ecc7b4bbe.png">
+<meta property="og:updated_time" content="2020-12-30T02:16:10.100Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Mr kuai">
-<meta name="twitter:description" content="title: mysql实战45讲date: 2020-11-18 16:56:33categories: mysqltags: mysql基础 第一讲 Mysql查询执行流程(笔记来自极客时间)1.mysql架构 #####2.架构解释 ​        ①mysql架构由两部分组成,server端和存储引擎 ​                ②    连接器:建立连接,验证权限,维持和管理连接">
+<meta name="twitter:title" content="mysql实战45讲">
+<meta name="twitter:description" content="第一讲 Mysql查询执行流程(笔记来自极客时间)1.mysql架构 2.架构解释​        ①mysql架构由两部分组成,server端和存储引擎 ​                ②    连接器:建立连接,验证权限,维持和管理连接 ​                        分析器:首先分析每个词代表的含义,然后分析整个sql语句的语法 ​">
 <meta name="twitter:image" content="http://kl66.top/2020/11/18/mysql实战45讲/0d2070e8f84c4801adbfa03bda1f98d9.png">
 
 
@@ -129,7 +130,7 @@
   };
 </script>
 
-  <title> | Mr kuai</title>
+  <title>mysql实战45讲 | Mr kuai</title>
   
 
 
@@ -378,7 +379,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
+          <h1 class="post-title" itemprop="name headline">mysql实战45讲
 
               
             
@@ -421,11 +422,29 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2020-12-18 14:43:06" itemprop="dateModified" datetime="2020-12-18T14:43:06+08:00">2020-12-18</time>
+                <time title="修改时间：2020-12-30 10:16:10" itemprop="dateModified" datetime="2020-12-30T10:16:10+08:00">2020-12-30</time>
               
             
           </span>
 
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/mysql/" itemprop="url" rel="index"><span itemprop="name">mysql</span></a></span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -462,10 +481,8 @@
       
 
       
-        <p>title: mysql实战45讲<br>date: 2020-11-18 16:56:33<br>categories: mysql<br>tags: mysql基础</p>
-<h4 id="第一讲-Mysql查询执行流程-笔记来自极客时间"><a href="#第一讲-Mysql查询执行流程-笔记来自极客时间" class="headerlink" title="第一讲 Mysql查询执行流程(笔记来自极客时间)"></a>第一讲 Mysql查询执行流程(笔记来自极客时间)</h4><h5 id="1-mysql架构"><a href="#1-mysql架构" class="headerlink" title="1.mysql架构"></a>1.mysql架构</h5><p><img src="/2020/11/18/mysql实战45讲/0d2070e8f84c4801adbfa03bda1f98d9.png" alt="img"></p>
-<p>#####2.架构解释</p>
-<p>​        ①mysql架构由两部分组成,server端和存储引擎</p>
+        <h4 id="第一讲-Mysql查询执行流程-笔记来自极客时间"><a href="#第一讲-Mysql查询执行流程-笔记来自极客时间" class="headerlink" title="第一讲 Mysql查询执行流程(笔记来自极客时间)"></a>第一讲 Mysql查询执行流程(笔记来自极客时间)</h4><h5 id="1-mysql架构"><a href="#1-mysql架构" class="headerlink" title="1.mysql架构"></a>1.mysql架构</h5><p><img src="/2020/11/18/mysql实战45讲/0d2070e8f84c4801adbfa03bda1f98d9.png" alt="img"></p>
+<h5 id="2-架构解释"><a href="#2-架构解释" class="headerlink" title="2.架构解释"></a>2.架构解释</h5><p>​        ①mysql架构由两部分组成,server端和存储引擎</p>
 <p>​                ②    连接器:建立连接,验证权限,维持和管理连接</p>
 <p>​                        分析器:首先分析每个词代表的含义,然后分析整个sql语句的语法</p>
 <p>​                        查询缓存:键值对形式,sql语句对应数据缓存,命中sql,则直接返回数据。</p>
@@ -475,10 +492,7 @@
 <p>​            1)查询缓存在8.0版本取消,查询缓存并没有想象中那么好用,命中率很低,而且表变化后缓存就会清空,适合静态表,很久才更新的那种</p>
 <p>​                         2)如果查询缓存命中的时候,会在返回数据的时候做权限验证,验证是否有这张表的权限</p>
 <p>​                         3)执行器,在执行sql前先判断是否对表有执行查询的权限,有则从引擎取数据</p>
-<p>####第二讲  Mysql更新记录操作流程</p>
-<h5 id="总体-1-查询的执行过程同查询过程一致"><a href="#总体-1-查询的执行过程同查询过程一致" class="headerlink" title="总体:1.查询的执行过程同查询过程一致"></a>总体:1.查询的执行过程同查询过程一致</h5><pre><code>#####            2.一个表的数据更新的时候,跟这个表相关的所有缓存都会消失
-</code></pre><h5 id="3-不同于查询-更新涉及到两个日志模块。redo-log和binlog"><a href="#3-不同于查询-更新涉及到两个日志模块。redo-log和binlog" class="headerlink" title="3.不同于查询,更新涉及到两个日志模块。redo log和binlog"></a>3.不同于查询,更新涉及到两个日志模块。redo log和binlog</h5><p>#####redo log:(保证数据不会丢失)—-&gt;innodb特有</p>
-<p>​    1.目的:每次更新都需要写到磁盘,然后磁盘也要找到那条记录然后更新数据,这样导致整个IO成本和查找成本都很高.同时redo log</p>
+<h4 id="第二讲-Mysql更新记录操作流程"><a href="#第二讲-Mysql更新记录操作流程" class="headerlink" title="第二讲  Mysql更新记录操作流程"></a>第二讲  Mysql更新记录操作流程</h4><h5 id="总体-1-查询的执行过程同查询过程一致"><a href="#总体-1-查询的执行过程同查询过程一致" class="headerlink" title="总体:1.查询的执行过程同查询过程一致"></a>总体:1.查询的执行过程同查询过程一致</h5><h5 id="2-一个表的数据更新的时候-跟这个表相关的所有缓存都会消失"><a href="#2-一个表的数据更新的时候-跟这个表相关的所有缓存都会消失" class="headerlink" title="2.一个表的数据更新的时候,跟这个表相关的所有缓存都会消失"></a>2.一个表的数据更新的时候,跟这个表相关的所有缓存都会消失</h5><h5 id="3-不同于查询-更新涉及到两个日志模块。redo-log和binlog"><a href="#3-不同于查询-更新涉及到两个日志模块。redo-log和binlog" class="headerlink" title="3.不同于查询,更新涉及到两个日志模块。redo log和binlog"></a>3.不同于查询,更新涉及到两个日志模块。redo log和binlog</h5><h5 id="redo-log-保证数据不会丢失-—-gt-innodb特有"><a href="#redo-log-保证数据不会丢失-—-gt-innodb特有" class="headerlink" title="redo log:(保证数据不会丢失)—-&gt;innodb特有"></a>redo log:(保证数据不会丢失)—-&gt;innodb特有</h5><p>​    1.目的:每次更新都需要写到磁盘,然后磁盘也要找到那条记录然后更新数据,这样导致整个IO成本和查找成本都很高.同时redo log</p>
 <p>​    2.日志和磁盘和结合,即所说的WAL技术(write ahead logging),即先写日志,再写磁盘(不忙的时候),日志写满则开始写入磁盘</p>
 <p>​        补充:日志存储在磁盘里,写日志用的是顺序IO,更新操作用的是随机IO,而顺序IO比随机IO 快很多(随机IO要寻址)</p>
 <p>​    3.crash safe能力:数据库异常重启时,不会丢失数据</p>
@@ -488,7 +502,7 @@
 <p>​    2.redo是物理日志,记录在某个&lt;数据页&gt;做了什么修改,binlog是逻辑日志.记录了sql</p>
 <p>​        Binlog有两种模式，statement 格式的话是记sql语句， row格式(常用)会记录行的内容，记两条，更新前和更新后都有。</p>
 <p>​    3.redo log是循环写,空间有限制,写完了就写入磁盘然后重新写.而binlog是追加写,一个文件达到一定大小后,开始下一个</p>
-<h5 id="update流程"><a href="#update流程" class="headerlink" title="update流程"></a>update流程</h5><p><img src="mysql实战45讲\/2e5bff4910ec189fe1ee6e2ecc7b4bbe.png" alt="img"></p>
+<h5 id="update流程"><a href="#update流程" class="headerlink" title="update流程"></a>update流程</h5><p><img src="/2020/11/18/mysql实战45讲/2e5bff4910ec189fe1ee6e2ecc7b4bbe.png" alt="img"></p>
 <p>1.获取id=2这行判断是否在缓存里.若果是则直接获取,不是则从磁盘读取.</p>
 <p>2.将这行数据的c+1</p>
 <p>3.写入新行</p>
@@ -500,8 +514,7 @@
 <p>​        假设redo log 写完后,系统重启,这时候binlog还没写,redo log 写过,这样当使用binlog恢复数据时,就会出现数据库少了一次更新</p>
 <p>​    2.先写bin log 后写 redo log</p>
 <p>​        假设在写完binlog时候crash,由于redo log没有提交,则重启后事务无效,但是binlog已经更改,这样,当恢复数据的时候就会出现多了一次事务</p>
-<h4 id="第三讲-事务隔离"><a href="#第三讲-事务隔离" class="headerlink" title="第三讲 事务隔离"></a>第三讲 事务隔离</h4><pre><code>##### 1.Innodb支持事务而Mysiam不支持
-</code></pre><h5 id="2-事务的隔离性和隔离级别"><a href="#2-事务的隔离性和隔离级别" class="headerlink" title="2.事务的隔离性和隔离级别"></a>2.事务的隔离性和隔离级别</h5><p>​    ①事务的隔离级别:ACID,原子性,一致性,隔离性,持久性</p>
+<h4 id="第三讲-事务隔离"><a href="#第三讲-事务隔离" class="headerlink" title="第三讲 事务隔离"></a>第三讲 事务隔离</h4><h5 id="1-Innodb支持事务而Mysiam不支持"><a href="#1-Innodb支持事务而Mysiam不支持" class="headerlink" title="1.Innodb支持事务而Mysiam不支持"></a>1.Innodb支持事务而Mysiam不支持</h5><h5 id="2-事务的隔离性和隔离级别"><a href="#2-事务的隔离性和隔离级别" class="headerlink" title="2.事务的隔离性和隔离级别"></a>2.事务的隔离性和隔离级别</h5><p>​    ①事务的隔离级别:ACID,原子性,一致性,隔离性,持久性</p>
 <p>​    ②多事务可能出现的问题:脏读,幻读,不可重复读</p>
 <p>​        脏读:读到其他事务未提交的数据</p>
 <p>​        幻读:前后读取的记录数量不一致</p>
@@ -530,6 +543,12 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/mysql基础/" rel="tag"># mysql基础</a>
+          
+        </div>
+      
 
       
       
@@ -539,8 +558,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2020/11/10/Xgboost (1)/" rel="next" title>
-                <i class="fa fa-chevron-left"></i> 
+              <a href="/2020/09/24/pypy/" rel="next" title="pypy">
+                <i class="fa fa-chevron-left"></i> pypy
               </a>
             
           </div>
@@ -682,7 +701,11 @@
                     
                       
                     
-                    <span class="site-state-item-count">19</span>
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">21</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -781,7 +804,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">41</span>
+                      
+                    
+                    <span class="site-state-item-count">42</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -819,7 +844,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#第一讲-Mysql查询执行流程-笔记来自极客时间"><span class="nav-number">1.</span> <span class="nav-text">第一讲 Mysql查询执行流程(笔记来自极客时间)</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-mysql架构"><span class="nav-number">1.1.</span> <span class="nav-text">1.mysql架构</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#总体-1-查询的执行过程同查询过程一致"><span class="nav-number">1.2.</span> <span class="nav-text">总体:1.查询的执行过程同查询过程一致</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-不同于查询-更新涉及到两个日志模块。redo-log和binlog"><span class="nav-number">1.3.</span> <span class="nav-text">3.不同于查询,更新涉及到两个日志模块。redo log和binlog</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#binlog-server层特有-—-gt-所有引擎共用"><span class="nav-number">1.4.</span> <span class="nav-text">binlog:(server层特有)—-&gt;所有引擎共用</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#redolog和binlog的区别"><span class="nav-number">1.5.</span> <span class="nav-text">redolog和binlog的区别</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#update流程"><span class="nav-number">1.6.</span> <span class="nav-text">update流程</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#binlog数据恢复过程"><span class="nav-number">1.7.</span> <span class="nav-text">binlog数据恢复过程</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#为什么要分两段提交以及提交的顺序-这里不使用分段提交"><span class="nav-number">1.8.</span> <span class="nav-text">为什么要分两段提交以及提交的顺序(这里不使用分段提交)</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#第三讲-事务隔离"><span class="nav-number">2.</span> <span class="nav-text">第三讲 事务隔离</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#2-事务的隔离性和隔离级别"><span class="nav-number">2.1.</span> <span class="nav-text">2.事务的隔离性和隔离级别</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#第一讲-Mysql查询执行流程-笔记来自极客时间"><span class="nav-number">1.</span> <span class="nav-text">第一讲 Mysql查询执行流程(笔记来自极客时间)</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-mysql架构"><span class="nav-number">1.1.</span> <span class="nav-text">1.mysql架构</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-架构解释"><span class="nav-number">1.2.</span> <span class="nav-text">2.架构解释</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#第二讲-Mysql更新记录操作流程"><span class="nav-number">2.</span> <span class="nav-text">第二讲  Mysql更新记录操作流程</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#总体-1-查询的执行过程同查询过程一致"><span class="nav-number">2.1.</span> <span class="nav-text">总体:1.查询的执行过程同查询过程一致</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-一个表的数据更新的时候-跟这个表相关的所有缓存都会消失"><span class="nav-number">2.2.</span> <span class="nav-text">2.一个表的数据更新的时候,跟这个表相关的所有缓存都会消失</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-不同于查询-更新涉及到两个日志模块。redo-log和binlog"><span class="nav-number">2.3.</span> <span class="nav-text">3.不同于查询,更新涉及到两个日志模块。redo log和binlog</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#redo-log-保证数据不会丢失-—-gt-innodb特有"><span class="nav-number">2.4.</span> <span class="nav-text">redo log:(保证数据不会丢失)—-&gt;innodb特有</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#binlog-server层特有-—-gt-所有引擎共用"><span class="nav-number">2.5.</span> <span class="nav-text">binlog:(server层特有)—-&gt;所有引擎共用</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#redolog和binlog的区别"><span class="nav-number">2.6.</span> <span class="nav-text">redolog和binlog的区别</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#update流程"><span class="nav-number">2.7.</span> <span class="nav-text">update流程</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#binlog数据恢复过程"><span class="nav-number">2.8.</span> <span class="nav-text">binlog数据恢复过程</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#为什么要分两段提交以及提交的顺序-这里不使用分段提交"><span class="nav-number">2.9.</span> <span class="nav-text">为什么要分两段提交以及提交的顺序(这里不使用分段提交)</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#第三讲-事务隔离"><span class="nav-number">3.</span> <span class="nav-text">第三讲 事务隔离</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-Innodb支持事务而Mysiam不支持"><span class="nav-number">3.1.</span> <span class="nav-text">1.Innodb支持事务而Mysiam不支持</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-事务的隔离性和隔离级别"><span class="nav-number">3.2.</span> <span class="nav-text">2.事务的隔离性和隔离级别</span></a></li></ol></li></ol></div>
             
 
           </div>
