@@ -108,7 +108,9 @@
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://kl66.top/2020/12/24/spark入门/1609144230200.png">
 <meta property="og:image" content="http://kl66.top/2020/12/24/spark入门/a5c6525ad8f559b0511319b4e1ec76e.png">
-<meta property="og:updated_time" content="2020-12-30T02:24:59.373Z">
+<meta property="og:image" content="http://kl66.top/2020/12/24/spark入门/spark生态.png">
+<meta property="og:image" content="https://09.imgmini.eastday.com/mobile/20180816/20180816022008_eabed2f30c5de62141c18940932dfe79_4.jpeg">
+<meta property="og:updated_time" content="2020-12-30T09:28:23.311Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="spark入门">
 <meta name="twitter:description" content="Apache重要的三个基金会项目(hadoop,spark,storm)Spark提供了内存计算，减少了迭代计算时的IO开销；虽然，Hadoop已成为大数据的事实标准，但其MapReduce分布式计算模型仍存在诸多缺陷，而Spark不仅具备Hadoop MapReduce所具有的优点，且解决了Hadoop MapReduce的缺陷。 Spark:可以作为一个更加快速、高效的大数据计算平台。基于内存">
@@ -422,7 +424,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2020-12-30 10:24:59" itemprop="dateModified" datetime="2020-12-30T10:24:59+08:00">2020-12-30</time>
+                <time title="修改时间：2020-12-30 17:28:23" itemprop="dateModified" datetime="2020-12-30T17:28:23+08:00">2020-12-30</time>
               
             
           </span>
@@ -539,7 +541,48 @@
 <p>​        3.spark使用的是DAG进行任务调度,比MapReduce的迭代执行机制强</p>
 <p>​    $整体:$</p>
 <p>​        spark最大的优点就是将计算结果,中间数据存储到内存中,大大减少了IO开销.因为spark更适合迭代运算多的数据挖掘和机器学习运算</p>
-<p>​    </p>
+<p>​    $总:$尽管整体上spark比hadoop要好,但是无法完全替代hadoop,通常是用来替代hadoop的MapReduce部分</p>
+<p>#####spark生态</p>
+<p><img src="/2020/12/24/spark入门/spark生态.png" alt="spark生态"></p>
+<p>​    spark生态主要包含$\textcolor{red}{Spark Core}$ ,$\textcolor{red}{Spark Sql}$,$\textcolor{red}{Spark Screaming}$,$\textcolor{red}{MLlib}$,$\textcolor{red}{Graphx}$</p>
+<p>​    $\textcolor{red}{Spark Core:}$Spark Core包含Spark的基本功能，如内存计算、任务调度、部署模式、故障恢复、存储管理等。通常所说的Apache Spark，就是指Spark Core</p>
+<p>​    $\textcolor{red}{Spark Sql:}$Spark SQL允许直接处理RDD，同时也可查询Hive、HBase等外部数据源。Spark SQL的一个重要特点是其能够统一处理关系表和RDD，使得开发人员可以轻松地使用SQL命令进行查询，并进行更复杂的数据分析；</p>
+<p>​    $\textcolor{red}{Spark Screaming:}$    Spark Streaming支持高吞吐量、可容错处理的实时流数据处理，其核心思路是将流式计算分解成一系列短小的批处理作业。</p>
+<p>​    $\textcolor{red}{Graphx:}$GraphX是Spark中用于图计算的API</p>
+<p>​    $\textcolor{red}{MLlib:}$MLlib提供了常用机器学习算法的实现，包括聚类、分类、回归、协同过滤等</p>
+<h5 id="在pyspark中执行词频统计"><a href="#在pyspark中执行词频统计" class="headerlink" title="在pyspark中执行词频统计"></a>在pyspark中执行词频统计</h5><p>​    $案例1.词频统计$</p>
+<p>​        ①首先创建一个worldcount目录(shell 命令下)</p>
+<p>​        ②然后创建一个txt文件,里面随便写一些文字.作为统计的原材料</p>
+<p>​        ③词频统计需要启动pyspark.cd /usr/local/spark   然后  ./bin/pyspark</p>
+<p>​        ④加载文件—&gt;确定是在本地还是在分布式的hdfs上</p>
+<p>​        $本地$:</p>
+<p>​            textFile = sc.textFile(‘file:///usr/local/spark/mycode/wordcount/word.txt’)(要加载本地文件，必须采用“file:///”开头的这种格式)–&gt;惰性的,需要first()这种才能打印出数据</p>
+<p>​            textFile.first()(打印第一行数据,文件不存在会显示拒绝连接)</p>
+<p>​        $HDFS$:</p>
+<p>​            需要首先启动Hadoop中的HDFS组件</p>
+<p>​            1.  cd /usr/local/hadoop</p>
+<p>​            2.  ./sbin/start-dfs.sh</p>
+<p>​            $\textcolor{red}{上传文件到hdfs上}$./bin/hdfs dfs -put /usr/local/spark/mycode/wordcount/word.txt .</p>
+<p>​            3.加载文件textFile = sc.textFile(“hdfs://localhost:9000/user/hadoop/word.txt”)–&gt;惰性的</p>
+<p>​        ⑤写代码,在pyspark窗口(类似于ipython那种&gt;&gt;&gt;),代码如下</p>
+<p>​            textFile = sc.textFile(“file:///usr/local/spark/mycode/wordcount/word.txt”)</p>
+<p>​            wordCount = textFile.flatMap(lambda line: line.split(“ “)).map(lambda word: (word,1)).reduceByKey(lambda a, b : a + b)</p>
+<p>​             wordCount.collect()</p>
+<p>​            $\textcolor{red}{代码解释:}$</p>
+<p>​                 1.第一行即从本地加载文件数据</p>
+<p>​                 2.第二行textFile.flatMap(lambda line: line.split(“ “))表示按行处理,每行按照空白符分割.这样每行得到一个单词集合.textFile.flatMap()操作就把这多个单词集合“拍扁”得到一个大的单词集合.map(lambda word: (word,1))会遍历单词集合中的每一个单词,并执行Lamda表达式word : (word, 1).</p>
+<p>​                程序执行到这里，已经得到一个RDD，这个RDD的每个元素是(key,value)形式的tuple。最后，针对这个RDD，执行reduceByKey(labmda a, b : a + b)操作，这个操作会把所有RDD元素按照key进行分组，然后使用给定的函数（这里就是Lamda表达式：a, b : a + b）</p>
+<p>​                如:(“hadoop”,1)和(“hadoop”,1)—–&gt;(“hadoop”,2)</p>
+<h5 id="编写独立应用程序执行词频统计"><a href="#编写独立应用程序执行词频统计" class="headerlink" title="编写独立应用程序执行词频统计"></a>编写独立应用程序执行词频统计</h5><p>​    1.创建test.py文件内容如下</p>
+<p>​        from pyspark import SparkContext</p>
+<p>​        sc = SparkContext( ‘local’, ‘test’)</p>
+<p>​        textFile = sc.textFile(“file:///usr/local/spark/mycode/wordcount/word.txt”)</p>
+<p>​        wordCount = textFile.flatMap(lambda line: line.split(“ “)).map(lambda word: (word,1)).reduceByKey(lambda a, b : a + b)</p>
+<p>​        wordCount.foreach(print)</p>
+<h5 id="在集群上运行spark"><a href="#在集群上运行spark" class="headerlink" title="在集群上运行spark"></a>在集群上运行spark</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">1.启动hadoop集群</span><br><span class="line">	①cd /usr/local/hadoop/</span><br><span class="line">	②sbin/start-all.sh</span><br><span class="line">2.启动spark的master节点和索引slaves节点</span><br><span class="line">	①cd /usr/local/spark/</span><br><span class="line">	②sbin/start-master.sh</span><br><span class="line">	③sbin/start-slaves.sh</span><br><span class="line">3.介绍两种资源管理方式standalone 和 spark on yarn</span><br><span class="line">独立资源管理器:</span><br><span class="line">	1&gt;安装jar包</span><br><span class="line">		向独立集群管理器提交应用,需要把spark://master:7077作为主节点参数传递给spark-submit.</span><br><span class="line">		eg:bin/spark-submit --class org.apache.spark.examples.SparkPi --master spark://master:7077 examples/jars/spark-examples_2.11-2.0.2.jar 100 2&gt;&amp;1 | grep &quot;Pi is roughly&quot;</span><br><span class="line">	2&gt;在集群中运行pyspark</span><br><span class="line">		①在shell中输入命令进入pyspark中</span><br><span class="line">			cd /usr/local/spark/</span><br><span class="line">			bin/pyspark --master spark://master:7077</span><br><span class="line">spark on yarn:</span><br><span class="line">	1&gt;安装应用程序jar包</span><br><span class="line">		需要把yarn-cluster作为主节点参数传递给spark-submit</span><br><span class="line">	2&gt;在集群中运行pyspark</span><br><span class="line">		①bin/pyspark --master yarn</span><br></pre></td></tr></table></figure>
+<p>$\textcolor{red}{spark-submit}$ 可以提交任务到 spark 集群执行，也可以提交到 hadoop 的 yarn 集群执行。</p>
+<p>bin/spark-submit –class org.apache.spark.examples.SparkPi –master表示以集群模式启动spark</p>
+<p><img src="https://09.imgmini.eastday.com/mobile/20180816/20180816022008_eabed2f30c5de62141c18940932dfe79_4.jpeg" alt="img"></p>
 
       
     </div>
@@ -862,7 +905,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#Apache重要的三个基金会项目-hadoop-spark-storm"><span class="nav-number">1.</span> <span class="nav-text">Apache重要的三个基金会项目(hadoop,spark,storm)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#spark的概念"><span class="nav-number">2.</span> <span class="nav-text">spark的概念</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#spark运行架构"><span class="nav-number">3.</span> <span class="nav-text">spark运行架构</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#spark运行基本流程"><span class="nav-number">4.</span> <span class="nav-text">spark运行基本流程</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#spark部署"><span class="nav-number">5.</span> <span class="nav-text">spark部署</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#spark相对hadoop的优势"><span class="nav-number">6.</span> <span class="nav-text">spark相对hadoop的优势</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#Apache重要的三个基金会项目-hadoop-spark-storm"><span class="nav-number">1.</span> <span class="nav-text">Apache重要的三个基金会项目(hadoop,spark,storm)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#spark的概念"><span class="nav-number">2.</span> <span class="nav-text">spark的概念</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#spark运行架构"><span class="nav-number">3.</span> <span class="nav-text">spark运行架构</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#spark运行基本流程"><span class="nav-number">4.</span> <span class="nav-text">spark运行基本流程</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#spark部署"><span class="nav-number">5.</span> <span class="nav-text">spark部署</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#spark相对hadoop的优势"><span class="nav-number">6.</span> <span class="nav-text">spark相对hadoop的优势</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#在pyspark中执行词频统计"><span class="nav-number">7.</span> <span class="nav-text">在pyspark中执行词频统计</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#编写独立应用程序执行词频统计"><span class="nav-number">8.</span> <span class="nav-text">编写独立应用程序执行词频统计</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#在集群上运行spark"><span class="nav-number">9.</span> <span class="nav-text">在集群上运行spark</span></a></li></ol></div>
             
 
           </div>
