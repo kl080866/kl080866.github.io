@@ -1,0 +1,1886 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.1.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.1.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.1.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.1.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.1.1" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.1.1',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="用一条SQL语句查询出每门课都大于80分的学生姓名    name kecheng fenshu     张三 语文 81   张三 数学 75   李四 语文 76   李四 数学 90   王五 语文 81   王五 数学 100   王五 英语 90    1234567891011121314151617181920212223242526272829-- 建表语句CREATE TABLE">
+<meta name="keywords" content="mysql">
+<meta property="og:type" content="article">
+<meta property="og:title" content="mysql面试题">
+<meta property="og:url" content="http://kl66.top/2019/05/23/mysql面试题/index.html">
+<meta property="og:site_name" content="Mr kuai">
+<meta property="og:description" content="用一条SQL语句查询出每门课都大于80分的学生姓名    name kecheng fenshu     张三 语文 81   张三 数学 75   李四 语文 76   李四 数学 90   王五 语文 81   王五 数学 100   王五 英语 90    1234567891011121314151617181920212223242526272829-- 建表语句CREATE TABLE">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-05-24T11:23:07.427Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="mysql面试题">
+<meta name="twitter:description" content="用一条SQL语句查询出每门课都大于80分的学生姓名    name kecheng fenshu     张三 语文 81   张三 数学 75   李四 语文 76   李四 数学 90   王五 语文 81   王五 数学 100   王五 英语 90    1234567891011121314151617181920212223242526272829-- 建表语句CREATE TABLE">
+
+
+
+
+
+  
+  
+  <link rel="canonical" href="http://kl66.top/2019/05/23/mysql面试题/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>mysql面试题 | Mr kuai</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Mr kuai</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">追忆似水流年</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-meh-o"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-legal"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-ravelry"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-snowflake-o"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://kl66.top/2019/05/23/mysql面试题/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="kl">
+      <meta itemprop="description" content="66其实不太6">
+      <meta itemprop="image" content="/images/head.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mr kuai">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">mysql面试题
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-05-23 18:52:52" itemprop="dateCreated datePublished" datetime="2019-05-23T18:52:52+08:00">2019-05-23</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-05-24 19:23:07" itemprop="dateModified" datetime="2019-05-24T19:23:07+08:00">2019-05-24</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/python/" itemprop="url" rel="index"><span itemprop="name">python</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon">
+            <i class="fa fa-eye"></i>
+             阅读次数： 
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>用一条SQL语句查询出每门课都大于80分的学生姓名</p>
+<table>
+<thead>
+<tr>
+<th>name</th>
+<th>kecheng</th>
+<th>fenshu</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>张三</td>
+<td>语文</td>
+<td>81</td>
+</tr>
+<tr>
+<td>张三</td>
+<td>数学</td>
+<td>75</td>
+</tr>
+<tr>
+<td>李四</td>
+<td>语文</td>
+<td>76</td>
+</tr>
+<tr>
+<td>李四</td>
+<td>数学</td>
+<td>90</td>
+</tr>
+<tr>
+<td>王五</td>
+<td>语文</td>
+<td>81</td>
+</tr>
+<tr>
+<td>王五</td>
+<td>数学</td>
+<td>100</td>
+</tr>
+<tr>
+<td>王五</td>
+<td>英语</td>
+<td>90</td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 建表语句</span></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> <span class="string">`mst_stu`</span> (</span><br><span class="line">  <span class="string">`name`</span> <span class="built_in">varchar</span>(<span class="number">255</span>) <span class="keyword">DEFAULT</span> <span class="literal">NULL</span>,</span><br><span class="line">  <span class="string">`kecheng`</span> <span class="built_in">varchar</span>(<span class="number">255</span>) <span class="keyword">DEFAULT</span> <span class="literal">NULL</span>,</span><br><span class="line">  <span class="string">`fenshu`</span> <span class="built_in">int</span>(<span class="number">255</span>) <span class="keyword">DEFAULT</span> <span class="literal">NULL</span></span><br><span class="line">) <span class="keyword">ENGINE</span>=<span class="keyword">InnoDB</span> <span class="keyword">DEFAULT</span> <span class="keyword">CHARSET</span>=utf8mb4;</span><br><span class="line"><span class="comment">-- 数据 </span></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> <span class="string">`mst_stu`</span> <span class="keyword">VALUES</span> (<span class="string">'张三'</span>, <span class="string">'语文'</span>, <span class="number">81</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> <span class="string">`mst_stu`</span> <span class="keyword">VALUES</span> (<span class="string">'张三'</span>, <span class="string">'数学'</span>, <span class="number">75</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> <span class="string">`mst_stu`</span> <span class="keyword">VALUES</span> (<span class="string">'李四'</span>, <span class="string">'语文'</span>, <span class="number">76</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> <span class="string">`mst_stu`</span> <span class="keyword">VALUES</span> (<span class="string">'李四'</span>, <span class="string">'数学'</span>, <span class="number">90</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> <span class="string">`mst_stu`</span> <span class="keyword">VALUES</span> (<span class="string">'王五'</span>, <span class="string">'语文'</span>, <span class="number">81</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> <span class="string">`mst_stu`</span> <span class="keyword">VALUES</span> (<span class="string">'王五'</span>, <span class="string">'数学'</span>, <span class="number">100</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> <span class="string">`mst_stu`</span> <span class="keyword">VALUES</span> (<span class="string">'王五'</span>, <span class="string">'英语'</span>, <span class="number">90</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">--分析: 每门课都要大于80分,因此学生的最低分要大于80分,先根据用户分组,看每个人的最低分</span></span><br><span class="line"><span class="keyword">select</span> <span class="keyword">name</span>,<span class="keyword">min</span>(fenshu) <span class="keyword">from</span> mst_stu <span class="keyword">group</span> <span class="keyword">by</span> <span class="keyword">name</span>;</span><br><span class="line">+<span class="comment">--------+-------------+</span></span><br><span class="line">| name   | min(fenshu) |</span><br><span class="line">+<span class="comment">--------+-------------+</span></span><br><span class="line">| 张三   |          75 |</span><br><span class="line">| 李四   |          76 |</span><br><span class="line">| 王五   |          81 |</span><br><span class="line">+<span class="comment">--------+-------------+</span></span><br><span class="line"><span class="comment">-- 在使用 having 筛选出最低分大于80的</span></span><br><span class="line"><span class="keyword">select</span> <span class="keyword">name</span>,<span class="keyword">min</span>(fenshu) <span class="keyword">as</span> min_f <span class="keyword">from</span> mst_stu <span class="keyword">group</span> <span class="keyword">by</span> <span class="keyword">name</span> <span class="keyword">having</span> min_f &gt; <span class="number">80</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 最终只需要学生姓名</span></span><br><span class="line"><span class="keyword">select</span> <span class="keyword">name</span> <span class="keyword">from</span> (<span class="keyword">select</span> <span class="keyword">name</span>,<span class="keyword">min</span>(fenshu) <span class="keyword">as</span> min_f <span class="keyword">from</span> mst_stu <span class="keyword">group</span> <span class="keyword">by</span> <span class="keyword">name</span> <span class="keyword">having</span> min_f &gt; <span class="number">80</span>) <span class="keyword">as</span> s;</span><br></pre></td></tr></table></figure>
+<p>查询后一天 temperature 比前一天高的date</p>
+<blockquote>
+<p>查找与之前（昨天的）日期相比温度更高的所有日期的 Id。</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>id</th>
+<th>date</th>
+<th>temperature</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>2013-04-01</td>
+<td>20</td>
+</tr>
+<tr>
+<td>2</td>
+<td>2013-04-02</td>
+<td>25</td>
+</tr>
+<tr>
+<td>3</td>
+<td>2013-04-03</td>
+<td>21</td>
+</tr>
+<tr>
+<td>4</td>
+<td>2013-04-04</td>
+<td>24</td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- mst_Weather </span></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> <span class="string">`mst_weather`</span> (</span><br><span class="line">  <span class="string">`id`</span> <span class="built_in">int</span>(<span class="number">10</span>) <span class="keyword">unsigned</span> <span class="keyword">NOT</span> <span class="literal">NULL</span> AUTO_INCREMENT,</span><br><span class="line">  <span class="string">`date`</span> <span class="built_in">date</span> <span class="keyword">DEFAULT</span> <span class="literal">NULL</span>,</span><br><span class="line">  <span class="string">`temperature`</span> <span class="built_in">int</span>(<span class="number">255</span>) <span class="keyword">DEFAULT</span> <span class="literal">NULL</span>,</span><br><span class="line">  PRIMARY <span class="keyword">KEY</span> (<span class="string">`id`</span>)</span><br><span class="line">) <span class="keyword">ENGINE</span>=<span class="keyword">InnoDB</span> AUTO_INCREMENT=<span class="number">5</span> <span class="keyword">DEFAULT</span> <span class="keyword">CHARSET</span>=utf8mb4;</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> <span class="string">`mst_weather`</span> <span class="keyword">VALUES</span> (<span class="number">1</span>, <span class="string">'2013-04-01'</span>, <span class="number">20</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> <span class="string">`mst_weather`</span> <span class="keyword">VALUES</span> (<span class="number">2</span>, <span class="string">'2013-04-02'</span>, <span class="number">25</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> <span class="string">`mst_weather`</span> <span class="keyword">VALUES</span> (<span class="number">3</span>, <span class="string">'2013-04-03'</span>, <span class="number">21</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> <span class="string">`mst_weather`</span> <span class="keyword">VALUES</span> (<span class="number">4</span>, <span class="string">'2013-04-04'</span>, <span class="number">24</span>);</span><br><span class="line"><span class="comment">-- 当前表做join,比较日期同时要比较温度</span></span><br><span class="line"><span class="keyword">select</span> m2.date <span class="keyword">from</span> mst_weather <span class="keyword">as</span> m1 <span class="keyword">join</span> mst_weather <span class="keyword">as</span> m2 <span class="keyword">where</span> <span class="keyword">datediff</span>(m2.date,m1.date) = <span class="number">1</span> <span class="keyword">and</span> m2.temperature &gt; m1.temperature;</span><br></pre></td></tr></table></figure>
+<p>查询每个主播的最大level以及对应的最小gap(注意:不是每个主播的最大level和最小gap)</p>
+<table>
+<thead>
+<tr>
+<th>zhuobo_id</th>
+<th>level</th>
+<th>gap</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>123</td>
+<td>8</td>
+<td>20</td>
+</tr>
+<tr>
+<td>123</td>
+<td>9</td>
+<td>40</td>
+</tr>
+<tr>
+<td>123</td>
+<td>9</td>
+<td>30</td>
+</tr>
+<tr>
+<td>246</td>
+<td>6</td>
+<td>30</td>
+</tr>
+<tr>
+<td>246</td>
+<td>6</td>
+<td>20</td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> <span class="string">`mst_zhubo`</span> (</span><br><span class="line">  <span class="string">`zhubo_id`</span> <span class="built_in">int</span>(<span class="number">11</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span>,</span><br><span class="line">  <span class="string">`level`</span> <span class="built_in">int</span>(<span class="number">255</span>) <span class="keyword">DEFAULT</span> <span class="literal">NULL</span>,</span><br><span class="line">  <span class="string">`gap`</span> <span class="built_in">int</span>(<span class="number">255</span>) <span class="keyword">DEFAULT</span> <span class="literal">NULL</span></span><br><span class="line">) <span class="keyword">ENGINE</span>=<span class="keyword">InnoDB</span> <span class="keyword">DEFAULT</span> <span class="keyword">CHARSET</span>=utf8mb4;</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> <span class="string">`mst_zhubo`</span> <span class="keyword">VALUES</span> (<span class="number">123</span>, <span class="number">8</span>, <span class="number">20</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> <span class="string">`mst_zhubo`</span> <span class="keyword">VALUES</span> (<span class="number">123</span>, <span class="number">9</span>, <span class="number">40</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> <span class="string">`mst_zhubo`</span> <span class="keyword">VALUES</span> (<span class="number">123</span>, <span class="number">9</span>, <span class="number">30</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> <span class="string">`mst_zhubo`</span> <span class="keyword">VALUES</span> (<span class="number">246</span>, <span class="number">6</span>, <span class="number">30</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> <span class="string">`mst_zhubo`</span> <span class="keyword">VALUES</span> (<span class="number">246</span>, <span class="number">6</span>, <span class="number">20</span>);</span><br><span class="line"><span class="comment">--先查询出每个主播最大的level</span></span><br><span class="line"><span class="keyword">select</span> zhubo_id,<span class="keyword">max</span>(<span class="keyword">level</span>) <span class="keyword">from</span> mst_zhubo <span class="keyword">GROUP</span> <span class="keyword">BY</span> zhubo_id;</span><br><span class="line"><span class="comment">-- 再查询出每个主播所有符合最大level的数据</span></span><br><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> mst_zhubo <span class="keyword">where</span> (zhubo_id,<span class="keyword">level</span>) <span class="keyword">in</span> (<span class="keyword">select</span> zhubo_id,<span class="keyword">max</span>(<span class="keyword">level</span>) <span class="keyword">from</span> mst_zhubo <span class="keyword">GROUP</span> <span class="keyword">BY</span> zhubo_id) ;</span><br><span class="line"><span class="comment">-- 再查询当前符合条件的数据中 gap最小的数据</span></span><br><span class="line"><span class="keyword">select</span> zhubo_id,<span class="keyword">level</span>,<span class="keyword">min</span>(gap) </span><br><span class="line"><span class="keyword">from</span> mst_zhubo <span class="keyword">where</span> (zhubo_id,<span class="keyword">level</span>) <span class="keyword">in</span> (<span class="keyword">select</span> zhubo_id,<span class="keyword">max</span>(<span class="keyword">level</span>) <span class="keyword">from</span> mst_zhubo <span class="keyword">GROUP</span> <span class="keyword">BY</span> zhubo_id)</span><br><span class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span> zhubo_id,<span class="keyword">level</span>;</span><br></pre></td></tr></table></figure>
+<p>下表是每个课程class_id对应的年级(共有primary、middle、high三个),以及某种比率rate</p>
+<table>
+<thead>
+<tr>
+<th>class_id</th>
+<th>grade</th>
+<th>rate</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>abc123</td>
+<td>primary</td>
+<td>70%</td>
+</tr>
+<tr>
+<td>abc123</td>
+<td>middle</td>
+<td>65%</td>
+</tr>
+<tr>
+<td>abc123</td>
+<td>high</td>
+<td>72%</td>
+</tr>
+<tr>
+<td>hjkk86</td>
+<td>primary</td>
+<td>69%</td>
+</tr>
+<tr>
+<td>hjkk86</td>
+<td>middle</td>
+<td>63%</td>
+</tr>
+<tr>
+<td>hjkk86</td>
+<td>high</td>
+<td>74%</td>
+</tr>
+</tbody>
+</table>
+<p>请写出SQL查询出如下形式的表：</p>
+<table>
+<thead>
+<tr>
+<th>class_id</th>
+<th>primary</th>
+<th>middle</th>
+<th>high</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>abc123</td>
+<td>70%</td>
+<td>65%</td>
+<td>72%</td>
+</tr>
+<tr>
+<td>hjkk86</td>
+<td>69%</td>
+<td>63%</td>
+<td>74%</td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> <span class="string">`mst_class`</span> (</span><br><span class="line">  <span class="string">`class_id`</span> <span class="built_in">varchar</span>(<span class="number">255</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span>,</span><br><span class="line">  <span class="string">`grade`</span> <span class="built_in">varchar</span>(<span class="number">255</span>) <span class="keyword">DEFAULT</span> <span class="literal">NULL</span>,</span><br><span class="line">  <span class="string">`rate`</span> <span class="built_in">varchar</span>(<span class="number">255</span>) <span class="keyword">DEFAULT</span> <span class="literal">NULL</span></span><br><span class="line">) <span class="keyword">ENGINE</span>=<span class="keyword">InnoDB</span> <span class="keyword">DEFAULT</span> <span class="keyword">CHARSET</span>=utf8mb4;</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> <span class="string">`mst_class`</span> <span class="keyword">VALUES</span> (<span class="string">'abc123'</span>, <span class="string">'primary'</span>, <span class="string">'70%'</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> <span class="string">`mst_class`</span> <span class="keyword">VALUES</span> (<span class="string">'abc123'</span>, <span class="string">'middle'</span>, <span class="string">'65%'</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> <span class="string">`mst_class`</span> <span class="keyword">VALUES</span> (<span class="string">'abc123'</span>, <span class="string">'high'</span>, <span class="string">'72%'</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> <span class="string">`mst_class`</span> <span class="keyword">VALUES</span> (<span class="string">'hjkk86'</span>, <span class="string">'primary'</span>, <span class="string">'69%'</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> <span class="string">`mst_class`</span> <span class="keyword">VALUES</span> (<span class="string">'hjkk86'</span>, <span class="string">'middle'</span>, <span class="string">'63%'</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> <span class="string">`mst_class`</span> <span class="keyword">VALUES</span> (<span class="string">'hjkk86'</span>, <span class="string">'high'</span>, <span class="string">'74%'</span>);</span><br><span class="line"><span class="comment">-- 按照class_id进行分组,由于使用分组,则必须使用聚合函数,因此此处使用max()函数进行即可,然后使用case...when....then 进行行转列</span></span><br><span class="line"><span class="keyword">select</span> class_id,</span><br><span class="line"><span class="keyword">max</span>(<span class="keyword">CASE</span>  <span class="keyword">WHEN</span> grade = <span class="string">'primary'</span> <span class="keyword">THEN</span> rate <span class="keyword">ELSE</span> <span class="number">0</span> <span class="keyword">END</span>) <span class="keyword">as</span> <span class="string">'primary'</span>,</span><br><span class="line"><span class="keyword">max</span>(<span class="keyword">CASE</span>  <span class="keyword">WHEN</span> grade = <span class="string">'middle'</span> <span class="keyword">THEN</span> rate <span class="keyword">ELSE</span> <span class="number">0</span> <span class="keyword">END</span>) <span class="keyword">as</span> <span class="string">'middle'</span>,</span><br><span class="line"><span class="keyword">max</span>(<span class="keyword">CASE</span>  <span class="keyword">WHEN</span> grade = <span class="string">'high'</span> <span class="keyword">THEN</span> rate <span class="keyword">ELSE</span> <span class="number">0</span> <span class="keyword">END</span>) <span class="keyword">as</span> <span class="string">'high'</span></span><br><span class="line"><span class="keyword">from</span> mst_class <span class="keyword">group</span> <span class="keyword">by</span> class_id;</span><br></pre></td></tr></table></figure>
+<p>怎么把这样一个表</p>
+<table>
+<thead>
+<tr>
+<th>year</th>
+<th>month</th>
+<th>amount</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1991</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>1991</td>
+<td>2</td>
+<td>2</td>
+</tr>
+<tr>
+<td>1991</td>
+<td>3</td>
+<td>3</td>
+</tr>
+<tr>
+<td>1991</td>
+<td>4</td>
+<td>4</td>
+</tr>
+<tr>
+<td>1992</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>1992</td>
+<td>2</td>
+<td>2</td>
+</tr>
+<tr>
+<td>1992</td>
+<td>3</td>
+<td>3</td>
+</tr>
+<tr>
+<td>1992</td>
+<td>4</td>
+<td>4</td>
+</tr>
+</tbody>
+</table>
+<p>查成这样一个结果</p>
+<table>
+<thead>
+<tr>
+<th>year</th>
+<th>m1</th>
+<th>m2</th>
+<th>m3</th>
+<th>m4</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1991</td>
+<td>1</td>
+<td>2</td>
+<td>3</td>
+<td>4</td>
+</tr>
+<tr>
+<td>1992</td>
+<td>1</td>
+<td>2</td>
+<td>3</td>
+<td>4</td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> <span class="string">`mst_year`</span> ( </span><br><span class="line">    <span class="string">`year`</span> <span class="built_in">int</span>,<span class="string">`month`</span> <span class="built_in">int</span>,<span class="string">`amount`</span> <span class="built_in">float</span> </span><br><span class="line">) <span class="keyword">ENGINE</span>=<span class="keyword">InnoDB</span> <span class="keyword">DEFAULT</span> <span class="keyword">CHARSET</span>=utf8mb4;</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> <span class="string">`mst_year`</span> <span class="keyword">VALUES</span> (<span class="number">1991</span>, <span class="number">1</span>, <span class="number">1</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> <span class="string">`mst_year`</span> <span class="keyword">VALUES</span> (<span class="number">1991</span>, <span class="number">2</span>, <span class="number">2</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> <span class="string">`mst_year`</span> <span class="keyword">VALUES</span> (<span class="number">1991</span>, <span class="number">3</span>, <span class="number">3</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> <span class="string">`mst_year`</span> <span class="keyword">VALUES</span> (<span class="number">1991</span>, <span class="number">4</span>, <span class="number">4</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> <span class="string">`mst_year`</span> <span class="keyword">VALUES</span> (<span class="number">1992</span>, <span class="number">1</span>, <span class="number">1</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> <span class="string">`mst_year`</span> <span class="keyword">VALUES</span> (<span class="number">1992</span>, <span class="number">2</span>, <span class="number">2</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> <span class="string">`mst_year`</span> <span class="keyword">VALUES</span> (<span class="number">1992</span>, <span class="number">3</span>, <span class="number">3</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> <span class="string">`mst_year`</span> <span class="keyword">VALUES</span> (<span class="number">1992</span>, <span class="number">4</span>, <span class="number">4</span>);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">-- 同上一个问题类似,按照 year 进行分组,使用case...when....then 进行行转列,需要注意的是要对结果进行小数位限制</span></span><br><span class="line"><span class="keyword">select</span> <span class="keyword">year</span>,</span><br><span class="line"><span class="keyword">sum</span>(<span class="keyword">CASE</span>  <span class="keyword">WHEN</span> <span class="keyword">month</span> = <span class="number">1</span> <span class="keyword">THEN</span> <span class="keyword">round</span>(amount,<span class="number">1</span>) <span class="keyword">ELSE</span> <span class="number">0</span> <span class="keyword">END</span>) <span class="keyword">as</span> <span class="string">'m1'</span>,</span><br><span class="line"><span class="keyword">sum</span>(<span class="keyword">CASE</span>  <span class="keyword">WHEN</span> <span class="keyword">month</span> = <span class="number">2</span> <span class="keyword">THEN</span> <span class="keyword">round</span>(amount,<span class="number">1</span>) <span class="keyword">ELSE</span> <span class="number">0</span> <span class="keyword">END</span>) <span class="keyword">as</span> <span class="string">'m2'</span>,</span><br><span class="line"><span class="keyword">sum</span>(<span class="keyword">CASE</span>  <span class="keyword">WHEN</span> <span class="keyword">month</span> = <span class="number">3</span> <span class="keyword">THEN</span> <span class="keyword">round</span>(amount,<span class="number">1</span>) <span class="keyword">ELSE</span> <span class="number">0</span> <span class="keyword">END</span>) <span class="keyword">as</span> <span class="string">'m3'</span>,</span><br><span class="line"><span class="keyword">sum</span>(<span class="keyword">CASE</span>  <span class="keyword">WHEN</span> <span class="keyword">month</span> = <span class="number">4</span> <span class="keyword">THEN</span> <span class="keyword">round</span>(amount,<span class="number">1</span>) <span class="keyword">ELSE</span> <span class="number">0</span> <span class="keyword">END</span>) <span class="keyword">as</span> <span class="string">'m4'</span></span><br><span class="line"><span class="keyword">from</span> mst_year <span class="keyword">group</span> <span class="keyword">by</span> <span class="keyword">year</span>;</span><br></pre></td></tr></table></figure>
+<p>有两个表A和B，均有key和value两个字段，如果B的key在A中也有，就把B的value换为A中对应的value</p>
+<p>这道题的SQL语句怎么写？</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 先按题设计AB表,并查看结果</span></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> <span class="string">`mst_a`</span> (  <span class="string">`key`</span> <span class="built_in">varchar</span>,<span class="string">`value`</span> <span class="built_in">varchar</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> <span class="string">`mst_a`</span> <span class="keyword">VALUES</span> (<span class="string">'A'</span>, <span class="string">'aaa'</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> <span class="string">`mst_a`</span> <span class="keyword">VALUES</span> (<span class="string">'B'</span>, <span class="string">'bbb'</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> <span class="string">`mst_a`</span> <span class="keyword">VALUES</span> (<span class="string">'C'</span>, <span class="string">'ccc'</span>);</span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> <span class="string">`mst_b`</span> (  <span class="string">`key`</span> <span class="built_in">varchar</span>,<span class="string">`value`</span> <span class="built_in">varchar</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> <span class="string">`mst_a`</span> <span class="keyword">VALUES</span> (<span class="string">'D'</span>, <span class="string">'ddd'</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> <span class="string">`mst_a`</span> <span class="keyword">VALUES</span> (<span class="string">'E'</span>, <span class="string">'eee'</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> <span class="string">`mst_a`</span> <span class="keyword">VALUES</span> (<span class="string">'A'</span>, <span class="string">'abc'</span>);</span><br><span class="line"><span class="comment">-- 查看当前两个表的数据</span></span><br><span class="line">mysql&gt; select * from mst_a;</span><br><span class="line">+<span class="comment">------+-------+</span></span><br><span class="line">| key  | value |</span><br><span class="line">+<span class="comment">------+-------+</span></span><br><span class="line">| A    | aaa   |</span><br><span class="line">| B    | bbb   |</span><br><span class="line">| C    | ccc   |</span><br><span class="line">+<span class="comment">------+-------+</span></span><br><span class="line">3 rows in <span class="keyword">set</span> (<span class="number">00</span> sec)</span><br><span class="line"></span><br><span class="line">mysql&gt; <span class="keyword">select</span> * <span class="keyword">from</span> mst_b;</span><br><span class="line">+<span class="comment">------+-------+</span></span><br><span class="line">| key  | value |</span><br><span class="line">+<span class="comment">------+-------+</span></span><br><span class="line">| D    | ddd   |</span><br><span class="line">| E    | eee   |</span><br><span class="line">| A    | abc   |</span><br><span class="line">+<span class="comment">------+-------+</span></span><br><span class="line">3 rows in <span class="keyword">set</span> (<span class="number">00</span> sec)</span><br><span class="line"><span class="comment">-- 有两个表A和B，均有key和value两个字段，如果B的key在A中也有，就把B的value换为A中对应的value</span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- 分析,先查询符合条件的数据,(B的key在A中也有)</span></span><br><span class="line"><span class="keyword">select</span> mst_a.*,mst_b.* <span class="keyword">from</span> mst_a <span class="keyword">join</span> mst_b <span class="keyword">on</span> mst_a.key = mst_b.key;</span><br><span class="line">+<span class="comment">------+-------+------+-------+</span></span><br><span class="line">| key  | value | key  | value |</span><br><span class="line">+<span class="comment">------+-------+------+-------+</span></span><br><span class="line">| A    | aaa   | A    | abc   |</span><br><span class="line">+<span class="comment">------+-------+------+-------+</span></span><br><span class="line">1 row in <span class="keyword">set</span> (<span class="number">00</span> sec)</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 更新数据 update mst_b set value = ? where key = ?</span></span><br><span class="line"><span class="comment">-- 根据以上的更新语句需要的数据,针对性的获取,先获取第二个问号中的key</span></span><br><span class="line"><span class="keyword">select</span> mst_b.key <span class="keyword">from</span> mst_a <span class="keyword">join</span> mst_b <span class="keyword">on</span> mst_a.key = mst_b.key;</span><br><span class="line">+<span class="comment">------+</span></span><br><span class="line">| key  |</span><br><span class="line">+<span class="comment">------+</span></span><br><span class="line">| A    |</span><br><span class="line">+<span class="comment">------+</span></span><br><span class="line"><span class="comment">-- 在获取需要更新的值?也就是a表中的对应key的value</span></span><br><span class="line"><span class="keyword">select</span> mst_a.value,b.key  </span><br><span class="line"><span class="keyword">from</span> mst_a,(<span class="keyword">select</span> mst_b.key <span class="keyword">from</span> mst_a <span class="keyword">join</span> mst_b <span class="keyword">on</span> mst_a.key = mst_b.key) b</span><br><span class="line"><span class="keyword">where</span> mst_a.key = b.key;</span><br><span class="line"><span class="comment">-- 在将两次sql结果嵌套到对应的update中</span></span><br><span class="line"><span class="comment">-- 注意事项:</span></span><br><span class="line"><span class="comment">-- update 后面可以做任意的查询，这个作用等同于from</span></span><br><span class="line"><span class="comment">-- update 时，更新的表不能在set和where中用于子查询</span></span><br><span class="line"><span class="comment">-- update 时，可以对多个表进行更新（sqlserver不行）</span></span><br><span class="line"><span class="keyword">update</span> mst_b <span class="keyword">as</span> up, (<span class="keyword">select</span> mst_a.value,b.key  </span><br><span class="line"><span class="keyword">from</span> mst_a,(<span class="keyword">select</span> mst_b.key <span class="keyword">from</span> mst_a <span class="keyword">join</span> mst_b <span class="keyword">on</span> mst_a.key = mst_b.key) b</span><br><span class="line"><span class="keyword">where</span> mst_a.key = b.key) b</span><br><span class="line">    <span class="keyword">set</span> up.value = b.value</span><br><span class="line">    <span class="keyword">where</span> up.key = b.key;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 再次查询结果</span></span><br><span class="line">mysql&gt; select * from mst_a;</span><br><span class="line">+<span class="comment">------+-------+</span></span><br><span class="line">| key  | value |</span><br><span class="line">+<span class="comment">------+-------+</span></span><br><span class="line">| A    | aaa   |</span><br><span class="line">| B    | bbb   |</span><br><span class="line">| C    | ccc   |</span><br><span class="line">+<span class="comment">------+-------+</span></span><br><span class="line">3 rows in <span class="keyword">set</span> (<span class="number">00</span> sec)</span><br><span class="line"></span><br><span class="line">mysql&gt; <span class="keyword">select</span> * <span class="keyword">from</span> mst_b;</span><br><span class="line">+<span class="comment">------+-------+</span></span><br><span class="line">| key  | value |</span><br><span class="line">+<span class="comment">------+-------+</span></span><br><span class="line">| D    | ddd   |</span><br><span class="line">| E    | eee   |</span><br><span class="line">| A    | aaa   |</span><br><span class="line">+<span class="comment">------+-------+</span></span><br><span class="line">3 rows in <span class="keyword">set</span> (<span class="number">00</span> sec)</span><br></pre></td></tr></table></figure>
+<p>设计表，关系如下：教室、班级、学生、科室、科室与教师为一对多关系，教师与班级为多对多关系，班级与学生为一对多关系，科室中需体现层级关系。</p>
+<p>1．写出各张表的逻辑字段</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br></pre></td><td class="code"><pre><span class="line">教师 mst_Teacher</span><br><span class="line">+<span class="comment">-----+--------------+</span></span><br><span class="line">| Tid | Tname        |</span><br><span class="line">+<span class="comment">-----+--------------+</span></span><br><span class="line">|   1 | 张三老师     |</span><br><span class="line">|   2 | 李四老师     |</span><br><span class="line">|   3 | 王五老师     |</span><br><span class="line">+<span class="comment">-----+--------------+</span></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> <span class="string">`mst_teacher`</span> (</span><br><span class="line">  <span class="string">`Tid`</span> <span class="built_in">int</span> PRIMARY <span class="keyword">KEY</span> AUTO_INCREMENT,</span><br><span class="line">  <span class="string">`Tname`</span> <span class="built_in">varchar</span>(<span class="number">10</span>)</span><br><span class="line">  );</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> mst_teacher <span class="keyword">VALUES</span>(<span class="number">1</span>,<span class="string">'张三老师'</span>),(<span class="number">2</span>,<span class="string">'李四老师'</span>),(<span class="number">3</span>,<span class="string">'王五老师'</span>);</span><br><span class="line">班级 mst_cla</span><br><span class="line">+<span class="comment">-----+-------+</span></span><br><span class="line">| Cid | Cname |</span><br><span class="line">+<span class="comment">-----+-------+</span></span><br><span class="line">|   1 | 1班   |</span><br><span class="line">|   2 | 2班   |</span><br><span class="line">|   3 | 3班   |</span><br><span class="line">+<span class="comment">-----+-------+</span></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> <span class="string">`mst_cla`</span> (</span><br><span class="line">  <span class="string">`Cid`</span> <span class="built_in">int</span> PRIMARY <span class="keyword">KEY</span> AUTO_INCREMENT,</span><br><span class="line">  <span class="string">`Cname`</span> <span class="built_in">varchar</span>(<span class="number">10</span>)</span><br><span class="line">  );</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> mst_cla <span class="keyword">VALUES</span>(<span class="number">1</span>,<span class="string">'1班'</span>),(<span class="number">2</span>,<span class="string">'2班'</span>),(<span class="number">3</span>,<span class="string">'3班'</span>);</span><br><span class="line">教师&amp;班级  mst_tc</span><br><span class="line">+<span class="comment">-----+------+------+</span></span><br><span class="line">| pid | Tid  | Cid  |</span><br><span class="line">+<span class="comment">-----+------+------+</span></span><br><span class="line">|   1 |    1 |    1 |</span><br><span class="line">|   2 |    2 |    1 |</span><br><span class="line">|   3 |    3 |    1 |</span><br><span class="line">|   4 |    1 |    2 |</span><br><span class="line">|   5 |    2 |    2 |</span><br><span class="line">|   6 |    3 |    2 |</span><br><span class="line">|   7 |    1 |    3 |</span><br><span class="line">|   8 |    2 |    3 |</span><br><span class="line">|   9 |    3 |    3 |</span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> <span class="string">`mst_tc`</span> (</span><br><span class="line">  <span class="string">`pid`</span> <span class="built_in">int</span> PRIMARY <span class="keyword">KEY</span> AUTO_INCREMENT,</span><br><span class="line">  <span class="string">`Tid`</span> <span class="built_in">int</span>,<span class="string">`Cid`</span> <span class="built_in">int</span> </span><br><span class="line">  );</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> mst_tc <span class="keyword">VALUES</span></span><br><span class="line">    (<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>),(<span class="number">2</span>,<span class="number">2</span>,<span class="number">1</span>),(<span class="number">3</span>,<span class="number">3</span>,<span class="number">1</span>),(<span class="number">4</span>,<span class="number">1</span>,<span class="number">2</span>),(<span class="number">5</span>,<span class="number">2</span>,<span class="number">2</span>),(<span class="number">6</span>,<span class="number">3</span>,<span class="number">2</span>),(<span class="number">7</span>,<span class="number">1</span>,<span class="number">3</span>),(<span class="number">8</span>,<span class="number">2</span>,<span class="number">3</span>),(<span class="number">9</span>,<span class="number">3</span>,<span class="number">3</span>);</span><br><span class="line">学生 mst_St        </span><br><span class="line">+<span class="comment">-----+--------+------+</span></span><br><span class="line">| SId | Sname  | Cid  |</span><br><span class="line">+<span class="comment">-----+--------+------+</span></span><br><span class="line">|   1 | 赵雷   |    1 |</span><br><span class="line">|   2 | 钱电   |    1 |</span><br><span class="line">|   3 | 孙风   |    1 |</span><br><span class="line">|   4 | 李云   |    2 |</span><br><span class="line">|   5 | 周梅   |    2 |</span><br><span class="line">|   6 | 吴兰   |    3 |</span><br><span class="line">|   7 | 郑竹   |    3 |</span><br><span class="line">+<span class="comment">-----+--------+------+</span></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> <span class="string">`mst_St`</span> (</span><br><span class="line">  <span class="string">`SId`</span> <span class="built_in">int</span> PRIMARY <span class="keyword">KEY</span> AUTO_INCREMENT,</span><br><span class="line">  <span class="string">`Sname`</span> <span class="built_in">varchar</span>(<span class="number">20</span>),<span class="string">`Cid`</span> <span class="built_in">int</span> </span><br><span class="line">  );</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> mst_St <span class="keyword">VALUES</span>(<span class="number">1</span>,<span class="string">'赵雷'</span>,<span class="number">1</span>),(<span class="number">2</span>,<span class="string">'钱电'</span>,<span class="number">1</span>),(<span class="number">3</span>,<span class="string">'孙风'</span>,<span class="number">1</span>),(<span class="number">4</span>,<span class="string">'李云'</span>,<span class="number">2</span>),(<span class="number">5</span>,<span class="string">'周梅'</span>,<span class="number">2</span>),(<span class="number">6</span>,<span class="string">'吴兰'</span>,<span class="number">3</span>),(<span class="number">7</span>,<span class="string">'郑竹'</span>,<span class="number">3</span>);</span><br><span class="line"></span><br><span class="line">科室 mst_ks</span><br><span class="line">+<span class="comment">-----+-----------+------+------+</span></span><br><span class="line">| Kid | Kname     | Pid  | Tid  |</span><br><span class="line">+<span class="comment">-----+-----------+------+------+</span></span><br><span class="line">|   1 | 校长室    |    0 |    1 |</span><br><span class="line">|   2 | 教务处    |    1 |    1 |</span><br><span class="line">|   3 | 教学处    |    1 |    2 |</span><br><span class="line">|   4 | 语文      |    3 |    1 |</span><br><span class="line">|   5 | 数学      |    3 |    2 |</span><br><span class="line">|   6 | 英语      |    3 |    3 |</span><br><span class="line">+<span class="comment">-----+-----------+------+------+</span></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> <span class="string">`mst_ks`</span> (</span><br><span class="line">  <span class="string">`Kid`</span> <span class="built_in">int</span> PRIMARY <span class="keyword">KEY</span> AUTO_INCREMENT,</span><br><span class="line">  <span class="string">`Kname`</span> <span class="built_in">varchar</span>(<span class="number">20</span>),<span class="string">`Pid`</span> <span class="built_in">int</span> ,<span class="string">`Tid`</span> <span class="built_in">int</span> </span><br><span class="line">  );</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> mst_ks <span class="keyword">VALUES</span>(<span class="number">1</span>,<span class="string">'校长室'</span>,<span class="number">0</span>,<span class="number">1</span>),(<span class="number">2</span>,<span class="string">'教务处'</span>,<span class="number">1</span>,<span class="number">1</span>),(<span class="number">3</span>,<span class="string">'教学处'</span>,<span class="number">1</span>,<span class="number">2</span>),(<span class="number">4</span>,<span class="string">'语文'</span>,<span class="number">3</span>,<span class="number">1</span>),(<span class="number">5</span>,<span class="string">'数学'</span>,<span class="number">3</span>,<span class="number">2</span>),(<span class="number">6</span>,<span class="string">'英语'</span>,<span class="number">3</span>,<span class="number">3</span>);</span><br></pre></td></tr></table></figure>
+<p>根据上述表关系</p>
+<p>​    查询教师id=1的学生数</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 已知教师Id就可以先到教师与班级的关系表中获取当前老师所带的班级</span></span><br><span class="line"><span class="keyword">select</span> cid <span class="keyword">from</span> mst_tc <span class="keyword">where</span> Tid = <span class="number">1</span>;</span><br><span class="line"><span class="comment">-- 获取所带班级后,到学生表中获取所带班级中的学员数即可</span></span><br><span class="line"><span class="keyword">select</span> <span class="keyword">count</span>(*) <span class="keyword">from</span> mst_St <span class="keyword">where</span> Cid <span class="keyword">in</span> (<span class="keyword">select</span> cid <span class="keyword">from</span> mst_tc <span class="keyword">where</span> Tid = <span class="number">1</span>);</span><br></pre></td></tr></table></figure>
+<p>​    查询科室id=3的下级部门数</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 科室id=3的下级部门的pid也就等于科室id,因此查询当前科室的父级id = 3的即可</span></span><br><span class="line"><span class="keyword">select</span> <span class="keyword">count</span>(*) <span class="keyword">from</span> mst_ks <span class="keyword">where</span> pid = <span class="number">3</span>;</span><br></pre></td></tr></table></figure>
+<p>​    查询所带学生最多的教师id</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 先查询出每个老师带的学生数</span></span><br><span class="line"><span class="keyword">select</span> mst_teacher.tid,mst_teacher.tname,<span class="keyword">count</span>(mst_st.sid) <span class="keyword">as</span> count_stu</span><br><span class="line"><span class="keyword">from</span> mst_teacher,mst_tc,mst_St</span><br><span class="line"><span class="keyword">where</span> mst_teacher.tid = mst_tc.tid</span><br><span class="line"><span class="keyword">and</span> mst_tc.cid = mst_st.cid</span><br><span class="line"><span class="keyword">group</span> <span class="keyword">by</span> mst_teacher.tid,mst_teacher.tname;</span><br><span class="line">+<span class="comment">-----+--------------+-----------+</span></span><br><span class="line">| tid | tname        | count_stu |</span><br><span class="line">+<span class="comment">-----+--------------+-----------+</span></span><br><span class="line">|   1 | 张三老师     |         7 |</span><br><span class="line">|   2 | 李四老师     |         7 |</span><br><span class="line">|   3 | 王五老师     |         7 |</span><br><span class="line">+<span class="comment">-----+--------------+-----------+</span></span><br><span class="line"><span class="comment">-- 因为目前所有老师带的班级都一样,所以数据结果都是一样的,因此可以改变一个老师所带的科目后在查询,比如语文和数学是一个老师带的,再次查询</span></span><br><span class="line"><span class="keyword">select</span> mst_teacher.tid,mst_teacher.tname,<span class="keyword">count</span>(mst_st.sid) <span class="keyword">as</span> count_stu</span><br><span class="line"><span class="keyword">from</span> mst_teacher,mst_tc,mst_St</span><br><span class="line"><span class="keyword">where</span> mst_teacher.tid = mst_tc.tid</span><br><span class="line"><span class="keyword">and</span> mst_tc.cid = mst_st.cid</span><br><span class="line"><span class="keyword">group</span> <span class="keyword">by</span> mst_teacher.tid,mst_teacher.tname;</span><br><span class="line">+<span class="comment">-----+--------------+-----------+</span></span><br><span class="line">| tid | tname        | count_stu |</span><br><span class="line">+<span class="comment">-----+--------------+-----------+</span></span><br><span class="line">|   2 | 李四老师     |        14 |</span><br><span class="line">|   3 | 王五老师     |         7 |</span><br><span class="line">+<span class="comment">-----+--------------+-----------+</span></span><br></pre></td></tr></table></figure>
+<p>(1)某奶粉品牌有以下销售数据(订单表Orderinfo)，请计算每个人得消费金额、消费频次、购买产品数量、第一次购买时间和最后一次购买时间。</p>
+<table>
+<thead>
+<tr>
+<th>CustomerID</th>
+<th>OrderID</th>
+<th>Sales</th>
+<th>Quantity</th>
+<th>OrderDate</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>01</td>
+<td>100</td>
+<td>1</td>
+<td>2017-03-01</td>
+</tr>
+<tr>
+<td>A</td>
+<td>02</td>
+<td>420</td>
+<td>3</td>
+<td>2017-03-15</td>
+</tr>
+<tr>
+<td>B</td>
+<td>03</td>
+<td>300</td>
+<td>4</td>
+<td>2017-03-02</td>
+</tr>
+<tr>
+<td>B</td>
+<td>04</td>
+<td>1000</td>
+<td>1</td>
+<td>2017-04-01</td>
+</tr>
+<tr>
+<td>C</td>
+<td>05</td>
+<td>500</td>
+<td>3</td>
+<td>2017-05-03</td>
+</tr>
+<tr>
+<td>C</td>
+<td>06</td>
+<td>200</td>
+<td>1</td>
+<td>2017-05-04</td>
+</tr>
+<tr>
+<td>……</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> <span class="string">`mst_Orderinfo`</span>(<span class="string">`CustomerID`</span> <span class="built_in">char</span>(<span class="number">5</span>),<span class="string">`OrderID`</span> <span class="built_in">int</span> PRIMARY <span class="keyword">KEY</span> AUTO_INCREMENT,<span class="string">`Sales`</span> <span class="built_in">int</span>,<span class="string">`Quantity`</span> <span class="built_in">int</span>,<span class="string">`OrderDate`</span> <span class="built_in">date</span>);</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">INTO</span> mst_Orderinfo <span class="keyword">VALUES</span></span><br><span class="line">    (<span class="string">'A'</span>,<span class="number">01</span>,<span class="number">100</span>,<span class="number">1</span>,<span class="string">'2017-03-01'</span>),</span><br><span class="line">    (<span class="string">'A'</span>,<span class="number">02</span>,<span class="number">420</span>,<span class="number">3</span>,<span class="string">'2017-03-15'</span>),</span><br><span class="line">    (<span class="string">'B'</span>,<span class="number">03</span>,<span class="number">300</span>,<span class="number">4</span>,<span class="string">'2017-03-02'</span>),</span><br><span class="line">    (<span class="string">'B'</span>,<span class="number">04</span>,<span class="number">1000</span>,<span class="number">1</span>,<span class="string">'2017-04-01'</span>),</span><br><span class="line">    (<span class="string">'C'</span>,<span class="number">05</span>,<span class="number">500</span>,<span class="number">3</span>,<span class="string">'2017-05-03'</span>),</span><br><span class="line">    (<span class="string">'C'</span>,<span class="number">06</span>,<span class="number">200</span>,<span class="number">1</span>,<span class="string">'2017-05-04'</span>);</span><br><span class="line"><span class="comment">--计算每个人得消费金额、消费频次、购买产品数量、第一次购买时间和最后一次购买时间。</span></span><br><span class="line"><span class="keyword">select</span> CustomerID,</span><br><span class="line"><span class="keyword">sum</span>(Sales) <span class="keyword">as</span> <span class="string">'消费金额'</span>,</span><br><span class="line"><span class="keyword">count</span>(CustomerID) <span class="keyword">as</span> <span class="string">'消费频次'</span>,</span><br><span class="line"><span class="keyword">sum</span>(Quantity) <span class="keyword">as</span> <span class="string">'购买产品数量'</span>,</span><br><span class="line"><span class="keyword">min</span>(OrderDate) <span class="keyword">as</span> <span class="string">'第一次购买时间'</span>,</span><br><span class="line"><span class="keyword">max</span>(OrderDate) <span class="keyword">as</span> <span class="string">'最后一次购买时间'</span></span><br><span class="line"><span class="keyword">from</span> mst_Orderinfo <span class="keyword">group</span> <span class="keyword">by</span> CustomerID;</span><br></pre></td></tr></table></figure>
+<p>(2)该奶粉品牌还有一张订单明细表(OrderDetail ),请结合上题得订单表，计算出每个SKU被多少客户购买了。</p>
+<table>
+<thead>
+<tr>
+<th>OrderDetailID</th>
+<th>OrderID</th>
+<th>SKU</th>
+<th>Qutity</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>01</td>
+<td>01</td>
+<td>SKU1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>02</td>
+<td>02</td>
+<td>SKU1</td>
+<td>2</td>
+</tr>
+<tr>
+<td>03</td>
+<td>02</td>
+<td>SKU2</td>
+<td>1</td>
+</tr>
+<tr>
+<td>04</td>
+<td>03</td>
+<td>SKU2</td>
+<td>2</td>
+</tr>
+<tr>
+<td>05</td>
+<td>03</td>
+<td>SKU3</td>
+<td>2</td>
+</tr>
+<tr>
+<td>06</td>
+<td>04</td>
+<td>SKU6</td>
+<td>1</td>
+</tr>
+<tr>
+<td>07</td>
+<td>05</td>
+<td>SKU4</td>
+<td>2</td>
+</tr>
+<tr>
+<td>……</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> <span class="string">`mst_OrderDetail`</span>(<span class="string">`OrderDetailID`</span> <span class="built_in">int</span> PRIMARY <span class="keyword">KEY</span> AUTO_INCREMENT,<span class="string">`OrderID`</span> <span class="built_in">int</span>,<span class="string">`SKU`</span> <span class="built_in">char</span>(<span class="number">5</span>),<span class="string">`Qutity`</span> <span class="built_in">int</span>);</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> mst_OrderDetail <span class="keyword">values</span>(<span class="number">1</span>,<span class="number">1</span>,<span class="string">'SKU1'</span>,<span class="number">1</span>),(<span class="number">2</span>,<span class="number">2</span>,<span class="string">'SKU1'</span>,<span class="number">2</span>),(<span class="number">3</span>,<span class="number">2</span>,<span class="string">'SKU2'</span>,<span class="number">1</span>),(<span class="number">4</span>,<span class="number">3</span>,<span class="string">'SKU2'</span>,<span class="number">2</span>),(<span class="number">5</span>,<span class="number">3</span>,<span class="string">'SKU3'</span>,<span class="number">2</span>),(<span class="number">6</span>,<span class="number">4</span>,<span class="string">'SKU6'</span>,<span class="number">1</span>),(<span class="number">7</span>,<span class="number">5</span>,<span class="string">'SKU4'</span>,<span class="number">2</span>);</span><br><span class="line"><span class="comment">-- 分析:如果要统计出每个sku被多少客户购买了.就需要先把两个表做join,观察</span></span><br><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> mst_Orderinfo o1,mst_OrderDetail o2</span><br><span class="line"><span class="keyword">where</span> oOrderID = oOrderID;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 计算出每个SKU被多少客户购买了,需要以sku分组,去统计用户id并去重</span></span><br><span class="line"><span class="keyword">select</span> SKU,<span class="keyword">count</span>(<span class="keyword">distinct</span> CustomerID) <span class="keyword">from</span> mst_Orderinfo o1,mst_OrderDetail o2</span><br><span class="line"><span class="keyword">where</span> oOrderID = oOrderID</span><br><span class="line"><span class="keyword">group</span> <span class="keyword">by</span> SKU;</span><br><span class="line">+<span class="comment">------+----------------------------+</span></span><br><span class="line">| SKU  | count(distinct CustomerID) |</span><br><span class="line">+<span class="comment">------+----------------------------+</span></span><br><span class="line">| SKU1 |                          1 |</span><br><span class="line">| SKU2 |                          2 |</span><br><span class="line">| SKU3 |                          1 |</span><br><span class="line">| SKU4 |                          1 |</span><br><span class="line">| SKU6 |                          1 |</span><br><span class="line">+<span class="comment">------+----------------------------+</span></span><br></pre></td></tr></table></figure>
+<p>(3)请结合Orderinfo表与OrderDetail表，找出购买了SKU1又购买SKU2产品的人。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 先查询出购买过SKU1和SKU2的用户</span></span><br><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> mst_Orderinfo o1</span><br><span class="line"><span class="keyword">join</span> mst_OrderDetail o2 <span class="keyword">on</span> oOrderID = oOrderID</span><br><span class="line"><span class="keyword">where</span> oSKU <span class="keyword">in</span> (<span class="string">'SKU1'</span>,<span class="string">'SKU2'</span>);</span><br><span class="line">+<span class="comment">------------+---------+-------+----------+------------+---------------+---------+------+--------+</span></span><br><span class="line">| CustomerID | OrderID | Sales | Quantity | OrderDate  | OrderDetailID | OrderID | SKU  | Qutity |</span><br><span class="line">+<span class="comment">------------+---------+-------+----------+------------+---------------+---------+------+--------+</span></span><br><span class="line">| A          |       1 |   100 |        1 | 2017-03-01 |             1 |       1 | SKU1 |      1 |</span><br><span class="line">| A          |       2 |   420 |        3 | 2017-03-15 |             2 |       2 | SKU1 |      2 |</span><br><span class="line">| A          |       2 |   420 |        3 | 2017-03-15 |             3 |       2 | SKU2 |      1 |</span><br><span class="line">| B          |       3 |   300 |        4 | 2017-03-02 |             4 |       3 | SKU2 |      2 |</span><br><span class="line">+<span class="comment">------------+---------+-------+----------+------------+---------------+---------+------+--------+</span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- 在根据用户分组,筛选购买了不同的sku的数等于2 的</span></span><br><span class="line"><span class="keyword">select</span> oCustomerID <span class="keyword">from</span> mst_Orderinfo o1 </span><br><span class="line"><span class="keyword">join</span> mst_OrderDetail o2 <span class="keyword">on</span> oOrderID = oOrderID</span><br><span class="line"><span class="keyword">where</span> oSKU <span class="keyword">in</span> (<span class="string">'SKU1'</span>,<span class="string">'SKU2'</span>)</span><br><span class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span> oCustomerID</span><br><span class="line"><span class="keyword">HAVING</span> <span class="keyword">COUNT</span>(<span class="keyword">DISTINCT</span> oSKU) = <span class="number">2</span></span><br><span class="line">+<span class="comment">------------+</span></span><br><span class="line">| CustomerID |</span><br><span class="line">+<span class="comment">------------+</span></span><br><span class="line">| A          |</span><br><span class="line">+<span class="comment">------------+</span></span><br></pre></td></tr></table></figure>
+<p>现有一张房源表。</p>
+<p>字段有房源基础信息以及小区id，小区name字段。</p>
+<p>求sql查出top10的房源量的小区，按房源量降序排序。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> 小区<span class="keyword">id</span>,小区<span class="keyword">name</span>,<span class="keyword">count</span>(*) <span class="keyword">as</span>  房源量 <span class="keyword">from</span> 房源表 <span class="keyword">group</span> <span class="keyword">by</span>  小区<span class="keyword">id</span>,小区<span class="keyword">name</span> <span class="keyword">order</span> <span class="keyword">by</span> 房源量 <span class="keyword">desc</span> <span class="keyword">limit</span> <span class="number">10</span>;</span><br></pre></td></tr></table></figure>
+<p>说一下你熟悉的数据库，这个数据库有什么特点？</p>
+<p>请用sql描述，如何给表中插入数据？如何更新数据？</p>
+<p>你常用的mysql引擎有哪些？各引擎间有什么区别？</p>
+<p>MySQL数据库中现有如下表，名为tbl:</p>
+<table>
+<thead>
+<tr>
+<th>id</th>
+<th>name</th>
+<th>age</th>
+<th>sex</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>zhangsan</td>
+<td>25</td>
+<td>1</td>
+</tr>
+<tr>
+<td>2</td>
+<td>lisi</td>
+<td>22</td>
+<td>0</td>
+</tr>
+<tr>
+<td>3</td>
+<td>wangwu</td>
+<td>35</td>
+<td>0</td>
+</tr>
+<tr>
+<td>4</td>
+<td>zhaoliu</td>
+<td>24</td>
+<td>1</td>
+</tr>
+<tr>
+<td>5</td>
+<td>tianqi</td>
+<td>32</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+<p>按照要求写出SQL语句:</p>
+<p>(1)查询前3条纪录。</p>
+<p>(2)查询所有纪录，并按照字段age降序排列。</p>
+<p> 请描述MySQL中left join和inner joinc的区别。</p>
+<p> left join 左连接,以左边的表为基础</p>
+<p>inner join 自连接\内连接 以公共部分为基础</p>
+<p> 请写出你知道MySQL储存引擎和区别。</p>
+<p> 请列出你最常使用的mysql版本，mysql默认端口号是多少？请写出你最常用的mysql数据库备份和恢复命令。</p>
+<p> mysql 3306</p>
+<p>mongodb 27017</p>
+<p>redis 6379</p>
+<p> 数据库A:datahn，其中具有表c、表d。 数据库B:datapubhn，现想要在数据库B中对数据库A中表c与表d中的字段进行增删改查。如何授权？</p>
+<p> 对于处理高复杂sql，数据库查询特别慢，你有什么高招？</p>
+<p>1.优化sql语句==避免子查询,避免使用join连接</p>
+<p>2.适当使用索引</p>
+<p>3.优化数据库结构</p>
+<p>4.优化系统配置</p>
+<p>5.优化服务器结构</p>
+<p> 以下哪条语句在数据库sql书写时最为高效( b )</p>
+<p>A.select * from emp where dep&gt;3</p>
+<p>B.select * from emp where dep&gt;=4</p>
+<p>C.select * from emp where dep≥4</p>
+<p>D.select * from emp where dep&gt;=3 and dep≠4</p>
+<p> 数据库修改用户时，用户的什么属性不能修改？( )</p>
+<p>A.密码</p>
+<p>B.名称</p>
+<p>C.表空间</p>
+<p>D.临时表空间</p>
+<p> 数据库中执行删除操作，若要删除表中的所有行，建议使用( b )</p>
+<p>A.delete 语句</p>
+<p>B.turncate 语句</p>
+<p>C.drop 语句</p>
+<p>D.commit 语句</p>
+<p>2在查询语句的select子句中尽量避免使用__来表示全部列名。</p>
+<p> SQL中增加、删除、修改对应的命令是什么？</p>
+<p> 查找条件为：姓名不是NULL的纪录( c )</p>
+<p>A.WHERE NAME ! NULL</p>
+<p>B.WHERE NAME NOT NULL</p>
+<p>C.WHERE NAME IS NOT NULL</p>
+<p>D.WHERE NAME!=NULL</p>
+<p> 在SQL语言中，子查询是( d )</p>
+<p>A.选取单表中字段子集的查询语句</p>
+<p>B.选取多表中字段子集的查询语句</p>
+<p>C.返回单表中数据子集的查询语言</p>
+<p>D.嵌入到另一个查询语句之中的查询语句</p>
+<p> 以下能够删除一列的是( b )</p>
+<p>A.alter table emp remove addcolumn</p>
+<p>B.alter table emp drop column addcolumn</p>
+<p>C.alter table emp delete column addcolumn</p>
+<p>D.alter table emp delete addcolumn</p>
+<p> 学生关系模型S(S#,Sname,Sex,Age),S的属性分别表示学生的学号、姓名、性别、年龄。要在表S中删除一个属性”年龄”,可选用的SQL语句是( d )</p>
+<p>A.UPDATE S Age</p>
+<p>B.DELETE Age from S</p>
+<p>C.ALTER TABLE S ‘Age’</p>
+<p>D.ALTER TABLE S DROP Age</p>
+<p> 补全语句:select vend_id,count(*) as num_prods from products group by______vend_id__;</p>
+<p> SELECT distinct 部门名称，count(员工编号)，sum(个人工资) FROM 工资表 GROUP BY 部门名称 having count (员工编号&gt;10);查询结果是<strong>___</strong>。</p>
+<p> 用SELECT进行模糊查询时，可以使用匹配符，但要在条件值中使用__或%等通配符来配合查询。</p>
+<p> MySQL是一种___多用户 _(多用户、单用户)的数据库管理系统。</p>
+<p> 对一个超过200个汉字的内容，应用一个<strong>varchar或者text</strong>型的字段来存放。</p>
+<p> 查看当前数据库中表名语句是<strong><strong>_</strong></strong>;</p>
+<p> Mysql数据库GD2312、utf8\utf8mb4字符集的区别<strong>___</strong>。</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/mysql/" rel="tag"># mysql</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/05/23/mysql-50题/" rel="next" title="mysql-50题">
+                <i class="fa fa-chevron-left"></i> mysql-50题
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/05/24/线程进程协程/" rel="prev" title="线程进程协程">
+                线程进程协程 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC80NDExNC8yMDY0OQ=="></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/head.jpg" alt="kl">
+            
+              <p class="site-author-name" itemprop="name">kl</p>
+              <div class="site-description motion-element" itemprop="description">66其实不太6</div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">113</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                      <a href="/categories/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">30</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">48</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+    
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2023</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">kl</span>
+
+  
+
+  
+</div>
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-user"></i>
+    </span>
+    <span class="site-uv" title="总访客量">
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+  
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-eye"></i>
+    </span>
+    <span class="site-pv" title="总访问量">
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    
+    
+      
+    
+  
+  <script color="0,0,0" opacity="0.8" zindex="-1" count="66" src="//cdn.jsdelivr.net/gh/theme-next/theme-next-canvas-nest@1/canvas-nest.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.1.1"></script>
+
+  <script src="/js/motion.js?v=7.1.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/affix.js?v=7.1.1"></script>
+
+  <script src="/js/schemes/pisces.js?v=7.1.1"></script>
+
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.1.1"></script>
+<script src="/js/post-details.js?v=7.1.1"></script>
+
+
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.1.1"></script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+    <script>
+  window.livereOptions = {
+    refer: '2019/05/23/mysql面试题/'
+  };
+  (function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+    if (typeof LivereTower === 'function') { return; }
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+    e.parentNode.insertBefore(j, e);
+  })(document, 'script');
+</script>
+
+  
+
+
+  
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
+<script type="text/javascript" src="/js/src/clicklove.js"></script>
+<!-- <script type="text/javascript" src="/js/src/fish.js"></script> -->
+<!-- <script src='https://blog-static.cnblogs.com/files/elkyo/star.js'></script> -->
+<!-- 雪花特效 -->
+<!-- 雪花特效 -->
+<!-- <script type="text/javascript" src="\js\snow.js"></script> -->

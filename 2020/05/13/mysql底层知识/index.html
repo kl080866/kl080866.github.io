@@ -1,0 +1,1472 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.1.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.1.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.1.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.1.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.1.1" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.1.1',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="##基础知识 文章来源:https://www.jianshu.com/p/47664afa249e Mysql的常用引擎1234567891.Innodb(更适合高并发场景)	Innodb的存储文件有两个,后缀名分别为.frm和.idb,其中.frm是表的定义文件,而.idb是数据文件	Innodb中存在表锁和行锁,不过行锁是在命中索引的情况下才会起作用	Innodb支持事务,且支持四种隔离级别">
+<meta name="keywords" content="底层">
+<meta property="og:type" content="article">
+<meta property="og:title" content="mysql底层知识">
+<meta property="og:url" content="http://kl66.top/2020/05/13/mysql底层知识/index.html">
+<meta property="og:site_name" content="Mr kuai">
+<meta property="og:description" content="##基础知识 文章来源:https://www.jianshu.com/p/47664afa249e Mysql的常用引擎1234567891.Innodb(更适合高并发场景)	Innodb的存储文件有两个,后缀名分别为.frm和.idb,其中.frm是表的定义文件,而.idb是数据文件	Innodb中存在表锁和行锁,不过行锁是在命中索引的情况下才会起作用	Innodb支持事务,且支持四种隔离级别">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://kl66.top/2020/05/13/mysql底层知识/360截图184307107476110.png">
+<meta property="og:image" content="http://kl66.top/2020/05/13/mysql底层知识/微信截图_20200513155027.png">
+<meta property="og:updated_time" content="2020-05-29T10:00:11.099Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="mysql底层知识">
+<meta name="twitter:description" content="##基础知识 文章来源:https://www.jianshu.com/p/47664afa249e Mysql的常用引擎1234567891.Innodb(更适合高并发场景)	Innodb的存储文件有两个,后缀名分别为.frm和.idb,其中.frm是表的定义文件,而.idb是数据文件	Innodb中存在表锁和行锁,不过行锁是在命中索引的情况下才会起作用	Innodb支持事务,且支持四种隔离级别">
+<meta name="twitter:image" content="http://kl66.top/2020/05/13/mysql底层知识/360截图184307107476110.png">
+
+
+
+
+
+  
+  
+  <link rel="canonical" href="http://kl66.top/2020/05/13/mysql底层知识/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>mysql底层知识 | Mr kuai</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Mr kuai</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">追忆似水流年</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-meh-o"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-legal"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-ravelry"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-snowflake-o"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://kl66.top/2020/05/13/mysql底层知识/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="kl">
+      <meta itemprop="description" content="66其实不太6">
+      <meta itemprop="image" content="/images/head.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mr kuai">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">mysql底层知识
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2020-05-13 10:17:04" itemprop="dateCreated datePublished" datetime="2020-05-13T10:17:04+08:00">2020-05-13</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2020-05-29 18:00:11" itemprop="dateModified" datetime="2020-05-29T18:00:11+08:00">2020-05-29</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/mysql/" itemprop="url" rel="index"><span itemprop="name">mysql</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon">
+            <i class="fa fa-eye"></i>
+             阅读次数： 
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>##基础知识</p>
+<p>文章来源:<a href="https://www.jianshu.com/p/47664afa249e" target="_blank" rel="noopener">https://www.jianshu.com/p/47664afa249e</a></p>
+<h4 id="Mysql的常用引擎"><a href="#Mysql的常用引擎" class="headerlink" title="Mysql的常用引擎"></a>Mysql的常用引擎</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">1.Innodb(更适合高并发场景)</span><br><span class="line">	Innodb的存储文件有两个,后缀名分别为.frm和.idb,其中.frm是表的定义文件,而.idb是数据文件</span><br><span class="line">	Innodb中存在表锁和行锁,不过行锁是在命中索引的情况下才会起作用</span><br><span class="line">	Innodb支持事务,且支持四种隔离级别(读未提交,读已提交,可重复读,序列化),默认为可重读读;而在oracle数据库中,只支持序列化和读已提交这两种级别,默认为读已提交</span><br><span class="line">2.Myisam</span><br><span class="line">	Myisam的存储文件有三个,后缀名分别为.frm,.MYD,.MYI.其中.frm是表的定义文件,MYD是表的数据文件,MYI是索引文件.</span><br><span class="line">	Myisam只支持表锁,且不支持事务.Mysiam由于有单独的索引文件,在读取数据方面性能更高</span><br><span class="line">3.存储结构</span><br><span class="line">	Innodb和Myisam都是用B+Tree来存储数据的</span><br></pre></td></tr></table></figure>
+<h5 id="Mysql的数据、索引存储结构"><a href="#Mysql的数据、索引存储结构" class="headerlink" title="Mysql的数据、索引存储结构"></a>Mysql的数据、索引存储结构</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">1.数据存储的原理(硬盘)</span><br><span class="line">	信息存储在硬盘里,硬盘是有很多的盘片组成,通过盘片表面的磁性物质来存储数据.盘片表面是凹凸不平的,凸起的地方磁化,代表数字1,凹的地方被磁化,代表数字0,因此硬盘是通过二进制来存储数字,文字等信息的</span><br><span class="line">2.数据读写的原理</span><br><span class="line">	硬盘在逻辑上被分为磁道,柱面以及扇区.</span><br><span class="line">	磁头靠近主轴接触的表面,即线速度最小的地方,是一个特殊的区域,它不存放任何数据,称为启停区或者着陆区,启停区外就是数据区</span><br><span class="line">	在最外圈,离主轴最远的地方就是0磁道,硬盘数据的存放就是从最外圈开始的</span><br><span class="line">	在硬盘中还有一个叫0磁道检测器的构件,用来完成磁盘的初始定位</span><br><span class="line">3.磁盘的读写原理</span><br><span class="line">	系统将文件存储到磁盘上时,按柱面、磁头和扇区的方式进行，即最先是第一磁道的第一磁头下的所有扇区，然后是同一柱面的下一个磁头</span><br><span class="line">	一个柱面存储满后就推进到下一个柱面，直到把文件内容全部写入磁盘</span><br><span class="line">	系统也以相同的顺序读出数据，读出数据时通过告诉磁盘控制器要读出所在扇区所在柱面、磁头号和扇区号进行</span><br><span class="line">4.减少i/o的预读原理</span><br><span class="line">	由于存储介质的特性，磁盘本身存取就比主存慢很多，再加上机械运动消耗的时间。磁盘的存取速度往往是主存的几百分之一，因此为了提高效率尽量减少磁盘的io。</span><br><span class="line">	磁盘往往不是严格按需读取，而是每次都会预读，即使只需要一个字节，磁盘也会从这个位置开始，顺序向后读取一定长度的数据放入内存。</span><br><span class="line">5.mysql的索引</span><br><span class="line">	索引是一种用来实现Mysql高效获取数据的数据结构</span><br><span class="line">	我们通常所说的在某个字段上建索引，意思就是让mysql对该字段以索引这种数据结构来存储，然后查找时有对应的查找算法。</span><br><span class="line">	建立索引的目的是为了查找的优化，一般的查找算法有顺序查找，折半查找，快速查找。每种查找算法都用于特定的数据结构。如顺序查找以来于顺序结构，折半查找通过二叉查找树黑着红黑树实现二分搜索。因此在数据之外，数据库系统还维护着满足特定查找算法的数据结构，这种数据结构以某种方式引用数据，这样就可以在这些数据结果上实现高级查找算法，这种数据结构就是索引。</span><br></pre></td></tr></table></figure>
+<h5 id="Mysql中的B-Tree"><a href="#Mysql中的B-Tree" class="headerlink" title="Mysql中的B+Tree"></a>Mysql中的B+Tree</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">目前大多数的数据库系统及文件系统都采用B-Tree或其变种B+Tree作为索引结构</span><br><span class="line">B+树索引是B+树在数据库中的一种实现，是最常见也是数据库中使用最为频繁的一种索引，B表示平衡而非二叉。</span><br><span class="line">B+Tree是由平衡二叉树演变而来,B+Tree是由二叉查找树(左子树的键值小于根节点键值,右子树的键值大于根的键值),平衡二叉树(在二叉查找树的条件下,还满足任何节点的两个子树高度最大差为<span class="number">1</span>),平衡多路查找树(为磁盘外存储设备设计的一种平衡查找树)逐步优化过来的</span><br><span class="line">系统从磁盘读取数据到内存时是以磁盘块为基本单位的,位于同一磁盘块中的数据会被一次性取出来,而不是按需读取</span><br><span class="line">Innodb使用页作为数据读取单位,页是其磁盘管理的最小单位,默认page大小是<span class="number">16</span>k</span><br><span class="line">系统中一个磁盘的大小往往没有那么大,因此Innodb每次申请磁盘空间时都会是若干地址连续磁盘块来达到页的大小<span class="number">16</span>kb</span><br><span class="line">Innodb在把磁盘数据读入到磁盘时会以页作为基本单位,在查询数据时如果一个页中的每条数据都能助于定位数据记录的位置,这将会减少磁盘I/O的次数,提高查询效率</span><br><span class="line">B-Tree结构的数据可以让系统高效的找到数据所在的磁盘块</span><br><span class="line">为了描述B-Tree,首先定义一条数据记录为一个二元组[key,data],key为记录的键值,对于不同数据记录,可以是互不相同的,data为数据记录除key外的数据</span><br><span class="line">B-Tree的每个节点根据实际情况可以包含大量的关键字信息和分支</span><br><span class="line">每个节点占用一个盘块的磁盘空间,一个节点上有两个升序排序的关键字个三个只想子树根节点的指针,指针存储的是子节点所在磁盘块的地址.</span><br><span class="line">两个关键词划分成的三个范围域对应三个指针只想的子树的数据的范围域</span><br><span class="line">以根节点为例,关键字为<span class="number">17</span>和<span class="number">35</span>,p1指针指向的子树的数据范围为小于<span class="number">17</span>,p2指针指向的子树的数据范围为<span class="number">17</span><span class="number">-35</span>,p3指针指向的为大于<span class="number">35</span></span><br></pre></td></tr></table></figure>
+<p>####B-Tree</p>
+<p><img src="/2020/05/13/mysql底层知识/360截图184307107476110.png" alt="360截图184307107476110"></p>
+<p>查找关键字29的过程:</p>
+<p>​    1.根据根节点找到磁盘1,读入内存(磁盘i/o操作一次)</p>
+<p>​    2.根据关键字29在区间(17,35),找到磁盘块1的指针p2</p>
+<p>​    3.根据p2指针找到磁盘块3,读入内存,磁盘i/o操作第二次</p>
+<p>​    4.比较关键字29在区间(26,30),找到磁盘块3的指针p2</p>
+<p>​    5.根据p2指针找到磁盘块8,读入内存,磁盘i/o操作第三次</p>
+<p>​    6.在磁盘块8的关键字列表中找到关键字29</p>
+<p>Mysql的Innodb存储引擎在设计时是将根节点常驻内存的,因此力求达到树的深度不超过3,也就是I/O不需要超过3次</p>
+<p>根据上面的过程可以发现需要3次磁盘I/O操作,和3次内存查找工作.由于内存中的关键字是一个有序表结构,可以利用二分法查找提高效率,因而3次磁盘的I/O操作是影响整个B-tree查找效率的决定性因素</p>
+<p>B-Tree 相对于平衡二叉树缩减了节点个数,使每次I/O取到内存的数据都发挥了作用,从而提高了查询效率</p>
+<p>B+Tree是在B-Tree的基础上的一种优化,使其更适合实现外存储索引结构,Innodb存储引擎就是用B+Tree实现其索引结构</p>
+<p>在B-Tree中,每个节点中有key,也有data,而每一个页的存储空间有限,如果data数据较大时会导致每个节点(即一个页)能存储的的key数量很小</p>
+<p>在B+Tree中,所有数据记录节点都是按照键值大小顺序存放在同一层的叶子结点上,</p>
+<p>而非叶子结点上只存储key值信息,这样可以大大加大每个节点存储的key值数量,降低B+Tree的高度</p>
+<p>B+Tree和B-Tree的区别</p>
+<p>​    1.数据是存在叶子节点上中的</p>
+<p>​    2.数据节点间是有指针指向的</p>
+<p><img src="/2020/05/13/mysql底层知识/微信截图_20200513155027.png" alt="微信截图_20200513155027"></p>
+<h5 id="Myisam中的B-Tree"><a href="#Myisam中的B-Tree" class="headerlink" title="Myisam中的B+Tree"></a>Myisam中的B+Tree</h5><p>Myisam引擎也是采用的B+Tree结构作为索引结构</p>
+<p>由于Myisam中的索引和数据存放在不同的文件,所以在索引树中的叶子结点中存的数据是该索引对应的数据记录的地址,由于数据和索引不在一起,所以Myisam是非聚簇索引</p>
+<p>(叶子结点存放对应数据的物理地址)</p>
+<p>#####Innoodb中的B+Tree</p>
+<p>Innodb是以ID为索引的数据存储</p>
+<p>采用Innodb引擎的数据存储文件有两个,一个定义文件,一个数据文件</p>
+<p>Innodb通过B+Tree结构对ID建索引,然后通过叶子结点中存储记录</p>
+<p>若建索引的字段不是主键ID,则对该字段建索引,然后在叶子节点中存存的是该记录的主键,然后通过主键索引找到对应记录</p>
+<p>#####Mysql的相关优化</p>
+<h6 id="1-Mysql性能优化-组成-表的设计"><a href="#1-Mysql性能优化-组成-表的设计" class="headerlink" title="1.Mysql性能优化:组成,表的设计"></a>1.Mysql性能优化:组成,表的设计</h6><p>​    ①开启查询缓存.避免某些sql函数直接在sql语句中使用,从而导致Mysql缓存失效</p>
+<p>​    ②目的是什么就取什么,能查一条判断的就不要全取</p>
+<p>​    ③建合适的索引,所以要建在合适的地方,合适的对象上,经常操作/比较/判断的字段应该建索引</p>
+<p>​    ④字段大小要适宜.字段的取值是有限而且固定的,这种情况下可以使用enum,ip字段介意用unsigned int来存储</p>
+<p>​    ⑤表的设计.垂直分割表,使得固定表与边长表分割,从而降低表的复杂度和字段的数目</p>
+<h6 id="2-SQL语句优化-避免全表扫描"><a href="#2-SQL语句优化-避免全表扫描" class="headerlink" title="2.SQL语句优化:避免全表扫描"></a>2.SQL语句优化:避免全表扫描</h6><p>​    1.建索引  一般在where及order by中涉及到的列上建索引,尽量不要对可以重复的字段建索引.</p>
+<p>​    2.尽量避免在where中使用!或or也不要进行null值判断</p>
+<p>​    3.尽量避免在where中对字段进行函数操作、表达式操作</p>
+<p>​    4.尽量避免使用llike %，在这种情况下可以进行全文检索</p>
+<h5 id="Mysql基准测试"><a href="#Mysql基准测试" class="headerlink" title="Mysql基准测试"></a>Mysql基准测试</h5><p>原因:基准测试可以观察系统在不同压力下的行为,评估系统的容量,掌握哪些是重要的变化,或者观察系统如何处理不同的数据</p>
+<p>######基准测试的策略:</p>
+<p>​    针对整个系统的测试(集成式full-stack)</p>
+<p>​    单独测试Mysql(单组件式single-component)</p>
+<h6 id="测试的指标"><a href="#测试的指标" class="headerlink" title="测试的指标"></a>测试的指标</h6><p>​    1.吞吐量,指单位时间内的事务处理数,常用的测试单位是每秒事务级(TPS),或每分钟事务数(TPM)</p>
+<p>​    2.响应时间或者延迟,用于测试任务所需的整体时间,根据具体的应用,测试的时间单位可能是微秒毫秒秒或者分钟.通常使用百分比响应时间来代替最大响应时间</p>
+<p>​    3.并发性,需要关注的是正在工作中的并发操作,或者是同时工作中的线程数或者连接数.在测试期间记录Mysql数据库的Threads_running状态值</p>
+<p>​    4.可扩展性,给系统增加一倍的工作,在理想状态下就能获得两倍的效果(即吞吐量增加一倍),对于容量规范非常有用,可以提供其他测试无法提供的信息</p>
+<h6 id="基准测试方法"><a href="#基准测试方法" class="headerlink" title="基准测试方法"></a>基准测试方法</h6><p>1.需要避免的一些常见错误:</p>
+<p>​    使用真实数据的子集而不是全集</p>
+<p>​    使用错误的数据分布</p>
+<p>​    使用不真实的分布参数</p>
+<p>​    在多用户的场景中,只做单用户测试</p>
+<p>​    在单服务器上测试分布式应用</p>
+<p>​    与真实用户行为不匹配</p>
+<p>​    反复执行同一个查询</p>
+<p>​    没有检查错误</p>
+<p>​    忽略了系统预热(warm up)过程</p>
+<p>​    使用默认的服务器配置</p>
+<p>​    测试时间太短</p>
+<p>2,应该建立将参数和结果文档化的规范,每一轮测试都必须进行详细记录</p>
+<p>3.基准测试应该运行足够长的时间,需要在稳定状态下测试并观察</p>
+<p>4.在执行基准测试时.需要尽可能多地收集被测试系统的信息</p>
+<p>5.自动化基准测试可以防止测试人员偶尔遗漏某些步骤,或者误操作,宁外也有助于归档整个测试过程</p>
+<h6 id="剖析mysql查询"><a href="#剖析mysql查询" class="headerlink" title="剖析mysql查询"></a>剖析mysql查询</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">1.剖析服务器负载</span><br><span class="line">	·慢查询日志  long_query_time为0可以捕获所有的查询,查询的响应时间单位可以做到微秒级</span><br><span class="line">	·生成剖析报告  pt-query-digest</span><br><span class="line">2.剖析单条查询</span><br><span class="line">	show profiles</span><br><span class="line">	show global status</span><br></pre></td></tr></table></figure>
+<h6 id="诊断间歇性问题"><a href="#诊断间歇性问题" class="headerlink" title="诊断间歇性问题"></a>诊断间歇性问题</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">1.尽量不要用试错的方式来解决问题,如果一时无法定位,可能是测量的方式不准确,或者测量的点选择有误,或者使用的工具不合适</span><br><span class="line">2.确定单条查询问题还是服务器问题</span><br><span class="line">	show global  status</span><br><span class="line">	show processlist</span><br><span class="line">	使用查询日志</span><br><span class="line">	理解发现的问题,使用gnuplot或R,或其他绘图工具将结果绘制成图形</span><br><span class="line">3.捕获诊断数据</span><br><span class="line">	诊断触发器:在问题出现时能够捕获数据的基础,有两个常见问题可能导致无法达到预期的结果:误报或者漏检</span><br><span class="line">	收集数据:尽可能收集所有能收集的数据,但只在需要的时间段内收集,oprofile,strace,tcpdump,pt-collect,pt-stalk</span><br><span class="line">	解释结果数据:pt-mysql-summary输出结果打包....</span><br></pre></td></tr></table></figure>
+<p>Schema与数据类型优化</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">schema就是数据库对象的集合，所谓的数据库对象也就是常说的表，索引，视图，存储过程等。</span><br><span class="line">在schema之上的，就是数据库的实例，也就是通常create databases获得的东西</span><br><span class="line">选择优化的数据类型</span><br><span class="line">	1.数据类型的选择原则</span><br><span class="line">		更小的通常更好</span><br><span class="line">		简单就好</span><br><span class="line">		尽量避免null</span><br><span class="line">	2.应该尽量只在对小数进行精确计算时才使用decimal,使用int类型通过程序控制单位效果更好</span><br><span class="line">	3.使用varchar合适的情况,字符串列的最大长度比平均长度大很多;列的更新很少</span><br><span class="line">	4.char适合存储很短的字符串,或者所有值都接近同一个长度,不容易产生碎片,在存储空间上更有效率</span><br><span class="line">	5.通常应该尽量使用timestamp,它比datetime空间效率更高</span><br></pre></td></tr></table></figure>
+<h6 id="加快alter-table操作的速度"><a href="#加快alter-table操作的速度" class="headerlink" title="加快alter table操作的速度"></a>加快alter table操作的速度</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1.在一台不提供服务的机器上执行alter  table操作,然后和提供服务的主库进行切换</span><br><span class="line">2.通过影子拷贝,创建一张新表,然后通过重命名和删表操作交换两张表及里面的数据</span><br></pre></td></tr></table></figure>
+<p>快速创建Myisam索引,先禁用索引,导入数据,然后重新启用索引</p>
+<h6 id="创建高性能的索引"><a href="#创建高性能的索引" class="headerlink" title="创建高性能的索引"></a>创建高性能的索引</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line">一.索引基础</span><br><span class="line">	1.索引可以包含一个或多个列的值,如果索引包含多个列,那么列的顺序也十分重要,因为mysql只能高效地使用索引的最左前缀列</span><br><span class="line">	2.orm工具能够产生符合逻辑,合法的查询,除非只是生成非常基本的语句,否则很难生成适合索引的查询</span><br><span class="line">	3.在mysql中,索引是在存储引擎层而不是服务器层实现的,所以,并没有统一的索引标准;不同存储引擎的索引的工作方式并不一样,也不是所有的存储引擎都支持所有类型的索引</span><br><span class="line">	4.B-Tree意味着所有的值都是按顺序存储的,并且每一个叶子页到根的距离相同,能够加快访问数据的速度,从索引的根节点开始搜索,适用于全键值\键值范围或键前缀查找</span><br><span class="line">	5.B-Tree索引的限制:</span><br><span class="line">		如果不是按照索引的最左列开始查找,则无法使用索引</span><br><span class="line">		不能跳过索引中的列</span><br><span class="line">		如果查询中有某个列的范围查询,则其右边所有列都无法使用索引优化查找</span><br><span class="line">	6.哈希索引基于哈希表实现,只有精确匹配索引所有列的查询才会有效,只有memory引擎支持哈希索引</span><br><span class="line">	7.哈希索引的限制:</span><br><span class="line">		哈希索引只包含哈希值和行指针,而不存储字段值,所以不能使用索引中的值来避免读取行</span><br><span class="line">		哈希索引数据并不是按照索引值顺序存储的,所以也就无法用于排序</span><br><span class="line">		哈希索引也不支持部分索引列匹配查找,因为哈希索引始终是使用索引列的全部内容来计算哈希值的</span><br><span class="line">		只支持等值比较查询,不支持任何范围查询</span><br><span class="line">		访问哈希索引的数据非常快,除非有很多哈希冲突</span><br><span class="line">		如果哈希冲突很多的话,一般索引维护的代价也会很高</span><br><span class="line">	8.空间数据索引(r-Tree),myisam支持空间索引,可以使用地理数据存储</span><br><span class="line">	9.全文索引,试用与Match against操作,而不是普通的where条件操作</span><br><span class="line">二.索引的优点</span><br><span class="line">	1.三个优点</span><br><span class="line">		①索引大大减少了服务器需要扫描的数据量</span><br><span class="line">		②索引可以帮助服务器避免排序和临时表</span><br><span class="line">		③索引可以将随机I/O变成顺序I/O</span><br><span class="line">	2.索引三星系统:</span><br><span class="line">		①索引将相关的记录放到一起则获得一星</span><br><span class="line">		②如果索引中的数据顺序和查找中的排序一致则获得二星</span><br><span class="line">		③如果索引中的列包含了查询中需要的全部列则获得三星</span><br><span class="line">三.高性能的索引策略</span><br><span class="line">	1.独立的列:如果查询中的列不是独立的,则MYSQL不会使用索引.独立的列是指索引列,不能是表达式的一部分,也不能是函数的参数</span><br><span class="line">	2前缀索引和索引选择性</span><br><span class="line">		①通常可以索引开始的部分字符,可以大大节约索引空间,但也会降低索引的选择性</span><br><span class="line">		②索引的选择性是指,不重复的索引值和数据表的记录总数的比值.选择性越高则查询效率越高,因为选择性高的索引可以让mysql在查找到时候过滤掉很多的行</span><br><span class="line">		③mysql无法使用最左前缀索引做order by 和group by,也无法做覆盖扫描</span><br><span class="line">	3.选择合适的索引列顺序</span><br><span class="line">		①正确的索引列顺序依赖于使用该索引的查询,并且同时需要考虑如何更好地满足排序和分组的需要</span><br><span class="line">		②在一个多列B-Tree索引中,索引列的顺序意味着索引首先按照最左列进行排序,其次是第二列</span><br><span class="line">		③将选择性最高的列放到索引最前列</span><br><span class="line">	4.聚簇索引:并不是一种单独的索引类型,而是一种数据存储方式</span><br><span class="line">		(最好避免随机的聚簇索引,特别是对于I/O密集型的应用)</span><br><span class="line">	5.覆盖索引:如果一个索引包含所有要查询的字段的值,称为覆盖索引</span><br><span class="line">		覆盖索引必须要存储索引列的值</span><br><span class="line">	6.压缩(前缀)索引,默认值压缩字符串,减少索引的大小,对于cpu密集型应用没因为扫描需要随机查找,压缩索引在myisam上要慢好几倍</span><br><span class="line">	7.重复索引是指在相同的列上按照相同的熟悉顺序创建的相同类型的索引,应该尽量避免这样重复的创建索引</span><br><span class="line">	8.索引可以让查询锁定更少的行</span><br><span class="line">四.维护索引和表</span><br><span class="line">	1.check table 表名 检查表是否损坏</span><br><span class="line">	2.altet table 表名 engine = Innodb  修复表</span><br><span class="line">	3.show index from 表名  查看索引的基数</span><br><span class="line">	4.b-tree可能会碎片化,降低查询的效率</span><br></pre></td></tr></table></figure>
+<h6 id="五-查询性能优化"><a href="#五-查询性能优化" class="headerlink" title="五.查询性能优化"></a>五.查询性能优化</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><span class="line">1.为什么查询速度会变慢</span><br><span class="line">	①如果要优化查询,实际上要优化其子任务,要么消除其中一些子任务,要么减少子任务的执行次数,要么让子任务运行的更快</span><br><span class="line">    ②查询的生命周期大致可以按照顺序来看:从客户端,到服务器,然后在服务器上进行解析,生成执行计划,执行,并将结果返回给客户端</span><br><span class="line">2.慢查询基础:优化数据访问</span><br><span class="line">	1.两个分析步骤:</span><br><span class="line">    	①确认应用程序是否检索大量超过需要的数据</span><br><span class="line">		②确认Mysql服务器层是否在分析大量超过需要的数据行</span><br><span class="line">	2.是否向数据库请求了不需要的数据</span><br><span class="line">		①查询了不需要的数据</span><br><span class="line">		②多表关联并返回全部列</span><br><span class="line">		③总是取出全部列</span><br><span class="line">		④重复查询相同的数据</span><br><span class="line">	3.mysql是否在扫描额外的记录</span><br><span class="line">		1.查询开销三个指标:响应时间,扫描行数,返回的行数</span><br><span class="line">             ②响应时间:服务时间和排队时间之和</span><br><span class="line">             ③扫描的行数:较短的行的访问速度更快,内存中的行也比磁盘中的行的访问速度要快的多</span><br><span class="line">             ④访问的类型:explain中的type列反应了访问类型,通过增加合适的索引.</span><br><span class="line">		2.三种方式应用where条件,在索引中使用where条件来过滤不匹配的记录;使用索引覆盖扫描来返回记录,直接从索引中过滤不需要的记录并返回命中结果;从数据表中返回数据,然后过滤不满足条件的记录</span><br><span class="line">		3.需要扫描大量数据但只返回少数行的优化技巧:使用索引覆盖扫描,改变库表结构,重写复杂的查询</span><br><span class="line">3.重构查询的方式</span><br><span class="line">	①Mysql从设计上让连接和断开连接都很轻量级,再返回一个小的查询结果方面很高效</span><br><span class="line">	②切分查询,将大查询切分成小查询.每个查询功能完全一样,只完成一小部分,每次只返回一小部分查询结果,可以避免锁住很多数据,占满事务日志,耗尽系统资源,阻塞很多小的但重要的查询</span><br><span class="line">	③分解关联查询优势:</span><br><span class="line">		1.让缓存的效率更高</span><br><span class="line">		2.将查询分解后,执行单个查询可以减小锁的竞争</span><br><span class="line">		3.在应用层做关联,可以更容易对数据库进行拆分,更容易做到高性能和可扩展</span><br><span class="line">		4.查询效率本身效率也可能会有所提升</span><br><span class="line">		5.可以减少冗余记录的查询</span><br><span class="line">		6.相当于在应用中实现了哈希关联,而不是使用Mysql的嵌套循环关联</span><br><span class="line">	④分解关联查询的场景	</span><br><span class="line">		1.当应用能够方便的缓存单个查询的结果的时候</span><br><span class="line">		2.当可以将数据分布到不同的MYSQL服务器上的时候</span><br><span class="line">		3.当能够使用IN()的方式代替关联查询的时候</span><br><span class="line">		4.当查询中使用同一个数据表的时候</span><br><span class="line">4.查询执行的基础</span><br><span class="line">	①查询执行的路径</span><br><span class="line">		客户端发送一条查询给服务器</span><br><span class="line">		服务器先检查查询缓存,如果命中则立刻返回,否则进入下一阶段</span><br><span class="line">		服务器端进行sql解析,预处理,再由优化器生成对应的执行计划</span><br><span class="line">		mysql根据优化器生成的执行计划,调用存储引擎的api来执行查询</span><br><span class="line">		将结果返回给客户端</span><br><span class="line">	②Mysql客户端和服务器之间的通信协议是半双工的,无法将一个消息切成小块独立来发送,没法进行流量控制,一旦一端开始发生消息,宁一端要接受完整个消息才能响应它</span><br><span class="line">	③mysql通常需要等所有的数据都已经发送给客户端才能释放这条查询所占用的资源,所以接收全部结果并缓存通常可以减少服务器的压力</span><br><span class="line">	④语法解析器和预处理,通过关键字将sql语句进行解析,并生成一颗对应解析树,解析器将使用MYSQL语法规则验证和解析查询,预处理器则根据一些mysql规则进一步检查树是否合法</span><br><span class="line">	⑤查询优化器,找到最好的执行计划,使用基本成本的优化器,将尝试预测一个查询使用某种执行计划时的成本,并选择其中成本最小的一个,使用show status like &apos;last_query_cost&apos;;查看需要多少个数据页的随机查找</span><br><span class="line">	⑥导致查询优化器选择错误的原因</span><br><span class="line">		1.统计信息不准确,Innodb不能维护一个数据表的行数的精准统计信息</span><br><span class="line">		2.执行计划中的成本估算不等同于实际执行的成本</span><br><span class="line">		3.Mysql的最优跟你想的最优可能不太一样</span><br><span class="line">		4.mysql从不考虑其他并发执行的语句</span><br><span class="line">		5.MYSQL也并不任何时候都是基于成本的优化</span><br><span class="line">		6.Mysql不会考虑不受控制的操作的成本</span><br><span class="line">		7.优化器有时候无法去估算所有可能的执行计划</span><br><span class="line">	⑦mysql能处理的优化类型</span><br><span class="line">		1.重新定义关联表的顺序</span><br><span class="line">		2.将外链接转换为内链接</span><br><span class="line">		3.使用等价变换规则</span><br><span class="line">		4.优化count(),min(),max(),在explain可以看到&apos;select tables optimized away&apos;</span><br><span class="line">		5.预估并转化为常数表达式,当检测到一个表达式可以转换为常数的时候,就会一直把该表达式作为常数进行优化处理</span><br><span class="line">		6.覆盖索引操作,当索引中的列包含所有查询中需要使用的列的时候,就可以使用索引返回需要的数据,而无需查询对应的数据行</span><br><span class="line">		7.子查询优化</span><br><span class="line">		8.提前终止查询,在发现已经满足查询需求的时候,在发现已经满足查询需求的时候,Mysql总是能够立刻终止查询</span><br><span class="line">		9.等值传播,如果两个列的值通过等式关联,那么mysql能够把其中一个列的where条件传递到宁一个列上</span><br><span class="line">		10.列表in()的比较,mysql将in()列表中的数据先进行排序,然后通过二分查找的方式来确定列表中的值是否满足条件</span><br><span class="line">	⑧对于union查询,mysql先将一系列的单个查询结果放到一个临时表中,然后再重新读出临时表数据来完成union查询</span><br><span class="line">	⑨无论如何排序都是一个成本很高的操作,所以从性能角度考虑,应尽可能避免排序或者尽可能避免对大量数据进行排序</span><br><span class="line">	⑩当不能使用索引生成排序结果的时候,MYSQL需要自己进行排序,如果数据量小则在内存中进行,如果数据量大则需要使用磁盘,Mysql将这个过程称为文件排序,及时完全是内部排序不需要任何磁盘文件也是如此.</span><br></pre></td></tr></table></figure>
+<h6 id="查询优化器"><a href="#查询优化器" class="headerlink" title="查询优化器"></a>查询优化器</h6><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">一.Mysql查询优化器的局限性</span><br><span class="line">	<span class="number">1.</span>关联子查询:Mysql的子查询实现起来非常糟糕,最糟糕的一类查询是where条件中包含<span class="keyword">in</span>()的子查询语句.使用group_concat()在<span class="keyword">in</span>()中构造一个由逗号分隔的列表,或者使用exists()来改写</span><br><span class="line">     <span class="number">2.</span>union的限制,有时,Mysql无法将限制条件从外层下推到内层,这使得原本能够限制部分返回结果的条件无法应用到内层查询的优化上</span><br><span class="line">    <span class="number">3.</span>Mysql不支持哈希关联,mariadb已经实现了哈希关联</span><br><span class="line">    <span class="number">4.</span>MYSQl无法利用多核来进行并行查询</span><br><span class="line">    <span class="number">5.</span>Mysql不支持松散索引扫描,<span class="number">5.0</span>后的版本在分组查询中需要找到分组的最大值和最小值时可以使用松散索引扫描</span><br><span class="line">    <span class="number">6.</span>对于min和max.mysql优化的并不好</span><br><span class="line">二.优化特定类型的查询</span><br><span class="line">	<span class="number">1.</span>优化count()查询</span><br><span class="line">    ·count()是一个特殊的函数,有两种非常不同的作用:可以统计某个列值的数量,也可以统计行数,在统计列值时要求列值是非空的(不统计null)</span><br><span class="line">   	·count(*)并不是会像我们猜想的那样扩展成所有的列,实际上,它会忽略所有的列而直接统计所有的行数,当mysql确认括号内的表达式不可能为空时,实际上就是在统计行数</span><br><span class="line">    Myisam的count函数只有没有任何where条件下的count(*)才非常快</span><br><span class="line">    使用近似值,如explain出来的优化器估算行数</span><br><span class="line">    使用索引覆盖</span><br><span class="line">    使用汇总表</span><br><span class="line">    使用外部缓存系统</span><br><span class="line">	<span class="number">2.</span>优化关联查询</span><br><span class="line">	确保on或者using子句的列上有索引</span><br><span class="line">    确保任何的groupby和order by中的表达式只涉及到一个表中的实例</span><br><span class="line">    当升级mysql的时候需要注意:关联语法,运算符优先级等其他可能会发生变化的地方</span><br><span class="line">    <span class="number">3.</span>优化子查询,尽可能使用关联查询代替</span><br><span class="line"><span class="number">4.</span>优化GROUP BY和DISTINCT</span><br><span class="line">使用索引优化</span><br><span class="line">当无法使用索引时，GROUP BY使用两种策略来完成：使用临时表或者文件排序来做分组</span><br><span class="line">尽可能的将WITH ROLLUP（超级聚合）功能移动应用程序中处理</span><br><span class="line"><span class="number">5.</span>优化LIMIT分页</span><br><span class="line">最简单的办法是尽可能地使用索引覆盖扫描，而不是查询所有的列，然后根据需要做一次关联操作再返回所需的列，select id,name,…… <span class="keyword">from</span> table innert join (select id <span class="keyword">from</span> table order by xxx limit <span class="number">5000</span>,<span class="number">5</span>) <span class="keyword">as</span> table1 USING(id);</span><br><span class="line">offset会导致MySQL扫描大量不需要的行然后再抛弃掉，如果可以记录上次取数据的位置，下次就可以直接从该记录的位置开始扫描，可以避免使用offset</span><br><span class="line">使用预先计算的汇总表，或者关联到一个冗余表</span><br><span class="line"><span class="number">6.</span>优化UNION查询</span><br><span class="line">    通过创建并填充临时表的方式来执行UNION查询，因此很多优化策略在UNION查询中都没法很好地使用，经常需要手工地将WHERE、LIMIT、ORDER BY等子句下推到UNION的各个子查询中</span><br><span class="line">    除非确实需要服务器消除重复的行，否则就一定要使用UNION ALL</span><br></pre></td></tr></table></figure>
+<p>######Mysql高级特性</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br></pre></td><td class="code"><pre><span class="line">一.分区表</span><br><span class="line">	1.对用户来说分区表是一个独立的逻辑表,但是底层由多个物理子表组成,实际上是对一组底层表的句柄对象的的封装</span><br><span class="line">	2.使用场景:</span><br><span class="line">		·表非常大以至于无法全部都放在内存中,或者只在表的最后部分有热点数据,其他均是历史数据</span><br><span class="line">		·分区表的数据更容易维护</span><br><span class="line">		·分区表的数据可以分布在不同的物理设备上,从而高效的利用多个硬件设备</span><br><span class="line">		·可以使用分区表来避免某些特殊的瓶颈</span><br><span class="line">		·如果需要,还可以备份和恢复独立的区</span><br><span class="line">	3.使用限制</span><br><span class="line">		·一个表最多只能有1024个区</span><br><span class="line">		·在Mysql5.1中,分区表达式必须是整数,或者返回证书的表达式.在mysql5.5中,某些场景中可以直接使用列来进行分区</span><br><span class="line">		·如果分区字段中有主键或者唯一索引的列,那么所有主键列和唯一索引列都必须包含进来</span><br><span class="line">		·分区表无法使用外键约束</span><br><span class="line">	4.使用分区表</span><br><span class="line">		当数据量超大的时候,B-Tree索引就无法起作用了,除非是覆盖索引查询,否则数据库服务器需要根据索引扫描返回的结果,查询所有符合条件的记录,如果数据量巨大,将产生大量随机I/O</span><br><span class="line">	5.保证大数据量的可扩展性的策略</span><br><span class="line">		·命题扫描数据,无需使用任何索引</span><br><span class="line">		·索引数据并分离热点</span><br><span class="line">	6.分区策略的问题</span><br><span class="line">		·NULL值会使分区过滤无效</span><br><span class="line">		·分区列和索引列不匹配</span><br><span class="line">		·选择分区的成本可能会很高</span><br><span class="line">		·打开并锁住所有底层表的成本可能很高</span><br><span class="line">		·维护分区的成本可能很高</span><br><span class="line">		·所有分区都必须使用相同的引擎存储</span><br><span class="line">		·分区函数中可以使用的函数和表达式也有一些限制</span><br><span class="line">		·某些引擎不支持分区</span><br><span class="line">		·对于Myisam的分区表,不能再使用load  index  into cache操作</span><br><span class="line">		·对于Myisam表,使用分区表时需要打开更多的文件描述符</span><br><span class="line">	7.查询优化</span><br><span class="line">		很重要的一点是要在where条件中带入分区列</span><br><span class="line">		只能在使用分区函数的列本身进行比较时才考虑分区,而不能根据表达式的值去过滤分区,及时这个表达式是分区函数也不行</span><br><span class="line">		</span><br><span class="line">二.视图</span><br><span class="line">	1.视图本身是一个虚拟表,不存放任何数据,返回的数据是从mysql从其他表生成的</span><br><span class="line">	2.Mysql使用两种算法:合并算法和临时表算法,会尽可能的使用合并算法</span><br><span class="line">	3.如果视图中包含groupby\distinct\任何聚合函数\union\子查询等.只要无法在原表记录和试图记录中建立一一映射的场景中,Mysql都将使用临时表算法来实现视图</span><br><span class="line">	4.可更新视图是指可以任何通过更新这个视图来更新视图涉及的相关表,check option表示任何通过视图更新的行,都必须符合视图本身的where条件定义</span><br><span class="line">	5.在重构schema的时候可以使用视图,使得在修改底层表结构的时候,应用代码还可能继续不报错的运行</span><br><span class="line">	6.mysql中不支持物化视图(指将视图结果数据存放在一个可以查看的表中,并定期从原始表中刷新到这个表中)</span><br><span class="line">	7.不会保存视图定义的原始SQL语句</span><br><span class="line">	</span><br><span class="line">三.外键约束</span><br><span class="line">	1.使用外键是有成本的,通常要求每次在修改数据时都要在宁外一张表中多执行一次查找操作</span><br><span class="line">	2.如果想确保两个关键表始终有一致的数据,那么使用外键比在应用程序中检查一致性的性能要高得多,在相关数据的删除和更新上,比在应用中维护更高效</span><br><span class="line">	3.外键会带来很大的额外消耗</span><br><span class="line"></span><br><span class="line">四.在Mysql内部存储代码</span><br><span class="line">	1.mysql允许通过触发器,存储过程,函数的形式来存储代码,从5.1开始还可以在定时任务中存放代码,这个定时任务称为时间.存储过程和存储函数都被统称为存储程序</span><br><span class="line">	2.存储代码的优点:</span><br><span class="line">		·他在服务器内部执行,离数据最近,宁外在服务器上执行还可以节省带宽和网络延迟</span><br><span class="line">		·它是一种代码复用,可以方便统一业务规则,保证某些行为总是一致的,所以也可以为应用提供一定的安全性</span><br><span class="line">		·它可以简化代码的维护和版本更新</span><br><span class="line">		·可以帮助提升安全,比如提供细粒度的权限控制</span><br><span class="line">		·服务器端可以缓存存储过程的执行计划,这对于需要反复调用的过程,会大大降低消耗</span><br><span class="line">		·因为是在服务器端部署的,所以可以备份,维护都可以在服务器端完成</span><br><span class="line">		·可以在应用开发和数据库开发人员之间更好地分工</span><br><span class="line">	3.存储代码的缺点</span><br><span class="line">		·Mysql本身没有提供好用的开发和调试工具</span><br><span class="line">		·较之应用程序的代码,存储代码效率稍微差点</span><br><span class="line">		·存储代码可能会给应用程序代码的部署带来额外的复杂性</span><br><span class="line">		因为存储程序都部署在服务器内,所以可能有安全隐患</span><br><span class="line">		存储过程会给数据库服务器增加额外的压力,而数据库服务器的扩展性相比应用服务器要差很多</span><br><span class="line">		mysql并没有选项可以控制存储程序的资源消耗,所以在存储过程的一个小错误,可能会直接把服务器拖死</span><br><span class="line">		存储代码在mysql中的实现也有很多的限制--执行计划缓存是连接级别的,游标的物化和临时表相同,异常处理也非常困难</span><br><span class="line">		调试mysql的存储过程是一件非常困难的事情</span><br><span class="line">		他和基于语句的二进投影日志复制合作的并不好</span><br><span class="line">	4.存储过程好而寒暑限制</span><br><span class="line">		·优化器无法使用关键字DETERMINISTIC来优化单个查询中多次调用存储函数的情况</span><br><span class="line">		·优化器无法评估存储函数的执行成本</span><br><span class="line">		·每个连接都有独立的存储过程的执行计划缓存</span><br><span class="line">		·存储过程和复制是一种诡异的组合</span><br><span class="line">	5.触发器:可以让你在执行insert\update\delete的时候,执行一些特定的操作,可以在mysql中指定是在授权率语句执行前触发还是执行后触发,可以使用触发器实现一些强制限制,或者某些业务逻辑,否则就需要在应用程序中实现逻辑</span><br><span class="line">	6.触发器的注意和限制:</span><br><span class="line">		·对于每一个表的每一个事件,最多只能定义一个触发器</span><br><span class="line">		·只支持基于行的触发,也就是说,触发器是针对一条记录的,而不是针对整个授权率语句的,如果变更的数据集非常大,效率会很低</span><br><span class="line">		·触发器可以掩盖服务器背后的工作</span><br><span class="line">		·触发器可以掩盖服务器背后的工作,一个简单的sql语句背后可能包含了许多看不见的工作</span><br><span class="line">		·触发器的问题很难排查,如果某个性能问题和触发器相关,会很难分析和定位</span><br><span class="line">		·触发器可能会导致死锁和锁等待</span><br><span class="line">		·触发器并不能保证更新的原子性</span><br><span class="line">	7.触发器的用处:</span><br><span class="line">		·实现一些约束,系统的维护任务,以及更新反范式化数据的时候</span><br><span class="line">		·记录数据变更日志</span><br><span class="line">	8.事件:类似于linux的定时任务,指定mysql在某个时候执行一段sql代码,或者每隔一个时间间隔执行一段sql代码</span><br><span class="line"></span><br><span class="line">五.全文索引</span><br><span class="line">	1.myisam的全文索引作用对象是一个全文集合,这可能是某个数据列的一列,也肯能是多个列</span><br><span class="line">	2.可以根据where子句中的match against来区分查询是否使用全文索引</span><br><span class="line">	3.在使用全文索引进行排序的时候,Mysql无法在使用索引排序,如果不想使用文件排序的话,就不要在查询中使用order by子句</span><br><span class="line">	4.在布尔搜索中,用户可以在查询中自定义某个被搜索的词语的相关性,可以通过一些前缀修饰符来定制搜索</span><br><span class="line">	5.全文索引在insert \update\delete 中的操作代价很大</span><br><span class="line">	6.全文索引会影响索引选择\where 子句\order by 等</span><br><span class="line"></span><br><span class="line">六.查询缓存</span><br><span class="line">	1.MYSQL查询缓存保存查询返回的完整结果,当查询命中该缓存,mysql会立即返回结果,跳过了解析\优化和执行阶段</span><br><span class="line">	2.MYSQL判断缓存命中的方法很简单,缓存放在一个引用表中,通过一个哈希值引用,这个哈希值包括了如下因素,即查询本身,当前要查询的数据库,客户端协议的版本等一些其他可能会影响返回结果的信息</span><br><span class="line">	3.当判断缓存是否命中时,mysql不会解析\正规化\或者参数化查询语句,而是直接使用sql语句和客户端发送过来的其他原始信息,任何字符上的不同,例如空格,注释--都会导致缓存的不命中</span><br><span class="line">	4.当查询语句中有一些不确定的数据时,则不会被缓存,如包含函数now()等</span><br><span class="line">	5.打开查询缓存对读和写都会带来额外的消耗</span><br><span class="line">		·读查询在开始之前必须检查是否命中缓存</span><br><span class="line">		·如果这个读查询可以被缓存,那么当执行完后,MYSQL若发现查询缓存中没有这个查询,会将其结果存入查询缓存,会带来额外的系统消耗</span><br><span class="line">		·当想某个表写入数据的时候,mysql必须将对应表的所有缓存都设置失效,如果查询缓存非常大,或者碎片非常多,这个操作就会带来很大系统消耗</span><br><span class="line">	6.对于需要消耗大量资源的查询通常是非常适合缓存的</span><br><span class="line">	7.缓存未命中</span><br><span class="line">		·查询语句无法被缓存</span><br><span class="line">		·MYSQL从未处理这个查询</span><br><span class="line">		·查询缓存的内存用完了</span><br><span class="line">		·查询缓存还没有完成预热</span><br><span class="line">		·查询语句之前从未执行过</span><br><span class="line">		·缓存失效操作太多了</span><br><span class="line">	8.缓存参数配置</span><br><span class="line">		query_cache_type,是否打开查询缓存</span><br><span class="line">		query_cache_size  查询缓存使用的总内存空间</span><br><span class="line">		query_cache_min_res_unit  在查询缓存中分配内存块时的最小单位,可以帮助减少由碎片导致的内存空间浪费</span><br><span class="line">		query_cache_limit  mysql能够缓存的最大查询结果</span><br><span class="line">		query_cache_wlock_invalidate 如果某个数据表被其他的连接锁住,是否仍然从查询缓存中返回结果</span><br></pre></td></tr></table></figure>
+<h6 id="优化服务器设置"><a href="#优化服务器设置" class="headerlink" title="优化服务器设置"></a>优化服务器设置</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br></pre></td><td class="code"><pre><span class="line">一.mysql配置的工作原理</span><br><span class="line">	1.任何打算长期使用的设置都应该写到全局配置文件,而不是在命令行特别指定</span><br><span class="line">	2.常用变量和动态修改它们的效果:</span><br><span class="line">		key_buffer_size:可以一次性为键缓冲区分配所指定的空间</span><br><span class="line">		table_cache_size:不会立即生效--将在下次有线程打开表才有效果,如果值大于缓存中表的数量,线程可以把最新打开的表放入缓存,如果比缓存中的表小,京葱缓存中删除不长使用的表</span><br><span class="line">		thread_cache_size,不会立即生效,将在下次有连接被关闭时产生效果,检查缓存中是否还有空间在缓存线程,如果有空间,则缓存该线程以备下次连接征用,如果没空间,将销毁该线程而非缓存</span><br><span class="line">		query_cache_size:一次性分配并初始化这块内存</span><br><span class="line">		read_buffer_size:只有在查询需要使用时才会为该缓存分配内存</span><br><span class="line">		read_rnd_buffer_size:只有在查询需要使用到时,才会为该查询分配内存,并且只分配需要的内存大小而不是全部指定的大小</span><br><span class="line">		sort_buffer_size:只会在也有查询需要排序的时候才会为该缓存分配内存</span><br><span class="line">	3.对应连接级别的设置,不要轻易的在全局级别增加他们的值,除非确认这样做是对的</span><br><span class="line">	4.设置变量时请小心,并不是值越大越好,而且如果设置的值太高,可能更容易导致问题:可能会由于内存不足导致服务器内存交换,或者超过地址空间</span><br><span class="line">二.什么不该做</span><br><span class="line">	1.不要根据比率来调优,例如缓存命中率跟缓存是否过大或者过小无关</span><br><span class="line">	2.不要使用调优脚本</span><br><span class="line">	3.不要相信很流行的内存消耗公式</span><br><span class="line">三.创建mysql配置文件</span><br><span class="line">	1.mysql编译的默认设置并不都是靠谱的,其中大部分比较合适</span><br><span class="line">	2.从一个比默认值大一点但不是大的很离谱的安全值开始是比较好的,MYSQL的内存利用率并不总是可以预测的,他可能依赖很多的因素,例如查询的复杂性和并发性</span><br><span class="line">	3.配置服务器的首选途径,了解它内部做了什么,以及参数之间如何相互影响,然后再决定</span><br><span class="line">	4.open_files_limit 在linux上尽可能设置的大一点,如果参数不够大,可能会报错,打开的文件太多</span><br><span class="line">	5.每隔60s查看状态变量的增量变化:mysqladmin extended-status  ri60</span><br><span class="line">四.配置内存使用</span><br><span class="line">	1.配置mysql正确使用内存量对高性能至关重要,内存小号分为两类,可以控制的内存和不可以控制的内存</span><br><span class="line">	2.配置内存</span><br><span class="line">		确定可以使用的内存上限</span><br><span class="line">		确定每隔mysql连接需要使用的内存</span><br><span class="line">		确定操作系统需要多少内存才够用</span><br><span class="line">		吧剩下的内存全部给mysql的缓存</span><br><span class="line">	3.mysql保持一个连接只需要少量的内存,他还需要一个基本量的内存来执行任何给定的查询,需要为高峰时期执行的大量查询预留好足够的内存,否则,查询执行可能因为缺乏内存而导致执行效率不佳或执行失败</span><br><span class="line">	4.跟查询一样,操作系统也需要保留足够的内存给他工作,如果没有虚拟内存正在交换到磁盘,就是表名操作系统内存足够的最佳迹象</span><br><span class="line">	5.如果服务器只运行mysql.所有不需要为操作系统以及查询管理保留的内存都可以用作mysql缓存</span><br><span class="line">	6.大部分情况下最重要的缓存:</span><br><span class="line">		innodb缓冲池</span><br><span class="line">		innodb日志文件和myisam数据的操作系统缓存</span><br><span class="line">		myisam键缓存</span><br><span class="line">		查询缓存</span><br><span class="line">		无法手工配置的缓存,例如二进制日志和表定义文件的操作系统缓存</span><br><span class="line">	7.innodb缓冲池并不仅仅缓存索引,他还会缓存行的数据,自适应哈希索引,插入缓冲,锁,以及其他内部数据结构,还使用缓冲池来帮助延迟写入,innodb严重依赖缓冲池</span><br><span class="line">	8.如果事先知道什么时候需要关闭innodb,可以在运行时修改innodb_max_dirty_pages_pct变量,将值改小,等待刷新纯种清理缓冲池,然后在脏页数量较小时关闭,可以监控the innodb_buffer_pool_pages_dirty状态变量或者使用innotop来监控show innodb status来观察脏页的刷新量</span><br><span class="line">	9.Myisam的键缓存也被称为键缓冲,默认只有一个键缓存,但也可以创建多个,MYISAM自身之缓存索引,不换存数据.最重要的配置项是key_buffer_size,不要超过索引的总大小,或者不超过操作系统的缓存保留总内存的25%-50%,以更小的为准</span><br><span class="line">	10.了解MyISAM索引实际上占用多少磁盘空间，查询INFORMATION_SCHEMA表的INDEX_LENGTH字段，把它们的值相加，就可以得到索引存储占用空间</span><br><span class="line">	11.thread_cache_size变量指定了MySQL可以保持在缓存中的线程数，一般不需要配置这个值，除非服务器会有很多连接请求</span><br><span class="line">	12.可以关闭InnoDB的innodb_stats_on_metadata选项来避免耗时的表统计信息刷新</span><br><span class="line">	13.如果可以，最好把innodb_open_files的值设置得足够大以使服务器可以保持所有的.ibd文件同时打开</span><br><span class="line">五.配置mysql并发</span><br><span class="line">	1.InnoDB并发配置</span><br><span class="line">     	InnoDB有自己的“线程调度器”控制线程怎么进入内核访问数据，以及它们在内核中一次可以做哪些事，最基本的限制并发的方式是使用innodb_thread_concurrency变量，它会限制一次性可以有多少线程进入内核,并发值 = CPU数量 * 磁盘数量 * 2，在实践中使用更小的值会更好一点</span><br><span class="line">	2.MyISAM并发配置</span><br><span class="line">		尽管MyISAM是表级锁，它依然可以一边读取，一边并发追加新行，这种情况下只能读取到查询开始时的所有数据，新插入的数据是不可见的，这样可以避免不一致读</span><br><span class="line">通过设置concurrent_insert这个变量，可以配置MyISAM打开并发插入</span><br><span class="line">让INSERT、REPLACE、DELETE、UPDATE语句的优先级比SELECT语句更低，设置low_priority_updates选项就可以</span><br><span class="line"></span><br><span class="line">六.基于工作负载的配置</span><br><span class="line">	1.当服务器满载情况下运行时，请尝试记录所有的查询语句，因为这是最好的方式来查看哪种类型的查询语句占用资源最多，同时创建processlist快照，通过state或者command字段来聚合它们</span><br><span class="line">	2.优化BLOB和TEXT场景</span><br><span class="line">BLOB有几个限制使得服务器对它的处理跟其他类型不一样，不能在内存临时表中存储BLOB值，效率很低</span><br><span class="line">	·通过SUBSTRING()函数把值转换为VARCHAR</span><br><span class="line">	·让临时表更快一些：放在基于内存的文件系统</span><br><span class="line">	·如果使用的是InnoDB，也可以调大InnoDB日志缓冲大小</span><br><span class="line">	·大字段在InnoDB里可能浪费大量空间</span><br><span class="line">	·扩展存储禁用了自适应哈希，因为需要完整地比较列的整个长度，才能发现是不是正确的数据</span><br><span class="line">	·太长的值可能使得查询中作为WHERE条件不能使用索引</span><br><span class="line">	·如果一张表里有很多大字段，最好是把它们组合起来单独存到一个列里面</span><br><span class="line">	·有时候可以把大字段用COMPRESS()压缩后再存为BLOB，或者发送到MySQL前在应用程序中进行压缩</span><br><span class="line">	3.优化排序（Filesorts）：当MySQL必须排序BLOG或TEXT字段时，它只会使用前缀，然后忽略剩下部分的值</span><br><span class="line"></span><br><span class="line">七.完成基本配置</span><br><span class="line">	1.tmp_table_size和max_heap_table_size，这两个设置控制使得Memory引擎的内存临时表能使用多大的内存</span><br><span class="line">	2.max_connections，这个设置的作用就像一个紧急刹车，以保证服务器不会因应用程序激增的连接而不堪重负，设置得以容纳正常可能达到的负载，并且要足够安全，能保证允许你登录和管理服务器</span><br><span class="line">	3.thread_cache_size，可以通过观察服务器一段时间的活动，来计算一个有理有据的值，250的上限是一个不错的估算值</span><br><span class="line">	4.table_cache_size，应该被设置得足够大，以避免总是需要重新打开和重新解析表的定义，可能通过观察Open_tables的值及其在一段时间的变化来检查该变量</span><br><span class="line">八.安全和稳定的设置</span><br><span class="line">	1.expire_logs_days，如果启用了二进制日志，应该打开这个选项，可以让服务器在指定的天数之后清理旧的二进制日志</span><br><span class="line">	2.max_allowed_packet，防止服务器发送太大的包，也会控制多大的包可以被接收</span><br><span class="line">	3.max_connect_errors，如果知道服务器可以充分抵御蛮力攻击，可以把这个值设得非常大，以有效地禁用主机黑名单</span><br><span class="line">	4.skip_name_resolve，禁用了另一个网络相关和鉴权谁相关的陷阱：DNS查找</span><br><span class="line">	5.sql_mode，不建议修改</span><br><span class="line">	6.sysdate_is_now，可能导致与应用预期向后不兼容的选项</span><br><span class="line">	7.read_only，禁止没有特权的用户在备库做变更，只接受从主库传输过来的变更，不接受从应用来的变更，可以把备库设置为只读模式</span><br><span class="line">	8.skip_slave_start，阻止MySQL试图自动启动复制</span><br><span class="line">	9.slave_net_timeout，控制备库发现跟主库的连接已经失败并且需要重连之前等待的时间，设置为一分钟或更短</span><br><span class="line">	10.sync_master_info、sync_relay_log、sync_relay_log_info，5.5以后版本可用，解决了复制中备库长期存在的问题：不把它们的状态文件同步到磁盘，所以服务器崩溃后可能需要人来猜测复制的位置实际上在主库是哪个位置，并且可能在中继日志（Relay Log）里有损坏</span><br><span class="line"></span><br><span class="line">八.高级InnoDB设置</span><br><span class="line">	1.innodb，如果设置为FORCE，只有在InnoDB可以启动时，服务器才会启动</span><br><span class="line">	2.innodb_autoinc_lock_mode，控制InnoDB如何生成自增主键值</span><br><span class="line">	3.innodb_buffer_pool_instances，在5.5以后，可以把缓冲池切分为多段，在高负载的多核机器上提升MySQL可扩展性的一个重要方式</span><br><span class="line">	4.innodb_io_capacity，有时需要把这个设置得相当高，才能稳定地刷新脏页</span><br><span class="line">	5.innodb_read_io_threads和innodb_write_io_threads，控制有多少后台线程可以被I/O操作使用</span><br><span class="line">	6.innodb_strict_mode，让MySQL在某些条件下把警告改成抛错，尤其是无效的或者可能有风险的CREATE TABLE选项</span><br><span class="line">	7.innodb_old_blocks_time，指定一个页面从LRU链表的“年轻”部分转移到“年老”部分之前必须经过的毫秒数，默认为0，设置为1000毫秒（1秒）非常有效</span><br><span class="line"></span><br><span class="line">九、操作系统和硬件优化</span><br><span class="line">	A.什么限制了MySQL的性能</span><br><span class="line">		1.当数据可以放在内存中或者可以从磁盘中以足够快的速度读取时，CPU可能出现瓶颈，把大量的数据集完全放到大容量的内存中，以现在的硬件条件完全是可行的</span><br><span class="line">		2.I/O瓶颈，一般发生在工作所需的数据远远超过有效内存容量的时候，如果应用程序是分布在网络上的，或者如果有大量的查询和低延迟的要求，瓶颈可能转移到网络上</span><br><span class="line">	B.如何为MySQL选择CPU</span><br><span class="line">		1.可以通过检查CPU利用率来判断是否是CPU密集型的工作负载，还需要看看CPU使用率和大多数重要的查询的I/O之间的平衡，并注意CPU负载是否分配均匀	</span><br><span class="line">		2.当遇到CPU密集型的工作时，MySQL通常可以从更快的CPU中获益，但还依赖于负载情况和CPU数量</span><br><span class="line">		3.MySQL复制也能在高速CPU下工作得非常好，而多CPU对复制的帮助却不大</span><br><span class="line">		4.多CPU在联机事务处理（OLTP）系统的场景中非常有用，在这样的环境中，并发可能成为瓶颈	</span><br><span class="line">	C.平衡内存和磁盘资源</span><br><span class="line">		1.配置大量内存最终目的是避免磁盘I/O，最关键的是平衡磁盘的大小、速度、成本和其他因素，以便为工作负载提供高性能的表现</span><br><span class="line">		2.设计良好的数据库缓存（如InnoDB缓冲池），其效率通常超过操作系统的缓存，因为操作系统缓存是为通用任务设计的</span><br><span class="line">		3.数据库服务器同时使用顺序和随机I/O，随机I/O从缓存从受益最多</span><br><span class="line">		4.每个应用程序都有一个数据的“工作集”——就是这个工作确实需要用到的数据</span><br><span class="line">		5.工作集包括数据和索引，所以应该采用缓存单位来计数，一个缓存单位是存储引擎工作的数据最小单位</span><br><span class="line">		6.找到一个良好的内存/磁盘比例最好的方式是通过试验和基准测试</span><br><span class="line">		7.硬盘选择考虑因素：存储容量、传输速度、访问时间、主轴转速、物理尺寸</span><br><span class="line">		8.MySQL如何扩展到多个磁盘上取决于存储引擎和工作负载，InnoDB能很好地扩展到多个硬盘驱动器，然而，MyISAM的表锁限制其写的可扩展性，因此写繁重的工作加在MyISAM上，可能无法从多个驱动器中收益</span><br><span class="line">	D.固态存储</span><br><span class="line">		1.高质量闪存设备具备：</span><br><span class="line">			相比硬盘有更好的随机读写性能</span><br><span class="line">			相比硬盘有更好的顺序读写性能</span><br><span class="line">			相比硬盘能更好地支持并发</span><br><span class="line">			提升随机I/O和并发性</span><br><span class="line">		2.闪存的最重要特征是可以迅速完成多次小单位读取，但是写入更有挑战性。闪存不能在没有做擦除操作前改写一个单元（Cell），并且一次必须擦除一个大块。擦除周期是缓慢的，并且最终会磨损整个块</span><br><span class="line">		3.垃圾收集对理解闪存很重要。为了保持一些块是干净的并且可以被写入，设备需要回收脏块。这需要设备上有一些空闲空间</span><br><span class="line">		4.许多设备被填满后会开始变慢，速度下降是由于没有空闲块时必须等待擦写完成所造成的</span><br><span class="line">		5.固态存储最适合使用在任何有着大量随机I/O工作负载的场景下，随机I/O通常是由于数据大于服务器的内存导致的，闪存设备可能大大缓解这种问题</span><br><span class="line">		6.单线程工作负载也是另一个闪存的潜在应用场景</span><br><span class="line">		7.闪存也可以为服务器整合提供巨大的帮助</span><br><span class="line">		8.Flashcache，磁盘和内存技术的结合，适合以读为主的I/O密集型负载，并且工作集太大，用内存优化并不经济的情况</span><br><span class="line">		9.优化固态存储上的MySQL</span><br><span class="line">			增加InnoDB的I/O容量</span><br><span class="line">			让InnoDB日志文件更大</span><br><span class="line">			把一些文件从闪存转移到RAID</span><br><span class="line">			禁用预读</span><br><span class="line">			配置InnoDB刷新算法</span><br><span class="line">			禁用双写缓冲的可能</span><br><span class="line">			限制插入缓冲大小，插入缓冲设计来用于减少当更新行时不在内存中的非唯一索引引起的随机I/O</span><br><span class="line">			InnoDB的页大小</span><br><span class="line">			优化InnoDB页面校验（Checksum）的替代算法</span><br><span class="line">	E.为备库选择硬件</span><br><span class="line">		1.通常需要跟主库差不多的配置</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/底层/" rel="tag"># 底层</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/05/12/jieba中文分词/" rel="next" title="jieba中文分词">
+                <i class="fa fa-chevron-left"></i> jieba中文分词
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/05/22/学习思路与方向/" rel="prev" title="学习思路与方向">
+                学习思路与方向 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC80NDExNC8yMDY0OQ=="></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/head.jpg" alt="kl">
+            
+              <p class="site-author-name" itemprop="name">kl</p>
+              <div class="site-description motion-element" itemprop="description">66其实不太6</div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">113</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                      <a href="/categories/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">30</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">48</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#Mysql的常用引擎"><span class="nav-number">1.</span> <span class="nav-text">Mysql的常用引擎</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Mysql的数据、索引存储结构"><span class="nav-number">1.1.</span> <span class="nav-text">Mysql的数据、索引存储结构</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Mysql中的B-Tree"><span class="nav-number">1.2.</span> <span class="nav-text">Mysql中的B+Tree</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Myisam中的B-Tree"><span class="nav-number">1.3.</span> <span class="nav-text">Myisam中的B+Tree</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#1-Mysql性能优化-组成-表的设计"><span class="nav-number">1.3.1.</span> <span class="nav-text">1.Mysql性能优化:组成,表的设计</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#2-SQL语句优化-避免全表扫描"><span class="nav-number">1.3.2.</span> <span class="nav-text">2.SQL语句优化:避免全表扫描</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Mysql基准测试"><span class="nav-number">1.4.</span> <span class="nav-text">Mysql基准测试</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#测试的指标"><span class="nav-number">1.4.1.</span> <span class="nav-text">测试的指标</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#基准测试方法"><span class="nav-number">1.4.2.</span> <span class="nav-text">基准测试方法</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#剖析mysql查询"><span class="nav-number">1.4.3.</span> <span class="nav-text">剖析mysql查询</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#诊断间歇性问题"><span class="nav-number">1.4.4.</span> <span class="nav-text">诊断间歇性问题</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#加快alter-table操作的速度"><span class="nav-number">1.4.5.</span> <span class="nav-text">加快alter table操作的速度</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#创建高性能的索引"><span class="nav-number">1.4.6.</span> <span class="nav-text">创建高性能的索引</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#五-查询性能优化"><span class="nav-number">1.4.7.</span> <span class="nav-text">五.查询性能优化</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#查询优化器"><span class="nav-number">1.4.8.</span> <span class="nav-text">查询优化器</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#优化服务器设置"><span class="nav-number">1.4.9.</span> <span class="nav-text">优化服务器设置</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+    
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2023</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">kl</span>
+
+  
+
+  
+</div>
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-user"></i>
+    </span>
+    <span class="site-uv" title="总访客量">
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+  
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-eye"></i>
+    </span>
+    <span class="site-pv" title="总访问量">
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    
+    
+      
+    
+  
+  <script color="0,0,0" opacity="0.8" zindex="-1" count="66" src="//cdn.jsdelivr.net/gh/theme-next/theme-next-canvas-nest@1/canvas-nest.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.1.1"></script>
+
+  <script src="/js/motion.js?v=7.1.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/affix.js?v=7.1.1"></script>
+
+  <script src="/js/schemes/pisces.js?v=7.1.1"></script>
+
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.1.1"></script>
+<script src="/js/post-details.js?v=7.1.1"></script>
+
+
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.1.1"></script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+    <script>
+  window.livereOptions = {
+    refer: '2020/05/13/mysql底层知识/'
+  };
+  (function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+    if (typeof LivereTower === 'function') { return; }
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+    e.parentNode.insertBefore(j, e);
+  })(document, 'script');
+</script>
+
+  
+
+
+  
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
+<script type="text/javascript" src="/js/src/clicklove.js"></script>
+<!-- <script type="text/javascript" src="/js/src/fish.js"></script> -->
+<!-- <script src='https://blog-static.cnblogs.com/files/elkyo/star.js'></script> -->
+<!-- 雪花特效 -->
+<!-- 雪花特效 -->
+<!-- <script type="text/javascript" src="\js\snow.js"></script> -->

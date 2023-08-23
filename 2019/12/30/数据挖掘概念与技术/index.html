@@ -1,0 +1,1385 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.1.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.1.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.1.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.1.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.1.1" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.1.1',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="必备知识概念 123456789101112131415数据挖掘,最简单的就是统计应用,进一步基于用户的浏览点击,收藏推断用户的年龄,性别等,更深层次的如预测机器学习是实现数据挖掘的一种方法和手段数据的最基本形式是数据库数据、数据仓库数据、和事务数据数据仓库:是一个从多个数据源收集的信息存储库数据挖掘(data mining):旨在从大量的、不完全的、有噪声的、模糊的、随机的数据中，提取隐含在其中">
+<meta name="keywords" content="数据挖掘概念与技术">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据挖掘概念与技术">
+<meta property="og:url" content="http://kl66.top/2019/12/30/数据挖掘概念与技术/index.html">
+<meta property="og:site_name" content="Mr kuai">
+<meta property="og:description" content="必备知识概念 123456789101112131415数据挖掘,最简单的就是统计应用,进一步基于用户的浏览点击,收藏推断用户的年龄,性别等,更深层次的如预测机器学习是实现数据挖掘的一种方法和手段数据的最基本形式是数据库数据、数据仓库数据、和事务数据数据仓库:是一个从多个数据源收集的信息存储库数据挖掘(data mining):旨在从大量的、不完全的、有噪声的、模糊的、随机的数据中，提取隐含在其中">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2021-04-22T02:41:31.010Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="数据挖掘概念与技术">
+<meta name="twitter:description" content="必备知识概念 123456789101112131415数据挖掘,最简单的就是统计应用,进一步基于用户的浏览点击,收藏推断用户的年龄,性别等,更深层次的如预测机器学习是实现数据挖掘的一种方法和手段数据的最基本形式是数据库数据、数据仓库数据、和事务数据数据仓库:是一个从多个数据源收集的信息存储库数据挖掘(data mining):旨在从大量的、不完全的、有噪声的、模糊的、随机的数据中，提取隐含在其中">
+
+
+
+
+
+  
+  
+  <link rel="canonical" href="http://kl66.top/2019/12/30/数据挖掘概念与技术/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>数据挖掘概念与技术 | Mr kuai</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Mr kuai</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">追忆似水流年</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-meh-o"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-legal"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-ravelry"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-snowflake-o"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://kl66.top/2019/12/30/数据挖掘概念与技术/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="kl">
+      <meta itemprop="description" content="66其实不太6">
+      <meta itemprop="image" content="/images/head.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mr kuai">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">数据挖掘概念与技术
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-12-30 11:30:51" itemprop="dateCreated datePublished" datetime="2019-12-30T11:30:51+08:00">2019-12-30</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2021-04-22 10:41:31" itemprop="dateModified" datetime="2021-04-22T10:41:31+08:00">2021-04-22</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/python/" itemprop="url" rel="index"><span itemprop="name">python</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon">
+            <i class="fa fa-eye"></i>
+             阅读次数： 
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>必备知识概念</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">数据挖掘,最简单的就是统计应用,进一步基于用户的浏览点击,收藏推断用户的年龄,性别等,更深层次的如预测</span><br><span class="line">机器学习是实现数据挖掘的一种方法和手段</span><br><span class="line">数据的最基本形式是数据库数据、数据仓库数据、和事务数据</span><br><span class="line">数据仓库:是一个从多个数据源收集的信息存储库</span><br><span class="line">数据挖掘(data mining):旨在从大量的、不完全的、有噪声的、模糊的、随机的数据中，提取隐含在其中的、人们实现不知道、但又是潜在有用的信息和知识</span><br><span class="line">数据挖掘的主要任务是关联分析、聚类分析、分类、预测、时序模式和偏差分析</span><br><span class="line">关联分析：两个或两个以上变量的取值之间存在的规律性称为关联。数据关联是数据库中存在的一类重要的、可被发现的知识。</span><br><span class="line">关联分析分为简单关联、时序关联和因果关联。关联分析的目的是找出数据库中隐藏的关联网。一般用支持度和可信度两个阈值来度量关联规则的相关性,还不断引入兴趣度、相关性等参数，使得挖掘的规则更符合需求。</span><br><span class="line">数据挖掘的<span class="number">6</span>个步骤(基本)：</span><br><span class="line"><span class="number">1.</span>理解业务：从商业的角度理解项目目标和需求，将其转换为一种数据挖掘的问题定义</span><br><span class="line"><span class="number">2.</span>理解数据：收集初步的数据，进行数据的描述、数据探索和数据质量验证</span><br><span class="line"><span class="number">3.</span>准备数据：将最初始的原始数据构造成适合建模的数据集</span><br><span class="line"><span class="number">4.</span>建模： 选择和应用各种建模技术，并对其参数进行优化</span><br><span class="line"><span class="number">5.</span>建模评估：对模型进行较为彻底的评价，并检查构建模型的每个步骤，确定其是否真正实现了预定的商业目的</span><br><span class="line"><span class="number">6.</span>模型部署：</span><br></pre></td></tr></table></figure>
+<p>数据挖掘的基本技术</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">1.统计学====&gt;即指将数据集合假设一个分布或者概率模型,然后按照模型采用相同的方法来进行挖掘</span><br><span class="line"><span class="number">2.</span>聚类分析和模式识别</span><br><span class="line"><span class="number">3.</span>决策树分类技术</span><br><span class="line"><span class="number">4.</span>人工神经网络和遗传基因算法</span><br><span class="line"><span class="number">5.</span>规则归纳</span><br><span class="line"><span class="number">6.</span>可视化技术</span><br><span class="line">7.关联规则 --&gt;关联可分为简单关联、时序关联、因果关联。目的是找出数据库中的隐藏的关联网</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">数据规范化:将数据按照指定比例进行缩放,映射到指定区域.  常用方法:min-max规范化,z-score规范化,按小数定标规范化</span><br><span class="line">数据规范化和数据标准化和数据归一化的区别: 数据规范化是一个大的概念,将不同渠道的数据按照同尺度进行度量,让数据句有可比较性。而数据归一化和数据标准化都是规范化的方式</span><br><span class="line">数据归一化：将数据映射到【<span class="number">0</span>，<span class="number">1</span>】的区间范围</span><br><span class="line">数据标准化是让规范化的数据呈现正态分布</span><br></pre></td></tr></table></figure>
+<p>数据仓库</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">数据仓库:是一个从多个数据源收集的信息存储,存放在一个一致的模式下,并通常驻留在单个站点</span><br><span class="line">数据仓库是一个面向主题的,集成的,随时间变化的,但信息本身相对稳定的数据集合,用于对管理决策过程的支持</span><br><span class="line">四个特点:</span><br><span class="line">    <span class="number">1.</span>面向主题:数据仓库都是基于某个明确主题,仅需要与主题相关的数据,无关细节数据被排除</span><br><span class="line">    <span class="number">2.</span>集成的:从不同的数据源采集数据到同一数据源</span><br><span class="line">    <span class="number">3.</span>随时间变化的:关键数据隐式或显式的基于时间变化</span><br><span class="line">    <span class="number">4.</span>数据仓库的数据是不可更新的:数据装入后一般只进行查询操作,没有传统数据库的增删改查</span><br><span class="line">数据仓库与数据库的区别:</span><br><span class="line">    数据仓库是数据哭的升级,从逻辑上来说,数据仓库与数据库没有区别,都是通过数据库软件实现的存放数据的地方,从数据量来说,数据仓库要比数据库更庞大的说.数据仓库主要用于数据挖掘和数据分析,辅助领导者做决策.数据仓库的表结构是依照分析需求,分析维度,分析指标进行设计的</span><br><span class="line">数据仓库架构图:</span><br><span class="line">    ODS层:为临时存储层,是接口数据的临时存储区域,为后一步的数据处理作准备.ods层的表通常包括两类,一类是用于存储当前需要加载的数据,一个用于存储处理完后的历史数据.数据粒度通常是最细的.</span><br><span class="line">    PDW层:为数据仓库层,pdw层的数据应该是一致的,准确的,干净的数据,即对源系统数据进行了清洗后的数据,数据粒度通常和ods层相同.</span><br><span class="line">    DM层:为数据集市层,这层数据是面向主题来组织数据的,通常是星型或者雪花结构的数据,从数据粒度来说轻度汇总级的数据.</span><br><span class="line">    APP层:为应用层,这层数据完全是为了满足具体的分析需求而构建的数据,也是星型或雪花结构的数据.从数据粒度来说是高度汇总的数据.</span><br><span class="line">为什么构建分离的数据仓库:</span><br><span class="line">    <span class="number">1.</span>提高两个系统的性能,操作数据库是为已知的任务和负载设计的,如使用主关键字索引和散列,检索特定的记录,和优化查询</span><br><span class="line">    <span class="number">2.</span>宁一方面数据仓库的查询通常是复杂的,涉及大量数据在汇总级别计算</span><br></pre></td></tr></table></figure>
+<p>聚类</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">聚类是一个把数据对象集划分成多个组或簇的过程,是的簇内的对象具有很高的相似性,但与其他簇的对象很不相似</span><br><span class="line">聚类的应用:数据分割和离群点检测(如信用卡欺诈检测)</span><br><span class="line"></span><br><span class="line">层次聚类:分为凝聚(自下而上)和分裂(自上而下)</span><br><span class="line">划分依据:距离(曼哈顿和欧式距离,但是只能聚成球状簇),密度(任意形状的簇,过滤噪声或离群点,将对象集划分成多个互斥的簇或簇的分层结构)</span><br><span class="line"></span><br><span class="line">聚类最本质最基本的是划分,他把对象组织成多个互斥的组或簇最著名的、最常用的为k均值和k中心点。</span><br><span class="line">k-均值（基于形心的划分技术（形心代表该簇），形心可以为该组对象的均值或者 中心点等）</span><br></pre></td></tr></table></figure>
+<p>k-均值</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">算法:k-均值.用于划分的k-均值算法,其中每个簇的中心都用簇中所有对象的均值来表示</span><br><span class="line">输入:</span><br><span class="line">    k:簇的数目</span><br><span class="line">    D:包含N个对象的数据集</span><br><span class="line">输出:k个簇的集合</span><br><span class="line">方法:</span><br><span class="line">    <span class="number">1</span>)从D中任意选择k个对象作为初始簇中心</span><br><span class="line">    <span class="number">2</span>)repeat</span><br><span class="line">    <span class="number">3</span>)根据簇中对象的均值,将每个对象分配到最相思的簇</span><br><span class="line">    <span class="number">4</span>)更新簇均值,即重新计算每个簇对象的均值</span><br><span class="line">    <span class="number">5</span>)until不在发生变化</span><br><span class="line">不能保证得到的结果为全局最优解,通常情况下都是局部最优解,变种,k-众数</span><br><span class="line"></span><br><span class="line">怎样提高k-均值算法的可伸缩性?</span><br><span class="line"><span class="number">1.</span>在聚类时使用合适规模的的样本</span><br><span class="line"><span class="number">2.</span>使用过滤方法,使用空间层次数据索引节省计算均值的开销</span><br><span class="line"><span class="number">3.</span>利用微聚类的方法,首先把临近的对象划分到微簇中,然后对这些微簇使用k-均值方法进行聚类</span><br><span class="line"></span><br><span class="line">K-Means是个简单实用的聚类算法，这里对K-Means的优缺点做一个总结。</span><br><span class="line">　　　　·K-Means的主要优点有：</span><br><span class="line">　　　　<span class="number">1</span>）原理比较简单，实现也是很容易，收敛速度快。</span><br><span class="line">　　　　<span class="number">2</span>）聚类效果较优。</span><br><span class="line">　　　　<span class="number">3</span>）算法的可解释度比较强。</span><br><span class="line">　　　　<span class="number">4</span>）主要需要调参的参数仅仅是簇数k。</span><br><span class="line">　　　　·K-Means的主要缺点有：</span><br><span class="line">　　　　<span class="number">1</span>）K值的选取不好把握</span><br><span class="line">　　　　<span class="number">2</span>）对于不是凸的数据集比较难收敛</span><br><span class="line">　　　　<span class="number">3</span>）如果各隐含类别的数据不平衡，比如各隐含类别的数据量严重失衡，或者各隐含类别的方差不同，则聚类效果不佳。</span><br><span class="line">　　　　<span class="number">4</span>）采用迭代方法，得到的结果只是局部最优。</span><br><span class="line">　　　　<span class="number">5</span>）对噪音和异常点比较的敏感。</span><br></pre></td></tr></table></figure>
+<p>k-中心点</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">k-均值算法对离群点敏感,因为存在对象远离大多数数据,因此分配到一个簇时候可能严重影响簇的均值。而k-中心点聚类的基本思想和K-means的思想相同，实质上是对K-means算法的优化和改进。</span><br><span class="line">算法步骤：</span><br><span class="line">（<span class="number">1</span>）确定聚类的个数K。</span><br><span class="line">（<span class="number">2</span>）在所有数据集合中选择K个点作为各个聚簇的中心点。</span><br><span class="line">（<span class="number">3</span>）计算其余所有点到K个中心点的距离，并把每个点到K个中心点最短的聚簇作为自己所属的聚簇。</span><br><span class="line">（<span class="number">4</span>）在每个聚簇中按照顺序依次选取点，计算该点到当前聚簇中所有点距离之和，最终距离之后最小的点，则视为新的中心点。</span><br><span class="line">（<span class="number">5</span>）重复（<span class="number">2</span>），（<span class="number">3</span>）步骤，直到各个聚簇的中心点不再改变。</span><br></pre></td></tr></table></figure>
+<p>5种主要聚类算法</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1.k-means聚类(优化:k-medians)原理见上面   ===&gt;优势:速度非常快,只计算了点和群中心的距离  缺点:离群值点较敏感,同时还需要确定划分的组数/类,也会影响最终的结果.</span><br><span class="line"><span class="number">2.</span>均值偏移聚类算法 一种基于滑动窗口的算法,试图找到密集的数据点(如:给定一个半径的圆移动直至圆里面点的数量最大),均值偏移是一个爬山算法,他需要在每步中反复地将这个内核移动到一个更高的密度区域,直到收敛.  优势:与k-means相比,均值偏移不需要选择聚类的数量,他会自动的发现. 缺点是:窗口大小和半径的选取非常重要.</span><br><span class="line"><span class="number">3.</span>DBSCAN聚类算法:比较代表性的基于密度的聚类算法,类似均值偏移聚类算法  优势:不需要预设定的聚类数量,并且将异常值识别为噪声,同时可以很好的找到任意形状和大小的簇类.   缺点:当聚类具有不同密度的时候,他的性能不像其他聚类算法那样好.当密度变化的时候,距离阈值和识别临近点的minpoints的设置会随着聚类的不同而变化.</span><br><span class="line"><span class="number">4.</span>层次聚类算法:分为自下而上和自上而下.自下而上指的是一开始将每个数据点视为一个单一的聚类,然后依次合并(聚集类),知道所有的类合并成一个包含所有数据点的单一聚类,自上而下的层次聚类称为合成聚类或HAC.(选择一个度量两个聚类之间距离的距离变量如平均连接聚类) 优势:无需确定聚类的数量,对距离度量的选择不敏感.(是以低效率为代价的)</span><br><span class="line"><span class="number">5.</span>使用高斯混合模型(GMM)和期望最大化(EM)聚类  初始选择聚类的数量,给定每个聚类的高斯分布,计算每个点属于特定簇的概率,离中心越近越可能属于那个聚类.基于这些概率,我们为高斯分布计算一组新的参数,这样我们就能最大程度的利用聚类中的数据点的概率.</span><br></pre></td></tr></table></figure>
+<p>文本挖掘</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">文本数据挖掘跟自然语言处理不是一回事,但是有很多的相通之处</span><br><span class="line">自然语言处理是计算机科学领域与人工智能领域的一个重要方向.它研究能实现人与计算机之间用自然语言进行有效通信的各种理论和方法.</span><br><span class="line">文本挖掘利用智能算法,分析大量的非结构化文本源,抽取或标记关键字概念,文本挖掘是一个多学科混杂的领域,包括数据挖掘技术、信息检索、机器学习、自然语言处理、计算机语言学、统计数据分析、线性几何、概率论、图论等等。（总结：将结构化数据挖掘技术应用于文本数据）</span><br><span class="line"></span><br><span class="line">理论上自然语言处理是文本挖掘的基础</span><br></pre></td></tr></table></figure>
+<p>谱聚类</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">谱:方阵作为线性算子,它的所有特征值得全体称为方阵的谱.方阵的谱半径为最大的特征值.矩阵A的谱半径为矩阵A转置A的最大特征值</span><br><span class="line"></span><br><span class="line">谱聚类:谱聚类是一种基于图论的聚类方法,通过对样本数据的拉普拉斯矩阵的特征向量进行聚类</span><br><span class="line">的目的.谱聚类可以理解为将高维空间的数据映射到低维,然后在低维空间用其他聚类算法进行聚类.</span><br><span class="line">谱聚类算法的描述:</span><br><span class="line">    <span class="number">1.</span>输入:n个样本点X=&#123;X1,X2,.....,Xn&#125;和聚类簇的数目k</span><br><span class="line">    <span class="number">2.</span>输出:聚类簇A1,A2,...Ak</span><br><span class="line">    (<span class="number">1</span>)计算n*n的相似度矩阵W</span><br><span class="line">    (<span class="number">2</span>)计算对角矩阵D</span><br><span class="line">    (<span class="number">3</span>)计算拉普拉斯矩阵L = D - W</span><br><span class="line">    (<span class="number">4</span>)计算L的特征值,将特征值从小到大排序,取前K个特征值,并计算前k个特征值的特征向量</span><br><span class="line">    (<span class="number">5</span>)将特征向量组成矩阵U</span><br><span class="line">    (<span class="number">6</span>)使用k-means算法将新样本点Y=&#123;Y1,Y2,....,Yn&#125;聚类成簇C1,C2,....,Ck</span><br><span class="line">    (<span class="number">7</span>)输出A1,A2,A3....,Ak</span><br><span class="line">相似度矩阵:</span><br><span class="line">    相似度矩阵就是样本中点的距离,在聚类算法中可以表示为距离近的点他们之间的相似度比较高,而距离远的点他们之间的相似度低,甚至可以忽略.表示相似度矩阵的三种方式:<span class="number">1.</span>KNN <span class="number">2.</span>伊普西塔-近邻法 <span class="number">3.</span>全连接法</span><br></pre></td></tr></table></figure>
+<p>数学概念</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span>中心趋势度量:均值、中位数、众数</span><br><span class="line">截尾均值：丢掉高低极端值后的均值</span><br><span class="line">加权算术均值(加权平均)</span><br><span class="line">中位数:是有序数据的中间值,对于非对称数据是数据中心跟好的度量</span><br><span class="line">极差:最大值与最小值之差, 分位数:取自数据分布的每隔一定间隔上的点,把数据划分为基本上大小相等的连贯集合,<span class="number">2</span>-分位相当于中位数,<span class="number">4</span>-分位相当于三个数据点</span><br><span class="line">五数概括:识别可疑离群点的通常规则是,挑选落在第三个四分位数之上</span><br><span class="line">标称属性:</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/数据挖掘概念与技术/" rel="tag"># 数据挖掘概念与技术</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/12/25/pandas数据处理/" rel="next" title="pandas数据处理">
+                <i class="fa fa-chevron-left"></i> pandas数据处理
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/01/07/Linux基础指令/" rel="prev" title="Linux基础指令">
+                Linux基础指令 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC80NDExNC8yMDY0OQ=="></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/head.jpg" alt="kl">
+            
+              <p class="site-author-name" itemprop="name">kl</p>
+              <div class="site-description motion-element" itemprop="description">66其实不太6</div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">113</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                      <a href="/categories/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">30</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">48</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+    
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2023</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">kl</span>
+
+  
+
+  
+</div>
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-user"></i>
+    </span>
+    <span class="site-uv" title="总访客量">
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+  
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-eye"></i>
+    </span>
+    <span class="site-pv" title="总访问量">
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    
+    
+      
+    
+  
+  <script color="0,0,0" opacity="0.8" zindex="-1" count="66" src="//cdn.jsdelivr.net/gh/theme-next/theme-next-canvas-nest@1/canvas-nest.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.1.1"></script>
+
+  <script src="/js/motion.js?v=7.1.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/affix.js?v=7.1.1"></script>
+
+  <script src="/js/schemes/pisces.js?v=7.1.1"></script>
+
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.1.1"></script>
+<script src="/js/post-details.js?v=7.1.1"></script>
+
+
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.1.1"></script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+    <script>
+  window.livereOptions = {
+    refer: '2019/12/30/数据挖掘概念与技术/'
+  };
+  (function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+    if (typeof LivereTower === 'function') { return; }
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+    e.parentNode.insertBefore(j, e);
+  })(document, 'script');
+</script>
+
+  
+
+
+  
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
+<script type="text/javascript" src="/js/src/clicklove.js"></script>
+<!-- <script type="text/javascript" src="/js/src/fish.js"></script> -->
+<!-- <script src='https://blog-static.cnblogs.com/files/elkyo/star.js'></script> -->
+<!-- 雪花特效 -->
+<!-- 雪花特效 -->
+<!-- <script type="text/javascript" src="\js\snow.js"></script> -->

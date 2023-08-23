@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+<clickhouse>
+    <!-- 集群配置 -->
+    <clickhouse_remote_servers>
+        <!-- 集群名称 一分配一副本，名称可自定义 -->
+        <jxshares>
+            <!-- 数据分片1  -->
+            <shard>
+                <internal_replication>true</internal_replication>
+                <replica>
+                    <host>10.50.70.197</host>
+                    <port>9000</port>
+                    <user>cebrisk</user>
+                    <password>cebrisk</password>
+                </replica>
+                <replica>
+                    <host>10.50.70.198</host>
+                    <port>9000</port>
+                    <user>cebrisk</user>
+                    <password>cebrisk</password>
+                </replica>
+                <replica>
+                    <host>10.50.70.199</host>
+                    <port>9000</port>
+                    <user>cebrisk</user>
+                    <password>cebrisk</password>
+                </replica>
+            </shard>
+	</jxshares>
+    </clickhouse_remote_servers>
+
+    <!-- 本服务器的ip地址 -->
+    <macros>
+        <shard>node01</shard>
+        <replica>10.50.70.199</replica>
+    </macros>
+
+   <zookeeper-servers>
+        <node index="1">
+            <host>10.50.70.197</host>
+            <port>9181</port>
+        </node>
+        <node index="2">
+            <host>10.50.70.198</host>
+            <port>9181</port>
+        </node>
+        <node index="3">
+            <host>10.50.70.199</host>
+            <port>9181</port>
+        </node>
+    </zookeeper-servers>
+    
+    <clickhouse_compression>
+        <case>
+            <min_part_size>10000000000</min_part_size>
+            <min_part_size_ratio>0.01</min_part_size_ratio>
+            <method>lz4</method>
+        </case>
+    </clickhouse_compression>
+</clickhouse>

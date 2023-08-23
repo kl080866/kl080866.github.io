@@ -1,0 +1,2564 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.1.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.1.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.1.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.1.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.1.1" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.1.1',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="详细部署文档见D:\Blog\source_posts\Clickhouse集群部署\下的word文档 ROOT部署   一: 安装docker和docker-compose         服务器 操作用户 序列 步骤 操作命令   168.130.7.11 (APP1) 168.130.7.12 (APP2) 168.130.7.13 (DB1) 168.130.7.14 (DB2) 168.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Clickhouse集群部署">
+<meta property="og:url" content="http://kl66.top/2023/04/18/Clickhouse集群部署/index.html">
+<meta property="og:site_name" content="Mr kuai">
+<meta property="og:description" content="详细部署文档见D:\Blog\source_posts\Clickhouse集群部署\下的word文档 ROOT部署   一: 安装docker和docker-compose         服务器 操作用户 序列 步骤 操作命令   168.130.7.11 (APP1) 168.130.7.12 (APP2) 168.130.7.13 (DB1) 168.130.7.14 (DB2) 168.">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://kl66.top/2023/04/18/Clickhouse集群部署/image-20230418115612786.png">
+<meta property="og:image" content="http://kl66.top/2023/04/18/Clickhouse集群部署/image-20230418115633317.png">
+<meta property="og:image" content="http://kl66.top/2023/04/18/Clickhouse集群部署/image-20230418115817549.png">
+<meta property="og:image" content="http://kl66.top/2023/04/18/Clickhouse集群部署/image-20230418115948996.png">
+<meta property="og:image" content="http://kl66.top/2023/04/18/Clickhouse集群部署/image-20230418120020095.png">
+<meta property="og:image" content="http://kl66.top/2023/04/18/Clickhouse集群部署/image-20230418120045035.png">
+<meta property="og:image" content="http://kl66.top/2023/04/18/Clickhouse集群部署/image-20230418120113416.png">
+<meta property="og:image" content="http://kl66.top/2023/04/18/Clickhouse集群部署/image-20230418120145697.png">
+<meta property="og:image" content="http://kl66.top/2023/04/18/Clickhouse集群部署/image-20230418133702182.png">
+<meta property="og:updated_time" content="2023-05-08T09:53:53.560Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Clickhouse集群部署">
+<meta name="twitter:description" content="详细部署文档见D:\Blog\source_posts\Clickhouse集群部署\下的word文档 ROOT部署   一: 安装docker和docker-compose         服务器 操作用户 序列 步骤 操作命令   168.130.7.11 (APP1) 168.130.7.12 (APP2) 168.130.7.13 (DB1) 168.130.7.14 (DB2) 168.">
+<meta name="twitter:image" content="http://kl66.top/2023/04/18/Clickhouse集群部署/image-20230418115612786.png">
+
+
+
+
+
+  
+  
+  <link rel="canonical" href="http://kl66.top/2023/04/18/Clickhouse集群部署/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Clickhouse集群部署 | Mr kuai</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Mr kuai</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">追忆似水流年</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-meh-o"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-legal"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-ravelry"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-snowflake-o"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://kl66.top/2023/04/18/Clickhouse集群部署/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="kl">
+      <meta itemprop="description" content="66其实不太6">
+      <meta itemprop="image" content="/images/head.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mr kuai">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Clickhouse集群部署
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2023-04-18 11:33:20" itemprop="dateCreated datePublished" datetime="2023-04-18T11:33:20+08:00">2023-04-18</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2023-05-08 17:53:53" itemprop="dateModified" datetime="2023-05-08T17:53:53+08:00">2023-05-08</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Clickhouse/" itemprop="url" rel="index"><span itemprop="name">Clickhouse</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon">
+            <i class="fa fa-eye"></i>
+             阅读次数： 
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>详细部署文档见D:\Blog\source_posts\Clickhouse集群部署\下的word文档</p>
+<h3 id="ROOT部署"><a href="#ROOT部署" class="headerlink" title="ROOT部署"></a>ROOT部署</h3><table>
+<thead>
+<tr>
+<th>一: 安装docker和docker-compose</th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>服务器</td>
+<td>操作用户</td>
+<td>序列</td>
+<td>步骤</td>
+<td>操作命令</td>
+</tr>
+<tr>
+<td>168.130.7.11 (APP1) 168.130.7.12 (APP2) 168.130.7.13 (DB1) 168.130.7.14 (DB2) 168.130.7.15 (CP1) 168.130.7.16 (CP2)</td>
+<td>root</td>
+<td>1</td>
+<td>准备工作:hylc.zip</td>
+<td>上传 hylc.zip 到 /home/hybrisk 目录</td>
+</tr>
+<tr>
+<td>cd /home/hybrisk</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>unzip hylc.zip</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>cd hylc</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>mv docker_deploy ../</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>cd ../docker_deploy/1.docker-setup</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>2</td>
+<td>安装docker和docker-compose</td>
+<td>tar -zxf docker-20.10.11.tgz</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>cp docker/* /usr/local/bin/</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>cp docker-compose-Linux-x86_64 /usr/local/bin/docker-compose</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>chmod +x /usr/local/bin/docker-compose</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>3</td>
+<td>新建docker配置文件</td>
+<td>mkdir -p /etc/docker/</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>创建配置文件1</td>
+<td>vi /etc/docker/daemon.json</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>填写文件内容（6行）</td>
+<td>{   “registry-mirrors”: [     “<a href="https://registry.docker-cn.com&quot;" target="_blank" rel="noopener">https://registry.docker-cn.com&quot;</a>   ],   “data-root”: “/home/hybrisk/docker” }</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>创建配置文件2</td>
+<td>vi /usr/lib/systemd/system/docker.service</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>填写文件内容（23行）</td>
+<td>[Unit] Description=Docker Application Container Engine Documentation=<a href="https://docs.docker.com" target="_blank" rel="noopener">https://docs.docker.com</a> After=network-online.target firewalld.service Wants=network-online.target   [Service] Type=notify ExecStart=/usr/local/bin/dockerd ExecReload=/bin/kill -s HUP $MAINPID LimitNOFILE=infinity LimitNPROC=infinity TimeoutStartSec=0 Delegate=yes KillMode=process Restart=on-failure StartLimitBurst=3 StartLimitInterval=60s   [Install] WantedBy=multi-user.target</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>4</td>
+<td>加载并启动docker</td>
+<td>systemctl daemon-reload</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>systemctl enable docker</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>systemctl start docker</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>5</td>
+<td>把hybrisk加入docker用户组，并对相应的文件赋权</td>
+<td>groupadd docker</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>usermod -aG docker hybrisk</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>systemctl daemon-reload</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>systemctl restart docker</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>chown -R hybrisk:docker /home/hybrisk/docker</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>chown -R hybrisk:docker /usr/local/bin/containerd<em> /usr/local/bin/docker</em> /usr/local/bin/ctr /usr/local/bin/runc</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>chown -R hybrisk:docker /etc/docker/daemon.json</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>chown -R hybrisk:docker /usr/lib/systemd/system/docker.service</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>cd /home/hybrisk</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>chown -R hybrisk:hybrisk docker_deploy</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>chown -R hybrisk:hybrisk hylc hylc.zip</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><img src="/2023/04/18/Clickhouse集群部署/image-20230418115612786.png" alt="image-20230418115612786"></p>
+<p><img src="/2023/04/18/Clickhouse集群部署/image-20230418115633317.png" alt="image-20230418115633317"></p>
+<table>
+<thead>
+<tr>
+<th>二: 安装ClickHouse</th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>服务器</td>
+<td>用户</td>
+<td>序列</td>
+<td>描述</td>
+<td>操作步骤</td>
+</tr>
+<tr>
+<td>168.130.7.13(DB1) 168.130.7.14(DB2) 168.130.7.16(CP2)</td>
+<td>root</td>
+<td>1</td>
+<td>确认clickhouse用户已经创建 确认clickhouse数据目录 如果没有，需要运维团队确认</td>
+<td>ls /home/clickhouse</td>
+</tr>
+<tr>
+<td>ls /home/clickhouse/data</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>2</td>
+<td>准备工作:installs.zip</td>
+<td>上传ClickHouse安装文件installs.zip 到 /home/clickhouse/data 目录</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>cd /home/clickhouse/data</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>unzip installs.zip</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>cd installs</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>3</td>
+<td>解压安装包</td>
+<td>tar -zxf clickhouse-client-22.3.6.5-amd64.tgz</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>tar -zxf clickhouse-common-static-22.3.6.5-amd64.tgz</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>tar -zxf clickhouse-server-22.3.6.5-amd64.tgz</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>4</td>
+<td>安装公共包</td>
+<td>./clickhouse-common-static-22.3.6.5/install/doinst.sh</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>5</td>
+<td>安装服务端</td>
+<td>./clickhouse-server-22.3.6.5/install/doinst.sh  输入hybrisk 输入N</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>6</td>
+<td>安装客户端</td>
+<td>./clickhouse-client-22.3.6.5/install/doinst.sh</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>7</td>
+<td>如果防火墙开启，增加端口配置</td>
+<td>systemctl status firewalld 确认返回： Active: active(running)。  如返回内容中包含 Active: inactive (dead)，则表示服务器没有开启防火墙，可以直接跳到第9步</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>firewall-cmd –add-port=8123/tcp –permanent</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>firewall-cmd –add-port=9000/tcp –permanent</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>firewall-cmd –add-port=9004/tcp –permanent</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>firewall-cmd –reload</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>8</td>
+<td>创建数据挂载目录 (根据实际硬盘挂载目录再调整)</td>
+<td>mkdir -p /home/clickhouse/data/ck1</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>9</td>
+<td>给目录赋权</td>
+<td>chown clickhouse:clickhouse -R /home/clickhouse/data/ck1</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>10</td>
+<td>配置目录属主赋予clickhouse用户</td>
+<td>chown clickhouse:clickhouse -R /etc/clickhouse-server</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>chown clickhouse:clickhouse -R /etc/clickhouse-client</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>chown clickhouse:clickhouse -R /home/clickhouse/data</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>root</td>
+<td>11</td>
+<td>备份工具安装： clickhouse-backup</td>
+<td>cd /home/clickhouse/data/installs</td>
+<td></td>
+</tr>
+<tr>
+<td>tar -xf clickhouse-backup.tar</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>cd clickhouse-backup</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>cp clickhouse-backup /usr/local/bin/</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>chown clickhouse:clickhouse -R /usr/local/bin/clickhouse-backup</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>chown clickhouse:clickhouse -R /home/clickhouse/data</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><img src="/2023/04/18/Clickhouse集群部署/image-20230418115817549.png" alt="image-20230418115817549"></p>
+<h3 id="应用部署"><a href="#应用部署" class="headerlink" title="应用部署"></a>应用部署</h3><table>
+<thead>
+<tr>
+<th>一: 启动ClickHouse</th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>服务器</td>
+<td>用户</td>
+<td>序列</td>
+<td>描述</td>
+<td>操作步骤</td>
+</tr>
+<tr>
+<td>168.130.7.13(DB1) 168.130.7.14(DB2) 168.130.7.16(CP2)</td>
+<td>clickhouse</td>
+<td>1</td>
+<td>创建默认配置文件备份目录</td>
+<td>mkdir /etc/clickhouse-server/bk</td>
+</tr>
+<tr>
+<td>2</td>
+<td>移除默认配置文件</td>
+<td>chmod -R 775 /etc/clickhouse-server/</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>mv /etc/clickhouse-server/* /etc/clickhouse-server/bk</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>3</td>
+<td>上传配置文件/13/*</td>
+<td>cd /etc/clickhouse-server</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>中转机下载13.zip</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>unzip 13.zip</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>cd 13</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>mv * ../</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>chmod -R 755 /etc/clickhouse-server/</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>4</td>
+<td>上传配置文件/14/*</td>
+<td>cd /etc/clickhouse-server</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>中转机下载14.zip</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>unzip 14.zip</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>cd 14</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>mv * ../</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>chmod -R 755 /etc/clickhouse-server/</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>5</td>
+<td>上传配置文件/16/*</td>
+<td>cd /etc/clickhouse-server</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>中转机下载16.zip</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>unzip 16.zip</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>cd 16</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>mv * ../</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>chmod -R 755 /etc/clickhouse-server/</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>7</td>
+<td>手动创建日志目录</td>
+<td>mkdir /home/clickhouse/data/log</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>8</td>
+<td>压缩备份脚本</td>
+<td>cd /etc/clickhouse-server</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>zip -r bk.zip bk</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>rm -rf bk</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>9</td>
+<td>启动clickhouse</td>
+<td>clickhouse start</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><img src="/2023/04/18/Clickhouse集群部署/image-20230418115948996.png" alt="image-20230418115948996"></p>
+<table>
+<thead>
+<tr>
+<th>二: ClickHouse 导入数据</th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>服务器</td>
+<td>用户</td>
+<td>序列</td>
+<td>描述</td>
+<td>操作步骤</td>
+<td></td>
+</tr>
+<tr>
+<td>168.130.7.16(CP2)</td>
+<td>clickhouse</td>
+<td>1</td>
+<td>创建备份目录(表结构)</td>
+<td>mkdir /var/lib/clickhouse/backup</td>
+<td></td>
+</tr>
+<tr>
+<td>mkdir /home/clickhouse/data/ck1/backup</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>2</td>
+<td>上传 ch_bk_yyyymmdd.table.zip</td>
+<td>上传至 /var/lib/clickhouse/backup 目录</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>上传 ch_bk_yyyymmdd.data.zip</td>
+<td>上传至 /home/clickhouse/data/ck1/backup 目录</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>3</td>
+<td>上传三份配置文件到备份目录 config_13.xml, config_14.xml, config_15,xml</td>
+<td>上传至 /var/lib/clickhouse/backup</td>
+<td>一台服务器执行</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>4</td>
+<td>登录客户端</td>
+<td>clickhouse-client -h 127.0.0.1 -u cebrisk –password</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>5</td>
+<td>创建数据库</td>
+<td>create database chdb on cluster jxshares;</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>6</td>
+<td>退出客户端</td>
+<td>exit</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>7</td>
+<td>导入表结构及数据</td>
+<td>clickhouse-backup restore -c /var/lib/clickhouse/backup/config_13.yml -s ch_bk_yyyymmdd</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>clickhouse-backup restore -c /var/lib/clickhouse/backup/config_14.yml -s ch_bk_yyyymmdd</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>clickhouse-backup restore -c /var/lib/clickhouse/backup/config_16.yml ch_bk_yyyymmdd</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><img src="/2023/04/18/Clickhouse集群部署/image-20230418120020095.png" alt="image-20230418120020095"></p>
+<table>
+<thead>
+<tr>
+<th>三: 导入MySQL数据</th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>服务器</td>
+<td>用户</td>
+<td>序列</td>
+<td>描述</td>
+<td>操作步骤</td>
+<td></td>
+</tr>
+<tr>
+<td>168.130.7.13 (DB1)</td>
+<td>mysql</td>
+<td>1</td>
+<td>导入数据</td>
+<td>项目组提供数据文件，由行方数据库运维人员导入</td>
+<td>完成</td>
+</tr>
+<tr>
+<td>mysql -u hybrisk -p</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>use hybrisk</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>source /备份脚本路径/xxx.sql</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><img src="/2023/04/18/Clickhouse集群部署/image-20230418120045035.png" alt="image-20230418120045035"></p>
+<table>
+<thead>
+<tr>
+<th>四: 安装应用</th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>服务器</td>
+<td>用户</td>
+<td>序列</td>
+<td>描述</td>
+<td>操作步骤</td>
+</tr>
+<tr>
+<td>168.130.7.11(APP1) 168.130.7.12(APP2)</td>
+<td>hybrisk</td>
+<td>1</td>
+<td>上传文件 docker_deploy_xx.zip</td>
+<td>上传至 /home/hybrisk/ 目录</td>
+</tr>
+<tr>
+<td>2</td>
+<td>放置安装文件</td>
+<td>mkdir /home/hybrisk/tmp</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>mv docker_deploy_xx.zip /home/hybrisk/tmp/</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>cd /home/hybrisk/tmp/</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>unzip docker_deploy_xx.zip</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>cd  docker_deploy</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>mv * /home/hybrisk/docker_deploy</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>3</td>
+<td>进镜像目录</td>
+<td>cd /home/hybrisk/docker_deploy/images</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>4</td>
+<td>加载Nginx镜像</td>
+<td>docker load &lt; prmnginx.tar</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>5</td>
+<td>加载金融算法镜像</td>
+<td>docker load &lt; fin_server_1.2.0.tar</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>6</td>
+<td>docker load &lt; fin_jupyter_1.0.0.tar</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>7</td>
+<td>docker load &lt; jxhub_1.0.0.tar</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>8</td>
+<td>加载jdk镜像</td>
+<td>docker load &lt; openjdk_8u292-jdk_GMT8_1.0.tar</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>docker load &lt; jxhub_1.0.0.tar</td>
+</tr>
+</tbody>
+</table>
+<p><img src="/2023/04/18/Clickhouse集群部署/image-20230418120113416.png" alt="image-20230418120113416"></p>
+<table>
+<thead>
+<tr>
+<th>五: 安装应用</th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>服务器</td>
+<td>用户</td>
+<td>序列</td>
+<td>描述</td>
+<td>操作步骤</td>
+</tr>
+<tr>
+<td>168.130.7.15(CP1) 168.130.7.16(CP2)</td>
+<td>hybrisk</td>
+<td>1</td>
+<td>上传文件 docker_deploy_xx.zip</td>
+<td>上传至 /home/hybrisk/ 目录</td>
+</tr>
+<tr>
+<td>2</td>
+<td>放置安装文件</td>
+<td>mkdir /home/hybrisk/tmp</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>mv docker_deploy_xx.zip /home/hybrisk/tmp/</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>cd /home/hybrisk/tmp/</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>unzip docker_deploy_xx.zip</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>cd  docker_deploy</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>mv * /home/hybrisk/docker_deploy</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>3</td>
+<td>进镜像目录</td>
+<td>cd /home/hybrisk/docker_deploy/images</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>7</td>
+<td>加载jdk镜像</td>
+<td>docker load &lt; openjdk_8u292-jdk_GMT8_1.0.tar</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>六: 启动应用</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>服务器</td>
+<td>用户</td>
+<td>序列</td>
+<td>描述</td>
+<td>操作步骤</td>
+</tr>
+<tr>
+<td>168.130.7.11(APP1) 168.130.7.12(APP2) 168.130.7.15(CP1) 168.130.7.16(CP2)</td>
+<td>hybrisk</td>
+<td>1</td>
+<td>登录启动目录</td>
+<td>cd /home/hybrisk/docker_deploy/dc-start</td>
+</tr>
+<tr>
+<td>2</td>
+<td>启动所有应用</td>
+<td>docker-compose up -d</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>3</td>
+<td>停止所有应用</td>
+<td>docker-compose down</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>4</td>
+<td>重启某个应用</td>
+<td>docker-compose restart 某应用</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>七: 验证</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>服务器</td>
+<td>用户</td>
+<td>序列</td>
+<td>描述</td>
+<td>操作步骤</td>
+</tr>
+<tr>
+<td>办公终端</td>
+<td></td>
+<td>1</td>
+<td>绩效归因服务</td>
+<td><a href="http://168.130.7.17/hxbweb/" target="_blank" rel="noopener">http://168.130.7.17/hxbweb/</a></td>
+</tr>
+<tr>
+<td>2</td>
+<td>绩效归因中台</td>
+<td><a href="http://168.130.7.17/dpweb/" target="_blank" rel="noopener">http://168.130.7.17/dpweb/</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>堡垒机/跳板机</td>
+<td></td>
+<td>3</td>
+<td>注册中心</td>
+<td><a href="http://168.130.7.11:8761" target="_blank" rel="noopener">http://168.130.7.11:8761</a></td>
+</tr>
+<tr>
+<td>4</td>
+<td>金融算法开发平台</td>
+<td><a href="http://168.130.7.11:8001" target="_blank" rel="noopener">http://168.130.7.11:8001</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>5</td>
+<td>MySQL连接</td>
+<td>168.130.7.18:3306/dbrisk</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>6</td>
+<td>ClickHouse连接(dbeaver)</td>
+<td>168.130.7.19:8123/chdb</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><img src="/2023/04/18/Clickhouse集群部署/image-20230418120145697.png" alt="image-20230418120145697"></p>
+<h3 id="验证"><a href="#验证" class="headerlink" title="验证"></a>验证</h3><p><img src="/2023/04/18/Clickhouse集群部署/image-20230418133702182.png" alt="image-20230418133702182"></p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2023/04/11/tets/" rel="next" title="tets">
+                <i class="fa fa-chevron-left"></i> tets
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2023/04/24/Python进行PDF识别/" rel="prev" title="Python进行PDF识别">
+                Python进行PDF识别 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC80NDExNC8yMDY0OQ=="></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/head.jpg" alt="kl">
+            
+              <p class="site-author-name" itemprop="name">kl</p>
+              <div class="site-description motion-element" itemprop="description">66其实不太6</div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">113</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                      <a href="/categories/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">30</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">48</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#ROOT部署"><span class="nav-number">1.</span> <span class="nav-text">ROOT部署</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#应用部署"><span class="nav-number">2.</span> <span class="nav-text">应用部署</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#验证"><span class="nav-number">3.</span> <span class="nav-text">验证</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+    
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2023</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">kl</span>
+
+  
+
+  
+</div>
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-user"></i>
+    </span>
+    <span class="site-uv" title="总访客量">
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+  
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-eye"></i>
+    </span>
+    <span class="site-pv" title="总访问量">
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    
+    
+      
+    
+  
+  <script color="0,0,0" opacity="0.8" zindex="-1" count="66" src="//cdn.jsdelivr.net/gh/theme-next/theme-next-canvas-nest@1/canvas-nest.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.1.1"></script>
+
+  <script src="/js/motion.js?v=7.1.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/affix.js?v=7.1.1"></script>
+
+  <script src="/js/schemes/pisces.js?v=7.1.1"></script>
+
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.1.1"></script>
+<script src="/js/post-details.js?v=7.1.1"></script>
+
+
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.1.1"></script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+    <script>
+  window.livereOptions = {
+    refer: '2023/04/18/Clickhouse集群部署/'
+  };
+  (function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+    if (typeof LivereTower === 'function') { return; }
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+    e.parentNode.insertBefore(j, e);
+  })(document, 'script');
+</script>
+
+  
+
+
+  
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
+<script type="text/javascript" src="/js/src/clicklove.js"></script>
+<!-- <script type="text/javascript" src="/js/src/fish.js"></script> -->
+<!-- <script src='https://blog-static.cnblogs.com/files/elkyo/star.js'></script> -->
+<!-- 雪花特效 -->
+<!-- 雪花特效 -->
+<!-- <script type="text/javascript" src="\js\snow.js"></script> -->

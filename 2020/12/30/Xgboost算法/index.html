@@ -1,0 +1,1482 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.1.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.1.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.1.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.1.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.1.1" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.1.1',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="1.介绍123456781.Xgboost本质上还是GBDT(梯度提升树),Xgboost算法是对GBDT算法的改进2.Xgboost是Boosting算法的其中一种，Boosting算法的思想是将许多弱分类器集成在一起，形成一个强分类器。因为Xgboost是一种提升树模型，所以它是将许多树模型集成在一起，形成一个很强的分类器。而所用到的树模型则是CART回归树模型3.xgboost中的基学习器除">
+<meta name="keywords" content="python">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Xgboost算法">
+<meta property="og:url" content="http://kl66.top/2020/12/30/Xgboost算法/index.html">
+<meta property="og:site_name" content="Mr kuai">
+<meta property="og:description" content="1.介绍123456781.Xgboost本质上还是GBDT(梯度提升树),Xgboost算法是对GBDT算法的改进2.Xgboost是Boosting算法的其中一种，Boosting算法的思想是将许多弱分类器集成在一起，形成一个强分类器。因为Xgboost是一种提升树模型，所以它是将许多树模型集成在一起，形成一个很强的分类器。而所用到的树模型则是CART回归树模型3.xgboost中的基学习器除">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://kl66.top/2020/12/30/Xgboost算法/rfPdE6XjKkJbtrML__thumbnail.png">
+<meta property="og:image" content="http://kl66.top/2020/12/30/Xgboost算法/ws67LEPoFTyvj9vp__thumbnail.png">
+<meta property="og:image" content="http://kl66.top/2020/12/30/Xgboost算法/8gE0ZOi1q2goy1Aj__thumbnail.png">
+<meta property="og:image" content="http://kl66.top/2020/12/30/Xgboost算法/hEObUuFtGB7eReAB__thumbnail.png">
+<meta property="og:image" content="http://kl66.top/2020/12/30/Xgboost算法/6q821lMeAb4x1j8u__thumbnail.png">
+<meta property="og:image" content="https://uploader.shimo.im/f/lV1W4JNWoVACOJkz.png!thumbnail">
+<meta property="og:image" content="http://kl66.top/2020/12/30/Xgboost算法/1MMcolaV0NYJyU8l__thumbnail.png">
+<meta property="og:image" content="http://kl66.top/2020/12/30/Xgboost算法/SCywmucLREpDjbsl__thumbnail.png">
+<meta property="og:image" content="http://kl66.top/2020/12/30/Xgboost算法/ZARlOwoammWYFWlB__thumbnail.png">
+<meta property="og:image" content="http://kl66.top/2020/12/30/Xgboost算法/UN8xNIJsdrizNrRk__thumbnail.png">
+<meta property="og:image" content="http://kl66.top/2020/12/30/Xgboost算法/jfItMoUlzSDD5Gfb__thumbnail.png">
+<meta property="og:image" content="http://kl66.top/2020/12/30/Xgboost算法/WCtd8UsozGyp85rH__thumbnail.png">
+<meta property="og:image" content="http://kl66.top/2020/12/30/Xgboost算法/O8LU9a7dWJ9y7gwB__thumbnail.png">
+<meta property="og:image" content="http://kl66.top/2020/12/30/Xgboost算法/FGnIHMvJHKG6kQyG__thumbnail.png">
+<meta property="og:image" content="http://kl66.top/2020/12/30/Xgboost算法/1FuD6CCv2dYBa6ik__thumbnail.png">
+<meta property="og:image" content="http://kl66.top/2020/12/30/Xgboost算法/lkXFvALpsItdsp4B__thumbnail.png">
+<meta property="og:image" content="http://kl66.top/2020/12/30/Xgboost算法/WzlgYR0TZQVCwbJp__thumbnail.png">
+<meta property="og:image" content="http://kl66.top/2020/12/30/Xgboost算法/83NixqoNNEei4Pq8__thumbnail.png">
+<meta property="og:image" content="http://kl66.top/2020/12/30/Xgboost算法/VsfD8pLvsEW0u1ut__thumbnail.png">
+<meta property="og:image" content="http://kl66.top/2020/12/30/Xgboost算法/dFzv0FKNbK5PjhQw__thumbnail.png">
+<meta property="og:image" content="http://kl66.top/2020/12/30/Xgboost算法/hm3Pz6ZBBtbq2sJK__thumbnail.png">
+<meta property="og:image" content="http://kl66.top/2020/12/30/Xgboost算法/GOvYXKYNO3HeMHBm__thumbnail.png">
+<meta property="og:image" content="http://kl66.top/2020/12/30/Xgboost算法/xmQKq1cD2GPjJanC__thumbnail.png">
+<meta property="og:image" content="http://kl66.top/2020/12/30/Xgboost算法/dgUvH4IiDkPEqYun__thumbnail.png">
+<meta property="og:image" content="http://kl66.top/2020/12/30/Xgboost算法/PuCNXc1brXYjEuXq__thumbnail.png">
+<meta property="og:image" content="http://kl66.top/2020/12/30/Xgboost算法/HOLO6wBr3CEco4RE__thumbnail.png">
+<meta property="og:updated_time" content="2020-12-30T02:22:22.695Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Xgboost算法">
+<meta name="twitter:description" content="1.介绍123456781.Xgboost本质上还是GBDT(梯度提升树),Xgboost算法是对GBDT算法的改进2.Xgboost是Boosting算法的其中一种，Boosting算法的思想是将许多弱分类器集成在一起，形成一个强分类器。因为Xgboost是一种提升树模型，所以它是将许多树模型集成在一起，形成一个很强的分类器。而所用到的树模型则是CART回归树模型3.xgboost中的基学习器除">
+<meta name="twitter:image" content="http://kl66.top/2020/12/30/Xgboost算法/rfPdE6XjKkJbtrML__thumbnail.png">
+
+
+
+
+
+  
+  
+  <link rel="canonical" href="http://kl66.top/2020/12/30/Xgboost算法/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Xgboost算法 | Mr kuai</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Mr kuai</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">追忆似水流年</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-meh-o"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-legal"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-ravelry"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-snowflake-o"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://kl66.top/2020/12/30/Xgboost算法/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="kl">
+      <meta itemprop="description" content="66其实不太6">
+      <meta itemprop="image" content="/images/head.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mr kuai">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Xgboost算法
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2020-12-30 10:18:54 / 修改时间：10:22:22" itemprop="dateCreated datePublished" datetime="2020-12-30T10:18:54+08:00">2020-12-30</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/算法/" itemprop="url" rel="index"><span itemprop="name">算法</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon">
+            <i class="fa fa-eye"></i>
+             阅读次数： 
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="1-介绍"><a href="#1-介绍" class="headerlink" title="1.介绍"></a>1.介绍</h2><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span>Xgboost本质上还是GBDT(梯度提升树),Xgboost算法是对GBDT算法的改进</span><br><span class="line"><span class="number">2.</span>Xgboost是Boosting算法的其中一种，Boosting算法的思想是将许多弱分类器集成在一起，形成一个强分类器。因为Xgboost是一种提升树模型，所以它是将许多树模型集成在一起，形成一个很强的分类器。而所用到的树模型则是CART回归树模型</span><br><span class="line"><span class="number">3.</span>xgboost中的基学习器除了可以是CART也可以是线性分类器</span><br><span class="line"><span class="number">4.</span>做二分类的时候输出的是模型预测的所有概率中最大的那个值(连续值中取概率最大的)</span><br><span class="line">xgboost即可以做回归也可以做分类,但是通常都是做回归</span><br><span class="line">5.用到了加法模型和前项分布算法(每次只学习一个基函数及系数，逐步逼近最优解),--&gt;将同时求所有树的参数问题转换成求每个树</span><br><span class="line"><span class="number">6.</span>用二阶导数会收敛的更快,从一维向量到二维矩阵,再往后不成熟(张量),算起来慢点</span><br><span class="line">单一的回归树不够--&gt;boosting框架--&gt;回归树改良,GBDT--&gt;进一步提升,Xgboost</span><br></pre></td></tr></table></figure>
+<h3 id="机器学习常用名词解释"><a href="#机器学习常用名词解释" class="headerlink" title="机器学习常用名词解释"></a>机器学习常用名词解释</h3><p>正则化: 向你的模型加入某些规则，加入先验，缩小解空间，减小求出错误解的可能性,有效防止过拟合</p>
+<p>超参数: 是人为设置值的参数，而不是通过训练得到的参数数据，如学习率</p>
+<p>稀疏数据: 数据框中绝大多数数值缺失或者为零的数据,类推稀疏矩阵</p>
+<p>离散数据(变量):指其数值只能用自然数或整数单位计算.例如,企业个数,职工人数,设备台数等,只能按计量单位数计数</p>
+<p>连续数据(变量):指在一定区间内可以任意取值，相邻的两个数值可作无限分割(即可取无限个值)。比如身高，身高可以是183，也可以是183.1，也可以是183.111……1</p>
+<p>离散特征：其数值只能用自然数来表示，只能用计量单位统计，如个数，人数等</p>
+<p>连续特征：是按测量或者计量方法得到。连续特征是指在一段长度内可以任意获得的特征，其数值是不间断。比如[0,1]之间的数，可以取n个数。</p>
+<p>总之，记住，离散只能用自然数表示，是统计得到的。连续是按测量或者计量到得到数，比如各种传感器采集得到的数。</p>
+<p>核外计算: (内存外计算),大数据的数据规模下，一次性把训练数据导到内存里面计算是不实际的</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">三个计算级别：（速度越来越慢，数据量越来越大）</span><br><span class="line">内存里（核内）</span><br><span class="line">内存外（核外）</span><br></pre></td></tr></table></figure>
+<p>分布式 spark，Hadoop方面<br>其他:待补充</p>
+<h3 id="Cart分类树和回归树实现原理"><a href="#Cart分类树和回归树实现原理" class="headerlink" title="Cart分类树和回归树实现原理"></a>Cart分类树和回归树实现原理</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">决策树三种方式:ID3(信息增益)   C4<span class="number">.5</span>(信息增益率)  Cart(基尼指数)</span><br><span class="line">二叉</span><br><span class="line">Cart分类树</span><br><span class="line">离散特征:(CART的处理思想与C4<span class="number">.5</span>是相同的，即将连续特征值离散化）</span><br><span class="line"><span class="number">1.</span>训练数据集为D,计算现有特征对训练数据集的基尼指数，此时对于每一个特征A,对其可能取得每一个值a，根据此值将训练样本切分为D1和D2两部分，然后根据上式计算A=a基尼指数</span><br><span class="line"><span class="number">2.</span>在所有可能的特征以及所有可能的值里面选择基尼指数最小的特征及其切分点作为最优的特征及切分点，从结点生成两个子结点，将训练数据集分配到子结点中去</span><br><span class="line"><span class="number">3.</span>递归的调用<span class="number">1</span> <span class="number">2</span> 直到满足停止的条件</span><br><span class="line"><span class="number">4.</span>生成分类决策树</span><br><span class="line">Cart回归树</span><br><span class="line">连续特征:</span><br><span class="line"><span class="number">1.</span>训练数据集为D,依次遍历每个特征，以及该特征的每个取值，计算每个切分点的损失函数(平方损失)，选择损失函数最小的切分点,y为每个数值,y^为划分的左右两边各自的均值</span><br><span class="line"><span class="number">2.</span>递归的调用<span class="number">1</span>直到满足停止的条件</span><br><span class="line">树停止条件:</span><br><span class="line"><span class="number">1.</span>只有一个元素,或者元素全部相同时</span><br><span class="line"><span class="number">2.</span>达到设置的最大深度</span><br><span class="line"><span class="number">3.</span>特征已经划分完</span><br><span class="line"><span class="number">4.</span>样本个数小于预定阀值</span><br><span class="line">二者区别:</span><br><span class="line"><span class="number">1.</span>分类树与回归树的区别在样本的输出，如果样本输出是离散值，这是分类树；样本输出是连续值，这是回归树。分类树的输出是样本的类别，回归树的输出是一个实数。</span><br><span class="line"><span class="number">2.</span>连续值的处理方法不同。</span><br><span class="line"><span class="number">3.</span>决策树建立后做预测的方式不同。</span><br><span class="line">分类模型：采用基尼系数的大小度量特征各个划分点的优劣。</span><br><span class="line">回归模型：平方误差最小准则</span><br><span class="line">对于决策树建立后做预测的方式，CART分类树采用叶子节点里概率最大的类别作为当前节点的预测类别。回归树输出不是类别，采用叶子节点的均值或者中位数来预测输出结果。</span><br><span class="line">剪枝策略:(解决过拟合)</span><br><span class="line">预剪枝:在节点划分前来确定是否继续增长,是否继续划分----&gt;降低过拟合,减少训练时间,存在欠拟风险</span><br><span class="line">方法:<span class="number">1.</span>节点内数据样本低于某一阈值</span><br><span class="line"><span class="number">2.</span>所有节点特征都已分裂</span><br><span class="line"><span class="number">3.</span>节点划分前准确率比节点划分后准确率高</span><br><span class="line">后剪枝:创建完整的决策树，然后再尝试消除多余的节点，也就是采用减枝的方法</span><br><span class="line">区别:</span><br><span class="line">预剪枝:运算量小,但是不一定精准,欠拟合风险大</span><br><span class="line">后剪枝:运算量大,比较精准,欠拟合风险小</span><br></pre></td></tr></table></figure>
+<h2 id="2-Xgboost的优点"><a href="#2-Xgboost的优点" class="headerlink" title="2.Xgboost的优点"></a>2.Xgboost的优点</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span>正则化项防止过拟合</span><br><span class="line"><span class="number">2.</span>xgboost不仅使用到了一阶导数，还使用二阶导数，损失更精确</span><br><span class="line"><span class="number">3.</span>XGBoost的并行优化，XGBoost的并行是在特征粒度上的</span><br><span class="line"><span class="number">4.</span>考虑了训练数据为稀疏值的情况，可以为缺失值或者指定的值指定分支的默认方向，这能大大提升算法的效率</span><br><span class="line"><span class="number">5.</span>列抽样。xgboost借鉴了随机森林的做法，支持列抽样，不仅能降低过拟合，还能减少计算，这也是xgboost异于传统gbdt的一个特性。</span><br><span class="line"><span class="number">6.</span>一种新颖的用于处理稀疏数据的树学习算法</span><br><span class="line"><span class="number">7.</span>XGBoost利用了核外计算</span><br></pre></td></tr></table></figure>
+<h4 id="正则化"><a href="#正则化" class="headerlink" title="正则化"></a>正则化</h4><p>内容:包含L1正则化、L2正则化</p>
+<p>以线性回归为例</p>
+<p><img src="/2020/12/30/Xgboost算法/rfPdE6XjKkJbtrML__thumbnail.png" alt="img">L1正则化</p>
+<p><img src="/2020/12/30/Xgboost算法/ws67LEPoFTyvj9vp__thumbnail.png" alt="图片">L2正则化</p>
+<p>L1正则化最大的特点是能生成稀疏矩阵(主要用于特征选择,0和非0)</p>
+<p>L2正则能够有效的防止模型过拟合</p>
+<p>作用:解决过拟合,降低模型复杂度,防止参数过大(限制模型的参数)</p>
+<p>正则化能实现过拟合原因:</p>
+<p>1.作为惩罚项,惩罚特征权重w,当λ越大w越小,权重影响越小</p>
+<p>2.直观的理解，如果我们的正则化系数λ无穷大，则权重w就会趋近于0。权重变小，非线性程度自然就降低了</p>
+<p>## </p>
+<h2 id="3-Xgboost与GBDT的区别"><a href="#3-Xgboost与GBDT的区别" class="headerlink" title="3.Xgboost与GBDT的区别"></a>3.Xgboost与GBDT的区别</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">GBDT:梯度提升算法利用损失函数的负梯度作为残差拟合的方式，如果其中的基函数采用决策树的话，就得到了梯度提升决策树</span><br><span class="line"><span class="number">1.</span>XGBoost对损失函数做了二阶泰勒展开,GBDT只用了一阶导数信息.并且在损失函数一阶,二阶可导的条件下XGBoost可以自定义损失函数。</span><br><span class="line"><span class="number">2.</span>XGBoost的目标函数加了正则项，相当于预剪枝，使得学习出来的模型更加不容易过拟合。</span><br><span class="line"><span class="number">3.</span>XGBoost支持列抽样，与随机森林类似，用于防止过拟合</span><br><span class="line">对树中的每个非叶子节点，XGBoost可以自动学习出它的默认分裂方向。如果某个样本该特征值确缺失，会将其划入默认分支。</span><br><span class="line"><span class="number">4.</span>XGBoost支持特征维度的并行</span><br></pre></td></tr></table></figure>
+<h4 id="拟合残差-最后结果相加就是预测的"><a href="#拟合残差-最后结果相加就是预测的" class="headerlink" title="拟合残差:最后结果相加就是预测的"></a>拟合残差:最后结果相加就是预测的</h4><p><img src="/2020/12/30/Xgboost算法/8gE0ZOi1q2goy1Aj__thumbnail.png" alt="图片"></p>
+<h2 id="4-算法的实现过程"><a href="#4-算法的实现过程" class="headerlink" title="4.算法的实现过程"></a>4.算法的实现过程</h2><p><img src="/2020/12/30/Xgboost算法/hEObUuFtGB7eReAB__thumbnail.png" alt="图片"></p>
+<p>分别代表训练损失和树的复杂度</p>
+<p><img src="/2020/12/30/Xgboost算法/6q821lMeAb4x1j8u__thumbnail.png" alt="图片"></p>
+<p><img src="https://uploader.shimo.im/f/lV1W4JNWoVACOJkz.png!thumbnail" alt="图片"></p>
+<p>前t-1颗树的结构已经确定,认定为常数</p>
+<p><img src="/2020/12/30/Xgboost算法/1MMcolaV0NYJyU8l__thumbnail.png" alt="图片"></p>
+<p><img src="/2020/12/30/Xgboost算法/SCywmucLREpDjbsl__thumbnail.png" alt="图片">表示损失函数,如平方损失<img src="/2020/12/30/Xgboost算法/ZARlOwoammWYFWlB__thumbnail.png" alt="图片"></p>
+<p><img src="/2020/12/30/Xgboost算法/UN8xNIJsdrizNrRk__thumbnail.png" alt="图片">表示正则化项,考虑树的复杂度,防止过拟合</p>
+<p><img src="/2020/12/30/Xgboost算法/jfItMoUlzSDD5Gfb__thumbnail.png" alt="图片"></p>
+<p><img src="/2020/12/30/Xgboost算法/WCtd8UsozGyp85rH__thumbnail.png" alt="图片">表示常数项</p>
+<p>损失函数使用平方损失</p>
+<p>平方损失函数有许多友好的地方，它具有一阶项（通常称为残差）和二次项。对于其他形式的损失函数，并不容易获得这么好的形式</p>
+<p><img src="/2020/12/30/Xgboost算法/O8LU9a7dWJ9y7gwB__thumbnail.png" alt="图片"></p>
+<p>损失函数不是平方损失</p>
+<p>泰勒二阶展开</p>
+<p><img src="/2020/12/30/Xgboost算法/FGnIHMvJHKG6kQyG__thumbnail.png" alt="图片"></p>
+<p><img src="/2020/12/30/Xgboost算法/1FuD6CCv2dYBa6ik__thumbnail.png" alt="图片"></p>
+<p><img src="/2020/12/30/Xgboost算法/lkXFvALpsItdsp4B__thumbnail.png" alt="图片"></p>
+<p><img src="/2020/12/30/Xgboost算法/WzlgYR0TZQVCwbJp__thumbnail.png" alt="图片"></p>
+<p>代入原公式:</p>
+<p><img src="/2020/12/30/Xgboost算法/83NixqoNNEei4Pq8__thumbnail.png" alt="图片"></p>
+<p>化简树结构</p>
+<p>定义一棵树q(x)为输入x然后输出叶子结点索引,w为叶子结点向量</p>
+<p><img src="/2020/12/30/Xgboost算法/VsfD8pLvsEW0u1ut__thumbnail.png" alt="图片"></p>
+<p><img src="/2020/12/30/Xgboost算法/dFzv0FKNbK5PjhQw__thumbnail.png" alt="图片"></p>
+<p>树的复杂度</p>
+<p><img src="/2020/12/30/Xgboost算法/hm3Pz6ZBBtbq2sJK__thumbnail.png" alt="图片"></p>
+<p><img src="/2020/12/30/Xgboost算法/GOvYXKYNO3HeMHBm__thumbnail.png" alt="图片"></p>
+<p><img src="/2020/12/30/Xgboost算法/xmQKq1cD2GPjJanC__thumbnail.png" alt="图片"></p>
+<p><img src="/2020/12/30/Xgboost算法/dgUvH4IiDkPEqYun__thumbnail.png" alt="图片"></p>
+<p>这样就将样本累加操作转换为叶子节点的操作</p>
+<p>Gj 表示映射为叶子节点 j 的所有输入样本的一阶导之和</p>
+<p>G和H都是常数，那么这个问题就变成了一个二次问题了，求解最小值</p>
+<p><img src="/2020/12/30/Xgboost算法/PuCNXc1brXYjEuXq__thumbnail.png" alt="图片"></p>
+<p>#### </p>
+<h2 id="5-Xgboost的实现-案例-回归预测房价"><a href="#5-Xgboost的实现-案例-回归预测房价" class="headerlink" title="5.Xgboost的实现(案例:回归预测房价)"></a>5.Xgboost的实现(案例:回归预测房价)</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br></pre></td><td class="code"><pre><span class="line">train=pd.read_csv(<span class="string">r'C:\Users\Administrator\Desktop\train.csv'</span>, header=<span class="number">0</span>)</span><br><span class="line">test=pd.read_csv(<span class="string">r'C:\Users\Administrator\Desktop/test.csv'</span>, header=<span class="number">0</span>)</span><br><span class="line">c_test  = test.copy()</span><br><span class="line">c_train  = train.copy()</span><br><span class="line">c_train[<span class="string">'train'</span>]  = <span class="number">1</span></span><br><span class="line">c_test[<span class="string">'train'</span>]  = <span class="number">0</span></span><br><span class="line">df = pd.concat([c_train, c_test], axis=<span class="number">0</span>,sort=<span class="literal">False</span>)</span><br><span class="line">NAN = [(c, df[c].isna().m                                                                 ean()*<span class="number">100</span>) <span class="keyword">for</span> c <span class="keyword">in</span> df]</span><br><span class="line">NAN = pd.DataFrame(NAN, columns=[<span class="string">"column_name"</span>, <span class="string">"percentage"</span>])</span><br><span class="line">NAN = NAN[NAN.percentage &gt; <span class="number">50</span>]</span><br><span class="line">NAN.sort_values(<span class="string">"percentage"</span>, ascending=<span class="literal">False</span>)<span class="comment">#得到缺失率超过50%的字段</span></span><br><span class="line">df = df.drop([<span class="string">'Alley'</span>,<span class="string">'PoolQC'</span>,<span class="string">'Fence'</span>,<span class="string">'MiscFeature'</span>],axis=<span class="number">1</span>)</span><br><span class="line">object_columns_df = df.select_dtypes(include=[<span class="string">'object'</span>])</span><br><span class="line">numerical_columns_df =df.select_dtypes(exclude=[<span class="string">'object'</span>])</span><br><span class="line">null_counts = object_columns_df.isnull().sum() <span class="comment">#object数据中每个特征空值的数量</span></span><br><span class="line">columns_None = [<span class="string">'BsmtQual'</span>,<span class="string">'BsmtCond'</span>,<span class="string">'BsmtExposure'</span>,<span class="string">'BsmtFinType1'</span>,<span class="string">'BsmtFinType2'</span>,<span class="string">'GarageType'</span>,<span class="string">'GarageFinish'</span>,<span class="string">'GarageQual'</span>,<span class="string">'FireplaceQu'</span>,<span class="string">'GarageCond'</span>]</span><br><span class="line">object_columns_df[columns_None]= object_columns_df[columns_None].fillna(<span class="string">'None'</span>)</span><br><span class="line">columns_with_lowNA = [<span class="string">'MSZoning'</span>,<span class="string">'Utilities'</span>,<span class="string">'Exterior1st'</span>,<span class="string">'Exterior2nd'</span>,<span class="string">'MasVnrType'</span>,<span class="string">'Electrical'</span>,<span class="string">'KitchenQual'</span>,<span class="string">'Functional'</span>,<span class="string">'SaleType'</span>]</span><br><span class="line">object_columns_df[columns_with_lowNA] = object_columns_df[columns_with_lowNA].fillna(object_columns_df.mode().iloc[<span class="number">0</span>]) <span class="comment">#object_columns_df.mode()返回频数最高的</span></span><br><span class="line">null_counts = numerical_columns_df.isnull().sum()</span><br><span class="line"><span class="comment">#YearBuilt无空值</span></span><br><span class="line">print((numerical_columns_df[<span class="string">'YrSold'</span>]-numerical_columns_df[<span class="string">'YearBuilt'</span>]).median()) <span class="comment">#35</span></span><br><span class="line">print(numerical_columns_df[<span class="string">"LotFrontage"</span>].median()) <span class="comment">#68</span></span><br><span class="line">numerical_columns_df[<span class="string">'GarageYrBlt'</span>] = numerical_columns_df[<span class="string">'GarageYrBlt'</span>].fillna(numerical_columns_df[<span class="string">'YrSold'</span>]<span class="number">-35</span>)</span><br><span class="line">numerical_columns_df[<span class="string">'LotFrontage'</span>] = numerical_columns_df[<span class="string">'LotFrontage'</span>].fillna(<span class="number">68</span>)</span><br><span class="line">numerical_columns_df= numerical_columns_df.fillna(<span class="number">0</span>)</span><br><span class="line"><span class="comment">#作图找出方差小的特征,将他们删除(方差小,离散程度低,特征无明显区分左右,故删除)</span></span><br><span class="line">object_columns_df[<span class="string">'Utilities'</span>].value_counts().plot(kind=<span class="string">'bar'</span>,figsize=[<span class="number">10</span>,<span class="number">3</span>])</span><br><span class="line">object_columns_df[<span class="string">'Utilities'</span>].value_counts() </span><br><span class="line">object_columns_df[<span class="string">'Street'</span>].value_counts().plot(kind=<span class="string">'bar'</span>,figsize=[<span class="number">10</span>,<span class="number">3</span>])</span><br><span class="line">object_columns_df[<span class="string">'Street'</span>].value_counts() </span><br><span class="line">object_columns_df[<span class="string">'Condition2'</span>].value_counts().plot(kind=<span class="string">'bar'</span>,figsize=[<span class="number">10</span>,<span class="number">3</span>])</span><br><span class="line">object_columns_df[<span class="string">'Condition2'</span>].value_counts() </span><br><span class="line">object_columns_df[<span class="string">'RoofMatl'</span>].value_counts().plot(kind=<span class="string">'bar'</span>,figsize=[<span class="number">10</span>,<span class="number">3</span>])</span><br><span class="line">object_columns_df[<span class="string">'RoofMatl'</span>].value_counts()</span><br><span class="line">object_columns_df[<span class="string">'Heating'</span>].value_counts().plot(kind=<span class="string">'bar'</span>,figsize=[<span class="number">10</span>,<span class="number">3</span>])</span><br><span class="line">object_columns_df[<span class="string">'Heating'</span>].value_counts() <span class="comment">#======&gt; Drop feature one Type</span></span><br><span class="line">object_columns_df = object_columns_df.drop([<span class="string">'Heating'</span>,<span class="string">'RoofMatl'</span>,<span class="string">'Condition2'</span>,<span class="string">'Street'</span>,<span class="string">'Utilities'</span>],axis=<span class="number">1</span>)</span><br><span class="line"><span class="comment">#创造特征</span></span><br><span class="line">numerical_columns_df[<span class="string">'Age_House'</span>]= (numerical_columns_df[<span class="string">'YrSold'</span>]-numerical_columns_df[<span class="string">'YearBuilt'</span>])</span><br><span class="line">numerical_columns_df[<span class="string">'Age_House'</span>].describe() <span class="comment">#对特征分析</span></span><br><span class="line">Negatif = numerical_columns_df[numerical_columns_df[<span class="string">'Age_House'</span>] &lt; <span class="number">0</span>]</span><br><span class="line">numerical_columns_df.loc[numerical_columns_df[<span class="string">'YrSold'</span>] &lt; numerical_columns_df[<span class="string">'YearBuilt'</span>],<span class="string">'YrSold'</span> ] = <span class="number">2009</span></span><br><span class="line">numerical_columns_df[<span class="string">'Age_House'</span>]= (numerical_columns_df[<span class="string">'YrSold'</span>]-numerical_columns_df[<span class="string">'YearBuilt'</span>])</span><br><span class="line">numerical_columns_df[<span class="string">'Age_House'</span>].describe()</span><br><span class="line">numerical_columns_df[<span class="string">'TotalBsmtBath'</span>] = numerical_columns_df[<span class="string">'BsmtFullBath'</span>] + numerical_columns_df[<span class="string">'BsmtFullBath'</span>]*<span class="number">0.5</span></span><br><span class="line">numerical_columns_df[<span class="string">'TotalBath'</span>] = numerical_columns_df[<span class="string">'FullBath'</span>] + numerical_columns_df[<span class="string">'HalfBath'</span>]*<span class="number">0.5</span> </span><br><span class="line">numerical_columns_df[<span class="string">'TotalSA'</span>]=numerical_columns_df[<span class="string">'TotalBsmtSF'</span>] + numerical_columns_df[<span class="string">'1stFlrSF'</span>] + numerical_columns_df[<span class="string">'2ndFlrSF'</span>]</span><br><span class="line">bin_map  = &#123;<span class="string">'TA'</span>:<span class="number">2</span>,<span class="string">'Gd'</span>:<span class="number">3</span>, <span class="string">'Fa'</span>:<span class="number">1</span>,<span class="string">'Ex'</span>:<span class="number">4</span>,<span class="string">'Po'</span>:<span class="number">1</span>,<span class="string">'None'</span>:<span class="number">0</span>,<span class="string">'Y'</span>:<span class="number">1</span>,<span class="string">'N'</span>:<span class="number">0</span>,<span class="string">'Reg'</span>:<span class="number">3</span>,<span class="string">'IR1'</span>:<span class="number">2</span>,<span class="string">'IR2'</span>:<span class="number">1</span>,<span class="string">'IR3'</span>:<span class="number">0</span>,<span class="string">"None"</span> : <span class="number">0</span>,</span><br><span class="line">            <span class="string">"No"</span> : <span class="number">2</span>, <span class="string">"Mn"</span> : <span class="number">2</span>, <span class="string">"Av"</span>: <span class="number">3</span>,<span class="string">"Gd"</span> : <span class="number">4</span>,<span class="string">"Unf"</span> : <span class="number">1</span>, <span class="string">"LwQ"</span>: <span class="number">2</span>, <span class="string">"Rec"</span> : <span class="number">3</span>,<span class="string">"BLQ"</span> : <span class="number">4</span>, <span class="string">"ALQ"</span> : <span class="number">5</span>, <span class="string">"GLQ"</span> : <span class="number">6</span></span><br><span class="line">            &#125;</span><br><span class="line">object_columns_df[<span class="string">'ExterQual'</span>] = object_columns_df[<span class="string">'ExterQual'</span>].map(bin_map)</span><br><span class="line">object_columns_df[<span class="string">'ExterCond'</span>] = object_columns_df[<span class="string">'ExterCond'</span>].map(bin_map)</span><br><span class="line">object_columns_df[<span class="string">'BsmtCond'</span>] = object_columns_df[<span class="string">'BsmtCond'</span>].map(bin_map)</span><br><span class="line">object_columns_df[<span class="string">'BsmtQual'</span>] = object_columns_df[<span class="string">'BsmtQual'</span>].map(bin_map)</span><br><span class="line">object_columns_df[<span class="string">'HeatingQC'</span>] = object_columns_df[<span class="string">'HeatingQC'</span>].map(bin_map)</span><br><span class="line">object_columns_df[<span class="string">'KitchenQual'</span>] = object_columns_df[<span class="string">'KitchenQual'</span>].map(bin_map)</span><br><span class="line">object_columns_df[<span class="string">'FireplaceQu'</span>] = object_columns_df[<span class="string">'FireplaceQu'</span>].map(bin_map)</span><br><span class="line">object_columns_df[<span class="string">'GarageQual'</span>] = object_columns_df[<span class="string">'GarageQual'</span>].map(bin_map)</span><br><span class="line">object_columns_df[<span class="string">'GarageCond'</span>] = object_columns_df[<span class="string">'GarageCond'</span>].map(bin_map)</span><br><span class="line">object_columns_df[<span class="string">'CentralAir'</span>] = object_columns_df[<span class="string">'CentralAir'</span>].map(bin_map)</span><br><span class="line">object_columns_df[<span class="string">'LotShape'</span>] = object_columns_df[<span class="string">'LotShape'</span>].map(bin_map)</span><br><span class="line">object_columns_df[<span class="string">'BsmtExposure'</span>] = object_columns_df[<span class="string">'BsmtExposure'</span>].map(bin_map)</span><br><span class="line">object_columns_df[<span class="string">'BsmtFinType1'</span>] = object_columns_df[<span class="string">'BsmtFinType1'</span>].map(bin_map)</span><br><span class="line">object_columns_df[<span class="string">'BsmtFinType2'</span>] = object_columns_df[<span class="string">'BsmtFinType2'</span>].map(bin_map)</span><br><span class="line">PavedDrive =   &#123;<span class="string">"N"</span> : <span class="number">0</span>, <span class="string">"P"</span> : <span class="number">1</span>, <span class="string">"Y"</span> : <span class="number">2</span>&#125;</span><br><span class="line">object_columns_df[<span class="string">'PavedDrive'</span>] = object_columns_df[<span class="string">'PavedDrive'</span>].map(PavedDrive)</span><br><span class="line">rest_object_columns = object_columns_df.select_dtypes(include=[<span class="string">'object'</span>])</span><br><span class="line"><span class="comment">#独热编码</span></span><br><span class="line">object_columns_df = pd.get_dummies(object_columns_df, columns=rest_object_columns.columns) </span><br><span class="line">df_final = pd.concat([object_columns_df, numerical_columns_df], axis=<span class="number">1</span>,sort=<span class="literal">False</span>)</span><br><span class="line">df_final = df_final.drop([<span class="string">'Id'</span>,],axis=<span class="number">1</span>)</span><br><span class="line">df_train = df_final[df_final[<span class="string">'train'</span>] == <span class="number">1</span>]</span><br><span class="line">df_train = df_train.drop([<span class="string">'train'</span>,],axis=<span class="number">1</span>)</span><br><span class="line">df_test = df_final[df_final[<span class="string">'train'</span>] == <span class="number">0</span>]</span><br><span class="line">df_test = df_test.drop([<span class="string">'SalePrice'</span>],axis=<span class="number">1</span>)</span><br><span class="line">df_test = df_test.drop([<span class="string">'train'</span>,],axis=<span class="number">1</span>)</span><br><span class="line">target= df_train[<span class="string">'SalePrice'</span>]</span><br><span class="line">df_train = df_train.drop([<span class="string">'SalePrice'</span>],axis=<span class="number">1</span>)</span><br><span class="line">x_train,x_test,y_train,y_test = train_test_split(df_train,target,test_size=<span class="number">0.33</span>,random_state=<span class="number">0</span>)</span><br><span class="line"><span class="comment">#前面全是创建特征工程,数据预处理</span></span><br><span class="line">xgb =XGBRegressor( booster=<span class="string">'gbtree'</span>, colsample_bylevel=<span class="number">1</span>,</span><br><span class="line">             colsample_bynode=<span class="number">1</span>, colsample_bytree=<span class="number">0.6</span>, gamma=<span class="number">0</span>,</span><br><span class="line">             importance_type=<span class="string">'gain'</span>, learning_rate=<span class="number">0.01</span>,                  max_delta_step=<span class="number">0</span>,</span><br><span class="line">             max_depth=<span class="number">4</span>, min_child_weight=<span class="number">1.5</span>, n_estimators=<span class="number">2400</span>,</span><br><span class="line">             n_jobs=<span class="number">1</span>, nthread=<span class="literal">None</span>, objective=<span class="string">'reg:linear'</span>,</span><br><span class="line">             reg_alpha=<span class="number">0.6</span>, reg_lambda=<span class="number">0.6</span>, scale_pos_weight=<span class="number">1</span>, </span><br><span class="line">             silent=<span class="literal">None</span>, subsample=<span class="number">0.8</span>, verbosity=<span class="number">1</span>)</span><br><span class="line">xgb.fit(x_train, y_train)</span><br><span class="line">predict1 = xgb.predict(x_test)</span><br><span class="line">xgb.fit(df_train, target)</span><br><span class="line">predicty = xgb.predict(df_test)</span><br><span class="line">predicty</span><br></pre></td></tr></table></figure>
+<h2 id="6-Xgboost的参数详解以及使用"><a href="#6-Xgboost的参数详解以及使用" class="headerlink" title="6.Xgboost的参数详解以及使用"></a>6.Xgboost的参数详解以及使用</h2><h4 id="一般参数-控制总体的功能"><a href="#一般参数-控制总体的功能" class="headerlink" title="一般参数:控制总体的功能"></a>一般参数:控制总体的功能</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span>booster[default=gbtree]选择基分类器 gbtree、gblinear 树或线性分类器</span><br><span class="line"><span class="number">2.</span>nthread [default to maximum number of threads available <span class="keyword">if</span> <span class="keyword">not</span> set]线程数默认最大</span><br></pre></td></tr></table></figure>
+<h4 id="Tree-Booster参数：控制单个学习器的属性"><a href="#Tree-Booster参数：控制单个学习器的属性" class="headerlink" title="Tree Booster参数：控制单个学习器的属性"></a>Tree Booster参数：控制单个学习器的属性</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span> learning_rate[default=<span class="number">0.3</span>]:学习率learning rate,步长.一般常用的数值: <span class="number">0.01</span><span class="number">-0.2</span></span><br><span class="line"><span class="number">2.</span> min_child_weight [default=<span class="number">1</span>]:这个参数用来控制过拟合,如果数值太大可能会导致欠拟合</span><br><span class="line"><span class="number">3.</span> max_depth [default=<span class="number">6</span>]: 每颗树的最大深度，树高越深，越容易过拟合。</span><br><span class="line"><span class="number">4.</span> gamma [default=<span class="number">0</span>]：如果分裂能够使loss函数减小的值大于gamma，则这个节点才分裂。gamma设置了这个减小的最低阈值。如果gamma设置为<span class="number">0</span>，表示只要使得loss函数减少，就分裂,通常设置为<span class="number">0</span></span><br><span class="line"><span class="number">6.</span> subsample [default=<span class="number">1</span>]：对原数据集进行随机采样来构建单个树。这个参数代表了在构建树时候 对原数据集采样的百分比。eg：如果设为<span class="number">0.8</span>表示随机抽取样本中<span class="number">80</span>%的个体来构建树。</span><br><span class="line"><span class="number">7.</span> colsample_bytree [default=<span class="number">1</span>]：创建树的时候，从所有的列中选取的比例。e.g：如果设为<span class="number">0.8</span>表示随机抽取<span class="number">80</span>%的列 用来创建树.一般设置为： <span class="number">0.5</span><span class="number">-1</span></span><br><span class="line"><span class="number">8.</span> <span class="keyword">lambda</span> [default=<span class="number">1</span>]：控制模型复杂度的权重值的L2正则化项参数，参数越大，模型越不容易过拟合。</span><br><span class="line"><span class="number">9.</span> alpha [default=<span class="number">0</span>]:控制模型复杂程度的权重值的 L1 正则项参数，参数值越大，模型越不容易过拟合。</span><br><span class="line"><span class="number">10.</span> scale_pos_weight [default=<span class="number">1</span>]在各类别样本十分不平衡时，把这个参数设定为一个正值，可以使算法更快收敛。通常可以将其设置为负样本的数目与正样本数目的比值。</span><br></pre></td></tr></table></figure>
+<h4 id="学习任务参数：控制调优的步骤"><a href="#学习任务参数：控制调优的步骤" class="headerlink" title="学习任务参数：控制调优的步骤"></a>学习任务参数：控制调优的步骤</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span>objective [缺省值=reg:linear]</span><br><span class="line">    reg:linear– 线性回归</span><br><span class="line">    reg:logistic – 逻辑回归</span><br><span class="line">    binary:logistic – 二分类逻辑回归，输出为概率</span><br><span class="line">    binary:logitraw – 二分类逻辑回归，输出的结果为wTx</span><br><span class="line">    count:poisson – 计数问题的poisson回归，输出结果为poisson分布。在poisson回归中，max_delta_step的缺省值为<span class="number">0.7</span> (used to safeguard optimization)</span><br><span class="line">    multi:softmax – 设置 XGBoost 使用softmax目标函数做多分类，需要设置参数num_class（类别个数）</span><br><span class="line">    multi:softprob – 如同softmax，但是输出结果为ndata*nclass的向量，其中的值是每个数据分为每个类的概率</span><br><span class="line">    </span><br><span class="line"><span class="number">2.</span>seed [ default=<span class="number">0</span> ]随机种子,为了产生能够重现的结果。因为如果不设置这个种子，每次产生的结果都会不同。</span><br><span class="line"><span class="number">3.</span>eval_metric [缺省值=通过目标函数选择]</span><br><span class="line">    rmse: 均方根误差</span><br><span class="line">    mae: 平均绝对值误差</span><br><span class="line">    logloss: negative log-likelihood</span><br><span class="line">    error: 二分类错误率。</span><br><span class="line">    merror: 多分类错误率，计算公式为(wrong cases)/(all cases)</span><br><span class="line">    mlogloss: 多分类log损失</span><br><span class="line">    auc: 曲线下的面积</span><br><span class="line">    ndcg: Normalized Discounted Cumulative Gain</span><br><span class="line">    map: 平均正确率</span><br></pre></td></tr></table></figure>
+<h4 id="调参方法"><a href="#调参方法" class="headerlink" title="调参方法"></a>调参方法</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">需要借助一个模块sklearn.model_selection.GridSearchCV(模型调参利器,网格搜索)</span><br><span class="line"> 参数:</span><br><span class="line">   <span class="number">1.</span>estimator,优化器,即你建立的模型,这里选xgboost</span><br><span class="line">   <span class="number">2.</span>param_grid 一般用字典(通常,也可列表),输入优化的参数</span><br><span class="line">   <span class="number">3.</span>scoring 模型评价标准,如roc,auc等</span><br><span class="line">调参顺序:</span><br><span class="line">  <span class="number">1.</span>n_estimators 迭代次数,就是生成树的个数 如,cv_params = &#123;<span class="string">'n_estimators'</span>: [<span class="number">550</span>, <span class="number">575</span>, <span class="number">600</span>, <span class="number">650</span>, <span class="number">675</span>]&#125;</span><br><span class="line">  <span class="number">2.</span>min_child_weight和max_depth 这两个参数是控制树生成的，树的结构对于最终的结果影响还是很大</span><br><span class="line">  <span class="number">3.</span>gamma控制节点分裂标准 cv_params = &#123;<span class="string">'gamma'</span>: [<span class="number">0.1</span>, <span class="number">0.2</span>, <span class="number">0.3</span>, <span class="number">0.4</span>, <span class="number">0.5</span>, <span class="number">0.6</span>]&#125;</span><br><span class="line">  <span class="number">4.</span>subsample和colsample_bytree  采样比例,cv_params = &#123;<span class="string">'subsample'</span>: [<span class="number">0.6</span>, <span class="number">0.7</span>, <span class="number">0.8</span>, <span class="number">0.9</span>], <span class="string">'colsample_bytree'</span>: [<span class="number">0.6</span>, <span class="number">0.7</span>, <span class="number">0.8</span>, <span class="number">0.9</span>]&#125;</span><br><span class="line">  <span class="number">5.</span> alpha和<span class="keyword">lambda</span>, 正则化的参数 cv_params = &#123;<span class="string">'alpha'</span>: [<span class="number">0.05</span>, <span class="number">0.1</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>], <span class="string">'lambda'</span>: [<span class="number">0.05</span>, <span class="number">0.1</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]&#125;</span><br><span class="line">  <span class="number">6.l</span>earning_rate  学习率,从较小的开始 cv_params = &#123;<span class="string">'learning_rate'</span>: [<span class="number">0.01</span>, <span class="number">0.05</span>, <span class="number">0.07</span>, <span class="number">0.1</span>, <span class="number">0.2</span>]&#125;</span><br><span class="line">  <span class="number">7.</span>调参可以提高模型性能，但是更重要的还是特征选择，数据清洗，特征融合</span><br><span class="line">  </span><br><span class="line">控制过拟合</span><br><span class="line">  当您观察到较高的训练准确率，但测试精度较低时，很可能遇到了过拟合问题。</span><br><span class="line">  通常可以通过两种方式来控制xgboost中的过拟合</span><br><span class="line">  第一种方式是直接控制模型的复杂性</span><br><span class="line">      这包括max_depth，min_child_weight 和 gamma</span><br><span class="line">  第二种方法是增加随机性，使训练对噪声更加鲁棒</span><br><span class="line">      这包括subsample，colsample_bytree,eta</span><br><span class="line">      </span><br><span class="line">样本不均衡问题</span><br><span class="line">   <span class="number">1</span>) 设置scale_pos_weight,有时会遇到样本不均衡的问题，比如正例占<span class="number">99</span>%，反例占<span class="number">1</span>%，那么如果预测为全正例或者随机抽机，正确率也占<span class="number">99</span>%。此时可使用scale_pos_weight提高反例权重，默认为<span class="number">1</span>，不增加权重。</span><br><span class="line">   <span class="number">2</span>)使用xgb自带的调用接口 (非sklearn接口)，需要把数据转成DMatrix格式，如果想给不同实例分配不同权重，可以转换时使用weight参数，它传入与实例个数等长的数组，数组中每个数对应一个实例的权重，在xgb每次迭代后调整权重时也会将它计算在内。</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> xgboost <span class="keyword">as</span> xgb</span><br><span class="line"><span class="keyword">from</span> sklearn.model_selection <span class="keyword">import</span> train_test_split</span><br><span class="line"><span class="keyword">from</span> sklearn.datasets <span class="keyword">import</span> load_breast_cancer</span><br><span class="line"><span class="keyword">from</span> sklearn.model_selection <span class="keyword">import</span> GridSearchCV</span><br><span class="line">​</span><br><span class="line">cancer = load_breast_cancer()</span><br><span class="line">x = cancer.data[:<span class="number">50</span>]</span><br><span class="line">y = cancer.target[:<span class="number">50</span>]</span><br><span class="line">train_x, valid_x, train_y, valid_y = train_test_split(x, y, test_size=<span class="number">0.333</span>, random_state=<span class="number">0</span>)</span><br><span class="line">parameters = &#123;</span><br><span class="line">    <span class="string">'max_depth'</span>: [<span class="number">5</span>, <span class="number">10</span>, <span class="number">15</span>, <span class="number">20</span>, <span class="number">25</span>],</span><br><span class="line">    <span class="string">'learning_rate'</span>: [<span class="number">0.01</span>, <span class="number">0.02</span>, <span class="number">0.05</span>, <span class="number">0.1</span>, <span class="number">0.15</span>],</span><br><span class="line">    <span class="string">'n_estimators'</span>: [<span class="number">50</span>, <span class="number">100</span>, <span class="number">200</span>, <span class="number">300</span>, <span class="number">500</span>],</span><br><span class="line">    <span class="string">'min_child_weight'</span>: [<span class="number">0</span>, <span class="number">2</span>, <span class="number">5</span>, <span class="number">10</span>, <span class="number">20</span>],</span><br><span class="line">    <span class="string">'max_delta_step'</span>: [<span class="number">0</span>, <span class="number">0.2</span>, <span class="number">0.6</span>, <span class="number">1</span>, <span class="number">2</span>],</span><br><span class="line">    <span class="string">'subsample'</span>: [<span class="number">0.6</span>, <span class="number">0.7</span>, <span class="number">0.8</span>, <span class="number">0.85</span>, <span class="number">0.95</span>],</span><br><span class="line">    <span class="string">'colsample_bytree'</span>: [<span class="number">0.5</span>, <span class="number">0.6</span>, <span class="number">0.7</span>, <span class="number">0.8</span>, <span class="number">0.9</span>],</span><br><span class="line">    <span class="string">'reg_alpha'</span>: [<span class="number">0</span>, <span class="number">0.25</span>, <span class="number">0.5</span>, <span class="number">0.75</span>, <span class="number">1</span>],</span><br><span class="line">    <span class="string">'reg_lambda'</span>: [<span class="number">0.2</span>, <span class="number">0.4</span>, <span class="number">0.6</span>, <span class="number">0.8</span>, <span class="number">1</span>],</span><br><span class="line">    <span class="string">'scale_pos_weight'</span>: [<span class="number">0.2</span>, <span class="number">0.4</span>, <span class="number">0.6</span>, <span class="number">0.8</span>, <span class="number">1</span>]</span><br><span class="line">&#125;</span><br><span class="line">​</span><br><span class="line">xlf = xgb.XGBClassifier(max_depth=<span class="number">10</span>,</span><br><span class="line">                        learning_rate=<span class="number">0.01</span>,</span><br><span class="line">                        n_estimators=<span class="number">2000</span>,</span><br><span class="line">                        silent=<span class="literal">True</span>,</span><br><span class="line">                        objective=<span class="string">'binary:logistic'</span>,</span><br><span class="line">                        nthread=<span class="number">-1</span>,</span><br><span class="line">                        gamma=<span class="number">0</span>,</span><br><span class="line">                        min_child_weight=<span class="number">1</span>,</span><br><span class="line">                        max_delta_step=<span class="number">0</span>,</span><br><span class="line">                        subsample=<span class="number">0.85</span>,</span><br><span class="line">                        colsample_bytree=<span class="number">0.7</span>,</span><br><span class="line">                        colsample_bylevel=<span class="number">1</span>,</span><br><span class="line">                        reg_alpha=<span class="number">0</span>,</span><br><span class="line">                        reg_lambda=<span class="number">1</span>,</span><br><span class="line">                        scale_pos_weight=<span class="number">1</span>,</span><br><span class="line">                        seed=<span class="number">1440</span>,</span><br><span class="line">                        missing=<span class="literal">None</span>)</span><br><span class="line">​</span><br><span class="line"><span class="comment"># 有了gridsearch我们便不需要fit函数</span></span><br><span class="line">gsearch = GridSearchCV(xlf, param_grid=parameters, scoring=<span class="string">'accuracy'</span>, cv=<span class="number">3</span>)</span><br><span class="line">gsearch.fit(train_x, train_y)</span><br><span class="line">print(<span class="string">"Best score: %0.3f"</span> % gsearch.best_score_)</span><br><span class="line">print(<span class="string">"Best parameters set:"</span>)</span><br><span class="line">best_parameters = gsearch.best_estimator_.get_params()</span><br><span class="line"><span class="keyword">for</span> param_name <span class="keyword">in</span> sorted(parameters.keys()):</span><br><span class="line">    print(<span class="string">"\t%s: %r"</span> % (param_name, best_parameters[param_name]))</span><br><span class="line"><span class="comment">#比较耗费时间,穷举法</span></span><br></pre></td></tr></table></figure>
+<h4 id="案例2-https-www-jianshu-com-p-7aab084b7f47"><a href="#案例2-https-www-jianshu-com-p-7aab084b7f47" class="headerlink" title="案例2:https://www.jianshu.com/p/7aab084b7f47"></a>案例2:<a href="https://www.jianshu.com/p/7aab084b7f47" target="_blank" rel="noopener">https://www.jianshu.com/p/7aab084b7f47</a></h4><p><a href="https://blog.csdn.net/weixin_30838921/article/details/94989933?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-3.channel_param&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-3.channel_param" target="_blank" rel="noopener">https://blog.csdn.net/weixin_30838921/article/details/94989933?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-3.channel_param&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-3.channel_param</a></p>
+<h2 id="7-Xgboost的注意事项"><a href="#7-Xgboost的注意事项" class="headerlink" title="7.Xgboost的注意事项"></a>7.Xgboost的注意事项</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span>windows安装推荐方式，直接pip会各种报错</span><br><span class="line">https://blog.csdn.net/qq_20412595/article/details/79771490?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.channel_param&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.channel_param</span><br><span class="line"><span class="number">2.</span>在Xgb中需要将离散特征one-hot编码，和连续特征一起输入训练</span><br><span class="line"><span class="number">3.</span>Xgb中支持稀疏矩阵训练模型，导致数据稀疏的原因如下</span><br><span class="line">  缺省值</span><br><span class="line">  稠密数据中零元素</span><br><span class="line">  离散特征one-hot编码后产生的<span class="number">0</span>值</span><br><span class="line"><span class="number">4.</span>win和mac平台运行相同的xgboost代码，效果如果可能不同,将参数colsample_bytree设置为<span class="number">1</span></span><br><span class="line"><span class="number">5.</span>xgboost提供两种调用方式，一种是自身接口，一种是类似sklearn的接口，建议使用自身接口，因为很多重要功能，如存取模型，评估功能都无法通过sklearn接口调用。</span><br><span class="line"><span class="number">6.</span>Xgboost可以处理二分类，多分类，回归问题。处理不同问题，主要的区别在于指定不同的误差函数，xgboost会根据不同误差函数计算的结果调整权重进行下一次迭代。通过参数objective可设置xgb自带的误差函数：回归一般用reg:xxx（如reg:linear），二分类用binary:xxx（如binary:logistic），多分类用multi:xxx（如multi:softmax）</span><br></pre></td></tr></table></figure>
+<h2 id="Xgboost原生接口和Sklearn接口的区别"><a href="#Xgboost原生接口和Sklearn接口的区别" class="headerlink" title="Xgboost原生接口和Sklearn接口的区别"></a>Xgboost原生接口和Sklearn接口的区别</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span>xgboost原生接口，数据需要经过标签标准化(LabelEncoder().fit_transform)、输入数据标准化(xgboost.DMatrix)和输出结果反标签标准化(LabelEncoder().inverse_transform)，训练调用train预测调用predict.</span><br><span class="line"><span class="number">2.</span>xgboost的sklearn接口，可以不经过标签标准化(即将标签编码为<span class="number">0</span>~n_class<span class="number">-1</span>)，直接喂给分类器特征向量和标签向量，使用fit训练后调用predict就能得到预测向量的预测标签，它会在内部调用sklearn.preprocessing.LabelEncoder()将标签在分类器使用时transform，在输出结果时inverse_transform。</span><br></pre></td></tr></table></figure>
+<p><img src="/2020/12/30/Xgboost算法/HOLO6wBr3CEco4RE__thumbnail.png" alt="图片"></p>
+<p>xgb在选择最佳分裂点，进行枚举的时候并行！</p>
+<p><strong>xgboost的并行是在特征粒度上的</strong>。我们知道，决策树的学习最耗时的一个步骤就是对特征的值进行排序（因为要确定最佳分割点），在进行节点的分裂时，需要计算每个特征的增益，最终选增益最大的那个特征去做分裂，那么各个特征的增益计算就可以开多线程进行</p>
+<p>拟合残差只是考虑到损失函数为平方损失的特殊情况，负梯度是更加广义上的拟合项，更具普适性。</p>
+<p>无论损失函数是什么形式，每个决策树拟合的都是负梯度。准确的说，不是用负梯度代替残差，而是当损失函数是均方损失时，负梯度刚好是残差，残差只是特例。</p>
+<p>为啥要去用梯度拟合不用残差？代价函数除了loss还有正则项，正则中有参数和变量，很多情况下只拟合残差loss变小但是正则变大，代价函数不一定就小，这时候就要用梯度啦，梯度的本质也是一种方向导数，综合了各个方向（参数）的变化，选择了一个总是最优（下降最快）的方向；</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/python/" rel="tag"># python</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/12/24/spark入门/" rel="next" title="spark入门">
+                <i class="fa fa-chevron-left"></i> spark入门
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2021/01/11/spark编程/" rel="prev" title>
+                 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC80NDExNC8yMDY0OQ=="></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/head.jpg" alt="kl">
+            
+              <p class="site-author-name" itemprop="name">kl</p>
+              <div class="site-description motion-element" itemprop="description">66其实不太6</div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">113</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                      <a href="/categories/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">30</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">48</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-介绍"><span class="nav-number">1.</span> <span class="nav-text">1.介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#机器学习常用名词解释"><span class="nav-number">1.1.</span> <span class="nav-text">机器学习常用名词解释</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Cart分类树和回归树实现原理"><span class="nav-number">1.2.</span> <span class="nav-text">Cart分类树和回归树实现原理</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Xgboost的优点"><span class="nav-number">2.</span> <span class="nav-text">2.Xgboost的优点</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#正则化"><span class="nav-number">2.0.1.</span> <span class="nav-text">正则化</span></a></li></ol></li></ol><li class="nav-item nav-level-2"><a class="nav-link" href="#3-Xgboost与GBDT的区别"><span class="nav-number">3.</span> <span class="nav-text">3.Xgboost与GBDT的区别</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#拟合残差-最后结果相加就是预测的"><span class="nav-number">3.0.1.</span> <span class="nav-text">拟合残差:最后结果相加就是预测的</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-算法的实现过程"><span class="nav-number">4.</span> <span class="nav-text">4.算法的实现过程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-Xgboost的实现-案例-回归预测房价"><span class="nav-number">5.</span> <span class="nav-text">5.Xgboost的实现(案例:回归预测房价)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-Xgboost的参数详解以及使用"><span class="nav-number">6.</span> <span class="nav-text">6.Xgboost的参数详解以及使用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#一般参数-控制总体的功能"><span class="nav-number">6.0.1.</span> <span class="nav-text">一般参数:控制总体的功能</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Tree-Booster参数：控制单个学习器的属性"><span class="nav-number">6.0.2.</span> <span class="nav-text">Tree Booster参数：控制单个学习器的属性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#学习任务参数：控制调优的步骤"><span class="nav-number">6.0.3.</span> <span class="nav-text">学习任务参数：控制调优的步骤</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#调参方法"><span class="nav-number">6.0.4.</span> <span class="nav-text">调参方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#案例2-https-www-jianshu-com-p-7aab084b7f47"><span class="nav-number">6.0.5.</span> <span class="nav-text">案例2:https://www.jianshu.com/p/7aab084b7f47</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-Xgboost的注意事项"><span class="nav-number">7.</span> <span class="nav-text">7.Xgboost的注意事项</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Xgboost原生接口和Sklearn接口的区别"><span class="nav-number">8.</span> <span class="nav-text">Xgboost原生接口和Sklearn接口的区别</span></a></li></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+    
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2023</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">kl</span>
+
+  
+
+  
+</div>
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-user"></i>
+    </span>
+    <span class="site-uv" title="总访客量">
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+  
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-eye"></i>
+    </span>
+    <span class="site-pv" title="总访问量">
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    
+    
+      
+    
+  
+  <script color="0,0,0" opacity="0.8" zindex="-1" count="66" src="//cdn.jsdelivr.net/gh/theme-next/theme-next-canvas-nest@1/canvas-nest.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.1.1"></script>
+
+  <script src="/js/motion.js?v=7.1.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/affix.js?v=7.1.1"></script>
+
+  <script src="/js/schemes/pisces.js?v=7.1.1"></script>
+
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.1.1"></script>
+<script src="/js/post-details.js?v=7.1.1"></script>
+
+
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.1.1"></script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+    <script>
+  window.livereOptions = {
+    refer: '2020/12/30/Xgboost算法/'
+  };
+  (function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+    if (typeof LivereTower === 'function') { return; }
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+    e.parentNode.insertBefore(j, e);
+  })(document, 'script');
+</script>
+
+  
+
+
+  
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
+<script type="text/javascript" src="/js/src/clicklove.js"></script>
+<!-- <script type="text/javascript" src="/js/src/fish.js"></script> -->
+<!-- <script src='https://blog-static.cnblogs.com/files/elkyo/star.js'></script> -->
+<!-- 雪花特效 -->
+<!-- 雪花特效 -->
+<!-- <script type="text/javascript" src="\js\snow.js"></script> -->

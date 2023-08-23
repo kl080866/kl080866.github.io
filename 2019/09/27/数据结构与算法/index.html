@@ -1,0 +1,1489 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.1.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.1.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.1.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.1.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.1.1" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.1.1',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="推荐网址:https://blog.csdn.net/weixin_41624982/article/details/89486592 基本概念123456789101112131415161.描述:抽象数据类型(ADT),是计算机领域中被广泛接受的一种思想和方法,也是一种设计和实现程序模块的有效技术.模块通过接口来提供功能所需的信息,并不涉及具体实现细节.2.概念:①数据表示的完全暴露②对象表示">
+<meta name="keywords" content="数据结构">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据结构与算法代码练习">
+<meta property="og:url" content="http://kl66.top/2019/09/27/数据结构与算法/index.html">
+<meta property="og:site_name" content="Mr kuai">
+<meta property="og:description" content="推荐网址:https://blog.csdn.net/weixin_41624982/article/details/89486592 基本概念123456789101112131415161.描述:抽象数据类型(ADT),是计算机领域中被广泛接受的一种思想和方法,也是一种设计和实现程序模块的有效技术.模块通过接口来提供功能所需的信息,并不涉及具体实现细节.2.概念:①数据表示的完全暴露②对象表示">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://bkimg.cdn.bcebos.com/pic/b7003af33a87e950707fdf2110385343fbf2b416?x-bce-process=image/resize,m_lfit,w_220,h_220,limit_1">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/13629684-ba3a964b7c17782c.png?imageMogr2/auto-orient/strip|imageView2/2/w/487/format/webp">
+<meta property="og:image" content="http://kl66.top/2019/09/27/数据结构与算法/2.png">
+<meta property="og:image" content="https://img2018.cnblogs.com/blog/1244002/201809/1244002-20180921160023094-1488648937.png">
+<meta property="og:image" content="http://kl66.top/2019/09/27/数据结构与算法/排序算法时间复杂读.png">
+<meta property="og:image" content="http://kl66.top/2019/09/27/数据结构与算法/数据结构与算法.png">
+<meta property="og:updated_time" content="2020-06-09T08:13:52.389Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="数据结构与算法代码练习">
+<meta name="twitter:description" content="推荐网址:https://blog.csdn.net/weixin_41624982/article/details/89486592 基本概念123456789101112131415161.描述:抽象数据类型(ADT),是计算机领域中被广泛接受的一种思想和方法,也是一种设计和实现程序模块的有效技术.模块通过接口来提供功能所需的信息,并不涉及具体实现细节.2.概念:①数据表示的完全暴露②对象表示">
+<meta name="twitter:image" content="https://bkimg.cdn.bcebos.com/pic/b7003af33a87e950707fdf2110385343fbf2b416?x-bce-process=image/resize,m_lfit,w_220,h_220,limit_1">
+
+
+
+
+
+  
+  
+  <link rel="canonical" href="http://kl66.top/2019/09/27/数据结构与算法/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>数据结构与算法代码练习 | Mr kuai</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Mr kuai</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">追忆似水流年</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-meh-o"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-legal"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-ravelry"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-snowflake-o"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://kl66.top/2019/09/27/数据结构与算法/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="kl">
+      <meta itemprop="description" content="66其实不太6">
+      <meta itemprop="image" content="/images/head.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mr kuai">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">数据结构与算法代码练习
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-09-27 16:28:29" itemprop="dateCreated datePublished" datetime="2019-09-27T16:28:29+08:00">2019-09-27</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2020-06-09 16:13:52" itemprop="dateModified" datetime="2020-06-09T16:13:52+08:00">2020-06-09</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/python/" itemprop="url" rel="index"><span itemprop="name">python</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon">
+            <i class="fa fa-eye"></i>
+             阅读次数： 
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>推荐网址:<a href="https://blog.csdn.net/weixin_41624982/article/details/89486592" target="_blank" rel="noopener">https://blog.csdn.net/weixin_41624982/article/details/89486592</a></p>
+<h4 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span>描述:抽象数据类型(ADT),是计算机领域中被广泛接受的一种思想和方法,也是一种设计和实现程序模块的有效技术.模块通过接口来提供功能所需的信息,并不涉及具体实现细节.</span><br><span class="line"><span class="number">2.</span>概念:①数据表示的完全暴露②对象表示和操作对具体表示的依赖性③抽象数据类型提供的操作包括三类,构造操作,解析操作,变动操作.④Python所有的内置类型都是一种抽象数据类型⑤ADT是一种思想也是一种技术</span><br><span class="line">数据结构:指相互之间存在一种或多种特定关系的的数据元素的集合</span><br><span class="line">数据结构划分:逻辑结构、物理结构、数据运算</span><br><span class="line">数据结构的分类：栈（Stack）、队列（Queue）、树（Tree）、堆（Heap）、数组（Array）、链表（Linked List）、图（Graph）、散列（Hash）</span><br><span class="line"><span class="number">3.</span>几种排序算法介绍:</span><br><span class="line">    <span class="number">1.</span>冒泡排序:就是两两比较,互换位置,每一轮找到一个最大值放在数组右边,多轮循环就排好了.代码主要涉及循环次数和两两互换条件的判断.  优化:当一轮交换后数组顺序没有变化的时候停止排序</span><br><span class="line">    2.快速排序(左右指针法,挖坑法):数组中确定一个基准数,将大于基准数的放在右边,小于基准数的放在左边.具体实现是首先确定一个基准数(通常为数组第一个数),从后往前找到小于基准数的第一个数,并记下位置,与基准数互换位置,然后在从前往后找到大于基准数的第一个数,与基准数互换位置,再从后往前(前一次记录的位置开始)找到小于基准数的第一个数,重复,直到从前找的位置和从后找的位置大于等于,左边的全部比基准数小,右边比基准数大.然后两边再分别使用相同方法,循环    优化:①随机选取基准值(否则在一个完全有序的数组里，我们的快速排序就会退化为log（n^2②配合使用插入排序③当大量数据且重复数据较多时,用三路快排(小于,等于,大于)---&gt;推出双路快排为将等于部分分散到左右两端</span><br><span class="line">    <span class="number">3.</span>选择排序:首先在数组中找到最大(最小)的元素,然后在剩余数组中找到最大(最小),以此类推,直到排序完成</span><br><span class="line">    <span class="number">4.</span>插入排序,类似于排序扑克牌,取出一个数据然后与已经排好序数组的比较,插入到合适的位置,以此类推,</span><br><span class="line">    <span class="number">5.</span>归并排序:采用分治法,分为分和治两个阶段,分,指的是将一个数组分成两部分,然后重复不断的分直到只剩一个个单一的元素.然后在对左右两边的数组进行治,将左右两边的数组分别排序好,得到两个排好序的数组.最后进行合并.合并的原理是两个数组第一个数字比较,小的放到新的数组里的第一位,然后小的数的那个数组的第二个数,继续与宁一个数组的第一位数相比较,两者小的放入到新数组第二位,如此循环得到排序好的新数组</span><br><span class="line">    6.希尔排序===&gt;插入排序的改进(缩小增量排序):首先选择一个间隔x(小于n)将全部数组分成若干个子序列(相同间隔x的放一起),每一个子序列中进行插入排序,合并后.缩小间隔,重复子序列划分和排序,直到间隔x为1(https://blog.csdn.net/weixin_37818081/article/details/79202115?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.nonecase&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.nonecase)</span><br><span class="line">x每次减半或者<span class="number">1</span>/<span class="number">3</span>都可</span><br><span class="line">	<span class="number">7.</span>堆排序:堆是一颗完全二叉树,每个节点的值总是不大于或者不小于父节点的值,由此形成大顶堆和小顶堆.首先将所有数字存储在堆中,按照大顶堆建堆,每次将最大的数取出,剩下的数继续可以找到最大的数,如此可以找到倒叙新的数组,将取出的数字按照相反的顺序进行排列,数字就完成了排序</span><br><span class="line">	<span class="number">8.</span>桶排序:根据待排序数组中的最大和最小值(差值和映射规则判断)确定桶的个数,然后遍历每一个元素放在指定的桶中,最后得到排序好的结果,</span><br><span class="line">顺序表、链表、堆栈、队列、树、二叉树、平衡二叉树、红黑树；算法将涉及排序算法（冒泡排序、选择排序、插入排序、快速排序、希尔排序、归并排序）、查找算法（顺序查找、二分法查找、二叉树查找、哈希查找）</span><br></pre></td></tr></table></figure>
+<h6 id="几种树"><a href="#几种树" class="headerlink" title="几种树"></a>几种树</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">满二叉树:除了叶子结点,每一个节点都有两个子节点(深度k  节点总数为(2^k)-1,则它就是满二叉树)</span><br><span class="line">完全二叉树:若二叉树的深度为k,除了k层外,其余各层的结点数都达到最大,第k层所有的节点都连续集中在最左边</span><br><span class="line">平衡二叉树:左子树和右子树的的深度之差的绝对值不能超过1,且左右子树都是平衡二叉树</span><br><span class="line">最优二叉树(哈夫曼树):树的带权路径长度达到最小,</span><br></pre></td></tr></table></figure>
+<p>####python实现链表</p>
+<p>输入一个链表，按链表从尾到头的顺序返回一个ArrayList(牛客网)==形如栈</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding:utf-8 -*-</span></span><br><span class="line"><span class="comment"># class ListNode:</span></span><br><span class="line"><span class="comment">#     def __init__(self, x):</span></span><br><span class="line"><span class="comment">#         self.val = x</span></span><br><span class="line"><span class="comment">#         self.next = None</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line"><span class="comment">#例如[1,2,3]</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">printListFromTailToHead</span><span class="params">(self, listNode)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> listNode:</span><br><span class="line">            <span class="keyword">return</span> []</span><br><span class="line">        l = []</span><br><span class="line">        head = listNode</span><br><span class="line">        <span class="keyword">while</span> head:</span><br><span class="line">            l.insert(<span class="number">0</span>,head.val)</span><br><span class="line">            head = head.next</span><br><span class="line">        <span class="keyword">return</span> l</span><br></pre></td></tr></table></figure>
+<h5 id="二分法-仅当列表是有序的时候有用-第一种算法"><a href="#二分法-仅当列表是有序的时候有用-第一种算法" class="headerlink" title="二分法(仅当列表是有序的时候有用)=====第一种算法"></a>二分法(仅当列表是有序的时候有用)=====第一种算法</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">简单查找(傻找):如<span class="number">1</span>到<span class="number">100</span>中找<span class="number">99</span>,一个个找需要<span class="number">99</span>次.</span><br><span class="line">二分查找每次排除一半的数字</span><br><span class="line">对于简单查找找到需要n步,而对于二分法查找找到需要log以<span class="number">2</span>为底n的对数</span><br><span class="line">low = <span class="number">0</span>  high = len(ls) - <span class="number">1</span></span><br><span class="line">mid = (low + high)//<span class="number">2</span></span><br><span class="line">然后根据值对比修改high和low,小了low = mid +<span class="number">1</span> ,大了high = mid<span class="number">-1</span></span><br></pre></td></tr></table></figure>
+<h4 id="大O表示法-记录的是最糟糕最长的时间情况"><a href="#大O表示法-记录的是最糟糕最长的时间情况" class="headerlink" title="大O表示法(记录的是最糟糕最长的时间情况)"></a>大O表示法(记录的是最糟糕最长的时间情况)</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">用来表示算法的运行时间,以及运行时间随着列表的增长的变化情况:如对数越往后几乎不增长,而线性一直增长很快</span><br><span class="line">常见的五种大O表示法</span><br><span class="line">O(logn)、O(n)、O(n*logn)、O(n**<span class="number">2</span>)、O(n!)</span><br><span class="line">logn优于n优于nlogn优于n**<span class="number">2</span>优于n!</span><br><span class="line">·算法的速度并非指的是时间而是操作数的增速</span><br><span class="line">·讨论算法的速度时,我们说的是随着输入的增加,其运行时间将以怎样的速度增加</span><br><span class="line">·算法的运行时间用大O表示法表示</span><br><span class="line">·O(logn)比O(n)快,当需要搜索的元素越多时,前者比后者快的多</span><br><span class="line"></span><br><span class="line">计算机内存可以看成一个个抽屉,每个抽屉有对应的物理地址</span><br><span class="line"></span><br><span class="line">常见的大O运行时间:</span><br><span class="line">    <span class="number">1.</span>二分查找  O(logn)、简单查找 O(n)、 快速排序 O（平均nlogn，最糟糕n**<span class="number">2</span>）、选择排序O（n**<span class="number">2</span>）、旅行商问题O（n！）</span><br></pre></td></tr></table></figure>
+<p>####数组和链表</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">数组表明所有代办事项在计算机的内存中是相连的,紧靠在一起,当后面位置被占用的时候,就需要整体迁移到有空闲位置的地方(他们必须相连),添加元素速度很慢</span><br><span class="line">解决方法:</span><br><span class="line">    <span class="number">1.</span>给预留位置,先占内存  缺点:①额外预留的位置用不上 ②待办事项超过指定预留后,还得转移</span><br><span class="line">    <span class="number">2.</span>使用链表解决</span><br><span class="line">链表:链表中的元素可以存储在内存中的任何地方,链表中的每一个元素都存储了下一个元素的地址,使一系列内存连接在一起.链表中添加元素很简单,只要将后一个元素的地址放到前一个元素中即可</span><br><span class="line">    </span><br><span class="line">使用链表时根本就不需要移动元素,如为数组分配<span class="number">1000</span>个位置,内存有<span class="number">1000</span>个位置但不在一起,就无法为该数组分配内存.而链表不需要考虑那么多</span><br></pre></td></tr></table></figure>
+<p>链表在插入数据上面的优势特别明显(无论结尾插入还是中间插入),数组在随机读取速度的优势特别明显,链表删除数据也比较方便。不同如插入，删除操作一定能成功，插入操作当内存空间不够时，插入操作可能会失败。删除操作任何情况都能成功</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">链表读取时间O(n),存储时间O(<span class="number">1</span>),删除时间O(<span class="number">1</span>)</span><br><span class="line">数组读取时间O(<span class="number">1</span>),存储时间O(n),删除时间O(n)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">为什么数组都是以0为开头的索引?</span><br><span class="line">从<span class="number">0</span>开始让基于数组的代码编写起来更容易,因此程序员都坚持这么做.</span><br><span class="line"></span><br><span class="line">通常情况下数组用的多,数组支持随机访问,而链表只支持顺序访问</span><br></pre></td></tr></table></figure>
+<h4 id="选择排序-第二种算法"><a href="#选择排序-第二种算法" class="headerlink" title="选择排序=====第二种算法"></a>选择排序=====第二种算法</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">如一堆数中按照大小进行排序,每次的时间复杂读为O(n),执行n次,总的为O(n**<span class="number">2</span>)</span><br><span class="line">每次取一个最大,依次排</span><br></pre></td></tr></table></figure>
+<h6 id="python实现选择排序"><a href="#python实现选择排序" class="headerlink" title="python实现选择排序"></a>python实现选择排序</h6><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">func</span><span class="params">(ls,data_max)</span>:</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(len(ls)):</span><br><span class="line">        <span class="keyword">if</span> ls[i]&gt;data_max:</span><br><span class="line">            data_max = ls[i]</span><br><span class="line">    <span class="keyword">return</span> data_max</span><br><span class="line">ls = [<span class="number">1</span>,<span class="number">21</span>,<span class="number">15</span>,<span class="number">20</span>,<span class="number">3</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">2</span>,<span class="number">13</span>]</span><br><span class="line">ls2 = []</span><br><span class="line">data_max = ls[<span class="number">0</span>]</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">func2</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="keyword">for</span>  i  <span class="keyword">in</span>  range(len(ls)):</span><br><span class="line">        max_data = func(ls,data_max)</span><br><span class="line">        ls2.append(max_data)</span><br><span class="line">        ls.remove(max_data)</span><br><span class="line">    <span class="keyword">return</span> ls2</span><br><span class="line">func2()</span><br></pre></td></tr></table></figure>
+<h4 id="快速排序-D-amp-C算法-第三种算法-基础-递归"><a href="#快速排序-D-amp-C算法-第三种算法-基础-递归" class="headerlink" title="快速排序(D&amp;C算法)=====第三种算法(基础:递归)"></a>快速排序(D&amp;C算法)=====第三种算法(基础:递归)</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">快排比选择排序快很多,是一个优雅的算法(并非一种解决问题的算法,而是一种解决问题的思路)</span><br><span class="line">工作原理:<span class="number">1.</span>找出简单的基线条件  <span class="number">2.</span>确定如何缩小问题的规模,使其符合基线条件</span><br><span class="line"></span><br><span class="line">有时候循环可以简单的完成任务,为何还要使用递归方式呢,因为函数式编程语言(如Haskell)没有循环,只能使用递归来编写这样的函数</span><br><span class="line"></span><br><span class="line">快速排序思想为通过一趟排序将要排序的数据分割成独立的两部分,其中一部分的所有数据都比宁一部分的所有数据都要小,然后按此方法对两部分数据进行快速排序,整个排序过程可以递归进行</span><br><span class="line"></span><br><span class="line">快排流程:</span><br><span class="line">    <span class="number">1.</span>首先设定一个分界值,通过该分界值将数组分成左右两部分(随机选取通常为数组的第一个值)</span><br><span class="line">    <span class="number">2.</span>将大于或等于分界值的数据集中到数组右边,小于分界值的数据集中到数组的左边.使得左边的数值都小于等于分界值.右边的元素都大于或等于分界值</span><br><span class="line">    <span class="number">3.</span>然后左边和右边的数据可以独立排序.左边的数据又可以取一个分界值,将此部分数据局变成左右两部分,同样在左边放置最小值,右边放置最大值.右侧的数据做类似的处理</span><br><span class="line">    <span class="number">4.</span>重复上述步骤.递归进行.</span><br></pre></td></tr></table></figure>
+<p>图地址:<a href="https://bkimg.cdn.bcebos.com/pic/b7003af33a87e950707fdf2110385343fbf2b416?x-bce-process=image/resize,m_lfit,w_220,h_220,limit_1" target="_blank" rel="noopener">https://bkimg.cdn.bcebos.com/pic/b7003af33a87e950707fdf2110385343fbf2b416?x-bce-process=image/resize,m_lfit,w_220,h_220,limit_1</a></p>
+<p><img src="https://bkimg.cdn.bcebos.com/pic/b7003af33a87e950707fdf2110385343fbf2b416?x-bce-process=image/resize,m_lfit,w_220,h_220,limit_1" alt="快排图"></p>
+<p>####合并排序(归并排序)</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">合并排序的时间总是O(nlogn),而快排平均时间为O(nlogn),最糟糕时候为n**<span class="number">2</span></span><br><span class="line">流程:</span><br><span class="line">    <span class="number">1.</span>将待排序的元素分成大小大致相同的两个字序列</span><br><span class="line">    <span class="number">2.</span>将两个字序列进行合并排序</span><br><span class="line">    <span class="number">3.</span>将排序好的有序序列进行合并,得到最终的有序序列</span><br></pre></td></tr></table></figure>
+<p>图地址:<a href="https://upload-images.jianshu.io/upload_images/13629684-ba3a964b7c17782c.png?imageMogr2/auto-orient/strip|imageView2/2/w/487/format/webp" target="_blank" rel="noopener">https://upload-images.jianshu.io/upload_images/13629684-ba3a964b7c17782c.png?imageMogr2/auto-orient/strip|imageView2/2/w/487/format/webp</a></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/13629684-ba3a964b7c17782c.png?imageMogr2/auto-orient/strip|imageView2/2/w/487/format/webp" alt="img"></p>
+<h4 id="插入排序"><a href="#插入排序" class="headerlink" title="插入排序"></a>插入排序</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">基本思想:把待排序的记录按照其关键码值的大小逐个插入到一个已经排好序的有序序列中,知道所有的记录插完为止,得到一个新的有序序列</span><br></pre></td></tr></table></figure>
+<h4 id="散列表"><a href="#散列表" class="headerlink" title="散列表"></a>散列表</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">散列表也称为散列映射、映射、字典和关联数组。</span><br><span class="line">散列表：散列函数和数组共同创建的一种数据结构。散列表使用数组来存储数据</span><br><span class="line">①散列函数总是将同样的输入映射到相同的索引。</span><br><span class="line">②散列函数将不同的输入映射到不同的函数。</span><br><span class="line">③散列函数知道数组有多大，只返回有效的索引。</span><br><span class="line"></span><br><span class="line">散列表适用于:①模拟映射关系 ②防止重复 ③缓存\记住数据,以免服务器通过处理来生成它们</span><br><span class="line">冲突:当键已经存在时,再赋给它新值,就会覆盖原来的值,这种情况称为冲突</span><br><span class="line"></span><br><span class="line">对比:</span><br><span class="line">    散列表查找花费的时间为常量O(<span class="number">1</span>),简单查找的运行时间为线性时间,二分查找的花费的时间为对数时间</span><br><span class="line">    </span><br><span class="line">小结:</span><br><span class="line">    <span class="number">1.</span>可以结合散列函数和数组来创建散列</span><br><span class="line">    <span class="number">2.</span>冲突很糟糕,应该使用可以最大程度的减小冲突的散列函数</span><br><span class="line">    <span class="number">3.</span>散列表的查找、插入和删除速度都非常快</span><br><span class="line">    <span class="number">4.</span>散列表适合用于模拟映射关系</span><br><span class="line">    <span class="number">5.</span>一旦填装因子超过<span class="number">0.7</span>，就该调整散列表的长度</span><br><span class="line">    <span class="number">6.</span>散列表可用于调整长度</span><br><span class="line">    <span class="number">7.</span>散列表非常适合用于防止重复</span><br></pre></td></tr></table></figure>
+<h4 id="广度优先搜索-通过队列实现-顺序添加-顺序查找"><a href="#广度优先搜索-通过队列实现-顺序添加-顺序查找" class="headerlink" title="广度优先搜索(通过队列实现,顺序添加,顺序查找)"></a>广度优先搜索(通过队列实现,顺序添加,顺序查找)</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">广度优先搜索是用来解决最短路径问题的,是一种用于图的查找算法,主要解决两类问题</span><br><span class="line">	·从节点A出发,有前往节点B的路径吗</span><br><span class="line">    ·从节点A出发,前往节点B的哪条路径最短</span><br><span class="line">基础(图相关知识):</span><br><span class="line">    图由节点和边组成,一个节点可能与众多节点直接相连,这些节点被称为邻居</span><br><span class="line">    有向图:有箭头指向自己但没有指向别人.rama-&gt;adit</span><br><span class="line">    无向图:没有箭头,直接相连的节点互为邻居.ross-lilei</span><br><span class="line">一度关系胜过二度关系,二度胜过三度,关系以此类推.因而先在一度中搜索,然后二度...一直到搜索到为止.</span><br><span class="line"></span><br><span class="line">队列是先进先出的,栈是后进后出的,你需要按加入顺序检查搜索列表中的人,否则找到的就不是最短路径,因此搜索列表必须为队列</span><br><span class="line">对于检查过的人务必不要再去检查,否则会陷入无限循环</span><br><span class="line"></span><br><span class="line">运行时间：</span><br><span class="line">时间至少为O（边数）。将每一个添加到队列的时间是O(<span class="number">1</span>),因此广度搜索的运行时间O(人数加边数)</span><br></pre></td></tr></table></figure>
+<h4 id="狄克斯特拉算法"><a href="#狄克斯特拉算法" class="headerlink" title="狄克斯特拉算法"></a>狄克斯特拉算法</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">加权图:带权重的图</span><br><span class="line">非加权图:不带权重的图</span><br><span class="line">获取加权图的最短路径使用狄克斯特拉算法,获取非加权图的最短路径使用广度优先搜索算法(狄克斯特拉算法只适用于有向无环图)</span><br><span class="line">当权重为正时狄克斯特拉算法才管用</span><br><span class="line">如果包含负权边,请使用贝尔曼-福德算法</span><br><span class="line"></span><br><span class="line">基本思路:</span><br><span class="line">    <span class="number">1.</span>找出最便宜的节点,即可在最短时间内到达的节点</span><br><span class="line">    <span class="number">2.</span>更新该节点的邻居的开销</span><br><span class="line">    <span class="number">3.</span>重复这个过程,直到对图中的每个节点都这样做了</span><br><span class="line">    <span class="number">4.</span>计算最短路径</span><br></pre></td></tr></table></figure>
+<p>第一步:找出最便宜的节点.使用散列表,把它当成一个列表</p>
+<table>
+<thead>
+<tr>
+<th>父节点</th>
+<th>节点</th>
+<th>耗时</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>起点</td>
+<td>A</td>
+<td>6</td>
+</tr>
+<tr>
+<td>起点</td>
+<td>B</td>
+<td>2</td>
+</tr>
+<tr>
+<td>起点</td>
+<td>终点</td>
+<td>未知</td>
+</tr>
+</tbody>
+</table>
+<p><img src="/2019/09/27/数据结构与算法/2.png" alt="2"></p>
+<p>找出最短耗时2,节点B是最近的</p>
+<p>第二步:计算经节点B前往其各个邻居所需的时间</p>
+<table>
+<thead>
+<tr>
+<th>父节点</th>
+<th>节点</th>
+<th>耗时</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>B</td>
+<td>A</td>
+<td>5(2+3)</td>
+</tr>
+<tr>
+<td>B</td>
+<td>B</td>
+<td>2</td>
+</tr>
+<tr>
+<td>B</td>
+<td>终点</td>
+<td>7(2+5)</td>
+</tr>
+</tbody>
+</table>
+<p>第三步:重复操作</p>
+<h4 id="贪婪算法-贪心算法-局部最优解-企图以这种方式获得全局最优解"><a href="#贪婪算法-贪心算法-局部最优解-企图以这种方式获得全局最优解" class="headerlink" title="贪婪算法(贪心算法)===局部最优解,企图以这种方式获得全局最优解"></a>贪婪算法(贪心算法)===局部最优解,企图以这种方式获得全局最优解</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">指的是,在对问题求解时,总是做出当前看来最好的选择,也就是说,不从整体最优上加以考虑,做出的是某种意义的局部最优解</span><br><span class="line">常见的问题:</span><br><span class="line">    <span class="number">1.</span>背包问题:有一个背包，背包容量是M=<span class="number">150</span>kg。有<span class="number">7</span>个物品，物品不可以分割成任意大小。要求尽可能让装入背包中的物品总价值最大，但不能超过总容量(每次挑选最大价值\每次挑选重量最大\每次挑选单位价值最大)===不一定最优,可能局部最优</span><br><span class="line">    <span class="number">2.</span>马踏棋盘:在<span class="number">8</span>×<span class="number">8</span>方格的棋盘上，从任意指定方格出发，为马寻找一条走遍棋盘每一格并且只经过一次的一条路径.</span><br><span class="line">    <span class="number">3.</span>集合覆盖问题：假设存在需要付费的广播台，以及广播台信号可以覆盖的地区。 如何选择最少的广播台，让所有的地区都可以接收到信号。</span><br><span class="line"></span><br><span class="line">基本思路:</span><br><span class="line">    <span class="number">1.</span>建立数学模型来描述问题</span><br><span class="line">    <span class="number">2.</span>把求解的问题分解成若干子问题</span><br><span class="line">    <span class="number">3.</span>对每一个子问题求解,得到子问题的局部最优解</span><br><span class="line">    <span class="number">4.</span>把子问题对应的局部最优解合成原来整个问题的一个近似最优解</span><br><span class="line">优点:贪婪算法易于实现、运行速度快，是不错的近似算法</span><br></pre></td></tr></table></figure>
+<h4 id="动态规划-DP-dynamic-programming"><a href="#动态规划-DP-dynamic-programming" class="headerlink" title="动态规划(DP=dynamic programming)"></a>动态规划(DP=dynamic programming)</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">这是一种解决棘手问题的方法,将问题分解成若干个小问题,先着手解决这些小问题</span><br><span class="line">动态规划原理:</span><br><span class="line">    编号动态规划:最大不下降子序列</span><br><span class="line">    划分动态规划:矩阵链乘、凸多边形三角剖分</span><br><span class="line">    数轴动态规划:<span class="number">0</span><span class="number">-1</span>背包</span><br><span class="line">    前缀动态规划:最长公共子序列</span><br><span class="line">    树形动态规划:最优二分搜索树</span><br><span class="line">        </span><br><span class="line">基本思想:问题的最优解如果可以由子问题的最优解推导得到,则可以先求子问题的最优解,在构造原问题的最优解,若子问题的有较多的重复出现,则可以自底向上从最终子问题向原问题逐步求解</span><br><span class="line"></span><br><span class="line">使用条件:可分为多个相关子问题,子问题的解被重复使用</span><br><span class="line">    </span><br><span class="line">动态规划算法的设计步骤:</span><br><span class="line">    <span class="number">1.</span>分析优化解的结构</span><br><span class="line">    <span class="number">2.</span>递归的定义最优解的代价</span><br><span class="line">    <span class="number">3.</span>自底向上地计算优化解的代价保存,并获取构造最优解的信息</span><br><span class="line">    <span class="number">4.</span>根据构造最优解的信息构造最优解</span><br><span class="line">    </span><br><span class="line">动态规划的特点:</span><br><span class="line">    <span class="number">1.</span>把原始问题分成一系列子问题</span><br><span class="line">    <span class="number">2.</span>求解每个子问题,并将结果保存在一个表里,以后用到时直接存取,不重复计算,节省计算时间</span><br><span class="line">    <span class="number">3.</span>自底向上的计算</span><br><span class="line">    <span class="number">4.</span>整体问题最优解取决于子问题的最优解</span><br><span class="line">DP核心思想:尽可能缩小解空间</span><br></pre></td></tr></table></figure>
+<h4 id="树算法"><a href="#树算法" class="headerlink" title="树算法"></a>树算法</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">树:树是一种管理有像树干、树枝、树叶一样关系的数据得数据结构</span><br><span class="line">   树由节点（顶点）和边（枝）构成，并且有一个节点作为起始点。这个起始点作为树的根节点。由此形成父节点、子节点、叶子节点</span><br><span class="line">节点的子树的根称为节点的孩子，相应的该节点称为孩子的双亲，同一双亲的孩子之间互称为兄弟，节点的祖先是从该节点所经分支上的所有结点</span><br><span class="line"></span><br><span class="line">基本概念：</span><br><span class="line"></span><br><span class="line">节点的度：一个节点含有的子树的个数称为该节点的度</span><br><span class="line">叶节点或终端节点：度为<span class="number">0</span>的节点称为叶节点</span><br><span class="line">非终端节点或分支节点：度不为<span class="number">0</span>的节点</span><br><span class="line">双亲结点或父节点：若一个节点含有子节点，则这个节点称为其子节点的父节点</span><br><span class="line">孩子节点或子节点:一个节点含有的子树的根节点称为该节点的子节点</span><br><span class="line">兄弟节点:具有相同父节点的节点互称为兄弟节点</span><br><span class="line">树的度:一棵树中,最大的节点的度称为树的度</span><br><span class="line">节点的层次:从根开始定义起,跟为第一层,根的子节点为第二层</span><br><span class="line">树的高度或深度:树中节点的最大层次</span><br><span class="line">堂兄弟节点:双亲在同一层的节点称为堂兄弟节点</span><br><span class="line">节点的祖先:从跟到该节点所经分支上的所有节点</span><br><span class="line">子孙:以某节点为根的子树中任一节点都称为该节点的子孙</span><br><span class="line">森林:由m棵互不相交的树的集合称为森林</span><br><span class="line"></span><br><span class="line">在计算机中数据的存储有两种结构,顺序存储和链式存储,对树而言,顺序存储结构显然是不行的,而链式存储结构也是有缺点的</span><br><span class="line">第一种:链式存储结构中的节点需含有子节点的引用和指针,但在树中子节点的不确定性导致无法固定具体节点中有几个引用或指针</span><br><span class="line">第一种(改): 对于上面的存储结构会过多的浪费空间,那么在结点中声明一个动态链表Nodes来存放可能的子节点node</span><br><span class="line">第二种:使用数组+链表结合的方式表示树</span><br></pre></td></tr></table></figure>
+<p>图地址:<a href="https://img2018.cnblogs.com/blog/1244002/201809/1244002-20180921160023094-1488648937.png" target="_blank" rel="noopener">https://img2018.cnblogs.com/blog/1244002/201809/1244002-20180921160023094-1488648937.png</a></p>
+<p><img src="https://img2018.cnblogs.com/blog/1244002/201809/1244002-20180921160023094-1488648937.png" alt="img"></p>
+<h4 id="各种树介绍"><a href="#各种树介绍" class="headerlink" title="各种树介绍"></a>各种树介绍</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#有序树与无序树</span></span><br><span class="line">有序树:树中任意节点的子节点之间有顺序关系</span><br><span class="line">无序树:树中任意节点的子节点之间没有顺序关系,这种树称为无序树,也称自由树</span><br><span class="line"><span class="comment">#二叉树</span></span><br><span class="line">完全二叉树:叶结点只能出现在最底层的两层,且最底层叶节点均处于次底层叶节点的左侧.</span><br><span class="line">满二叉树:除了叶子结点外每一个节点都有左右子叶,且叶子结点都处在最底层的二叉树(最标准那种)</span><br><span class="line">平衡二叉树:又被称为avl树(非avl算法),且具有以下性质,它是一颗空树或它的左右两个子树的高度差的绝对值不超过<span class="number">1</span>,并且左右两个子树都是一颗平衡二叉树,平衡二叉树的常用实现方法有红黑树、AVL、替罪羊树、Treap、伸展树等。</span><br><span class="line">红黑树:是一种自平衡二叉查找树,典型的用途是实现关联数组</span><br></pre></td></tr></table></figure>
+<h4 id="堆"><a href="#堆" class="headerlink" title="堆"></a>堆</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">堆就是用数组实现的二叉树,所以它没有使用父指针或者子指针,堆根据堆属性来排序,堆属性决定了树中节点的位置</span><br><span class="line">堆的常用方法:</span><br><span class="line">    ·构建优先队列</span><br><span class="line">    ·支持堆排序</span><br><span class="line">    ·快速找出一个集合中的最小值(或者最大值)</span><br><span class="line">堆分为最大堆和最小堆</span><br><span class="line">最大堆:父节点的值比每一个子节点的值都要大.</span><br><span class="line">最小堆:父节点中的值比每一个子节点的值都要小</span><br><span class="line">堆属性非常有用,常常被当做优先队列使用,因为可以快速访问到最重要的元素</span><br></pre></td></tr></table></figure>
+<p><img src="/2019/09/27/数据结构与算法/排序算法时间复杂读.png" alt="排序算法时间复杂读"></p>
+<p><img src="/2019/09/27/数据结构与算法/数据结构与算法.png" alt="数据结构与算法"></p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/数据结构/" rel="tag"># 数据结构</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/09/26/NLP学习/" rel="next" title="NLP学习">
+                <i class="fa fa-chevron-left"></i> NLP学习
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/09/30/Python数据结构与算法/" rel="prev" title="Python数据结构与算法">
+                Python数据结构与算法 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC80NDExNC8yMDY0OQ=="></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/head.jpg" alt="kl">
+            
+              <p class="site-author-name" itemprop="name">kl</p>
+              <div class="site-description motion-element" itemprop="description">66其实不太6</div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">113</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                      <a href="/categories/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">30</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">48</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#基本概念"><span class="nav-number">1.</span> <span class="nav-text">基本概念</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#几种树"><span class="nav-number">1.0.1.</span> <span class="nav-text">几种树</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#二分法-仅当列表是有序的时候有用-第一种算法"><span class="nav-number">1.1.</span> <span class="nav-text">二分法(仅当列表是有序的时候有用)=====第一种算法</span></a></li></ol><li class="nav-item nav-level-4"><a class="nav-link" href="#大O表示法-记录的是最糟糕最长的时间情况"><span class="nav-number">2.</span> <span class="nav-text">大O表示法(记录的是最糟糕最长的时间情况)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#选择排序-第二种算法"><span class="nav-number">3.</span> <span class="nav-text">选择排序=====第二种算法</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#python实现选择排序"><span class="nav-number">3.0.1.</span> <span class="nav-text">python实现选择排序</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#快速排序-D-amp-C算法-第三种算法-基础-递归"><span class="nav-number">4.</span> <span class="nav-text">快速排序(D&amp;C算法)=====第三种算法(基础:递归)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#插入排序"><span class="nav-number">5.</span> <span class="nav-text">插入排序</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#散列表"><span class="nav-number">6.</span> <span class="nav-text">散列表</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#广度优先搜索-通过队列实现-顺序添加-顺序查找"><span class="nav-number">7.</span> <span class="nav-text">广度优先搜索(通过队列实现,顺序添加,顺序查找)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#狄克斯特拉算法"><span class="nav-number">8.</span> <span class="nav-text">狄克斯特拉算法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#贪婪算法-贪心算法-局部最优解-企图以这种方式获得全局最优解"><span class="nav-number">9.</span> <span class="nav-text">贪婪算法(贪心算法)===局部最优解,企图以这种方式获得全局最优解</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#动态规划-DP-dynamic-programming"><span class="nav-number">10.</span> <span class="nav-text">动态规划(DP=dynamic programming)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#树算法"><span class="nav-number">11.</span> <span class="nav-text">树算法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#各种树介绍"><span class="nav-number">12.</span> <span class="nav-text">各种树介绍</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#堆"><span class="nav-number">13.</span> <span class="nav-text">堆</span></a></li></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+    
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2023</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">kl</span>
+
+  
+
+  
+</div>
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-user"></i>
+    </span>
+    <span class="site-uv" title="总访客量">
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+  
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-eye"></i>
+    </span>
+    <span class="site-pv" title="总访问量">
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    
+    
+      
+    
+  
+  <script color="0,0,0" opacity="0.8" zindex="-1" count="66" src="//cdn.jsdelivr.net/gh/theme-next/theme-next-canvas-nest@1/canvas-nest.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.1.1"></script>
+
+  <script src="/js/motion.js?v=7.1.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/affix.js?v=7.1.1"></script>
+
+  <script src="/js/schemes/pisces.js?v=7.1.1"></script>
+
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.1.1"></script>
+<script src="/js/post-details.js?v=7.1.1"></script>
+
+
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.1.1"></script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+    <script>
+  window.livereOptions = {
+    refer: '2019/09/27/数据结构与算法/'
+  };
+  (function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+    if (typeof LivereTower === 'function') { return; }
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+    e.parentNode.insertBefore(j, e);
+  })(document, 'script');
+</script>
+
+  
+
+
+  
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
+<script type="text/javascript" src="/js/src/clicklove.js"></script>
+<!-- <script type="text/javascript" src="/js/src/fish.js"></script> -->
+<!-- <script src='https://blog-static.cnblogs.com/files/elkyo/star.js'></script> -->
+<!-- 雪花特效 -->
+<!-- 雪花特效 -->
+<!-- <script type="text/javascript" src="\js\snow.js"></script> -->

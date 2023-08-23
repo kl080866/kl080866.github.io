@@ -1,0 +1,1550 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.1.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.1.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.1.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.1.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.1.1" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.1.1',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="生成dataframe12345678910111213141516171819Pandas和Spark的DataFrame两者互相转换：	pandas_df = spark_df.toPandas()	---&amp;gt;也会将所有数据收集到驱动器,容易造成memory error	spark_df = sqlContext.createDataFrame(pandas_df)与RDD之间的相互转换">
+<meta name="keywords" content="python">
+<meta property="og:type" content="article">
+<meta property="og:title" content="pyspark_dataframe">
+<meta property="og:url" content="http://kl66.top/2021/01/27/pyspark-dataframe/index.html">
+<meta property="og:site_name" content="Mr kuai">
+<meta property="og:description" content="生成dataframe12345678910111213141516171819Pandas和Spark的DataFrame两者互相转换：	pandas_df = spark_df.toPandas()	---&amp;gt;也会将所有数据收集到驱动器,容易造成memory error	spark_df = sqlContext.createDataFrame(pandas_df)与RDD之间的相互转换">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200801123103696.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM0NjE1MTEy,size_16,color_FFFFFF,t_70">
+<meta property="og:updated_time" content="2022-03-29T09:56:56.084Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="pyspark_dataframe">
+<meta name="twitter:description" content="生成dataframe12345678910111213141516171819Pandas和Spark的DataFrame两者互相转换：	pandas_df = spark_df.toPandas()	---&amp;gt;也会将所有数据收集到驱动器,容易造成memory error	spark_df = sqlContext.createDataFrame(pandas_df)与RDD之间的相互转换">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20200801123103696.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM0NjE1MTEy,size_16,color_FFFFFF,t_70">
+
+
+
+
+
+  
+  
+  <link rel="canonical" href="http://kl66.top/2021/01/27/pyspark-dataframe/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>pyspark_dataframe | Mr kuai</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Mr kuai</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">追忆似水流年</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-meh-o"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-legal"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-ravelry"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-snowflake-o"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://kl66.top/2021/01/27/pyspark-dataframe/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="kl">
+      <meta itemprop="description" content="66其实不太6">
+      <meta itemprop="image" content="/images/head.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mr kuai">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">pyspark_dataframe
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2021-01-27 15:45:58" itemprop="dateCreated datePublished" datetime="2021-01-27T15:45:58+08:00">2021-01-27</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2022-03-29 17:56:56" itemprop="dateModified" datetime="2022-03-29T17:56:56+08:00">2022-03-29</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/pyspark/" itemprop="url" rel="index"><span itemprop="name">pyspark</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon">
+            <i class="fa fa-eye"></i>
+             阅读次数： 
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h5 id="生成dataframe"><a href="#生成dataframe" class="headerlink" title="生成dataframe"></a>生成dataframe</h5><figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Pandas</span>和<span class="type">Spark</span>的<span class="type">DataFrame</span>两者互相转换：</span><br><span class="line">	pandas_df = spark_df.toPandas()	---&gt;也会将所有数据收集到驱动器,容易造成memory error</span><br><span class="line">	spark_df = sqlContext.createDataFrame(pandas_df)</span><br><span class="line">与<span class="type">RDD</span>之间的相互转换</span><br><span class="line">	rdd_df = df.rdd</span><br><span class="line">	rdd_df.toDF()</span><br><span class="line"><span class="number">1.</span>rdd.toDF()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">####空<span class="type">DF</span></span><br><span class="line">schema = <span class="type">StructType</span>([</span><br><span class="line">                     <span class="type">StructField</span>(<span class="string">"列名1"</span>, <span class="type">StringType</span>(), <span class="type">True</span>),</span><br><span class="line">                     <span class="type">StructField</span>(<span class="string">"列名2"</span>, <span class="type">StringType</span>(), <span class="type">True</span>),</span><br><span class="line">                     <span class="type">StructField</span>(<span class="string">"列名3"</span>, <span class="type">StringType</span>(), <span class="type">True</span>),</span><br><span class="line">                     <span class="type">StructField</span>(<span class="string">"列名4"</span>, <span class="type">StringType</span>(), <span class="type">True</span>)</span><br><span class="line">                    ])</span><br><span class="line">df_new = spark.createDataFrame(spark.sparkContext.emptyRDD(),schema)</span><br><span class="line"></span><br><span class="line">df = spark.createDataFrame([(<span class="number">1</span>, <span class="number">1.0</span>), (<span class="number">1</span>, <span class="number">2.0</span>), (<span class="number">2</span>, <span class="number">3.0</span>), (<span class="number">2</span>, <span class="number">5.0</span>), (<span class="number">2</span>, <span class="number">10.0</span>)],(<span class="string">"id"</span>, <span class="string">"v"</span>))</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df.collect(),会将所有程序的数据收集到驱动上,如果数据集过大会出现memory error  --&gt;所以尽量少用,推荐take,tail</span><br></pre></td></tr></table></figure>
+<h5 id="打印数据"><a href="#打印数据" class="headerlink" title="打印数据"></a>打印数据</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">df.show()  <span class="comment">#默认20行</span></span><br><span class="line">df.show(<span class="number">30</span>)</span><br></pre></td></tr></table></figure>
+<h5 id="查看前几行"><a href="#查看前几行" class="headerlink" title="查看前几行"></a>查看前几行</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">df.head(<span class="number">3</span>)</span><br><span class="line">df.take(<span class="number">3</span>)</span><br></pre></td></tr></table></figure>
+<h5 id="查看dataframe的总行数"><a href="#查看dataframe的总行数" class="headerlink" title="查看dataframe的总行数"></a>查看dataframe的总行数</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df.count()</span><br></pre></td></tr></table></figure>
+<h5 id="查看列名"><a href="#查看列名" class="headerlink" title="查看列名"></a>查看列名</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df.columns</span><br></pre></td></tr></table></figure>
+<h5 id="重新设置列名"><a href="#重新设置列名" class="headerlink" title="重新设置列名"></a>重新设置列名</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">df.select(df.age.alias(<span class="string">'age_value'</span>),<span class="string">'name'</span>)</span><br><span class="line">df.withColumnRenamed(”原列名“,<span class="string">"新列名"</span>)</span><br></pre></td></tr></table></figure>
+<h5 id="去重"><a href="#去重" class="headerlink" title="去重"></a>去重</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">df.drop_duplicates([<span class="string">'app_text'</span>])</span><br><span class="line">df.select(<span class="string">'app_texts'</span>).distinct()</span><br></pre></td></tr></table></figure>
+<h5 id="随机抽样"><a href="#随机抽样" class="headerlink" title="随机抽样"></a>随机抽样</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df.sample(<span class="literal">False</span>,<span class="number">0.5</span>,<span class="number">0</span>)</span><br></pre></td></tr></table></figure>
+<h5 id="选取列"><a href="#选取列" class="headerlink" title="选取列"></a>选取列</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">df.age</span><br><span class="line">df[<span class="string">'age'</span>]</span><br><span class="line">df.select(<span class="string">'age'</span>)</span><br><span class="line">df.select(df[<span class="string">'age'</span>])</span><br><span class="line">df.select(df.age,df.name)  <span class="comment">#选取多列</span></span><br></pre></td></tr></table></figure>
+<h5 id="排序"><a href="#排序" class="headerlink" title="排序"></a>排序</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">df.orderBy(<span class="string">'group_name'</span>,ascending=<span class="literal">False</span>)  按指定字段升序</span><br><span class="line">df.sort(<span class="string">'age'</span>,ascending=<span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
+<h5 id="按条件筛选"><a href="#按条件筛选" class="headerlink" title="按条件筛选"></a>按条件筛选</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pyspark.sql <span class="keyword">import</span> functions</span><br><span class="line">df.select(df.name,functions.when(df.age &gt; <span class="number">4</span>,<span class="number">1</span>).when(df.age&lt;<span class="number">3</span>,<span class="number">-1</span>).otherwise(<span class="number">0</span>))</span><br><span class="line"></span><br><span class="line">df.select(df.name, df.age.between(<span class="number">2</span>, <span class="number">4</span>))</span><br></pre></td></tr></table></figure>
+<h5 id="过滤数据-两者等价"><a href="#过滤数据-两者等价" class="headerlink" title="过滤数据=两者等价"></a>过滤数据=两者等价</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">df.filter(df.age&gt;<span class="number">21</span>)  </span><br><span class="line">df.where(df.age&gt;<span class="number">21</span>)</span><br></pre></td></tr></table></figure>
+<h5 id="数据分割"><a href="#数据分割" class="headerlink" title="数据分割"></a>数据分割</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">https://blog.csdn.net/intersting/article/details/<span class="number">84500978</span></span><br><span class="line">df = spark.createDataFrame([</span><br><span class="line">        (<span class="number">1</span>, <span class="number">144.5</span>,<span class="string">'5.9 2032'</span>, <span class="number">33</span>, <span class="string">'M'</span>),</span><br><span class="line">        (<span class="number">2</span>, <span class="number">167.2</span>, <span class="string">'5.4 2012'</span>, <span class="number">45</span>, <span class="string">'M'</span>),</span><br><span class="line">        (<span class="number">3</span>, <span class="number">124.1</span>, <span class="string">'5.2 2013'</span>, <span class="number">23</span>, <span class="string">'F'</span>),</span><br><span class="line">        (<span class="number">4</span>, <span class="number">144.5</span>, <span class="string">'5.9 2014'</span>, <span class="number">33</span>, <span class="string">'M'</span>),</span><br><span class="line">        (<span class="number">5</span>, <span class="number">133.2</span>, <span class="string">'5.7 2015'</span>, <span class="number">54</span>, <span class="string">'F'</span>),</span><br><span class="line">        (<span class="number">3</span>, <span class="number">124.1</span>, <span class="string">'5.2 2011'</span>, <span class="number">23</span>, <span class="string">'F'</span>),</span><br><span class="line">        (<span class="number">5</span>, <span class="number">129.2</span>, <span class="string">'5.3 2010'</span>, <span class="number">42</span>, <span class="string">'M'</span>),</span><br><span class="line">    ], [<span class="string">'id'</span>, <span class="string">'weight'</span>, <span class="string">'height'</span>, <span class="string">'age'</span>, <span class="string">'gender'</span>])</span><br><span class="line">df = df.withColumn("s", split(df['height'], " ")).show()===&gt;如果列已存在新数据会替换原来的列</span><br><span class="line">==========df.withColumn类似于形成一个新的列,但是参数必须是column...====</span><br></pre></td></tr></table></figure>
+<h5 id="正则表达式匹配列名colRegex"><a href="#正则表达式匹配列名colRegex" class="headerlink" title="正则表达式匹配列名colRegex"></a>正则表达式匹配列名colRegex</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">df = spark.createDataFrame([(<span class="string">"a"</span>, <span class="number">1</span>), (<span class="string">"b"</span>, <span class="number">2</span>), (<span class="string">"c"</span>,  <span class="number">3</span>)], [<span class="string">"Col1"</span>, <span class="string">"Col2"</span>])</span><br><span class="line">df.select(df.colRegex(<span class="string">"`(Col)?.+`"</span>)).show()</span><br></pre></td></tr></table></figure>
+<h5 id="collect"><a href="#collect" class="headerlink" title="collect"></a>collect</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">df.collect()</span><br><span class="line"><span class="comment">#返回列表形式的一个个Row对象</span></span><br></pre></td></tr></table></figure>
+<h5 id="相关性"><a href="#相关性" class="headerlink" title="相关性"></a>相关性</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df_as2.corr(<span class="string">'v1'</span>,<span class="string">'v2'</span>,method=<span class="string">'pearson'</span>)</span><br></pre></td></tr></table></figure>
+<h5 id="协方差"><a href="#协方差" class="headerlink" title="协方差"></a>协方差</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df.cov(<span class="string">'a'</span>,<span class="string">'b'</span>)</span><br></pre></td></tr></table></figure>
+<h5 id="列表中取出"><a href="#列表中取出" class="headerlink" title="列表中取出"></a>列表中取出</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">https://blog.csdn.net/intersting/article/details/<span class="number">84500978</span></span><br><span class="line">df.s.getItem(0)====&gt;已知df某一列每个数据都是列表,每个列表取出第0个元素</span><br><span class="line">df.withColumn(<span class="string">"ss"</span>,df.s.getItem(<span class="number">0</span>))</span><br></pre></td></tr></table></figure>
+<h5 id="一行分成多行-gt-类似于df的-split-stack"><a href="#一行分成多行-gt-类似于df的-split-stack" class="headerlink" title="一行分成多行===&gt;类似于df的.split().stack()"></a>一行分成多行===&gt;类似于df的.split().stack()</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">https://blog.csdn.net/intersting/article/details/<span class="number">84500978</span></span><br><span class="line"><span class="keyword">from</span> pyspark.sql.functions <span class="keyword">import</span> explode,split</span><br><span class="line">df_new.withColumn(<span class="string">"res"</span>,explode(split(df_new.height,<span class="string">' '</span>))).show()</span><br></pre></td></tr></table></figure>
+<h5 id="保留位数"><a href="#保留位数" class="headerlink" title="保留位数"></a>保留位数</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">from pyspark.sql.functions import bround</span><br><span class="line">bround(df_join.count1/df_join[&apos;count&apos;],4)</span><br></pre></td></tr></table></figure>
+<h5 id="列数据合并"><a href="#列数据合并" class="headerlink" title="列数据合并"></a>列数据合并</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span>不添加分隔符</span><br><span class="line">df_new.withColumn(<span class="string">'concat_res'</span>,cancat(df_new.gender,df_new.age))</span><br><span class="line"><span class="number">2.</span>添加分隔符</span><br><span class="line">df_new.withColumn(<span class="string">"concat_res"</span>,concat_ws(<span class="string">' '</span>,df_new.gender,df_new.age))</span><br></pre></td></tr></table></figure>
+<h5 id="把一列的所有行合并"><a href="#把一列的所有行合并" class="headerlink" title="把一列的所有行合并"></a>把一列的所有行合并</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">from pyspark.sql.functions import collect_list</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">df = spark.createDataFrame([(&apos;abcd&apos;,&apos;123&apos;),(&apos;xyz&apos;,&apos;123&apos;)], [&apos;s&apos;, &apos;d&apos;])</span><br><span class="line">df.show()</span><br><span class="line">df.groupBy(&quot;d&quot;).agg(collect_list(&apos;s&apos;).alias(&apos;newcol&apos;)).show()</span><br></pre></td></tr></table></figure>
+<h5 id="多行转多列"><a href="#多行转多列" class="headerlink" title="多行转多列"></a>多行转多列</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">df=spark.sparkContext.parallelize([[<span class="number">15</span>,<span class="number">399</span>,<span class="number">2</span>], \</span><br><span class="line">                                   [<span class="number">15</span>,<span class="number">1401</span>,<span class="number">5</span>], \</span><br><span class="line">                                   [<span class="number">15</span>,<span class="number">1608</span>,<span class="number">4</span>], \</span><br><span class="line">                                   [<span class="number">15</span>,<span class="number">20</span>,<span class="number">4</span>], \</span><br><span class="line">                                   [<span class="number">18</span>,<span class="number">100</span>,<span class="number">3</span>], \</span><br><span class="line">                                   [<span class="number">18</span>,<span class="number">1401</span>,<span class="number">3</span>], \</span><br><span class="line">                                   [<span class="number">18</span>,<span class="number">399</span>,<span class="number">1</span>]])\</span><br><span class="line">                    .toDF([<span class="string">"userID"</span>,<span class="string">"movieID"</span>,<span class="string">"rating"</span>])</span><br><span class="line">df.groupby(<span class="string">'userID'</span>).pivot(<span class="string">'movieID'</span>).sum(<span class="string">'rating'</span>).na.fill(<span class="number">-1</span>)</span><br></pre></td></tr></table></figure>
+<h5 id="删除列"><a href="#删除列" class="headerlink" title="删除列"></a>删除列</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">df.drop(&apos;age&apos;)</span><br><span class="line">df.drop(df.age)</span><br><span class="line">df = df.na.drop()  # 扔掉任何列包含na的行</span><br></pre></td></tr></table></figure>
+<h5 id="列截取字符串"><a href="#列截取字符串" class="headerlink" title="列截取字符串"></a>列截取字符串</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df.name.substr(1,2)</span><br></pre></td></tr></table></figure>
+<p>#####创建column</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">lit(2)</span><br><span class="line">df.withColumn(&apos;xx&apos;,lit(0))  ====&gt;创造一列全是0</span><br></pre></td></tr></table></figure>
+<h5 id="列操作withColumn"><a href="#列操作withColumn" class="headerlink" title="列操作withColumn"></a>列操作withColumn</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df.withColumn(<span class="string">'xx'</span>,df.xx.cast(<span class="string">"Int"</span>))  <span class="comment">#修改列的类型</span></span><br></pre></td></tr></table></figure>
+<h5 id="合并两个df-join"><a href="#合并两个df-join" class="headerlink" title="合并两个df==join"></a>合并两个df==join</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">df_left.join(df_right,df_left.key = df_right.key,&quot;inner&quot;)  </span><br><span class="line">df.join(df4, [&apos;name&apos;, &apos;age&apos;]).select(df.name, df.age).collect()</span><br></pre></td></tr></table></figure>
+<h5 id="DF上下拼接"><a href="#DF上下拼接" class="headerlink" title="DF上下拼接"></a>DF上下拼接</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">df1.unionALL(df2) #不删除重复数据</span><br><span class="line">df1.union(df2)  #会删除重复数据</span><br></pre></td></tr></table></figure>
+<h5 id="查看数据类型"><a href="#查看数据类型" class="headerlink" title="查看数据类型"></a>查看数据类型</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df.dtypes</span><br></pre></td></tr></table></figure>
+<h5 id="groupBy-groupby"><a href="#groupBy-groupby" class="headerlink" title="groupBy===groupby"></a>groupBy===groupby</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">df.groupBy(&quot;userID&quot;).avg(&quot;movieID&quot;).show()</span><br><span class="line">#应用多个函数</span><br><span class="line">df.groupBy(&quot;userID&quot;).agg(functions.avg(&quot;movieID&quot;), functions.min(&quot;rating&quot;),).show()</span><br><span class="line"></span><br><span class="line">###apply函数</span><br><span class="line">apply和applyInPandas名字不同意义相同....用的是pyspark.sql.functions.pandas_udf()</span><br></pre></td></tr></table></figure>
+<h5 id="查询空值"><a href="#查询空值" class="headerlink" title="查询空值"></a>查询空值</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">from pyspark.sql.functions import isnull</span><br><span class="line">from pyspark.sql.functions import isnan</span><br><span class="line">df.filter(isnull(&quot;userID&quot;))   #筛选空值的行</span><br><span class="line">df.where(isnan(&quot;userID&quot;))   #筛选空值的行</span><br></pre></td></tr></table></figure>
+<h5 id="转json内容"><a href="#转json内容" class="headerlink" title="转json内容"></a>转json内容</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sql_context = SQLContext(sc)</span><br><span class="line">sql_context.read.json(df.rdd.map(lambda r: r.json))</span><br></pre></td></tr></table></figure>
+<h5 id="col"><a href="#col" class="headerlink" title="col"></a>col</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df_as1.join(df_as2, col(&quot;df_as1.name&quot;) == col(&quot;df_as2.name&quot;), &apos;inner&apos;)</span><br></pre></td></tr></table></figure>
+<h5 id="包含"><a href="#包含" class="headerlink" title="包含"></a>包含</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df.json.contains(<span class="string">'a'</span>)</span><br></pre></td></tr></table></figure>
+<h5 id="模糊匹配"><a href="#模糊匹配" class="headerlink" title="模糊匹配"></a>模糊匹配</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df.filter(df.gender.like(&apos;%M&apos;)).show()----&gt;sql的模糊匹配</span><br></pre></td></tr></table></figure>
+<h5 id="以什么-开始-以什么-结束"><a href="#以什么-开始-以什么-结束" class="headerlink" title="以什么..开始,以什么..结束"></a>以什么..开始,以什么..结束</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">df.filter(df.gender.startswith(<span class="string">'M'</span>))</span><br><span class="line">df.filter(df.gender.endswith(<span class="string">'M'</span>))</span><br></pre></td></tr></table></figure>
+<h5 id="条件筛选"><a href="#条件筛选" class="headerlink" title="条件筛选"></a>条件筛选</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pyspark.sql <span class="keyword">import</span> functions <span class="keyword">as</span> F</span><br><span class="line">df.select(df.id, F.when(df.age &gt; <span class="number">34</span>, <span class="number">1</span>).when(df.age &lt; <span class="number">34</span>, <span class="number">-1</span>).otherwise(<span class="number">0</span>)).show()</span><br></pre></td></tr></table></figure>
+<h5 id="替换"><a href="#替换" class="headerlink" title="替换"></a>替换</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">df.replace(<span class="number">1</span>,<span class="number">2</span>).show()</span><br><span class="line">df.na.replace(<span class="number">22</span>).show()</span><br></pre></td></tr></table></figure>
+<h5 id="Row"><a href="#Row" class="headerlink" title="Row"></a>Row</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">====使用方法====</span><br><span class="line">Row(name=&quot;Alice&quot;, age=11) ====&gt;理解生成一行数据,字段分别为name和age,数据为..</span><br></pre></td></tr></table></figure>
+<h5 id="pandas-udf"><a href="#pandas-udf" class="headerlink" title="pandas_udf"></a>pandas_udf</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br></pre></td><td class="code"><pre><span class="line">摘自:</span><br><span class="line">https://spark.apache.org/docs/latest/api/python/reference/api/pyspark.sql.functions.pandas_udf.html<span class="comment">#pyspark.sql.functions.pandas_udf</span></span><br><span class="line"><span class="comment">#######################################案例1###################################################</span></span><br><span class="line"><span class="keyword">from</span> pyspark.sql.functions <span class="keyword">import</span> pandas_udf</span><br><span class="line"><span class="meta">@pandas_udf('long')  #返回结果的数据类型,多参数也可("col1 string, col2 long")</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_add</span><span class="params">(a:pd.Series)</span>-&gt;pd.Series:</span></span><br><span class="line">    <span class="keyword">return</span> a+<span class="number">1</span></span><br><span class="line">df.withColumn(<span class="string">"one_processed"</span>, get_add(df[<span class="string">"a"</span>])).show()</span><br><span class="line"><span class="comment">#######################################案例2####################################################</span></span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">from</span> pyspark.sql.functions <span class="keyword">import</span> pandas_udf</span><br><span class="line"><span class="meta">@pandas_udf("col1 string, col2 long") #返回的列类型</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">func</span><span class="params">(s1: pd.Series, s2: pd.Series, s3: pd.DataFrame)</span> -&gt; pd.DataFrame:</span> <span class="comment">#传参类型和返回结果类型</span></span><br><span class="line">    s3[<span class="string">'col2'</span>] = s1 + s2.str.len()         <span class="comment">#针对结果是结构体,使用pd.DataFrame</span></span><br><span class="line">    <span class="keyword">return</span> s3</span><br><span class="line">df = spark.createDataFrame(</span><br><span class="line">    [[<span class="number">1</span>, <span class="string">"a string"</span>, (<span class="string">"a nested string"</span>,)]],</span><br><span class="line">    <span class="string">"long_col long, string_col string, struct_col struct&lt;col1:string&gt;"</span>)</span><br><span class="line">df.printSchema()</span><br><span class="line">df.select(func(<span class="string">"long_col"</span>, <span class="string">"string_col"</span>, <span class="string">"struct_col"</span>)).printSchema()</span><br><span class="line"><span class="comment">#######################################案例3####################################################</span></span><br><span class="line"><span class="meta">@pandas_udf("string")</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">to_upper</span><span class="params">(s: pd.Series)</span> -&gt; pd.Series:</span></span><br><span class="line">    <span class="keyword">return</span> s.str.upper()</span><br><span class="line"></span><br><span class="line">df = spark.createDataFrame([(<span class="string">"John Doe"</span>,)], (<span class="string">"name"</span>,))</span><br><span class="line">df.select(to_upper(<span class="string">"name"</span>)).show()</span><br><span class="line"><span class="comment">#######################################案例4####################################################</span></span><br><span class="line"><span class="meta">@pandas_udf("first string, last string")</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">split_expand</span><span class="params">(s: pd.Series)</span> -&gt; pd.DataFrame:</span></span><br><span class="line">    <span class="keyword">return</span> s.str.split(expand=<span class="literal">True</span>)</span><br><span class="line">df = spark.createDataFrame([(<span class="string">"John Doe"</span>,)], (<span class="string">"name"</span>,))</span><br><span class="line">df.select(split_expand(<span class="string">"name"</span>)).show()</span><br><span class="line"><span class="comment">#######################################案例5####################################################</span></span><br><span class="line"><span class="meta">@pandas_udf("long")</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">calculate</span><span class="params">(iterator: Iterator[pd.Series])</span> -&gt; Iterator[pd.Series]:</span></span><br><span class="line">    <span class="comment"># Do some expensive initialization with a state</span></span><br><span class="line">    state = very_expensive_initialization()</span><br><span class="line">    <span class="keyword">for</span> x <span class="keyword">in</span> iterator:</span><br><span class="line">        <span class="keyword">yield</span> calculate_with_state(x, state)</span><br><span class="line">df.select(calculate(<span class="string">"value"</span>)).show()</span><br><span class="line"><span class="comment">#######################################案例6####################################################</span></span><br><span class="line"><span class="keyword">from</span> typing <span class="keyword">import</span> Iterator</span><br><span class="line"><span class="meta">@pandas_udf("long")</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">plus_one</span><span class="params">(iterator: Iterator[pd.Series])</span> -&gt; Iterator[pd.Series]:</span></span><br><span class="line">    <span class="keyword">for</span> s <span class="keyword">in</span> iterator:</span><br><span class="line">        <span class="keyword">yield</span> s + <span class="number">1</span></span><br><span class="line">df = spark.createDataFrame(pd.DataFrame([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>], columns=[<span class="string">"v"</span>]))</span><br><span class="line">df.select(plus_one(df.v)).show()</span><br><span class="line"></span><br><span class="line"><span class="comment">#######################################案例7####################################################</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> typing <span class="keyword">import</span> Iterator, Tuple</span><br><span class="line"><span class="keyword">from</span> pyspark.sql.functions <span class="keyword">import</span> struct, col</span><br><span class="line"><span class="meta">@pandas_udf("long")</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">multiply</span><span class="params">(iterator: Iterator[Tuple[pd.Series, pd.DataFrame]])</span> -&gt; Iterator[pd.Series]:</span></span><br><span class="line">    <span class="keyword">for</span> s1, df <span class="keyword">in</span> iterator:</span><br><span class="line">        <span class="keyword">yield</span> s1 * df.v</span><br><span class="line"></span><br><span class="line">df = spark.createDataFrame(pd.DataFrame([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>], columns=[<span class="string">"v"</span>]))</span><br><span class="line">df.withColumn(<span class="string">'output'</span>, multiply(col(<span class="string">"v"</span>), struct(col(<span class="string">"v"</span>)))).show()</span><br><span class="line"></span><br><span class="line"><span class="comment">#######################################案例8####################################################</span></span><br><span class="line"><span class="meta">@pandas_udf("double")</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">mean_udf</span><span class="params">(v: pd.Series)</span> -&gt; float:</span></span><br><span class="line">    <span class="keyword">return</span> v.mean()</span><br><span class="line"></span><br><span class="line">df = spark.createDataFrame(</span><br><span class="line">    [(<span class="number">1</span>, <span class="number">1.0</span>), (<span class="number">1</span>, <span class="number">2.0</span>), (<span class="number">2</span>, <span class="number">3.0</span>), (<span class="number">2</span>, <span class="number">5.0</span>), (<span class="number">2</span>, <span class="number">10.0</span>)], (<span class="string">"id"</span>, <span class="string">"v"</span>))</span><br><span class="line">df.groupby(<span class="string">"id"</span>).agg(mean_udf(df[<span class="string">'v'</span>])).show()</span><br></pre></td></tr></table></figure>
+<h5 id="mapInPandas"><a href="#mapInPandas" class="headerlink" title="mapInPandas"></a>mapInPandas</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">############################################案例1#######################################</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">pandas_filter_func</span><span class="params">(iterator)</span>:</span></span><br><span class="line">    <span class="keyword">for</span> pandas_df <span class="keyword">in</span> iterator:</span><br><span class="line">        <span class="keyword">yield</span> pandas_df[pandas_df.a == <span class="number">1</span>]</span><br><span class="line"></span><br><span class="line">df.mapInPandas(pandas_filter_func, schema=df.schema).show()</span><br><span class="line"></span><br><span class="line"><span class="comment">############################################案例2#######################################</span></span><br><span class="line">df = spark.createDataFrame([</span><br><span class="line">    [<span class="string">'red'</span>, <span class="string">'banana'</span>, <span class="number">1</span>, <span class="number">10</span>], [<span class="string">'blue'</span>, <span class="string">'banana'</span>, <span class="number">2</span>, <span class="number">20</span>], [<span class="string">'red'</span>, <span class="string">'carrot'</span>, <span class="number">3</span>, <span class="number">30</span>],</span><br><span class="line">    [<span class="string">'blue'</span>, <span class="string">'grape'</span>, <span class="number">4</span>, <span class="number">40</span>], [<span class="string">'red'</span>, <span class="string">'carrot'</span>, <span class="number">5</span>, <span class="number">50</span>], [<span class="string">'black'</span>, <span class="string">'carrot'</span>, <span class="number">6</span>, <span class="number">60</span>],</span><br><span class="line">    [<span class="string">'red'</span>, <span class="string">'banana'</span>, <span class="number">7</span>, <span class="number">70</span>], [<span class="string">'red'</span>, <span class="string">'grape'</span>, <span class="number">8</span>, <span class="number">80</span>]], schema=[<span class="string">'color'</span>, <span class="string">'fruit'</span>, <span class="string">'v1'</span>, <span class="string">'v2'</span>])</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">plus_mean</span><span class="params">(pandas_df)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> pandas_df.assign(v1=pandas_df.v1 - pandas_df.v1.mean())</span><br><span class="line"></span><br><span class="line">df.groupby(<span class="string">'color'</span>).applyInPandas(plus_mean, schema=df.schema).show()</span><br><span class="line"></span><br><span class="line"><span class="comment">############################################案例3#######################################</span></span><br><span class="line"></span><br><span class="line">df1 = spark.createDataFrame(</span><br><span class="line">    [(<span class="number">20000101</span>, <span class="number">1</span>, <span class="number">1.0</span>), (<span class="number">20000101</span>, <span class="number">2</span>, <span class="number">2.0</span>), (<span class="number">20000102</span>, <span class="number">1</span>, <span class="number">3.0</span>), (<span class="number">20000102</span>, <span class="number">2</span>, <span class="number">4.0</span>)],</span><br><span class="line">    (<span class="string">'time'</span>, <span class="string">'id'</span>, <span class="string">'v1'</span>))</span><br><span class="line"></span><br><span class="line">df2 = spark.createDataFrame(</span><br><span class="line">    [(<span class="number">20000101</span>, <span class="number">1</span>, <span class="string">'x'</span>), (<span class="number">20000101</span>, <span class="number">2</span>, <span class="string">'y'</span>)],</span><br><span class="line">    (<span class="string">'time'</span>, <span class="string">'id'</span>, <span class="string">'v2'</span>))</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">asof_join</span><span class="params">(l, r)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> pd.merge_asof(l, r, on=<span class="string">'time'</span>, by=<span class="string">'id'</span>)</span><br><span class="line"></span><br><span class="line">df1.groupby(<span class="string">'id'</span>).cogroup(df2.groupby(<span class="string">'id'</span>)).applyInPandas(</span><br><span class="line">    asof_join, schema=<span class="string">'time int, id int, v1 double, v2 string'</span>).show()</span><br></pre></td></tr></table></figure>
+<h5 id="UDF"><a href="#UDF" class="headerlink" title="UDF"></a>UDF</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pyspark.sql.types <span class="keyword">import</span> DoubleType</span><br><span class="line"><span class="keyword">from</span> pyspark.sql.functions <span class="keyword">import</span> udf</span><br><span class="line">df = spark.createDataFrame([(<span class="number">1</span>, <span class="number">1.0</span>), (<span class="number">1</span>, <span class="number">2.0</span>), (<span class="number">2</span>, <span class="number">3.0</span>), (<span class="number">2</span>, <span class="number">5.0</span>), (<span class="number">2</span>, <span class="number">10.0</span>)],(<span class="string">"id"</span>, <span class="string">"v"</span>))</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">normalize</span><span class="params">(v)</span>:</span></span><br><span class="line">	<span class="keyword">return</span> v+<span class="number">1</span></span><br><span class="line"></span><br><span class="line">plus_one_udf = udf(normalize, returnType=DoubleType())</span><br><span class="line">df.withColumn(<span class="string">"one_processed"</span>, plus_one_udf(df[<span class="string">"v"</span>]))</span><br><span class="line"></span><br><span class="line"><span class="comment">#######</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">################</span></span><br><span class="line"><span class="keyword">from</span> pyspark.sql <span class="keyword">import</span> functions <span class="keyword">as</span> F</span><br><span class="line"><span class="keyword">from</span> pyspark.sql <span class="keyword">import</span> types <span class="keyword">as</span> T</span><br><span class="line"></span><br><span class="line">a = sc.parallelize([[<span class="number">1</span>, <span class="string">'a'</span>],</span><br><span class="line">                    [<span class="number">1</span>, <span class="string">'b'</span>],</span><br><span class="line">                    [<span class="number">1</span>, <span class="string">'b'</span>],</span><br><span class="line">                    [<span class="number">2</span>, <span class="string">'c'</span>]]).toDF([<span class="string">'id'</span>, <span class="string">'value'</span>])</span><br><span class="line">a.groupBy(<span class="string">'id'</span>).agg(F.collect_list(<span class="string">'value'</span>).alias(<span class="string">'value_list'</span>)).show()</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">find_a</span><span class="params">(x)</span>:</span></span><br><span class="line">  <span class="string">"""Count 'a's in list."""</span></span><br><span class="line">  output_count = <span class="number">0</span></span><br><span class="line">  <span class="keyword">for</span> i <span class="keyword">in</span> x:</span><br><span class="line">    <span class="keyword">if</span> i == <span class="string">'a'</span>:</span><br><span class="line">      output_count += <span class="number">1</span></span><br><span class="line">  <span class="keyword">return</span> output_count</span><br><span class="line"></span><br><span class="line">find_a_udf = F.udf(find_a, T.IntegerType())</span><br><span class="line"></span><br><span class="line">a.groupBy(<span class="string">'id'</span>).agg(find_a_udf(F.collect_list(<span class="string">'value'</span>)).alias(<span class="string">'a_count'</span>)).show()</span><br><span class="line"></span><br><span class="line"><span class="comment">##################</span></span><br><span class="line"><span class="keyword">from</span> pyspark.sql <span class="keyword">import</span> functions <span class="keyword">as</span> F</span><br><span class="line"><span class="keyword">from</span> pyspark.sql <span class="keyword">import</span> types <span class="keyword">as</span> T</span><br><span class="line"></span><br><span class="line">a = sc.parallelize([[<span class="number">1</span>, <span class="number">1</span>, <span class="string">'a'</span>],</span><br><span class="line">                    [<span class="number">1</span>, <span class="number">2</span>, <span class="string">'a'</span>],</span><br><span class="line">                    [<span class="number">1</span>, <span class="number">1</span>, <span class="string">'b'</span>],</span><br><span class="line">                    [<span class="number">1</span>, <span class="number">2</span>, <span class="string">'b'</span>],</span><br><span class="line">                    [<span class="number">2</span>, <span class="number">1</span>, <span class="string">'c'</span>]]).toDF([<span class="string">'id'</span>, <span class="string">'value1'</span>, <span class="string">'value2'</span>])</span><br><span class="line"></span><br><span class="line">a.groupBy(<span class="string">'id'</span>).agg(find_a_udf( F.collect_list(F.when(F.col(<span class="string">'value1'</span>) == <span class="number">1</span>, F.col(<span class="string">'value2'</span>)))).alias(<span class="string">'a_count'</span>)).show()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">#################################</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">sum_func</span><span class="params">(key, pdf)</span>:</span></span><br><span class="line">    <span class="comment"># key is a tuple of two numpy.int64s, which is the values</span></span><br><span class="line">    <span class="comment"># of 'id' and 'ceil(df.v / 2)' for the current group</span></span><br><span class="line">    <span class="keyword">return</span> pd.DataFrame([key + (pdf.v.sum(),)])</span><br><span class="line">df.groupby(df.id, F.ceil(df.v / <span class="number">2</span>)).applyInPandas(</span><br><span class="line">    sum_func, schema=<span class="string">"id long, `ceil(v / 2)` long, v double"</span>).show()</span><br><span class="line"></span><br><span class="line"><span class="comment">################################</span></span><br><span class="line"><span class="keyword">from</span> pyspark.sql.functions <span class="keyword">import</span> pandas_udf, PandasUDFType</span><br><span class="line">df = spark.createDataFrame(</span><br><span class="line">    [(<span class="number">1</span>, <span class="number">1.0</span>), (<span class="number">1</span>, <span class="number">2.0</span>), (<span class="number">2</span>, <span class="number">3.0</span>), (<span class="number">2</span>, <span class="number">5.0</span>), (<span class="number">2</span>, <span class="number">10.0</span>)],</span><br><span class="line">    (<span class="string">"id"</span>, <span class="string">"v"</span>))</span><br><span class="line"><span class="meta">@pandas_udf("id long, v double", PandasUDFType.GROUPED_MAP)  </span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">normalize</span><span class="params">(pdf)</span>:</span></span><br><span class="line">    v = pdf.v</span><br><span class="line">    <span class="keyword">return</span> pdf.assign(v=(v - v.mean()) / v.std())</span><br><span class="line">df.groupby(<span class="string">"id"</span>).apply(normalize).show() </span><br><span class="line"></span><br><span class="line"><span class="comment">################</span></span><br><span class="line"><span class="meta">@pandas_udf('group string,year int,app_texts string , app_num int ,high_apps string ,high_num int', PandasUDFType.GROUPED_MAP)</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">deal_func</span><span class="params">(df)</span>:</span></span><br><span class="line">    ls = []</span><br><span class="line">    year_early = min(df[<span class="string">'app_date'</span>])</span><br><span class="line">    gp = df[<span class="string">'group'</span>].values[<span class="number">0</span>]</span><br><span class="line">    <span class="keyword">for</span> year <span class="keyword">in</span> range(int(year_early), <span class="number">2022</span>):</span><br><span class="line">        res_year = df[(df.app_date &lt;= year) &amp; (df.ceased_date &gt;= year)]</span><br><span class="line">        <span class="comment"># 该年有效核心专利</span></span><br><span class="line">        high_value_year = res_year[res_year.xingji &gt;= <span class="number">4</span>][<span class="string">'app_text'</span>].unique()</span><br><span class="line">        ls.append([gp, year,str(list(res_year[<span class="string">'app_text'</span>].unique())), len(res_year[<span class="string">'app_text'</span>].unique()), str(list(high_value_year)), len(high_value_year)])</span><br><span class="line">    <span class="keyword">return</span>  pd.DataFrame(ls)</span><br><span class="line"></span><br><span class="line">df_sql_res2.groupby(<span class="string">'group'</span>).apply(deal_func).show()</span><br></pre></td></tr></table></figure>
+<p>#####spark与pandas的dataframe对比,列举</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Pandas</th>
+<th>Spark</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>行结构</td>
+<td>Series结构</td>
+<td>Row结构，属于Spark DataFrame结构</td>
+</tr>
+<tr>
+<td>列结构</td>
+<td>Series结构</td>
+<td>Column结构</td>
+</tr>
+<tr>
+<td>列名称</td>
+<td>不允许重名</td>
+<td>允许重名修改列名,采用alias方法</td>
+</tr>
+<tr>
+<td>列添加</td>
+<td>df[“xx”] = 0</td>
+<td>df.withColumn(“xx”, functions.lit(0)).show()</td>
+</tr>
+<tr>
+<td>排序</td>
+<td>df.sort()</td>
+<td>df.sort()</td>
+</tr>
+<tr>
+<td></td>
+<td>df.head(2)</td>
+<td>df.head(2)或者df.take(2)</td>
+</tr>
+<tr>
+<td></td>
+<td>df.tail(2)</td>
+<td></td>
+</tr>
+<tr>
+<td>过滤</td>
+<td>df[df[‘age’]&gt;21]</td>
+<td>df.filter(df[‘age’]&gt;21) 或者 df.where(df[‘age’]&gt;21)</td>
+</tr>
+<tr>
+<td></td>
+<td>df.groupby(“age”) df.groupby(“A”).avg(“B”)</td>
+<td>df.groupBy(“age”) df.groupBy(“A”).avg(“B”).show() df.groupBy(“A”).agg(functions.avg(“B”), functions.min(“B”), functions.max(“B”)).show()</td>
+</tr>
+<tr>
+<td></td>
+<td>df.count() 输出每一列的非空行数</td>
+<td>df.count() 输出总行数</td>
+</tr>
+<tr>
+<td></td>
+<td>df.describe() 描述某些列的count, mean, std, min, 25%, 50%, 75%, max</td>
+<td>df.describe() 描述某些列的count, mean, stddev, min, max</td>
+</tr>
+<tr>
+<td>合并</td>
+<td>concat</td>
+<td></td>
+</tr>
+<tr>
+<td>合并</td>
+<td>merge</td>
+<td></td>
+</tr>
+<tr>
+<td>合并</td>
+<td>join</td>
+<td>df.join()</td>
+</tr>
+<tr>
+<td>合并</td>
+<td>append</td>
+<td></td>
+</tr>
+<tr>
+<td>fillna</td>
+<td>df.fillna()</td>
+<td>df.na.fill()</td>
+</tr>
+<tr>
+<td>dropna</td>
+<td>df.dropna()</td>
+<td>df.na.drop()</td>
+</tr>
+<tr>
+<td>两者互相转换</td>
+<td>pandas_df = spark_df.toPandas()</td>
+<td>spark_df = sqlContext.createDataFrame(pandas_df)</td>
+</tr>
+<tr>
+<td>函数应用</td>
+<td>df.apply(f）</td>
+<td>df.foreach(f) 或者 df.rdd.foreach(f) 将df的每一列应用函数fdf.foreachPartition(f) 或者 df.rdd.foreachPartition(f) 将df的每一块应用函数f</td>
+</tr>
+</tbody>
+</table>
+<p>#####某一列去重返回列表</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">from pyspark.sql import Functions as F</span><br><span class="line">df.select(F.collect_set(&apos;applicant_name&apos;).alias(&apos;applicant&apos;))).first()[&apos;applicant&apos;]</span><br></pre></td></tr></table></figure>
+<h5 id="按行转成字典"><a href="#按行转成字典" class="headerlink" title="按行转成字典"></a>按行转成字典</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">data_select4.rdd.map(lambda row: row.asDict(True)====&gt;跟pandas的to_dict(orient=&apos;records&apos;)一致</span><br></pre></td></tr></table></figure>
+<h4 id="列总结"><a href="#列总结" class="headerlink" title="列总结"></a>列总结</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">df.name.startswith(&apos;Al&apos;)</span><br><span class="line">df.name.substr(1, 3)</span><br><span class="line">df.name.rlike(&apos;ice$&apos;)</span><br><span class="line">df.name.like(&apos;Al%&apos;)</span><br><span class="line">df.age.isin([1, 2, 3])</span><br><span class="line">df.height.isNull()</span><br><span class="line">df.height.isNotNull()</span><br><span class="line">df.d.getItem(&quot;key&quot;)</span><br><span class="line">df.r.getField(&quot;b&quot;)</span><br><span class="line">df.name.endswith(&apos;ice$&apos;)</span><br><span class="line">df.name.desc()</span><br><span class="line">df.name.contains(&apos;o&apos;)</span><br><span class="line">df.age.cast(&quot;string&quot;).alias(&apos;ages&apos;)</span><br><span class="line">df.age.between(2, 4)</span><br><span class="line">df.name.asc()=====&gt;df.select(df.name).orderBy(df.name.asc()).collect()</span><br><span class="line">df4.na.fill(50)</span><br><span class="line">df4.na.fill(&#123;&apos;age&apos;: 50, &apos;name&apos;: &apos;unknown&apos;&#125;).show()</span><br><span class="line">df4.na.replace(10, 20)</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20200801123103696.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM0NjE1MTEy,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h4 id="二次学习"><a href="#二次学习" class="headerlink" title="二次学习"></a>二次学习</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">agg -----&gt;聚合操作</span><br><span class="line">df.groupby(<span class="string">'a'</span>).agg(&#123;<span class="string">"b"</span>:<span class="string">"min"</span>&#125;)</span><br><span class="line"></span><br><span class="line">alias -------&gt;表别名,实际指向的同一块数据</span><br><span class="line">df2 = df.alias(<span class="string">'df2'</span>) 效果等价于 df2 = df</span><br><span class="line"></span><br><span class="line">cache------&gt;df放到内存里,效果等价于persist</span><br><span class="line">df.cache()</span><br><span class="line"></span><br><span class="line">coalesce ------&gt;降低分区,效果等价于rdd 的 coalesce</span><br><span class="line">df.coalesce(<span class="number">1</span>).rdd.getNumPartitions()</span><br><span class="line"></span><br><span class="line">colRegex --------&gt;写正则匹配符合条件的列数据</span><br><span class="line">df.select(df.colRegex(<span class="string">"`(Col1)?+.+`"</span>)).show()</span><br><span class="line"></span><br><span class="line">collect--------&gt;以列表形式返回所有的数据</span><br><span class="line">df.collect()</span><br><span class="line"></span><br><span class="line">corr() -----&gt;查看两列的相关性,只支持皮尔逊相关性,新版本才有该函数</span><br><span class="line">df.corr()</span><br><span class="line"></span><br><span class="line"><span class="comment">##创建视图表</span></span><br><span class="line">createGlobalTempView() //创建全局视图,重名会报错</span><br><span class="line">createOrReplaceGlobalTempView() //创建全局视图,重名会替换</span><br><span class="line">createReplaceTempView() //创建本地视图表,重名会替换</span><br><span class="line">createTempView()  //创建本地视图表,重名会报错</span><br><span class="line"></span><br><span class="line">distinct -----&gt;dataframe整体去重</span><br><span class="line"></span><br><span class="line">drop_duplicates(等价于dropduplicates,别名)------&gt;按照指定的列去重</span><br><span class="line"></span><br><span class="line">mapInPandas</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/python/" rel="tag"># python</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2021/01/25/clickhouse/" rel="next" title>
+                <i class="fa fa-chevron-left"></i> 
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2021/02/01/pyspark遇到的问题及解决/" rel="prev" title="pyspark遇到的问题及解决">
+                pyspark遇到的问题及解决 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC80NDExNC8yMDY0OQ=="></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/head.jpg" alt="kl">
+            
+              <p class="site-author-name" itemprop="name">kl</p>
+              <div class="site-description motion-element" itemprop="description">66其实不太6</div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">113</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                      <a href="/categories/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">30</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">48</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#生成dataframe"><span class="nav-number">1.</span> <span class="nav-text">生成dataframe</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#打印数据"><span class="nav-number">2.</span> <span class="nav-text">打印数据</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#查看前几行"><span class="nav-number">3.</span> <span class="nav-text">查看前几行</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#查看dataframe的总行数"><span class="nav-number">4.</span> <span class="nav-text">查看dataframe的总行数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#查看列名"><span class="nav-number">5.</span> <span class="nav-text">查看列名</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#重新设置列名"><span class="nav-number">6.</span> <span class="nav-text">重新设置列名</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#去重"><span class="nav-number">7.</span> <span class="nav-text">去重</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#随机抽样"><span class="nav-number">8.</span> <span class="nav-text">随机抽样</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#选取列"><span class="nav-number">9.</span> <span class="nav-text">选取列</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#排序"><span class="nav-number">10.</span> <span class="nav-text">排序</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#按条件筛选"><span class="nav-number">11.</span> <span class="nav-text">按条件筛选</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#过滤数据-两者等价"><span class="nav-number">12.</span> <span class="nav-text">过滤数据=两者等价</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#数据分割"><span class="nav-number">13.</span> <span class="nav-text">数据分割</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#正则表达式匹配列名colRegex"><span class="nav-number">14.</span> <span class="nav-text">正则表达式匹配列名colRegex</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#collect"><span class="nav-number">15.</span> <span class="nav-text">collect</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#相关性"><span class="nav-number">16.</span> <span class="nav-text">相关性</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#协方差"><span class="nav-number">17.</span> <span class="nav-text">协方差</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#列表中取出"><span class="nav-number">18.</span> <span class="nav-text">列表中取出</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#一行分成多行-gt-类似于df的-split-stack"><span class="nav-number">19.</span> <span class="nav-text">一行分成多行===&gt;类似于df的.split().stack()</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#保留位数"><span class="nav-number">20.</span> <span class="nav-text">保留位数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#列数据合并"><span class="nav-number">21.</span> <span class="nav-text">列数据合并</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#把一列的所有行合并"><span class="nav-number">22.</span> <span class="nav-text">把一列的所有行合并</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#多行转多列"><span class="nav-number">23.</span> <span class="nav-text">多行转多列</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#删除列"><span class="nav-number">24.</span> <span class="nav-text">删除列</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#列截取字符串"><span class="nav-number">25.</span> <span class="nav-text">列截取字符串</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#列操作withColumn"><span class="nav-number">26.</span> <span class="nav-text">列操作withColumn</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#合并两个df-join"><span class="nav-number">27.</span> <span class="nav-text">合并两个df==join</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#DF上下拼接"><span class="nav-number">28.</span> <span class="nav-text">DF上下拼接</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#查看数据类型"><span class="nav-number">29.</span> <span class="nav-text">查看数据类型</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#groupBy-groupby"><span class="nav-number">30.</span> <span class="nav-text">groupBy===groupby</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#查询空值"><span class="nav-number">31.</span> <span class="nav-text">查询空值</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#转json内容"><span class="nav-number">32.</span> <span class="nav-text">转json内容</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#col"><span class="nav-number">33.</span> <span class="nav-text">col</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#包含"><span class="nav-number">34.</span> <span class="nav-text">包含</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#模糊匹配"><span class="nav-number">35.</span> <span class="nav-text">模糊匹配</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#以什么-开始-以什么-结束"><span class="nav-number">36.</span> <span class="nav-text">以什么..开始,以什么..结束</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#条件筛选"><span class="nav-number">37.</span> <span class="nav-text">条件筛选</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#替换"><span class="nav-number">38.</span> <span class="nav-text">替换</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Row"><span class="nav-number">39.</span> <span class="nav-text">Row</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#pandas-udf"><span class="nav-number">40.</span> <span class="nav-text">pandas_udf</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#mapInPandas"><span class="nav-number">41.</span> <span class="nav-text">mapInPandas</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#UDF"><span class="nav-number">42.</span> <span class="nav-text">UDF</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#按行转成字典"><span class="nav-number">43.</span> <span class="nav-text">按行转成字典</span></a></li></ol><li class="nav-item nav-level-4"><a class="nav-link" href="#列总结"><span class="nav-number"></span> <span class="nav-text">列总结</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#二次学习"><span class="nav-number"></span> <span class="nav-text">二次学习</span></a></li></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+    
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2023</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">kl</span>
+
+  
+
+  
+</div>
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-user"></i>
+    </span>
+    <span class="site-uv" title="总访客量">
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+  
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-eye"></i>
+    </span>
+    <span class="site-pv" title="总访问量">
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    
+    
+      
+    
+  
+  <script color="0,0,0" opacity="0.8" zindex="-1" count="66" src="//cdn.jsdelivr.net/gh/theme-next/theme-next-canvas-nest@1/canvas-nest.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.1.1"></script>
+
+  <script src="/js/motion.js?v=7.1.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/affix.js?v=7.1.1"></script>
+
+  <script src="/js/schemes/pisces.js?v=7.1.1"></script>
+
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.1.1"></script>
+<script src="/js/post-details.js?v=7.1.1"></script>
+
+
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.1.1"></script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+    <script>
+  window.livereOptions = {
+    refer: '2021/01/27/pyspark-dataframe/'
+  };
+  (function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+    if (typeof LivereTower === 'function') { return; }
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+    e.parentNode.insertBefore(j, e);
+  })(document, 'script');
+</script>
+
+  
+
+
+  
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
+<script type="text/javascript" src="/js/src/clicklove.js"></script>
+<!-- <script type="text/javascript" src="/js/src/fish.js"></script> -->
+<!-- <script src='https://blog-static.cnblogs.com/files/elkyo/star.js'></script> -->
+<!-- 雪花特效 -->
+<!-- 雪花特效 -->
+<!-- <script type="text/javascript" src="\js\snow.js"></script> -->

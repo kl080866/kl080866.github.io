@@ -1,0 +1,1399 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.1.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.1.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.1.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.1.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.1.1" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.1.1',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="####urllib 1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071727374757677787980818283848586878889909192from urllib im">
+<meta name="keywords" content="代码">
+<meta property="og:type" content="article">
+<meta property="og:title" content="爬虫代码">
+<meta property="og:url" content="http://kl66.top/2020/04/07/爬虫代码/index.html">
+<meta property="og:site_name" content="Mr kuai">
+<meta property="og:description" content="####urllib 1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071727374757677787980818283848586878889909192from urllib im">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2020-06-09T05:59:03.603Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="爬虫代码">
+<meta name="twitter:description" content="####urllib 1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071727374757677787980818283848586878889909192from urllib im">
+
+
+
+
+
+  
+  
+  <link rel="canonical" href="http://kl66.top/2020/04/07/爬虫代码/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>爬虫代码 | Mr kuai</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Mr kuai</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">追忆似水流年</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-meh-o"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-legal"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-ravelry"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-snowflake-o"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://kl66.top/2020/04/07/爬虫代码/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="kl">
+      <meta itemprop="description" content="66其实不太6">
+      <meta itemprop="image" content="/images/head.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mr kuai">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">爬虫代码
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2020-04-07 17:26:00" itemprop="dateCreated datePublished" datetime="2020-04-07T17:26:00+08:00">2020-04-07</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2020-06-09 13:59:03" itemprop="dateModified" datetime="2020-06-09T13:59:03+08:00">2020-06-09</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/python/" itemprop="url" rel="index"><span itemprop="name">python</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon">
+            <i class="fa fa-eye"></i>
+             阅读次数： 
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>####urllib</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> urllib <span class="keyword">import</span> request</span><br><span class="line">****************************************基本********************************************</span><br><span class="line"><span class="comment">#确定url地址</span></span><br><span class="line">base_url = <span class="string">'http://www.baidu.com/'</span></span><br><span class="line"><span class="comment">#发送请求</span></span><br><span class="line">response = request.urlopen(base_url)</span><br><span class="line"><span class="comment">#获取相应内容</span></span><br><span class="line">html = response.read()</span><br><span class="line">print(html.decode(<span class="string">'utf-8'</span>))</span><br><span class="line"><span class="comment">#存储</span></span><br><span class="line"><span class="keyword">with</span> open(<span class="string">'2.html'</span>,<span class="string">'w'</span>,encoding=<span class="string">'utf-8'</span>) <span class="keyword">as</span> k:</span><br><span class="line">    k.write(html.decode(<span class="string">'utf-8'</span>))</span><br><span class="line">***************************************添加headers********************************************</span><br><span class="line">base_url = <span class="string">'http://www.baidu.com/'</span></span><br><span class="line">headers = &#123;<span class="string">'User-Agent'</span>:<span class="string">'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.103 Safari/537.36'</span>&#125;</span><br><span class="line">req = request.Request(url = base_url,headers=headers)</span><br><span class="line">response = request.urlopen(req)</span><br><span class="line">html = response.read()</span><br><span class="line">print(html.decode(<span class="string">'utf-8'</span>))</span><br><span class="line">****************************************未登录跳过登录爬取人人网********************************</span><br><span class="line"><span class="keyword">from</span> urllib <span class="keyword">import</span> request,parse</span><br><span class="line"><span class="keyword">from</span> http <span class="keyword">import</span> cookiejar</span><br><span class="line"><span class="comment">#实例化cookie管理器</span></span><br><span class="line">cookie = cookiejar.CookieJar()</span><br><span class="line">cook_handle = request.HTTPCookieProcessor(cookie)</span><br><span class="line"><span class="comment">#创建opener</span></span><br><span class="line">opener = request.build_opener(cook_handle)</span><br><span class="line">base_url = <span class="string">'http://www.renren.com/PLogin.do'</span></span><br><span class="line">data = &#123;</span><br><span class="line">    <span class="string">'email'</span>:<span class="string">'17333119189'</span>,</span><br><span class="line">    <span class="string">'password'</span>:<span class="string">'19960102kuai'</span></span><br><span class="line">&#125;</span><br><span class="line">res = parse.urlencode(data)</span><br><span class="line">re = request.Request(base_url,data=res.encode(<span class="string">'utf-8'</span>))</span><br><span class="line">responsd = opener.open(re)</span><br><span class="line">******************************************添加代理****************************************</span><br><span class="line"><span class="keyword">from</span> urllib <span class="keyword">import</span> request</span><br><span class="line">base_url = <span class="string">'http://www.66ip.cn/'</span></span><br><span class="line">proxy = &#123;</span><br><span class="line">    <span class="string">'http'</span>:<span class="string">'alice:123456@120.78.166.84:6666'</span>,</span><br><span class="line">    <span class="string">'https'</span>:<span class="string">'alice:123456@120.78.166.84:6666'</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">#创建管理器</span></span><br><span class="line">proxy_handler = request.ProxyHandler(proxy)</span><br><span class="line"><span class="comment">#创建opener</span></span><br><span class="line">opener = request.build_opener(proxy_handler)</span><br><span class="line">headers = &#123;</span><br><span class="line"><span class="string">'Cookie'</span>:<span class="string">' __jsluid=27be3fa08d7aa7c457f79068cd77bc79; Hm_lvt_1761fabf3c988e7f04bec51acd4073f4=1555141241,1555144721,1555152744,1555155158; Hm_lpvt_1761fabf3c988e7f04bec51acd4073f4=1555155531'</span>,</span><br><span class="line"><span class="string">'User-Agent'</span>:<span class="string">' Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.103 Safari/537.36'</span>&#125;</span><br><span class="line">response = opener.open(base_url)</span><br><span class="line">print(response.read().decode(<span class="string">'gb2312'</span>))</span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line">base_url = <span class="string">'http://www.baidu.com'</span></span><br><span class="line"><span class="comment">#发送请求</span></span><br><span class="line">response = requests.get(base_url)</span><br><span class="line"><span class="comment">#获取相应内容===1.获取字符串2.获取二进制bytes</span></span><br><span class="line"><span class="comment">#指定编码格式</span></span><br><span class="line">print(response)</span><br><span class="line">response.encoding=<span class="string">'utf-8'</span></span><br><span class="line">print(response.text)</span><br><span class="line"><span class="comment">#返回bytes格式 content</span></span><br><span class="line">print(response.content.decode(<span class="string">'utf-8'</span>))</span><br><span class="line">****************************************非认证代理****************************************</span><br><span class="line"><span class="comment">#使用代理ip爬取网页</span></span><br><span class="line"><span class="comment">#非认证代理</span></span><br><span class="line"><span class="keyword">from</span> urllib <span class="keyword">import</span> request</span><br><span class="line">base_url = <span class="string">'http://www.baidu.com'</span></span><br><span class="line">proxy = &#123;</span><br><span class="line">    <span class="string">'http'</span>:<span class="string">'http://124.205.143.213:41372'</span>,</span><br><span class="line">    <span class="string">'https'</span>:<span class="string">'http://124.205.143.213:41372'</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">#创建proxy管理器</span></span><br><span class="line">proxy_handler = request.ProxyHandler(proxy)</span><br><span class="line"><span class="comment">#创建opener</span></span><br><span class="line">opener = request.build_opener(proxy_handler)</span><br><span class="line"><span class="comment">#发送请求</span></span><br><span class="line">response = opener.open(base_url)</span><br><span class="line">print(response.read().decode(<span class="string">'utf-8'</span>))</span><br><span class="line">*****************************************认证代理*****************************************</span><br><span class="line"><span class="keyword">from</span> urllib <span class="keyword">import</span> request</span><br><span class="line">base_url = <span class="string">'http://www.baidu.com'</span></span><br><span class="line">proxy = &#123;</span><br><span class="line">    <span class="string">'http'</span>:<span class="string">'http://alice:123456@120.78.166.84:6666'</span>,</span><br><span class="line">    <span class="string">'https'</span>:<span class="string">'https://alice:123456@120.78.166.84:6666'</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">#创建ip处理器</span></span><br><span class="line">proxy_handler = request.ProxyHandler(proxy)</span><br><span class="line"><span class="comment">#chuangjianoperer</span></span><br><span class="line">opener = request.build_opener(proxy_handler)</span><br><span class="line"><span class="comment">#发送请求</span></span><br><span class="line">response = opener.open(base_url)</span><br><span class="line">print(response.read().decode(<span class="string">'utf-8'</span>))</span><br></pre></td></tr></table></figure>
+<p>requests</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br></pre></td><td class="code"><pre><span class="line">*********************************************get*****************************************</span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line">base_url = <span class="string">'https://www.xicidaili.com/'</span></span><br><span class="line"><span class="comment">#定义请求头</span></span><br><span class="line">headers = &#123;</span><br><span class="line">    <span class="string">'User-agent'</span>:<span class="string">'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.103 Safari/537.36'</span></span><br><span class="line">&#125;</span><br><span class="line">res = requests.get(base_url,headers=headers)</span><br><span class="line">print(res.text)</span><br><span class="line">***********************************************post***************************************</span><br><span class="line"><span class="keyword">import</span> requests,json</span><br><span class="line">base_url = <span class="string">'https://fanyi.baidu.com/sug'</span></span><br><span class="line">data = &#123;</span><br><span class="line"><span class="string">'kw'</span>: <span class="string">'hello'</span></span><br><span class="line">&#125;</span><br><span class="line">response = requests.post(base_url,data=data)</span><br><span class="line">response.encoding=<span class="string">'UTF-8'</span></span><br><span class="line">res = json.loads(response.text)</span><br><span class="line"><span class="comment"># with open('2.json','w',encoding='utf-8')as f:</span></span><br><span class="line"><span class="comment">#     f.write(json.loads())</span></span><br><span class="line">print(res)</span><br><span class="line">******************************************添加请求头**************************************</span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line">base_url = <span class="string">'http://www.baidu.com'</span></span><br><span class="line">headers = &#123;</span><br><span class="line">    <span class="string">'User-Agent'</span>:<span class="string">'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.110 Safari/537.36'</span></span><br><span class="line">&#125;</span><br><span class="line">response = requests.get(base_url,headers=headers)</span><br><span class="line">print(response.text)</span><br><span class="line"></span><br><span class="line">********************************************xpath匹配*************************************</span><br><span class="line"><span class="keyword">from</span> lxml <span class="keyword">import</span> etree</span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line">base_url = <span class="string">'https://www.mzitu.com/'</span></span><br><span class="line">headers = &#123;</span><br><span class="line">    <span class="string">'user-agent'</span>:<span class="string">'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.103 Safari/537.36'</span></span><br><span class="line">,<span class="string">'referer'</span>:<span class="string">'https://www.mzitu.com/xinggan/'</span>,</span><br><span class="line"><span class="string">'cookie'</span>: <span class="string">'Hm_lvt_dbc355aef238b6c32b43eacbbf161c3c=1555144582,1555144596,1555144615,1555145046; Hm_lpvt_dbc355aef238b6c32b43eacbbf161c3c=1555145072'</span></span><br><span class="line">&#125;</span><br><span class="line">respond = requests.get(base_url,headers = headers)</span><br><span class="line"><span class="comment"># print(respond.text)</span></span><br><span class="line">html = etree.HTML(respond.text)</span><br><span class="line">html_xpath = html.xpath(<span class="string">'//a/img[@class="lazy"]/@data-original'</span>)</span><br><span class="line"><span class="comment"># print(html_xpath)</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> html_xpath:</span><br><span class="line">    respond = requests.get(i,headers=headers)</span><br><span class="line">    j = i[<span class="number">-14</span>:<span class="number">-4</span>]</span><br><span class="line">    <span class="keyword">with</span> open(<span class="string">'./pic/&#123;&#125;.jpg'</span>.format(j),<span class="string">'wb'</span>) <span class="keyword">as</span> f:</span><br><span class="line">        f.write(respond.content)</span><br><span class="line">*******************************************添加代理***************************************</span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line">base_url = <span class="string">'http://www.baidu.com'</span></span><br><span class="line">proxy=&#123;</span><br><span class="line">    <span class="string">'http'</span>:<span class="string">'http://alice:123456@120.78.166.84:6666'</span>,</span><br><span class="line">    <span class="string">'https'</span>:<span class="string">'https://alice:123456@120.78.166.84:6666'</span></span><br><span class="line">&#125;</span><br><span class="line">response = requests.get(base_url,proxies= proxy)</span><br><span class="line">response.encoding=<span class="string">'utf-8'</span></span><br><span class="line">print(response.text)</span><br><span class="line">********************************************综合*******************************************</span><br><span class="line"><span class="keyword">import</span> requests,re</span><br><span class="line"><span class="keyword">from</span> lxml <span class="keyword">import</span> etree</span><br><span class="line"><span class="keyword">from</span> urllib <span class="keyword">import</span> parse</span><br><span class="line">base_url = <span class="string">'http://www.ccdi.gov.cn/'</span></span><br><span class="line">proxy = &#123;</span><br><span class="line">    <span class="string">'http'</span>:<span class="string">'http://alice:123456@120.78.166.84:6666'</span>,</span><br><span class="line">    <span class="string">'https'</span>:<span class="string">'https://alice:123456@120.78.166.84:6666'</span></span><br><span class="line">&#125;</span><br><span class="line">headers = &#123;</span><br><span class="line">    <span class="string">'User-Agent'</span>:<span class="string">'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.103 Safari/537.36'</span></span><br><span class="line">&#125;</span><br><span class="line">response = requests.get(base_url,headers=headers,proxies =proxy)</span><br><span class="line"><span class="comment"># with open('3.html','wb')as f:</span></span><br><span class="line"><span class="comment">#     f.write(response.content)</span></span><br><span class="line">html_ele = etree.HTML(response.text)</span><br><span class="line">url_list = html_ele.xpath(<span class="string">'//nav/span[5]/a/@href'</span>)</span><br><span class="line"><span class="comment"># print(url_list)</span></span><br><span class="line">response_jdbgpage = requests.get(url_list[<span class="number">0</span>],headers = headers,proxies =proxy)</span><br><span class="line"><span class="comment"># with open('3.html','wb')as f:</span></span><br><span class="line"><span class="comment"># #     f.write(response_jdbgpage.content)</span></span><br><span class="line">html = etree.HTML(response_jdbgpage.text)</span><br><span class="line">url2_list = html.xpath(<span class="string">'//ul[@class="menu_list"]/li[position()&gt;1]/a/@href'</span>)[<span class="number">0</span>:<span class="number">3</span>]</span><br><span class="line"><span class="comment"># print(url2_list)</span></span><br><span class="line"><span class="keyword">for</span> url3 <span class="keyword">in</span> url2_list:</span><br><span class="line">    new_url = parse.urljoin(url_list[<span class="number">0</span>],url3)</span><br><span class="line">    print(new_url)</span><br><span class="line">    resp = requests.get(new_url,headers = headers,proxies =proxy)</span><br><span class="line">    <span class="comment"># with open('3.html','wb')as f:</span></span><br><span class="line">    <span class="comment">#     f.write(resp.content)</span></span><br><span class="line">    pat = re.compile(<span class="string">'&lt;li class="on"&gt;&lt;a href="../../(.*?)/"&gt;'</span>)</span><br><span class="line">    res = pat.findall(resp.text)[<span class="number">2</span>:<span class="number">-1</span>]</span><br><span class="line">    print(res)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> res:</span><br><span class="line">        base_url2 = <span class="string">'http://www.ccdi.gov.cn/special/jdbg3/&#123;&#125;/'</span></span><br><span class="line">        <span class="comment"># print(base_url2.format(i))</span></span><br><span class="line">        res2 = requests.get(base_url2.format(i),headers=headers)</span><br><span class="line">        <span class="comment"># with open('4.html','wb')as f:</span></span><br><span class="line">        <span class="comment">#     f.write(res2.content)</span></span><br><span class="line">        pat = re.compile(<span class="string">'&lt;a href="(.*?)"'</span>)</span><br><span class="line">        print(pat.findall(res2.text))</span><br><span class="line">******************************************多进程共享数据********************************</span><br><span class="line"><span class="comment">#爬取中央纪检委举报违纪的实例</span></span><br><span class="line"><span class="keyword">import</span> requests,re</span><br><span class="line"><span class="keyword">from</span> lxml <span class="keyword">import</span> etree</span><br><span class="line"><span class="keyword">from</span> day14.day14_2 <span class="keyword">import</span> Db</span><br><span class="line"><span class="keyword">from</span> multiprocessing <span class="keyword">import</span> Pool,Manager</span><br><span class="line"></span><br><span class="line"><span class="comment">#爬取基本页信息</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">First_webpage</span><span class="params">(url,queue)</span>:</span></span><br><span class="line">    print(<span class="string">'函数1'</span>,url)</span><br><span class="line">    headers = &#123;</span><br><span class="line">        <span class="string">'User-Agent'</span>:<span class="string">'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.103 Safari/537.36'</span></span><br><span class="line">    &#125;</span><br><span class="line">    first_webpage_response = requests.get(url,headers=headers,proxies = proxy())</span><br><span class="line">    <span class="comment">#匹配所有省份</span></span><br><span class="line">    pat = re.compile(<span class="string">'&lt;a href="./(.*?)/"&gt;'</span>)</span><br><span class="line">    province_list = pat.findall(first_webpage_response.text)</span><br><span class="line">    print(province_list)</span><br><span class="line">    <span class="keyword">for</span> province <span class="keyword">in</span> province_list[<span class="number">2</span>:<span class="number">-1</span>]:</span><br><span class="line">        type_list = [<span class="string">'fjbxgdwt_jdbg3'</span>, <span class="string">'sffbwt_jdbg3'</span>, <span class="string">'sfjds_jdbg3'</span>]</span><br><span class="line">        <span class="keyword">for</span> type1 <span class="keyword">in</span> type_list:</span><br><span class="line">            second_webpage_url = <span class="string">'http://www.ccdi.gov.cn/special/jdbg3/&#123;&#125;/&#123;&#125;'</span>.format(province,type1)</span><br><span class="line">            print(second_webpage_url)</span><br><span class="line">            queue.put((divoce_page_url,second_webpage_url))</span><br><span class="line"><span class="comment"># 函数2 http://www.ccdi.gov.cn/special/jdbg3/bt_bgt/sfjds_jdbg3</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">divoce_page_url</span><span class="params">(url,queue)</span>:</span></span><br><span class="line">    print(<span class="string">'函数2'</span>,url)</span><br><span class="line">    response = requests.get(url,proxies = proxy())</span><br><span class="line">    pat = re.compile(<span class="string">'createPageHTML\((.*?), 0, "index", "html"\)'</span>)</span><br><span class="line">    page_count = pat.findall(response.text)</span><br><span class="line">    <span class="keyword">for</span> page <span class="keyword">in</span> range(int(page_count[<span class="number">0</span>])):</span><br><span class="line">        <span class="keyword">if</span> page == <span class="number">0</span>:</span><br><span class="line">            page_url = url + <span class="string">'/index.html'</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            page_url = url + <span class="string">'/index_&#123;&#125;.html'</span>.format(page)</span><br><span class="line">        response = requests.get(page_url,proxies = proxy())</span><br><span class="line">        pat = re.compile(<span class="string">'&lt;li class="fixed"&gt;\s+&lt;dl&gt;\s+&lt;dt&gt;\s+&lt;a href="./(.*?)" target="_blank"'</span>)</span><br><span class="line">        url_list = pat.findall(response.text)</span><br><span class="line">        <span class="keyword">for</span> url_content <span class="keyword">in</span> url_list:</span><br><span class="line">            new_url = url +<span class="string">'/'</span>+ url_content</span><br><span class="line">            queue.put((get_content_url,new_url))</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_content_url</span><span class="params">(url)</span>:</span></span><br><span class="line">    print(<span class="string">'函数3:'</span>,url)</span><br><span class="line">    response = requests.get(url,proxies = proxy())</span><br><span class="line">    response.encoding=<span class="string">'utf-8'</span></span><br><span class="line">    html = etree.HTML(response.text)</span><br><span class="line">    content_list = html.xpath(<span class="string">'//div[@class="content"]/div[1]/div[@class="TRS_Editor"]//text()'</span>)</span><br><span class="line">    content = <span class="string">'\n'</span>.join([item.strip() <span class="keyword">for</span> item <span class="keyword">in</span> content_list <span class="keyword">if</span> item.strip() != <span class="string">''</span>])</span><br><span class="line">    print(content)</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">proxy</span><span class="params">()</span>:</span></span><br><span class="line">    proxy = &#123;</span><br><span class="line">        <span class="string">'http'</span>:<span class="string">'http://alice:123456@120.78.166.84:6666'</span>,</span><br><span class="line">        <span class="string">'https'</span>:<span class="string">'https://alice:123456@120.78.166.84:6666'</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> proxy</span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    pool = Pool(<span class="number">5</span>)</span><br><span class="line">    url = <span class="string">'http://www.ccdi.gov.cn/special/jdbg3/index.html'</span></span><br><span class="line">    queue = Manager().Queue()</span><br><span class="line">    queue.put((First_webpage,url))</span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        func,url=queue.get()</span><br><span class="line">        pool.apply_async(func=func,args=(url,queue))</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Db</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self,database=<span class="string">'kl'</span>,user=<span class="string">'root'</span>,password=<span class="string">'123456'</span>,port=<span class="number">3306</span>,host=<span class="string">'localhost'</span>)</span>:</span></span><br><span class="line">        self.db = pymysql.connect(database=database,port=port,password=password,user=user,host=host,charset=<span class="string">'utf8mb4'</span>)</span><br><span class="line">        self.cursor = self.db.cursor()</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">insert</span><span class="params">(self,sql,data)</span>:</span></span><br><span class="line">        self.cursor.execute(sql,data)</span><br><span class="line">        self.db.commit()</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">update</span><span class="params">(self,sql,data)</span>:</span></span><br><span class="line">        self.cursor.execute(sql,data)</span><br><span class="line">        self.db.commit()</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__del__</span><span class="params">(self)</span>:</span></span><br><span class="line"></span><br><span class="line">        self.cursor.close()</span><br><span class="line">        self.db.close()</span><br></pre></td></tr></table></figure>
+<h6 id="beautifulsoup"><a href="#beautifulsoup" class="headerlink" title="beautifulsoup"></a>beautifulsoup</h6><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> bs4 <span class="keyword">import</span> BeautifulSoup</span><br><span class="line">text = <span class="string">"""</span></span><br><span class="line"><span class="string">    &lt;html&gt;&lt;head&gt;&lt;title&gt;The Dormouse's story&lt;/title&gt;&lt;/head&gt;</span></span><br><span class="line"><span class="string">    &lt;body&gt;</span></span><br><span class="line"><span class="string">    &lt;p class="title p8" id="p1" data="1"&gt;&lt;b&gt;The Dormouse's story&lt;/b&gt;&lt;b&gt;----2b&lt;/b&gt;&lt;/p&gt;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    &lt;p class="story"&gt;</span></span><br><span class="line"><span class="string">        Once upon a time there were three little sisters; and their names were</span></span><br><span class="line"><span class="string">        &lt;a href="http://example.com/elsie" class="sister" id="link1"&gt;&lt;span&gt;&lt;b&gt;Elsie&lt;/b&gt;&lt;/span&gt;&lt;/span&gt;--alice&lt;/span&gt;&lt;/a&gt;,</span></span><br><span class="line"><span class="string">        &lt;a href="http://example.com/lacie" class="sister" id="link2"&gt;Lacie&lt;/a&gt; and</span></span><br><span class="line"><span class="string">        &lt;a href="http://example.com/tillie" class="sister" id="link3"&gt;Tillie&lt;/a&gt;;</span></span><br><span class="line"><span class="string">        and they lived at the bottom of a well.</span></span><br><span class="line"><span class="string">    &lt;/p&gt;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    &lt;p class="story"&gt;...&lt;/p&gt;</span></span><br><span class="line"><span class="string">    &lt;div class="item1"&gt;我是div&lt;/div&gt;</span></span><br><span class="line"><span class="string">    &lt;div class="item2"&gt;我是div2&lt;/div&gt;</span></span><br><span class="line"><span class="string">    我是body</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="comment">#实例化对象</span></span><br><span class="line">soup = BeautifulSoup(text,<span class="string">'lxml'</span>)</span><br><span class="line"><span class="comment"># #格式化</span></span><br><span class="line"><span class="comment"># print(soup.prettify())</span></span><br><span class="line"><span class="comment">#取第一个元素</span></span><br><span class="line">print(soup.div)</span><br><span class="line"><span class="comment">#获取标签名</span></span><br><span class="line">print(soup.div.name)</span><br><span class="line"><span class="comment">#获取文本内容</span></span><br><span class="line">print(soup.div.string)</span><br><span class="line"><span class="comment">#获取标签中的所有内容包括子标签内的内容</span></span><br><span class="line">print(soup.body.get_text)</span><br><span class="line"><span class="comment">#获取属性的方法</span></span><br><span class="line">print(soup.p[<span class="string">'id'</span>])</span><br><span class="line"><span class="comment">#获取当前标签的所有的属性和值</span></span><br><span class="line">print(soup.p.attrs)</span><br><span class="line"></span><br><span class="line"><span class="comment">#find_all</span></span><br><span class="line">print(soup.find_all(<span class="string">'div'</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment">#find</span></span><br><span class="line">print(soup.find(<span class="string">'p'</span>))</span><br><span class="line"><span class="comment">#元素节点</span></span><br><span class="line">print(soup.body.contents)</span><br><span class="line">print(soup.body.descendants)</span><br><span class="line"></span><br><span class="line"><span class="comment">#css选择器</span></span><br><span class="line">print(soup.select(<span class="string">'p'</span>))</span><br><span class="line">print(soup.select(<span class="string">'a.sister'</span>))</span><br><span class="line">res = soup.select(<span class="string">'p&gt;b'</span>)</span><br><span class="line">print(res)</span><br><span class="line">res = soup.select(<span class="string">'#p1,.story'</span>)</span><br><span class="line">print(res)</span><br></pre></td></tr></table></figure>
+<h5 id="scrapy框架"><a href="#scrapy框架" class="headerlink" title="scrapy框架"></a>scrapy框架</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">流程:<span class="number">1.</span>cd 到想要创建scrapy框架的文件夹里</span><br><span class="line">     <span class="number">2.</span>scrapy startproject 框架名</span><br><span class="line">     <span class="number">3.</span>生成爬虫程序scrapy genspider 程序名  网址</span><br><span class="line">	<span class="number">4.</span>执行爬虫程序  scrapy crawl 爬虫名字</span><br><span class="line">    <span class="number">5.</span>调试平台scrapy shell</span><br></pre></td></tr></table></figure>
+<h5 id="selenium"><a href="#selenium" class="headerlink" title="selenium"></a>selenium</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h5 id="db类"><a href="#db类" class="headerlink" title="db类"></a>db类</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pymysql</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MysqlDatabase</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></span><br><span class="line">        self.db = pymysql.connect(host=<span class="string">'localhost'</span>,user = <span class="string">'root'</span>,password=<span class="string">'123456'</span>,port = <span class="number">3306</span>,database = <span class="string">'kl'</span>,charset = <span class="string">'utf8mb4'</span>)</span><br><span class="line">        self.cursor = self.db.cursor()</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">insert</span><span class="params">(self,sql,data)</span>:</span></span><br><span class="line">        <span class="keyword">try</span>:</span><br><span class="line">            self.cursor.execute(sql,data)</span><br><span class="line">            self.db.commit()</span><br><span class="line">        <span class="keyword">except</span>:</span><br><span class="line">            print(<span class="string">'插入失败'</span>)</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">update</span><span class="params">(self,sql,data)</span>:</span></span><br><span class="line">        <span class="keyword">try</span>:</span><br><span class="line">            self.cursor.execute(sql, data)</span><br><span class="line">            self.db.commit()</span><br><span class="line">        <span class="keyword">except</span>:</span><br><span class="line">            print(<span class="string">'更新失败'</span>)</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__del__</span><span class="params">(self)</span>:</span></span><br><span class="line">        self.cursor.close()</span><br><span class="line">        self.db.close()</span><br></pre></td></tr></table></figure>
+<h6 id="proxy代理类"><a href="#proxy代理类" class="headerlink" title="proxy代理类"></a>proxy代理类</h6><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests,time</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ProxyHelper</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></span><br><span class="line">        self.url = <span class="string">'http://mvip.piping.mogumiao.com/proxy/api/get_ip_al?appKey=4015b4545c6545d5b21a3b49fec0671c&amp;count=1&amp;expiryDate=0&amp;format=2&amp;newLine=2'</span></span><br><span class="line">        self.version = <span class="number">0</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get_proxy</span><span class="params">(self)</span>:</span></span><br><span class="line">        print(<span class="string">'获取了一个代理'</span>)</span><br><span class="line">        self.proxy = requests.get(self.url).text.strip()</span><br><span class="line">        <span class="keyword">return</span> self.proxy,self.version</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">update_proxy</span><span class="params">(self,version)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> version == self.version:</span><br><span class="line">            self.proxy,self.version = self.get_proxy()</span><br><span class="line">            self.version += <span class="number">1</span></span><br><span class="line">            print(<span class="string">'更新了一个代理:'</span>+self.proxy)</span><br><span class="line">        <span class="keyword">return</span> self.proxy</span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    helper = ProxyHelper()</span><br><span class="line">    <span class="comment"># proxy, version = helper.get_proxy()</span></span><br><span class="line">    <span class="comment"># print(proxy)</span></span><br><span class="line">    <span class="comment"># time.sleep(30)</span></span><br><span class="line">    helper.update_proxy(<span class="number">0</span>)</span><br><span class="line">    print(helper.update_proxy(<span class="number">0</span>))</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/代码/" rel="tag"># 代码</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/04/07/时间复杂度例题/" rel="next" title="时间复杂度例题">
+                <i class="fa fa-chevron-left"></i> 时间复杂度例题
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/04/28/机器学习周志华/" rel="prev" title="机器学习周志华">
+                机器学习周志华 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC80NDExNC8yMDY0OQ=="></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/head.jpg" alt="kl">
+            
+              <p class="site-author-name" itemprop="name">kl</p>
+              <div class="site-description motion-element" itemprop="description">66其实不太6</div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">113</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                      <a href="/categories/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">30</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">48</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-6"><a class="nav-link" href="#beautifulsoup"><span class="nav-number">1.</span> <span class="nav-text">beautifulsoup</span></a></li></ol><li class="nav-item nav-level-5"><a class="nav-link" href="#scrapy框架"><span class="nav-number"></span> <span class="nav-text">scrapy框架</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#selenium"><span class="nav-number"></span> <span class="nav-text">selenium</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#db类"><span class="nav-number"></span> <span class="nav-text">db类</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#proxy代理类"><span class="nav-number">1.</span> <span class="nav-text">proxy代理类</span></a></li></ol></li></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+    
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2023</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">kl</span>
+
+  
+
+  
+</div>
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-user"></i>
+    </span>
+    <span class="site-uv" title="总访客量">
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+  
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-eye"></i>
+    </span>
+    <span class="site-pv" title="总访问量">
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    
+    
+      
+    
+  
+  <script color="0,0,0" opacity="0.8" zindex="-1" count="66" src="//cdn.jsdelivr.net/gh/theme-next/theme-next-canvas-nest@1/canvas-nest.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.1.1"></script>
+
+  <script src="/js/motion.js?v=7.1.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/affix.js?v=7.1.1"></script>
+
+  <script src="/js/schemes/pisces.js?v=7.1.1"></script>
+
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.1.1"></script>
+<script src="/js/post-details.js?v=7.1.1"></script>
+
+
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.1.1"></script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+    <script>
+  window.livereOptions = {
+    refer: '2020/04/07/爬虫代码/'
+  };
+  (function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+    if (typeof LivereTower === 'function') { return; }
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+    e.parentNode.insertBefore(j, e);
+  })(document, 'script');
+</script>
+
+  
+
+
+  
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
+<script type="text/javascript" src="/js/src/clicklove.js"></script>
+<!-- <script type="text/javascript" src="/js/src/fish.js"></script> -->
+<!-- <script src='https://blog-static.cnblogs.com/files/elkyo/star.js'></script> -->
+<!-- 雪花特效 -->
+<!-- 雪花特效 -->
+<!-- <script type="text/javascript" src="\js\snow.js"></script> -->

@@ -1,0 +1,1460 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.1.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.1.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.1.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.1.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.1.1" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.1.1',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="1.使用AVERAGE函数求取一组数字的平均值公式—-&amp;gt;插入函数—-&amp;gt;搜索函数(输入:求平均值,转到)—-&amp;gt;选择函数:AVERAGE—-&amp;gt;确定 函数参数—-&amp;gt;Number1(选择要求平均值的选框)—-&amp;gt;确定 一行或一列的平均值,鼠标光标移至右下角变成十字后下拉或者右拉即可 2使用COUNT函数统计参数中包含数字的个数公式—-&amp;gt;自动求和(下拉选框)—-&amp;gt">
+<meta name="keywords" content="Excel">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Excel数据分析之基础操作章">
+<meta property="og:url" content="http://kl66.top/2019/05/09/Excel数据分析之基础操作章/index.html">
+<meta property="og:site_name" content="Mr kuai">
+<meta property="og:description" content="1.使用AVERAGE函数求取一组数字的平均值公式—-&amp;gt;插入函数—-&amp;gt;搜索函数(输入:求平均值,转到)—-&amp;gt;选择函数:AVERAGE—-&amp;gt;确定 函数参数—-&amp;gt;Number1(选择要求平均值的选框)—-&amp;gt;确定 一行或一列的平均值,鼠标光标移至右下角变成十字后下拉或者右拉即可 2使用COUNT函数统计参数中包含数字的个数公式—-&amp;gt;自动求和(下拉选框)—-&amp;gt">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://kl66.top/2019/05/09/Excel数据分析之基础操作章/33.jpg">
+<meta property="og:updated_time" content="2019-05-10T05:37:59.478Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Excel数据分析之基础操作章">
+<meta name="twitter:description" content="1.使用AVERAGE函数求取一组数字的平均值公式—-&amp;gt;插入函数—-&amp;gt;搜索函数(输入:求平均值,转到)—-&amp;gt;选择函数:AVERAGE—-&amp;gt;确定 函数参数—-&amp;gt;Number1(选择要求平均值的选框)—-&amp;gt;确定 一行或一列的平均值,鼠标光标移至右下角变成十字后下拉或者右拉即可 2使用COUNT函数统计参数中包含数字的个数公式—-&amp;gt;自动求和(下拉选框)—-&amp;gt">
+<meta name="twitter:image" content="http://kl66.top/2019/05/09/Excel数据分析之基础操作章/33.jpg">
+
+
+
+
+
+  
+  
+  <link rel="canonical" href="http://kl66.top/2019/05/09/Excel数据分析之基础操作章/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Excel数据分析之基础操作章 | Mr kuai</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Mr kuai</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">追忆似水流年</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-meh-o"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-legal"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-ravelry"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-snowflake-o"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://kl66.top/2019/05/09/Excel数据分析之基础操作章/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="kl">
+      <meta itemprop="description" content="66其实不太6">
+      <meta itemprop="image" content="/images/head.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mr kuai">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Excel数据分析之基础操作章
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-05-09 20:09:12" itemprop="dateCreated datePublished" datetime="2019-05-09T20:09:12+08:00">2019-05-09</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-05-10 13:37:59" itemprop="dateModified" datetime="2019-05-10T13:37:59+08:00">2019-05-10</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/python/" itemprop="url" rel="index"><span itemprop="name">python</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon">
+            <i class="fa fa-eye"></i>
+             阅读次数： 
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h4 id="1-使用AVERAGE函数求取一组数字的平均值"><a href="#1-使用AVERAGE函数求取一组数字的平均值" class="headerlink" title="1.使用AVERAGE函数求取一组数字的平均值"></a>1.使用AVERAGE函数求取一组数字的平均值</h4><p>公式—-&gt;插入函数—-&gt;搜索函数(输入:求平均值,转到)—-&gt;选择函数:AVERAGE—-&gt;确定</p>
+<p>函数参数—-&gt;Number1(选择要求平均值的选框)—-&gt;确定</p>
+<p>一行或一列的平均值,鼠标光标移至右下角变成十字后下拉或者右拉即可</p>
+<h4 id="2使用COUNT函数统计参数中包含数字的个数"><a href="#2使用COUNT函数统计参数中包含数字的个数" class="headerlink" title="2使用COUNT函数统计参数中包含数字的个数"></a>2使用COUNT函数统计参数中包含数字的个数</h4><p>公式—-&gt;自动求和(下拉选框)—-&gt;计数—-&gt;选择B2到B15区域,回车(Enter)即可</p>
+<h4 id="3使用MAX函数返回一组数字中的最大值"><a href="#3使用MAX函数返回一组数字中的最大值" class="headerlink" title="3使用MAX函数返回一组数字中的最大值"></a>3使用MAX函数返回一组数字中的最大值</h4><p>公式—-&gt;自动求和(下拉选框)—-&gt;最大值—-&gt;选择C2到F15区域,回车(Enter)即可</p>
+<h4 id="4使用MIN函数返回一组数字中的最小值"><a href="#4使用MIN函数返回一组数字中的最小值" class="headerlink" title="4使用MIN函数返回一组数字中的最小值"></a>4使用MIN函数返回一组数字中的最小值</h4><p>公式—-&gt;自动求和(下拉选框)—-&gt;最小值—-&gt;选择C2到F15区域,回车(Enter)即可</p>
+<h4 id="5-使用IF函数根据指定的条件返回不同的结果"><a href="#5-使用IF函数根据指定的条件返回不同的结果" class="headerlink" title="5.使用IF函数根据指定的条件返回不同的结果"></a>5.使用IF函数根据指定的条件返回不同的结果</h4><p>公式—-&gt;插入函数—-&gt;IF(确定)</p>
+<h4 id="6-使用SUMIF函数按给定条件对指定单元格求和"><a href="#6-使用SUMIF函数按给定条件对指定单元格求和" class="headerlink" title="6.使用SUMIF函数按给定条件对指定单元格求和"></a>6.使用SUMIF函数按给定条件对指定单元格求和</h4><p>SUMIF(range, criteria, [sum_range])<br>range 要按条件计算的单元格区域。<br>criteria 定义哪些单元格将被添加的数字、表达式、单元格引用、文本或函数形式的条件。<br>sum_range  要添加的实际单元格</p>
+<p>操作如下:公式—-&gt;数学和三角函数—-&gt;在下拉选项里面选择</p>
+<h4 id="7-使用VLOOKUP函数在区域或数组的列中查找数据"><a href="#7-使用VLOOKUP函数在区域或数组的列中查找数据" class="headerlink" title="7.使用VLOOKUP函数在区域或数组的列中查找数据"></a>7.使用VLOOKUP函数在区域或数组的列中查找数据</h4><p>VLOOKUP（要查找的值、要在其中查找值的区域、区域中包含返回值的列号、精确匹配或近似匹配 – 指定为 0/FALSE 或 1/TRUE）</p>
+<p>公式—-&gt;插入函数—-&gt;或选择类别里面选择&lt;查找与引用&gt;—–&gt;选择VLOOKUP函数确定</p>
+<h4 id="8-让公式与函数实现混合运算"><a href="#8-让公式与函数实现混合运算" class="headerlink" title="8.让公式与函数实现混合运算"></a>8.让公式与函数实现混合运算</h4><p>插播一个四舍五入的函数ROUND</p>
+<p>用法:ROUND(求值的单元格,保留几位小数)</p>
+<h4 id="9-使用EXACT函数比较两个字符串是否相同"><a href="#9-使用EXACT函数比较两个字符串是否相同" class="headerlink" title="9.使用EXACT函数比较两个字符串是否相同"></a>9.使用EXACT函数比较两个字符串是否相同</h4><p>用法:EXACT(值1单元格,值二单元格)</p>
+<p>插入函数选择文本函数或者直接找EXACT函数都可以</p>
+<p>EXACT(A2,B2)</p>
+<h4 id="10-使用LEN函数计算文本中的字符个数"><a href="#10-使用LEN函数计算文本中的字符个数" class="headerlink" title="10.使用LEN函数计算文本中的字符个数"></a>10.使用LEN函数计算文本中的字符个数</h4><p>len函数的语法格式=Len( text)</p>
+<h4 id="11-使用T函数将参数转换为文本"><a href="#11-使用T函数将参数转换为文本" class="headerlink" title="11.使用T函数将参数转换为文本"></a>11.使用T函数将参数转换为文本</h4><p>T(value)</p>
+<p>值   要测试的值。</p>
+<h4 id="12-使用FIND函数以字符为单位并区分大小写地查找指定字符的位置"><a href="#12-使用FIND函数以字符为单位并区分大小写地查找指定字符的位置" class="headerlink" title="12.使用FIND函数以字符为单位并区分大小写地查找指定字符的位置"></a>12.使用FIND函数以字符为单位并区分大小写地查找指定字符的位置</h4><p>FIND(find_text, within_text, [start_num])<br>find_text   要查找的文本。<br>within_text    包含要查找文本的文本。<br>start_num    指定开始进行查找的字符</p>
+<h4 id="13-使用REPLACE函数以字符为单位根据指定位置进行替换"><a href="#13-使用REPLACE函数以字符为单位根据指定位置进行替换" class="headerlink" title="13.使用REPLACE函数以字符为单位根据指定位置进行替换"></a>13.使用REPLACE函数以字符为单位根据指定位置进行替换</h4><p>REPLACE(old_text, start_num, num_chars, new_text)</p>
+<p>old_text    要替换其部分字符的文本。</p>
+<p>start_num   old_text 中要替换为 new_text 的字符位置。</p>
+<p>num_chars   old_text 中希望 REPLACE 使用 new_text 来进行替换的字符数。</p>
+<p>Num_bytes   old_text 中希望 REPLACEB 使用 new_text 来进行替换的字节数。</p>
+<p>new_text    将替换 old_text 中字符的文本。</p>
+<h4 id="14-使用FALSE函数返回逻辑值FALSE"><a href="#14-使用FALSE函数返回逻辑值FALSE" class="headerlink" title="14.使用FALSE函数返回逻辑值FALSE"></a>14.使用FALSE函数返回逻辑值FALSE</h4><p>IF(B2&gt;$C$2,FALSE(),TRUE())</p>
+<h4 id="15-使用AND函数判断指定的多个条件是否同时成立"><a href="#15-使用AND函数判断指定的多个条件是否同时成立" class="headerlink" title="15.使用AND函数判断指定的多个条件是否同时成立"></a>15.使用AND函数判断指定的多个条件是否同时成立</h4><p>用于确定测试中的所有条件是否均为 TRUE</p>
+<p>IF(AND(C2&gt;3,D2&lt;15,E2&lt;35200),”可申请”,””)</p>
+<h4 id="16-使用OR函数判断指定的任一条件是为真，即返回真"><a href="#16-使用OR函数判断指定的任一条件是为真，即返回真" class="headerlink" title="16.使用OR函数判断指定的任一条件是为真，即返回真"></a>16.使用OR函数判断指定的任一条件是为真，即返回真</h4><p>用于确定测试中的所有条件是否均为 TRUE</p>
+<p>IF(OR(C2&gt;=$I$2,D2&gt;=$I$2,E2&gt;=$I$2),”优秀”,IF(OR(C2&gt;=$I$3,D2=$I$3,E2&gt;=$I$3),”及格”,”不及格”))</p>
+<h4 id="17-使用NOT函数对逻辑值求反"><a href="#17-使用NOT函数对逻辑值求反" class="headerlink" title="17.使用NOT函数对逻辑值求反"></a>17.使用NOT函数对逻辑值求反</h4><p>确保一个值不等同于另一值</p>
+<p>IF(NOT(MAX(C2:E2)&lt;$I$2),”优秀”,IF(NOT(MAX(C2:E2)&lt;$I$3),”及格”,”不及格”))</p>
+<h4 id="18-使用IFERROR函数对错误结果进行处理"><a href="#18-使用IFERROR函数对错误结果进行处理" class="headerlink" title="18.使用IFERROR函数对错误结果进行处理"></a>18.使用IFERROR函数对错误结果进行处理</h4><p>IFERROR(value, value_if_error)<br>值     检查是否存在错误的参数。<br>Value_if_error    公式的计算结果错误时返回的值。</p>
+<p>IFERROR(A2,”公式出错”)</p>
+<h4 id="19-使用TODAY函数返回当前日期"><a href="#19-使用TODAY函数返回当前日期" class="headerlink" title="19.使用TODAY函数返回当前日期"></a>19.使用TODAY函数返回当前日期</h4><p>用法:TODAY()</p>
+<h4 id="20-使用TIME函数返回某一特定时间的小数值"><a href="#20-使用TIME函数返回某一特定时间的小数值" class="headerlink" title="20.使用TIME函数返回某一特定时间的小数值"></a>20.使用TIME函数返回某一特定时间的小数值</h4><p>TIME(hour, minute, second)<br>hour  代表小时。<br>minute  代表分钟。<br>second  代表秒。</p>
+<p>=B2+TIME(8,0,0)</p>
+<h4 id="21-使用YEAR函数返回某日期对应的年份"><a href="#21-使用YEAR函数返回某日期对应的年份" class="headerlink" title="21.使用YEAR函数返回某日期对应的年份"></a>21.使用YEAR函数返回某日期对应的年份</h4><p>YEAR(serial_number)<br>Serial_number   要查找的年份的日期</p>
+<p>YEAR(TODAY())-YEAR(J2)</p>
+<p>开始—-&gt;数字(下拉选框选择常规)</p>
+<h4 id="22-使用MONTH函数返回某日期对应的月份"><a href="#22-使用MONTH函数返回某日期对应的月份" class="headerlink" title="22.使用MONTH函数返回某日期对应的月份"></a>22.使用MONTH函数返回某日期对应的月份</h4><p>MONTH(serial_number)<br>Serial_number 要查找的月份日期</p>
+<p>单击公式—-&gt;定义的名称—-&gt;根据所选的内容创建—-&gt;勾选首行,确定</p>
+<p>IF(MONTH(DATE(年份,2,29))=2,”闰年”,”平年”)</p>
+<h4 id="23-使用CHOOSE函数根据序号从列表中选择对应的内容"><a href="#23-使用CHOOSE函数根据序号从列表中选择对应的内容" class="headerlink" title="23.使用CHOOSE函数根据序号从列表中选择对应的内容"></a>23.使用CHOOSE函数根据序号从列表中选择对应的内容</h4><p>CHOOSE(index_num, value1, [value2], …)<br>index_num     用于指定所选定的数值参数<br>如果 index_num 为 1，则 CHOOSE 返回 value1；如果为 2，则 CHOOSE 返回 value2，以此类推<br>如果 index_num 小于 1 或大于列表中最后一个值的索引号，则 CHOOSE 返回 #VALUE! 错误值<br>如果 index_num 为小数，则在使用前将被截尾取整<br>value1, value2, …    Value1 是必需的，后续值是可选的</p>
+<p>OFFSET(工资表!$A$1,CHOOSE(MOD(ROW(工资表!A1)-1,3)+1,0,(ROW(工资表!A1)-1)/3+1,65535),COLUMN()-1)&amp;””</p>
+<h4 id="24-使用MATCH函数返回指定内容所在的位置"><a href="#24-使用MATCH函数返回指定内容所在的位置" class="headerlink" title="24.使用MATCH函数返回指定内容所在的位置"></a>24.使用MATCH函数返回指定内容所在的位置</h4><p>MATCH(lookup_value, lookup_array, [match_type])<br>lookup_value     要在 lookup_array 中匹配的值<br>lookup_value 参数可以为值（数字、文本或逻辑值）或对数字、文本或逻辑值的单元格引用。<br>lookup_array    要搜索的单元格区域<br>match_type    数字 -1、0 或 1。 match_type 参数指定 Excel 如何将 lookup_value 与 lookup_array 中的值匹配。 此参数的默认值为 1。</p>
+<p>INDEX($A$2:$A$7,MATCH(LARGE($G$2:$G$7,ROW()-1),$G$2:$G$7,0))</p>
+<h4 id="25-使用TRANSPOSE函数转置数据区域的行列位置"><a href="#25-使用TRANSPOSE函数转置数据区域的行列位置" class="headerlink" title="25.使用TRANSPOSE函数转置数据区域的行列位置"></a>25.使用TRANSPOSE函数转置数据区域的行列位置</h4><p>TRANSPOSE(array)<br>数组   要转置的工作表上的数组或单元格区域</p>
+<p>TRANSPOSE(A1:E5)</p>
+<p>按下Ctrl+Shift+Enter组合件,即可对原来工作表进行转置</p>
+<h4 id="26-使用COUNTA函数计算参数中包含非空值的个数"><a href="#26-使用COUNTA函数计算参数中包含非空值的个数" class="headerlink" title="26.使用COUNTA函数计算参数中包含非空值的个数"></a>26.使用COUNTA函数计算参数中包含非空值的个数</h4><p>COUNTA(value1, [value2], …)<br>value1     表示要计数的值的第一个参数。<br>value2, …    表示要计数的值的其他参数，最多可包含 255 个参数。<br>COUNTA 函数计算范围中不为空的单元格的个数。</p>
+<p>=COUNTA(D2:D19)</p>
+<h4 id="27-使用COUNTIF函数计算满足给定条件的单元格的个"><a href="#27-使用COUNTIF函数计算满足给定条件的单元格的个" class="headerlink" title="27.使用COUNTIF函数计算满足给定条件的单元格的个"></a>27.使用COUNTIF函数计算满足给定条件的单元格的个</h4><p>COUNTIF(range, criteria)<br>range    要进行计数的单元格组<br>criteria   用于决定要统计哪些单元格的数量的数字、表达式、单元格引用或文本字符串。<br>COUNTIF 是一个统计函数，用于统计满足某个条件的单元格的数量；</p>
+<p>=COUNTIF(C2:C19,”行政部”)</p>
+<h4 id="28-使用SUMIFS函数计算多重条件的"><a href="#28-使用SUMIFS函数计算多重条件的" class="headerlink" title="28.使用SUMIFS函数计算多重条件的"></a>28.使用SUMIFS函数计算多重条件的</h4><p>SUMIFS(sum_range, criteria_range1, criteria1, [criteria_range2, criteria2], …)<br>Sum_rang  要求和的单元格区域<br>Criteria_range1 使用 Criteria1 测试的区域<br>Criteria1 定义将计算 Criteria_range1 中的哪些单元格的和的条件</p>
+<p>Criteria_range2,     附加的区域及其关联条件。 最多可以输入 127 个区域/条件对。<br>criteria2, …    (optional)<br>SUMIFS 函数是一个数学与三角函数，用于计算其满足多个条件的全部参数的总量</p>
+<p>SUMIFS(D2:D40,A2:A40,”=*商用型”,B2:B40,”6”)</p>
+<h4 id="29-使用AVERAGEA函数计算参数中非空值的平均值"><a href="#29-使用AVERAGEA函数计算参数中非空值的平均值" class="headerlink" title="29.使用AVERAGEA函数计算参数中非空值的平均值"></a>29.使用AVERAGEA函数计算参数中非空值的平均值</h4><p>AVERAGEA(value1, [value2], …)<br>Value1, value2, …    Value1 是必需的，后续值是可选的</p>
+<p>=AVERAGEA(D2:D19)</p>
+<h4 id="30-使用AVERAGEIF函数计算满足给定条件的单元格的平均值"><a href="#30-使用AVERAGEIF函数计算满足给定条件的单元格的平均值" class="headerlink" title="30.使用AVERAGEIF函数计算满足给定条件的单元格的平均值"></a>30.使用AVERAGEIF函数计算满足给定条件的单元格的平均值</h4><p>AVERAGEIF(range, criteria, [average_range])<br>Range    要计算平均值的一个或多个单元格<br>Criteria   形式为数字、表达式、单元格引用或文本的条件，用来定义将计算平均值的单元格<br>Average_rang计算平均值的实际单元格组</p>
+<p>AVERAGEIF(C2:C19,F2,D2:D19)</p>
+<h4 id="31-使用RANK-EQ函数返回一个数字在一组数字中的排位"><a href="#31-使用RANK-EQ函数返回一个数字在一组数字中的排位" class="headerlink" title="31.使用RANK.EQ函数返回一个数字在一组数字中的排位"></a>31.使用RANK.EQ函数返回一个数字在一组数字中的排位</h4><p>RANK.EQ(number,ref,[order])<br>Number    要找到其排位的数字。<br>Ref    数字列表的数组，对数字列表的引用。<br>Order   一个指定数字排位方式的数字。</p>
+<p>=RANK.EQ(J2,$J$2:$J​$31)</p>
+<h4 id="32-使用DELTA函数测试两个值是否相等"><a href="#32-使用DELTA函数测试两个值是否相等" class="headerlink" title="32.使用DELTA函数测试两个值是否相等"></a>32.使用DELTA函数测试两个值是否相等</h4><p>DELTA(number1, [number2])<br>Number1     第一个数字。<br>Number2     第二个数字。<br>检验两个值是否相等。</p>
+<p>DELTA(A2,B2)</p>
+<p><img src="/2019/05/09/Excel数据分析之基础操作章/33.jpg" alt></p>
+<p> 思维导图地址:<a href="https://www.processon.com/view/link/5cd4352fe4b059e20a1a2d9f" target="_blank" rel="noopener">https://www.processon.com/view/link/5cd4352fe4b059e20a1a2d9f</a></p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Excel/" rel="tag"># Excel</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/05/09/爬虫阶段mysql/" rel="next" title="爬虫阶段mysql">
+                <i class="fa fa-chevron-left"></i> 爬虫阶段mysql
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/05/09/Excel数据分析/" rel="prev" title="Excel数据分析">
+                Excel数据分析 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC80NDExNC8yMDY0OQ=="></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/head.jpg" alt="kl">
+            
+              <p class="site-author-name" itemprop="name">kl</p>
+              <div class="site-description motion-element" itemprop="description">66其实不太6</div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">113</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                      <a href="/categories/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">30</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">48</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-使用AVERAGE函数求取一组数字的平均值"><span class="nav-number">1.</span> <span class="nav-text">1.使用AVERAGE函数求取一组数字的平均值</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2使用COUNT函数统计参数中包含数字的个数"><span class="nav-number">2.</span> <span class="nav-text">2使用COUNT函数统计参数中包含数字的个数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3使用MAX函数返回一组数字中的最大值"><span class="nav-number">3.</span> <span class="nav-text">3使用MAX函数返回一组数字中的最大值</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4使用MIN函数返回一组数字中的最小值"><span class="nav-number">4.</span> <span class="nav-text">4使用MIN函数返回一组数字中的最小值</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-使用IF函数根据指定的条件返回不同的结果"><span class="nav-number">5.</span> <span class="nav-text">5.使用IF函数根据指定的条件返回不同的结果</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-使用SUMIF函数按给定条件对指定单元格求和"><span class="nav-number">6.</span> <span class="nav-text">6.使用SUMIF函数按给定条件对指定单元格求和</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-使用VLOOKUP函数在区域或数组的列中查找数据"><span class="nav-number">7.</span> <span class="nav-text">7.使用VLOOKUP函数在区域或数组的列中查找数据</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#8-让公式与函数实现混合运算"><span class="nav-number">8.</span> <span class="nav-text">8.让公式与函数实现混合运算</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-使用EXACT函数比较两个字符串是否相同"><span class="nav-number">9.</span> <span class="nav-text">9.使用EXACT函数比较两个字符串是否相同</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#10-使用LEN函数计算文本中的字符个数"><span class="nav-number">10.</span> <span class="nav-text">10.使用LEN函数计算文本中的字符个数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#11-使用T函数将参数转换为文本"><span class="nav-number">11.</span> <span class="nav-text">11.使用T函数将参数转换为文本</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#12-使用FIND函数以字符为单位并区分大小写地查找指定字符的位置"><span class="nav-number">12.</span> <span class="nav-text">12.使用FIND函数以字符为单位并区分大小写地查找指定字符的位置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#13-使用REPLACE函数以字符为单位根据指定位置进行替换"><span class="nav-number">13.</span> <span class="nav-text">13.使用REPLACE函数以字符为单位根据指定位置进行替换</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#14-使用FALSE函数返回逻辑值FALSE"><span class="nav-number">14.</span> <span class="nav-text">14.使用FALSE函数返回逻辑值FALSE</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#15-使用AND函数判断指定的多个条件是否同时成立"><span class="nav-number">15.</span> <span class="nav-text">15.使用AND函数判断指定的多个条件是否同时成立</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#16-使用OR函数判断指定的任一条件是为真，即返回真"><span class="nav-number">16.</span> <span class="nav-text">16.使用OR函数判断指定的任一条件是为真，即返回真</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#17-使用NOT函数对逻辑值求反"><span class="nav-number">17.</span> <span class="nav-text">17.使用NOT函数对逻辑值求反</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#18-使用IFERROR函数对错误结果进行处理"><span class="nav-number">18.</span> <span class="nav-text">18.使用IFERROR函数对错误结果进行处理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#19-使用TODAY函数返回当前日期"><span class="nav-number">19.</span> <span class="nav-text">19.使用TODAY函数返回当前日期</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#20-使用TIME函数返回某一特定时间的小数值"><span class="nav-number">20.</span> <span class="nav-text">20.使用TIME函数返回某一特定时间的小数值</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#21-使用YEAR函数返回某日期对应的年份"><span class="nav-number">21.</span> <span class="nav-text">21.使用YEAR函数返回某日期对应的年份</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#22-使用MONTH函数返回某日期对应的月份"><span class="nav-number">22.</span> <span class="nav-text">22.使用MONTH函数返回某日期对应的月份</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#23-使用CHOOSE函数根据序号从列表中选择对应的内容"><span class="nav-number">23.</span> <span class="nav-text">23.使用CHOOSE函数根据序号从列表中选择对应的内容</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#24-使用MATCH函数返回指定内容所在的位置"><span class="nav-number">24.</span> <span class="nav-text">24.使用MATCH函数返回指定内容所在的位置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#25-使用TRANSPOSE函数转置数据区域的行列位置"><span class="nav-number">25.</span> <span class="nav-text">25.使用TRANSPOSE函数转置数据区域的行列位置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#26-使用COUNTA函数计算参数中包含非空值的个数"><span class="nav-number">26.</span> <span class="nav-text">26.使用COUNTA函数计算参数中包含非空值的个数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#27-使用COUNTIF函数计算满足给定条件的单元格的个"><span class="nav-number">27.</span> <span class="nav-text">27.使用COUNTIF函数计算满足给定条件的单元格的个</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#28-使用SUMIFS函数计算多重条件的"><span class="nav-number">28.</span> <span class="nav-text">28.使用SUMIFS函数计算多重条件的</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#29-使用AVERAGEA函数计算参数中非空值的平均值"><span class="nav-number">29.</span> <span class="nav-text">29.使用AVERAGEA函数计算参数中非空值的平均值</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#30-使用AVERAGEIF函数计算满足给定条件的单元格的平均值"><span class="nav-number">30.</span> <span class="nav-text">30.使用AVERAGEIF函数计算满足给定条件的单元格的平均值</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#31-使用RANK-EQ函数返回一个数字在一组数字中的排位"><span class="nav-number">31.</span> <span class="nav-text">31.使用RANK.EQ函数返回一个数字在一组数字中的排位</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#32-使用DELTA函数测试两个值是否相等"><span class="nav-number">32.</span> <span class="nav-text">32.使用DELTA函数测试两个值是否相等</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+    
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2023</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">kl</span>
+
+  
+
+  
+</div>
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-user"></i>
+    </span>
+    <span class="site-uv" title="总访客量">
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+  
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-eye"></i>
+    </span>
+    <span class="site-pv" title="总访问量">
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    
+    
+      
+    
+  
+  <script color="0,0,0" opacity="0.8" zindex="-1" count="66" src="//cdn.jsdelivr.net/gh/theme-next/theme-next-canvas-nest@1/canvas-nest.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.1.1"></script>
+
+  <script src="/js/motion.js?v=7.1.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/affix.js?v=7.1.1"></script>
+
+  <script src="/js/schemes/pisces.js?v=7.1.1"></script>
+
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.1.1"></script>
+<script src="/js/post-details.js?v=7.1.1"></script>
+
+
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.1.1"></script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+    <script>
+  window.livereOptions = {
+    refer: '2019/05/09/Excel数据分析之基础操作章/'
+  };
+  (function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+    if (typeof LivereTower === 'function') { return; }
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+    e.parentNode.insertBefore(j, e);
+  })(document, 'script');
+</script>
+
+  
+
+
+  
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
+<script type="text/javascript" src="/js/src/clicklove.js"></script>
+<!-- <script type="text/javascript" src="/js/src/fish.js"></script> -->
+<!-- <script src='https://blog-static.cnblogs.com/files/elkyo/star.js'></script> -->
+<!-- 雪花特效 -->
+<!-- 雪花特效 -->
+<!-- <script type="text/javascript" src="\js\snow.js"></script> -->

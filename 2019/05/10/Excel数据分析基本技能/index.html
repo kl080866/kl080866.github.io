@@ -1,0 +1,1388 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.1.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.1.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.1.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.1.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.1.1" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.1.1',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="排序121.简单排序：数值大小排,颜色排,笔画字母排2.复杂排序：自定义排列多列多条件英文数字混合合并单元格的数字 筛选121.简单筛选：普通筛选（按颜色字体等排)自定义筛选 包含某数据的某值开头结尾（*和？的使用） 固定位数（？的使用）2.复杂筛选：某据某条件区域去筛选(若条件是或者的关系需要换行书写） 分类汇总121.基于一层的使用2.嵌套使用,嵌套汇总需要用到自定义排序,即针对要汇总的项目进">
+<meta name="keywords" content="Excel">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Excel数据分析基本技能">
+<meta property="og:url" content="http://kl66.top/2019/05/10/Excel数据分析基本技能/index.html">
+<meta property="og:site_name" content="Mr kuai">
+<meta property="og:description" content="排序121.简单排序：数值大小排,颜色排,笔画字母排2.复杂排序：自定义排列多列多条件英文数字混合合并单元格的数字 筛选121.简单筛选：普通筛选（按颜色字体等排)自定义筛选 包含某数据的某值开头结尾（*和？的使用） 固定位数（？的使用）2.复杂筛选：某据某条件区域去筛选(若条件是或者的关系需要换行书写） 分类汇总121.基于一层的使用2.嵌套使用,嵌套汇总需要用到自定义排序,即针对要汇总的项目进">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-05-10T11:33:20.198Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Excel数据分析基本技能">
+<meta name="twitter:description" content="排序121.简单排序：数值大小排,颜色排,笔画字母排2.复杂排序：自定义排列多列多条件英文数字混合合并单元格的数字 筛选121.简单筛选：普通筛选（按颜色字体等排)自定义筛选 包含某数据的某值开头结尾（*和？的使用） 固定位数（？的使用）2.复杂筛选：某据某条件区域去筛选(若条件是或者的关系需要换行书写） 分类汇总121.基于一层的使用2.嵌套使用,嵌套汇总需要用到自定义排序,即针对要汇总的项目进">
+
+
+
+
+
+  
+  
+  <link rel="canonical" href="http://kl66.top/2019/05/10/Excel数据分析基本技能/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Excel数据分析基本技能 | Mr kuai</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Mr kuai</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">追忆似水流年</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-meh-o"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-legal"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-ravelry"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-snowflake-o"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://kl66.top/2019/05/10/Excel数据分析基本技能/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="kl">
+      <meta itemprop="description" content="66其实不太6">
+      <meta itemprop="image" content="/images/head.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mr kuai">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Excel数据分析基本技能
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-05-10 17:49:40 / 修改时间：19:33:20" itemprop="dateCreated datePublished" datetime="2019-05-10T17:49:40+08:00">2019-05-10</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/python/" itemprop="url" rel="index"><span itemprop="name">python</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon">
+            <i class="fa fa-eye"></i>
+             阅读次数： 
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="排序"><a href="#排序" class="headerlink" title="排序"></a>排序</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1.简单排序：数值大小排,颜色排,笔画字母排</span><br><span class="line">2.复杂排序：自定义排列多列多条件英文数字混合合并单元格的数字</span><br></pre></td></tr></table></figure>
+<h2 id="筛选"><a href="#筛选" class="headerlink" title="筛选"></a>筛选</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1.简单筛选：普通筛选（按颜色字体等排)自定义筛选 包含某数据的某值开头结尾（*和？的使用） 固定位数（？的使用）</span><br><span class="line">2.复杂筛选：某据某条件区域去筛选(若条件是或者的关系需要换行书写）</span><br></pre></td></tr></table></figure>
+<h2 id="分类汇总"><a href="#分类汇总" class="headerlink" title="分类汇总"></a>分类汇总</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1.基于一层的使用</span><br><span class="line">2.嵌套使用,嵌套汇总需要用到自定义排序,即针对要汇总的项目进行排序</span><br></pre></td></tr></table></figure>
+<h2 id="条件格式"><a href="#条件格式" class="headerlink" title="条件格式"></a>条件格式</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">5种条件格式：突出显示单元格规则和最前/最后规则比较类似,都是增加单元格底色</span><br><span class="line">数据条格式是根据同一列单元格数值的大小,增加不同长短的数据条</span><br><span class="line">色阶是通过不同的颜色来显示数据的大小</span><br><span class="line">图标集是为数据增加图标,以区分数据类型</span><br></pre></td></tr></table></figure>
+<h2 id="透视表的使用"><a href="#透视表的使用" class="headerlink" title="透视表的使用"></a>透视表的使用</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">要求：1 原始数据要给力</span><br><span class="line">		1.所有数据在一张表里</span><br><span class="line">		2.是一维表格不是二维表  </span><br><span class="line">		3.表中不要有空值</span><br><span class="line">		4.表中不要有合并单元格(ctrl+g定位空值,然后写内容ctrl+enter去填充)</span><br><span class="line">		5.数据格式要正确 </span><br><span class="line">	 2 建表方法要正确</span><br><span class="line">	 	1.使用推荐的透视表（新手推荐）</span><br><span class="line">	 	2.自定义建立透视表</span><br></pre></td></tr></table></figure>
+<h2 id="字段布局"><a href="#字段布局" class="headerlink" title="字段布局"></a>字段布局</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1.理解字段 透视表的列和行分别显示什么</span><br><span class="line">2.字段设置要点</span><br><span class="line">	（1）移动字段  首先,字段可以从字段列表中直接拖拽添加到下方区域</span><br><span class="line">	（2）设置字段的值  透视表是一种可以快速汇总大量数据的表格。在透视表的字段设置区域,【值】区域内的字段会被进行</span><br></pre></td></tr></table></figure>
+<h2 id="透视表7个方法"><a href="#透视表7个方法" class="headerlink" title="透视表7个方法"></a>透视表7个方法</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">1.总计的百分比  这种方式值显示方式展示了某项目占所有项目总和的百分比</span><br><span class="line">2.列汇总的百分比  这种方式显示了每项数据占该列所有数据总和的百分比</span><br><span class="line">3.行汇总的百分比  这种方式显示了每项数据占该行所有数据总和的百分比。计算原理是：（单独项目的数值/项目所在行的总值）*100%</span><br><span class="line">4.百分比  这种值显示方式是以某项目为标准,显示其他项目与该项目的比例。这种汇总方式,需要选择某项目为参照标准</span><br><span class="line">5.父行汇总的百分比  这种方式显示了项目数据占该列分类项目数据总和的百分比。计算原理是：（项目数值/项目所在列分类项目总值）*100%</span><br><span class="line">6.父列汇总的百分比  这种方式显示了项目数据占该行分类项目数据总和的百分比。计算原理是：（项目数值/项目所在行分类项目总值）*100%</span><br><span class="line">7.父级汇总的百分比  这种值汇总方式,显示了每个项目占所在分类数据总和的百分比。计算原理是：（项目数值/项目所在列分类项目总值）*100%</span><br></pre></td></tr></table></figure>
+<h2 id="透视数据差异"><a href="#透视数据差异" class="headerlink" title="透视数据差异"></a>透视数据差异</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1.分析数值差异  分析数值之间的差异,可以选定一个项目为参照标准,将值显示方式调整为【差异】方式,就能看到其他项目与参照</span><br><span class="line">2.分析同比/环比差异  利用透视表分析项目数据差异,还可以设置要计算差异百分比的基本字段、基本项,来实现项目同比/环比的计算</span><br></pre></td></tr></table></figure>
+<h2 id="透视表两大利器"><a href="#透视表两大利器" class="headerlink" title="透视表两大利器"></a>透视表两大利器</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1.使用切片器分析数据  切片器可以从不同的维度进行同时筛选</span><br><span class="line">2.使用日程表分析数据  日程表是从日期的角度对数据进行筛选</span><br></pre></td></tr></table></figure>
+<h2 id="透视表数据可视化分析"><a href="#透视表数据可视化分析" class="headerlink" title="透视表数据可视化分析"></a>透视表数据可视化分析</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1.添加数据透视图表  为透视表数据添加图表的方法是,选中一个透视表区域的单元格,在【插入】选项卡下【图表】组中选择一种图表</span><br><span class="line">2.学会图表筛选</span><br></pre></td></tr></table></figure>
+<h2 id="图表"><a href="#图表" class="headerlink" title="图表"></a>图表</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br></pre></td><td class="code"><pre><span class="line">1.图表的使用场景</span><br><span class="line">	1.为了揭示数据规律</span><br><span class="line">	2.为了有说服力、促进沟通  数据分析工作常常需要团队合作,数据分析的成果也需要向他人展示</span><br><span class="line">	3.为了展示专业素养  </span><br><span class="line">2.建立图表的步骤</span><br><span class="line">	1.选择数据</span><br><span class="line">	2.选择图标</span><br><span class="line">	3.确认图例项、坐标轴数据</span><br><span class="line">3.柱形图数据分析</span><br><span class="line">	1.使用技巧：</span><br><span class="line">		（1）慎用三维柱形图</span><br><span class="line">		（2）保证类别名称清晰显示  柱形图要保证X轴的类别名称清晰,否则会造成读图困难,当类别不是时间时不可以通过调整单位来</span><br><span class="line">	2.分类：</span><br><span class="line">	（1）簇状柱形图  普通的柱形图可以用来对比多个项目的值、或项目随时间推移的变化</span><br><span class="line">	</span><br><span class="line">	（2）堆积柱形图  堆积柱形图是将数据叠加到一根柱形上,通过柱形叠加的高度,判断数据总量的对比</span><br><span class="line">	（3）百分比堆积柱形图  百分比堆积柱形图是将数据叠加到一柱形上,每根柱形的总值都是100%,各项数据在柱条中占据了一定比例的长度</span><br><span class="line">	3.柱形图和条形图区别</span><br><span class="line">		1.条形图适用于类别名称长的数据</span><br><span class="line">		2.柱形图适合表现有负数的数据</span><br><span class="line">		3.条形图更能展现大量数据</span><br><span class="line">4.折线图数据分析</span><br><span class="line">	1.分类：</span><br><span class="line">		1.折线图,折线图用来表现不同数据的趋势</span><br><span class="line">		2.堆积折线图,堆积折线图可以反映所有数据项目的总值随时间变化趋势</span><br><span class="line">		3.百分比堆积折线图,百分比堆积折线图用来表现数据项目所占百分比随时间变化的趋势</span><br><span class="line">	2.折线图使用技巧</span><br><span class="line">		1.X轴只能是时间</span><br><span class="line">		2.学会拆分图表</span><br><span class="line">			3.让折线变圆滑</span><br><span class="line">		4.设置数据标记不同图表在形态上有所区别,在格式调整上也有区别</span><br><span class="line">	3.饼图数据分析</span><br><span class="line">		1.分类:</span><br><span class="line">		（1）普通饼图用来展示各数据项目的比例</span><br><span class="line">		（2）圆环图也可以展示各数据项目的比例,但是增加圆环图的层数,还可以体现数据项目随时间或其他  因素变化时的比例</span><br><span class="line">		（3）复合饼图又称为子母饼图,用来展示不同数据项目的占比,及其中一个数据项目所包含的分类占比</span><br><span class="line">		2.使用技巧:</span><br><span class="line">			1.在制作饼图时,需要考虑饼图制作是符合规范,是否方便读取图表信息,以最大限度保证图表准确传达了数据含义</span><br><span class="line">			2.不注意饼图扇区数据排序和角度,是饼图常见的第二种错误</span><br><span class="line">	5.面积图数据分析</span><br><span class="line">		1.分类</span><br><span class="line">			（1）普通面积图如左下图所示,体现数据项目随着时间变化的趋势及累计的量</span><br><span class="line">			（2）堆积面积图,体现了单项数据的变化趋势、数据的变化趋势和量的累加</span><br><span class="line">			（3）百分比堆积面积图体现了数据项目占总值的百分比变化趋势</span><br><span class="line">		2.面积图使用技巧</span><br><span class="line">			（1）注意面积之间不要互相遮挡</span><br><span class="line">			（2）为面积图增加轮廓线,强调趋势</span><br><span class="line">	6.散点图数据分析</span><br><span class="line">		1.分类</span><br><span class="line">			（1）散点图/带平滑线和数据标记的散点图散点图用来分析两个变量之间的关系,或数据项目分布</span><br><span class="line">			（2）气泡图和三维气泡图如果需要体现三个变量之间的关系,就要选择气泡图或三维气泡图</span><br><span class="line">		2.散点使用技巧</span><br><span class="line">			（1）调整坐标轴边界值、区分数据类别</span><br><span class="line">			（2）使用象限图可以将数据划分到不同的象限,以便直观清晰地分析出不同项目的现状及改进策略</span><br><span class="line">	7.曲面图数据分析</span><br><span class="line">		1.分类</span><br><span class="line">			1.三维曲面图,三维曲面图是最常用的一种曲面图,它通过曲面在三维空间的跨度来显示数据的范围</span><br><span class="line">			2.三维线框曲面图</span><br><span class="line">			3.曲面图,曲面图是以俯视的角度观看三维曲面图的效果</span><br><span class="line">			4.曲面图（俯视框架图)将曲面图的颜色去掉,仅留下框架,便是曲面图（俯视框架图）的效果</span><br><span class="line">	8.雷达图数据分析</span><br><span class="line">		1.雷达图  雷达图将将所有数据项目集中显示在一个圆形图表上,以便一目了然对数据进行对比、进行整体情况分析</span><br><span class="line">		2.带数据标记的雷达图  带数据标记的雷达图与常规雷达图的区别是,在雷达图轮廓上增加了数据标记,起到了强调数据值的作用</span><br><span class="line">		3.填充雷达图  填充雷达图与常规雷达图的区别是,填充雷达图不再是轮廓线,而是有填充色的面积。填充雷达图更强调数据系列的综合指数,即整体水平</span><br><span class="line">	9.其他图表</span><br><span class="line">		1.旭日图</span><br><span class="line">		2.直方图</span><br><span class="line">		3.树状图</span><br><span class="line">		4.瀑布图</span><br><span class="line">	10.专业图表的5个特征</span><br><span class="line">		1.标注数据来源和时间</span><br><span class="line">		2.表意明确</span><br><span class="line">		3.纵坐标从0开始</span><br><span class="line">		4.使用二维图表</span><br><span class="line">		5.添加必要说明</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Excel/" rel="tag"># Excel</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/05/10/Excel数据清洗与加工处理/" rel="next" title="Excel数据清洗与加工处理">
+                <i class="fa fa-chevron-left"></i> Excel数据清洗与加工处理
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/05/12/Excel数据分析mysql进阶之基础/" rel="prev" title="Excel数据分析mysql进阶之基础">
+                Excel数据分析mysql进阶之基础 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC80NDExNC8yMDY0OQ=="></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/head.jpg" alt="kl">
+            
+              <p class="site-author-name" itemprop="name">kl</p>
+              <div class="site-description motion-element" itemprop="description">66其实不太6</div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">113</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                      <a href="/categories/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">30</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">48</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#排序"><span class="nav-number">1.</span> <span class="nav-text">排序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#筛选"><span class="nav-number">2.</span> <span class="nav-text">筛选</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分类汇总"><span class="nav-number">3.</span> <span class="nav-text">分类汇总</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#条件格式"><span class="nav-number">4.</span> <span class="nav-text">条件格式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#透视表的使用"><span class="nav-number">5.</span> <span class="nav-text">透视表的使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#字段布局"><span class="nav-number">6.</span> <span class="nav-text">字段布局</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#透视表7个方法"><span class="nav-number">7.</span> <span class="nav-text">透视表7个方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#透视数据差异"><span class="nav-number">8.</span> <span class="nav-text">透视数据差异</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#透视表两大利器"><span class="nav-number">9.</span> <span class="nav-text">透视表两大利器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#透视表数据可视化分析"><span class="nav-number">10.</span> <span class="nav-text">透视表数据可视化分析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#图表"><span class="nav-number">11.</span> <span class="nav-text">图表</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+    
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2023</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">kl</span>
+
+  
+
+  
+</div>
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-user"></i>
+    </span>
+    <span class="site-uv" title="总访客量">
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+  
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-eye"></i>
+    </span>
+    <span class="site-pv" title="总访问量">
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    
+    
+      
+    
+  
+  <script color="0,0,0" opacity="0.8" zindex="-1" count="66" src="//cdn.jsdelivr.net/gh/theme-next/theme-next-canvas-nest@1/canvas-nest.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.1.1"></script>
+
+  <script src="/js/motion.js?v=7.1.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/affix.js?v=7.1.1"></script>
+
+  <script src="/js/schemes/pisces.js?v=7.1.1"></script>
+
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.1.1"></script>
+<script src="/js/post-details.js?v=7.1.1"></script>
+
+
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.1.1"></script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+    <script>
+  window.livereOptions = {
+    refer: '2019/05/10/Excel数据分析基本技能/'
+  };
+  (function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+    if (typeof LivereTower === 'function') { return; }
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+    e.parentNode.insertBefore(j, e);
+  })(document, 'script');
+</script>
+
+  
+
+
+  
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
+<script type="text/javascript" src="/js/src/clicklove.js"></script>
+<!-- <script type="text/javascript" src="/js/src/fish.js"></script> -->
+<!-- <script src='https://blog-static.cnblogs.com/files/elkyo/star.js'></script> -->
+<!-- 雪花特效 -->
+<!-- 雪花特效 -->
+<!-- <script type="text/javascript" src="\js\snow.js"></script> -->

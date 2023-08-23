@@ -1,0 +1,1536 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.1.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.1.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.1.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.1.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.1.1" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.1.1',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="Apache重要的三个基金会项目(hadoop,spark,storm)Spark提供了内存计算，减少了迭代计算时的IO开销；虽然，Hadoop已成为大数据的事实标准，但其MapReduce分布式计算模型仍存在诸多缺陷，而Spark不仅具备Hadoop MapReduce所具有的优点，且解决了Hadoop MapReduce的缺陷。 Spark:可以作为一个更加快速、高效的大数据计算平台。基于内存">
+<meta name="keywords" content="计算">
+<meta property="og:type" content="article">
+<meta property="og:title" content="spark入门">
+<meta property="og:url" content="http://kl66.top/2020/12/24/spark入门/index.html">
+<meta property="og:site_name" content="Mr kuai">
+<meta property="og:description" content="Apache重要的三个基金会项目(hadoop,spark,storm)Spark提供了内存计算，减少了迭代计算时的IO开销；虽然，Hadoop已成为大数据的事实标准，但其MapReduce分布式计算模型仍存在诸多缺陷，而Spark不仅具备Hadoop MapReduce所具有的优点，且解决了Hadoop MapReduce的缺陷。 Spark:可以作为一个更加快速、高效的大数据计算平台。基于内存">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://kl66.top/2020/12/24/spark入门/1609144230200.png">
+<meta property="og:image" content="http://kl66.top/2020/12/24/spark入门/a5c6525ad8f559b0511319b4e1ec76e.png">
+<meta property="og:image" content="http://kl66.top/2020/12/24/spark入门/spark生态.png">
+<meta property="og:image" content="http://kl66.top/2020/12/24/spark入门/360截图17290508434977.png">
+<meta property="og:updated_time" content="2022-03-30T06:05:40.765Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="spark入门">
+<meta name="twitter:description" content="Apache重要的三个基金会项目(hadoop,spark,storm)Spark提供了内存计算，减少了迭代计算时的IO开销；虽然，Hadoop已成为大数据的事实标准，但其MapReduce分布式计算模型仍存在诸多缺陷，而Spark不仅具备Hadoop MapReduce所具有的优点，且解决了Hadoop MapReduce的缺陷。 Spark:可以作为一个更加快速、高效的大数据计算平台。基于内存">
+<meta name="twitter:image" content="http://kl66.top/2020/12/24/spark入门/1609144230200.png">
+
+
+
+
+
+  
+  
+  <link rel="canonical" href="http://kl66.top/2020/12/24/spark入门/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>spark入门 | Mr kuai</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Mr kuai</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">追忆似水流年</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-meh-o"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-legal"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-ravelry"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-snowflake-o"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://kl66.top/2020/12/24/spark入门/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="kl">
+      <meta itemprop="description" content="66其实不太6">
+      <meta itemprop="image" content="/images/head.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mr kuai">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">spark入门
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2020-12-24 09:53:59" itemprop="dateCreated datePublished" datetime="2020-12-24T09:53:59+08:00">2020-12-24</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2022-03-30 14:05:40" itemprop="dateModified" datetime="2022-03-30T14:05:40+08:00">2022-03-30</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/大数据/" itemprop="url" rel="index"><span itemprop="name">大数据</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon">
+            <i class="fa fa-eye"></i>
+             阅读次数： 
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h5 id="Apache重要的三个基金会项目-hadoop-spark-storm"><a href="#Apache重要的三个基金会项目-hadoop-spark-storm" class="headerlink" title="Apache重要的三个基金会项目(hadoop,spark,storm)"></a>Apache重要的三个基金会项目(hadoop,spark,storm)</h5><p>Spark提供了内存计算，减少了迭代计算时的IO开销；虽然，Hadoop已成为大数据的事实标准，但其MapReduce分布式计算模型仍存在诸多缺陷，而Spark不仅具备Hadoop MapReduce所具有的优点，且解决了Hadoop MapReduce的缺陷。</p>
+<p>Spark:可以作为一个更加快速、高效的大数据计算平台。基于内存的大数据并行计算框架.将计算分解成多个任务在不同的机器上运行.</p>
+<p>别人的学习总结:<a href="https://blog.csdn.net/qq_33247435/article/details/83653584#8Spark_71" target="_blank" rel="noopener">https://blog.csdn.net/qq_33247435/article/details/83653584#8Spark_71</a></p>
+<h5 id="spark的概念"><a href="#spark的概念" class="headerlink" title="spark的概念"></a>spark的概念</h5><p>​    1.$RDD$(resilient distribute dataset 弹性分布式训练集).是分布式内存里的一个抽象概念,表示的是高度受限的共享内存模型</p>
+<p>​    2.$DAG$(directed acyclic gragh),有向无环图,表明了RDD之间的依赖关系</p>
+<p>​    3.$EXECUTOR:$运行在工作节点上的一个进程,负责运行任务,以及应用程序存储数据</p>
+<p>​    4.$程序:$编写的spark程序</p>
+<p>​    5.$任务:$运行在executor上的工作单元</p>
+<p>​    6.$作业:$包含多个RDD及对应RDD上的操作</p>
+<p>​    7.$阶段:$作业的基本调度单位,一个作业会分成多组任务,每组任务称为阶段</p>
+<p>​    8.$shuffle过程:$简单认为就是将不同节点上的相同key拉到同一个节点上计算</p>
+<p>​    9.$SparkSession:$代表了spark集群中的一个连接,在应用程序实例化的时候启动</p>
+<p>====&gt;spark的入口,2.0之前spark core是sparkcontext,spark sql是sqlcontext,sparkstreaming应用使用streamingContext.2.0之后,sparksession对象把所有的对象组合到一起.称为所有程序统一的入口</p>
+<h5 id="RDD详解-待补充"><a href="#RDD详解-待补充" class="headerlink" title="RDD详解(待补充)"></a>RDD详解(待补充)</h5><h3 id="pass"><a href="#pass" class="headerlink" title="pass"></a>pass</h3><h5 id="spark运行架构"><a href="#spark运行架构" class="headerlink" title="spark运行架构"></a>spark运行架构</h5><p><img src="/2020/12/24/spark入门/1609144230200.png" alt="1609144230200"></p>
+<p>​    $driver:$每个应用的任务控制节点</p>
+<p>​    $cluster  manager:$集群资源管理器</p>
+<p>​    $node:$运行作业任务的工作节点</p>
+<p>​    $Executor$:每个工作节点上负责具体任务的执行进程</p>
+<p>​    $\textcolor{red}{关系:}$</p>
+<p>​        一个应用由一个一个控制节点(driver)和若干个作业构成,一个作业由若干个阶段构成,一个阶段由多个任务构成.当执行一个应用时,任务控制节点会向集群管理器申请资源,启动executor,并向executor发送应用程序和代码和文件.然后在executor上执行任务,运行结束后,执行结果会返回给任务控制节点,或者写到数据库中.</p>
+<p>​    $\textcolor{red}{Executor优点:}$</p>
+<p>​        1.采用的是多线程(map reduce 使用的是进程模型),减少了开销</p>
+<p>​        2.executor中有一个blockmanager存储模块,会将内存和磁盘作为存储模块,当需要多轮迭代计算的时候,可以将数据存储到这个模块.有效减少了IO开销；或者在交互式查询场景下，预先将表缓存到该存储系统上，从而可以提高读写IO性能。</p>
+<h5 id="spark运行基本流程"><a href="#spark运行基本流程" class="headerlink" title="spark运行基本流程"></a>spark运行基本流程</h5><pre><code>1.当一个spark应用被提交时,需要为这个应用提供基本的运行环境,即有任务控制节点(driver)创建一个sparkcontext,负责和资源管理器的通信以及资源的申请和任务的分配和监控等.sparkcontext会向资源管理器注册并申请运行Executor的资源.
+</code></pre><p>​    2.资源管理器为Executor分配资源,并启动Executor进程,Executor运行情况将随着心跳发送到资源管理器上</p>
+<p>​    3.任务在Executor上运行,并将结果返回给任务调度器,然后反馈给DAG调度器,运行完毕,写入资源并释放所有资源.</p>
+<p>​    $\textcolor{orange}{详解}$</p>
+<p>​    1.构建spark applicantion的运行环境,启动SparkContext</p>
+<p>​    2.sparkcontext向资源管理器申请运行Executor</p>
+<p>​    3.Executor向Sparkcontext申请Task</p>
+<p>​    4.SparkContext将应用程序分发给Executor</p>
+<p>​    5.sparkcontext构建DAG图,将DAG图分解成Stage,将tasket发送给Task Scheduler,最后由Task Scheduler将Task发送给Executor运行</p>
+<p>​    6.Task在Executor上运行,运行完释放所有资源</p>
+<p>​    $\textcolor{red}{SparkContext原理:}$</p>
+<p>​        依据RDD的依赖关系构建DAG图,然后将DAG图提交给DAG调度器进行解析,将DAG图分解成多个阶段,并计算出各个阶段的依存关系,然后把一个个任务集提交给底层的调度器进行处理.Executor向sparkcontext申请人无,任务调度器将任务发送给Executor并将应用程序代码发送给Executor</p>
+<p><img src="/2020/12/24/spark入门/a5c6525ad8f559b0511319b4e1ec76e.png" alt="1609221852735"></p>
+<h5 id="spark-on-standalone流程"><a href="#spark-on-standalone流程" class="headerlink" title="spark on standalone流程"></a>spark on standalone流程</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">1、我们提交一个任务，任务就叫Application</span><br><span class="line">2、初始化程序的入口SparkContext，</span><br><span class="line">　　2.1 初始化DAG Scheduler</span><br><span class="line">　　2.2 初始化Task Scheduler</span><br><span class="line">3、Task Scheduler向master去进行注册并申请资源（CPU Core和Memory）</span><br><span class="line">4、Master根据SparkContext的资源申请要求和Worker心跳周期内报告的信息决定在哪个Worker上分配资源，然后在该Worker上获取资源，然后启动StandaloneExecutorBackend；顺便初</span><br><span class="line">始化好了一个线程池</span><br><span class="line">5、StandaloneExecutorBackend向Driver(SparkContext)注册,这样Driver就知道哪些Executor为他进行服务了。</span><br><span class="line">　  到这个时候其实我们的初始化过程基本完成了，我们开始执行transformation的代码，但是代码并不会真正的运行，直到我们遇到一个action操作。生产一个job任务，进行stage的划分</span><br><span class="line">6、SparkContext将Applicaiton代码发送给StandaloneExecutorBackend；并且SparkContext解析Applicaiton代码，构建DAG图，并提交给DAG Scheduler分解成Stage（当碰到Action操作   时，就会催生Job；每个Job中含有1个或多个Stage，Stage一般在获取外部数据和shuffle之前产生）。</span><br><span class="line">7、将Stage（或者称为TaskSet）提交给Task Scheduler。Task Scheduler负责将Task分配到相应的Worker，最后提交给StandaloneExecutorBackend执行；</span><br><span class="line">8、对task进行序列化，并根据task的分配算法，分配task</span><br><span class="line">9、对接收过来的task进行反序列化，把task封装成一个线程</span><br><span class="line">10、开始执行Task，并向SparkContext报告，直至Task完成。</span><br><span class="line">11、资源注销</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">心跳是分布式技术的基础，我们知道在Spark中，是有一个Master和众多的Worker，那么Master怎么知道每个Worker的情况呢，这就需要借助心跳机制了。心跳除了传输信息，另一个主要的作用就是Worker告诉Master它还活着，当心跳停止时，方便Master进行一些容错操作，比如数据转移备份等等。</span><br></pre></td></tr></table></figure>
+<h5 id="spark部署"><a href="#spark部署" class="headerlink" title="spark部署"></a>spark部署</h5><p>​    $\textcolor{red}{三种部署方式:}$1.standalone 2.spark on Mesos  3.spark on YARN</p>
+<p>​    $\textcolor{green}{standalone:}$</p>
+<p>​        分布式集群服务，自带的完整服务，Spark自己进行资源管理和任务监控,一定程度上来说,此模式是其他两个模式的基础</p>
+<p>​    $\textcolor{green}{Sapark on Mesos:}$</p>
+<p>​        官方推荐(都是apache的),spark设计之初就考虑支持mesos,spark在mesos上比在YARN上更灵活</p>
+<p>​        $Mesos$是一种资源调度管理框架</p>
+<p>​        $两种调度模式:$</p>
+<p>​        1.粗粒度模式</p>
+<p>​            每个应用程序的运行环境由一个driver和若干个executor组成.其中,每个executor占用若干资源,内部可运行多个Task,应用程序在开始之前需要将运行环境的资源全部申请好,且运行过程中要一直占用这些资源,即使不用.当程序结束时,会进行回收.</p>
+<p>​        2.细粒度模式</p>
+<p>​            粗粒度会造成很大的资源浪费,动态分配</p>
+<p>​    $\textcolor{red}{Spark on Yarn}$</p>
+<p>​    是一种最有前景的部署模式。但限于YARN自身的发展，目前仅支持粗粒度模式    </p>
+<p>​    Spark可运行于YARN之上，与Hadoop进行统一部署</p>
+<p>​    分布式部署集群，这是由于YARN(资源管理器)上的Container资源是不可以动态伸缩的，一旦Container启动之后，可使用的资源不能再发生变化.</p>
+<h5 id="spark相对hadoop的优势"><a href="#spark相对hadoop的优势" class="headerlink" title="spark相对hadoop的优势"></a>spark相对hadoop的优势</h5><p>​    hadoop的mapreduce计算模型延迟过高,无法胜任$\textcolor{red}{实时}$和$\textcolor{red}{快速}$计算,只适用离线批处理</p>
+<p>​    $hadoop的缺点$:</p>
+<p>​        1.表达能力有限.分为map阶段和reduce阶段.难以描述复杂数据处理过程.</p>
+<p>​         2.磁盘io开销大.每次执行都需要从磁盘读取数据,且存的时候需要将中间数据存到磁盘中.</p>
+<p>​         3.延迟高,一次计算可能需要分解成一系列按顺序执行的MapReduce任务,任务之间的衔接涉及到IO开销,会产生较高的延迟.</p>
+<p>​    $Spark的优点$:</p>
+<p>​        1.计算模式也属于MapReduce,但不局限于map和reduce操作,提供多种数据类型操作,比MapReduce更灵活</p>
+<p>​        2.spark提供了内存计算,中间结果直接放到内存中</p>
+<p>​        3.spark使用的是DAG进行任务调度,比MapReduce的迭代执行机制强</p>
+<p>​    $整体:$</p>
+<p>​        spark最大的优点就是将计算结果,中间数据存储到内存中,大大减少了IO开销.因为spark更适合迭代运算多的数据挖掘和机器学习运算</p>
+<p>​    $总:$尽管整体上spark比hadoop要好,但是无法完全替代hadoop,通常是用来替代hadoop的MapReduce部分</p>
+<h5 id="spark生态"><a href="#spark生态" class="headerlink" title="spark生态"></a>spark生态</h5><p><img src="/2020/12/24/spark入门/spark生态.png" alt="spark生态"></p>
+<p>​    spark生态主要包含$\textcolor{red}{Spark Core}$ ,$\textcolor{red}{Spark Sql}$,$\textcolor{red}{Spark Screaming}$,$\textcolor{red}{MLlib}$,$\textcolor{red}{Graphx}$</p>
+<p>​    $\textcolor{red}{Spark Core:}$Spark Core包含Spark的基本功能，如内存计算、任务调度、部署模式、故障恢复、存储管理等。通常所说的Apache Spark，就是指Spark Core</p>
+<p>​    $\textcolor{red}{Spark Sql:}$Spark SQL允许直接处理RDD，同时也可查询Hive、HBase等外部数据源。Spark SQL的一个重要特点是其能够统一处理关系表和RDD，使得开发人员可以轻松地使用SQL命令进行查询，并进行更复杂的数据分析；</p>
+<p>​    $\textcolor{red}{Spark Screaming:}$    Spark Streaming支持高吞吐量、可容错处理的实时流数据处理，其核心思路是将流式计算分解成一系列短小的批处理作业。</p>
+<p>​    $\textcolor{red}{Graphx:}$GraphX是Spark中用于图计算的API</p>
+<p>​    $\textcolor{red}{MLlib:}$MLlib提供了常用机器学习算法的实现，包括聚类、分类、回归、协同过滤等</p>
+<h5 id="在pyspark中执行词频统计"><a href="#在pyspark中执行词频统计" class="headerlink" title="在pyspark中执行词频统计"></a>在pyspark中执行词频统计</h5><p>​    $案例1.词频统计$</p>
+<p>​        ①首先创建一个worldcount目录(shell 命令下)</p>
+<p>​        ②然后创建一个txt文件,里面随便写一些文字.作为统计的原材料</p>
+<p>​        ③词频统计需要启动pyspark.cd /usr/local/spark   然后  ./bin/pyspark</p>
+<p>​        ④加载文件—&gt;确定是在本地还是在分布式的hdfs上</p>
+<p>​        $本地$:</p>
+<p>​            textFile = sc.textFile(‘file:///usr/local/spark/mycode/wordcount/word.txt’)(要加载本地文件，必须采用“file:///”开头的这种格式)–&gt;惰性的,需要first()这种才能打印出数据</p>
+<p>​            textFile.first()(打印第一行数据,文件不存在会显示拒绝连接)</p>
+<p>​        $HDFS$:</p>
+<p>​            需要首先启动Hadoop中的HDFS组件</p>
+<p>​            1.  cd /usr/local/hadoop</p>
+<p>​            2.  ./sbin/start-dfs.sh</p>
+<p>​            $\textcolor{red}{上传文件到hdfs上}$./bin/hdfs dfs -put /usr/local/spark/mycode/wordcount/word.txt .</p>
+<p>​            3.加载文件textFile = sc.textFile(“hdfs://localhost:9000/user/hadoop/word.txt”)–&gt;惰性的</p>
+<p>​        ⑤写代码,在pyspark窗口(类似于ipython那种&gt;&gt;&gt;),代码如下</p>
+<p>​            textFile = sc.textFile(“file:///usr/local/spark/mycode/wordcount/word.txt”)</p>
+<p>​            wordCount = textFile.flatMap(lambda line: line.split(“ “)).map(lambda word: (word,1)).reduceByKey(lambda a, b : a + b)</p>
+<p>​             wordCount.collect()</p>
+<p>​            $\textcolor{red}{代码解释:}$</p>
+<p>​                 1.第一行即从本地加载文件数据</p>
+<p>​                 2.第二行textFile.flatMap(lambda line: line.split(“ “))表示按行处理,每行按照空白符分割.这样每行得到一个单词集合.textFile.flatMap()操作就把这多个单词集合“拍扁”得到一个大的单词集合.map(lambda word: (word,1))会遍历单词集合中的每一个单词,并执行Lamda表达式word : (word, 1).</p>
+<p>​                程序执行到这里，已经得到一个RDD，这个RDD的每个元素是(key,value)形式的tuple。最后，针对这个RDD，执行reduceByKey(labmda a, b : a + b)操作，这个操作会把所有RDD元素按照key进行分组，然后使用给定的函数（这里就是Lamda表达式：a, b : a + b）</p>
+<p>​                如:(“hadoop”,1)和(“hadoop”,1)—–&gt;(“hadoop”,2)</p>
+<h5 id="编写独立应用程序执行词频统计"><a href="#编写独立应用程序执行词频统计" class="headerlink" title="编写独立应用程序执行词频统计"></a>编写独立应用程序执行词频统计</h5><p>​    1.创建test.py文件内容如下</p>
+<p>​        from pyspark import SparkContext</p>
+<p>​        sc = SparkContext( ‘local’, ‘test’)</p>
+<p>​        textFile = sc.textFile(“file:///usr/local/spark/mycode/wordcount/word.txt”)</p>
+<p>​        wordCount = textFile.flatMap(lambda line: line.split(“ “)).map(lambda word: (word,1)).reduceByKey(lambda a, b : a + b)</p>
+<p>​        wordCount.foreach(print)</p>
+<h5 id="在集群上运行spark"><a href="#在集群上运行spark" class="headerlink" title="在集群上运行spark"></a>在集群上运行spark</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">1.启动hadoop集群</span><br><span class="line">	①cd /usr/local/hadoop/</span><br><span class="line">	②sbin/start-all.sh</span><br><span class="line">2.启动spark的master节点和索引slaves节点</span><br><span class="line">	①cd /usr/local/spark/</span><br><span class="line">	②sbin/start-master.sh</span><br><span class="line">	③sbin/start-slaves.sh</span><br><span class="line">3.介绍两种资源管理方式standalone 和 spark on yarn</span><br><span class="line">独立资源管理器:</span><br><span class="line">	1&gt;安装jar包</span><br><span class="line">		向独立集群管理器提交应用,需要把spark://master:7077作为主节点参数传递给spark-submit.</span><br><span class="line">		eg:bin/spark-submit --class org.apache.spark.examples.SparkPi --master spark://master:7077 examples/jars/spark-examples_2.11-2.0.2.jar 100 2&gt;&amp;1 | grep &quot;Pi is roughly&quot;</span><br><span class="line">	2&gt;在集群中运行pyspark</span><br><span class="line">		①在shell中输入命令进入pyspark中</span><br><span class="line">			cd /usr/local/spark/</span><br><span class="line">			bin/pyspark --master spark://master:7077</span><br><span class="line">spark on yarn:</span><br><span class="line">	1&gt;安装应用程序jar包</span><br><span class="line">		需要把yarn-cluster作为主节点参数传递给spark-submit</span><br><span class="line">	2&gt;在集群中运行pyspark</span><br><span class="line">		①bin/pyspark --master yarn</span><br></pre></td></tr></table></figure>
+<p>$\textcolor{red}{spark-submit}$ 可以提交任务到 spark 集群执行，也可以提交到 hadoop 的 yarn 集群执行。</p>
+<p>bin/spark-submit –class org.apache.spark.examples.SparkPi –master表示以集群模式启动spark</p>
+<h5 id="Jupyter-Notebook调试PySpark"><a href="#Jupyter-Notebook调试PySpark" class="headerlink" title="Jupyter Notebook调试PySpark"></a>Jupyter Notebook调试PySpark</h5><h5 id="RDD的弹性"><a href="#RDD的弹性" class="headerlink" title="RDD的弹性"></a>RDD的弹性</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1.自动的进行内存和磁盘的存储切换</span><br><span class="line">2.Task如果失败，会自动进行特定次数的重试</span><br><span class="line">3.数据分片的高度弹性（coalesce）,优先内存,内存不够才放磁盘</span><br></pre></td></tr></table></figure>
+<p>主从架构 和 P2P架构</p>
+<p>宽依赖 债依赖<br>shuffle操作</p>
+<p>fork和join </p>
+<h5 id="RDD运行原理"><a href="#RDD运行原理" class="headerlink" title="RDD运行原理"></a>RDD运行原理</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">1.RDD无法直接更改数据,每次操作都会生成一个新的RDD</span><br><span class="line">2.每个RDD都会分成很多个分区,每个分区都是部分数据集片段,一个RDD的不同分区可以保存到不同集群的不同节点上,从而可以实现在不同节点的并行计算</span><br><span class="line">3.执行过程:读入外部的数据源（或者内存中的集合）进行 RDD 创建；</span><br><span class="line">		RDD 经过一系列的 “转换” 操作，每一次都会产生不同的 RDD，供给下一个转换使用；</span><br><span class="line">		最后一个 RDD 经过 “行动” 操作进行处理，并输出指定的数据类型和值。</span><br><span class="line">		RDD 采用了惰性调用，即在 RDD 的执行过程中，所有的转换操作都不会执行真正的操作，只会记录依赖关			系，而只有遇到了行动操作，才会触发真正的计算，并根据之前的依赖关系得到最终的结果。</span><br><span class="line">4.RDD发生行为操作并生成输出数据时，Spark 才会根据 RDD 的依赖关系生成有向无环图（DAG），并从起点开始执行真正的计算。正是 RDD 的这种惰性调用机制，使得转换操作得到的中间结果不需要保存，而是直接管道式的流入到下一个操作进行处理</span><br></pre></td></tr></table></figure>
+<h5 id="RDD可以实现高效计算的原因"><a href="#RDD可以实现高效计算的原因" class="headerlink" title="RDD可以实现高效计算的原因"></a>RDD可以实现高效计算的原因</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1.高效的容错性。可以直接利用 RDD 之间的依赖关系来重新计算得到丢失的分区。</span><br><span class="line">2.中间结果持久化到内存。不需要存储到磁盘,降低了IO.</span><br><span class="line">3.存放的数据可以是 Java 对象，避免了不必要的对象序列化和反序列化开销。</span><br><span class="line">	序列化:将数据转换为字节存储的过程(存储数据到磁盘)</span><br><span class="line">	反序列化:将二进制字节码转换成java对象(从磁盘读数据)</span><br></pre></td></tr></table></figure>
+<h5 id="RDD之间的依赖关系"><a href="#RDD之间的依赖关系" class="headerlink" title="RDD之间的依赖关系"></a>RDD之间的依赖关系</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">宽依赖:父 RDD 与子 RDD 之间的一对多关系，即一个父 RDD 转换成多个子 RDD</span><br><span class="line"></span><br><span class="line">窄依赖:父 RDD 和子 RDD 之间的一对一关系或者多对一关系,主要包括的操作有 map、filter、union 等</span><br><span class="line"></span><br><span class="line">宽依赖的RDD通常伴随着Shuffle操作(非常复杂且昂贵的操作,包含在executors和machines上的数据复制)</span><br><span class="line">首先需要计算好所有父分区数据，然后在节点之间进行 Shuffle.在进行数据恢复时，窄依赖只需要根据父 RDD 分区重新计算丢失的分区即可，而且可以并行地在不同节点进行重新计算。而对于宽依赖而言，单个节点失效通常意味着重新计算过程会涉及多个父 RDD 分区，开销较大。</span><br></pre></td></tr></table></figure>
+<p><img src="/2020/12/24/spark入门/360截图17290508434977.png" alt="360截图17290508434977"></p>
+<h5 id="RDD编程"><a href="#RDD编程" class="headerlink" title="RDD编程"></a>RDD编程</h5><p>######1.通过加载数据创建RDD</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">from pyspark import SparkContext</span><br><span class="line">sc = SparkContext( &apos;local&apos;, &apos;test&apos;)</span><br><span class="line">lines = sc.textFile(&quot;hdfs://localhost:9000/user/hadoop/word.txt&quot;)  #hdfs,HBase、Cassandra、Amazon S3等外部数据源中加载数据集等文件系统加载</span><br><span class="line">textFile = sc.textFile(&apos;file:///usr/local/spark/mycode/wordcount/word.txt&apos;) #本地节点加载</span><br><span class="line"></span><br><span class="line">注意:</span><br><span class="line">	1.如果使用了本地文件系统的路径,必须保证在所有的worker节点上,也可以采用相同的路径访问到改文件</span><br><span class="line">	(既可以复制到每个worker节点上,也可以使用网络挂载共享文件系统)</span><br><span class="line">	2.textFile输入的参数可以是文件名,可以说目录,也可以说压缩文件等.</span><br></pre></td></tr></table></figure>
+<h6 id="2-通过并行集合-数组-创建RDD"><a href="#2-通过并行集合-数组-创建RDD" class="headerlink" title="2.通过并行集合(数组)创建RDD"></a>2.通过并行集合(数组)创建RDD</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">调用sparkcontext的parallelize方法,在Driver中一个已存在的集合(数组)上创建</span><br><span class="line">nums = [1,2,3,4]</span><br><span class="line">rdd = sc.parallelize(nums)</span><br></pre></td></tr></table></figure>
+<h5 id="RDD操作"><a href="#RDD操作" class="headerlink" title="RDD操作"></a>RDD操作</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1.转换:基于现有的数据集创建一个新的数据集</span><br><span class="line">2.行动:在数据集上进行运算,返回计算值</span><br></pre></td></tr></table></figure>
+<h6 id="1-转换操作"><a href="#1-转换操作" class="headerlink" title="1.转换操作"></a>1.转换操作</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">对于RDD而言，每一次转换操作都会产生不同的RDD，供给下一个“转换”使用。转换得到的RDD是惰性求值的，也就是说，整个转换过程只是记录了转换的轨迹，并不会发生真正的计算，只有遇到行动操作时，才会发生真正的计算，开始从血缘关系源头开始，进行物理的转换操作。</span><br><span class="line"></span><br><span class="line">下面列出一些常见的转换操作（Transformation API）：</span><br><span class="line">* filter(func)：筛选出满足函数func的元素，并返回一个新的数据集</span><br><span class="line">* map(func)：将每个元素传递到函数func中，并将结果返回为一个新的数据集</span><br><span class="line">* flatMap(func)：与map()相似，但每个输入元素都可以映射到0或多个输出结果</span><br><span class="line">* groupByKey()：应用于(K,V)键值对的数据集时，返回一个新的(K, Iterable)形式的数据集</span><br><span class="line">* reduceByKey(func)：应用于(K,V)键值对的数据集时，返回一个新的(K, V)形式的数据集，其中的每个值是将每个key传递到函数func中进行聚合</span><br></pre></td></tr></table></figure>
+<h6 id="2-行动操作"><a href="#2-行动操作" class="headerlink" title="2.行动操作"></a>2.行动操作</h6><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">行动操作是真正触发计算的地方。Spark程序执行到行动操作时，才会执行真正的计算，从文件中加载数据，完成一次又一次转换操作，最终，完成行动操作得到结果。</span><br><span class="line">下面列出一些常见的行动操作（Action API）：</span><br><span class="line">* count() 返回数据集中的元素个数</span><br><span class="line">* collect() 以数组的形式返回数据集中的所有元素</span><br><span class="line">* first() 返回数据集中的第一个元素</span><br><span class="line">* take(n) 以数组的形式返回数据集中的前n个元素</span><br><span class="line">* reduce(func) 通过函数func（输入两个参数并返回一个值）聚合数据集中的元素</span><br><span class="line">* foreach(func) 将数据集中的每个元素传递到函数func中运行*</span><br></pre></td></tr></table></figure>
+<p>######3.惰性机制解释</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">lines = sc.textFile(&quot;data.txt&quot;)</span><br><span class="line">lineLengths = lines.map(lambda s : len(s))</span><br><span class="line">totalLength = lineLengths.reduce( lambda a, b : a + b)</span><br><span class="line"></span><br><span class="line">1.第一行textFile读取文件构建一个RDD,textFile()只是一个转换操作,并不会直接将数据读到内存中,这时的lines只是一个指向这个文件的指针.</span><br><span class="line">2.map是一个转换操作,并不会立即计算每行的长度</span><br><span class="line">3.reduce是一个动作,这时就会触发真正的计算.spark会把计算分解和产能很多个小任务在不同的机器上运行,每台机器运行位于属于它的map和reduce.最后把结果返回给Driver.</span><br></pre></td></tr></table></figure>
+<h6 id="4-持久化"><a href="#4-持久化" class="headerlink" title="4.持久化"></a>4.持久化</h6><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">由于RDD采用的是惰性求值的方法,每次遇到行动操作都会从头开始计算,当程序有多个行动时,这样的代价就会很大.</span><br><span class="line"></span><br><span class="line">为了解决这个问题,通过持久化(缓存)机制避免重复计算的开销.通过persisit()方法对RDD标记为持久化(当触发第一个行动操作后,会将计算结果持久化,持久化的后的RDD将会保留在计算节点的内存中被后面的行动操作重复使用</span><br><span class="line"></span><br><span class="line">unpersist()方法手动地把持久化的RDD从缓存中移除。</span><br><span class="line"></span><br><span class="line">list = [<span class="string">"Hadoop"</span>,<span class="string">"Spark"</span>,<span class="string">"Hive"</span>]</span><br><span class="line">rdd = sc.parallelize(list)</span><br><span class="line">rdd.cache()  //会调用persist(MEMORY_ONLY)，但是，语句执行到这里，并不会缓存rdd，这是rdd还没有被计算生成</span><br><span class="line">print(rdd.count()) //第一次行动操作，触发一次真正从头到尾的计算，这时才会执行上面的rdd.cache()，把这个rdd放到缓存中</span><br><span class="line">print(<span class="string">','</span>.join(rdd.collect())) //第二次行动操作，不需要触发从头到尾的计算，只需要重复使用上面缓存中的rdd</span><br></pre></td></tr></table></figure>
+<p>$rdd.foreach(print)或者rdd.map(print)打印输出$</p>
+<p>$rdd.collect().foreach(print):将所有节点的数据打印,容易爆内存$</p>
+<p>$rdd.take(100).foreach(print):打印RDD部分数据$</p>
+<h6 id="5-键值对RDD"><a href="#5-键值对RDD" class="headerlink" title="5,键值对RDD"></a>5,键值对RDD</h6><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#首先创建键值对RDD---两种方法</span></span><br><span class="line"><span class="comment">##方法1.读文件</span></span><br><span class="line">lines = sc.textFile(<span class="string">"file:///usr/local/spark/mycode/pairrdd/word.txt"</span>)</span><br><span class="line">pairRDD = lines.flatMap(<span class="keyword">lambda</span> line : line.split(<span class="string">" "</span>)).map(<span class="keyword">lambda</span> word : (word,<span class="number">1</span>))</span><br><span class="line">pairRDD.foreach(<span class="keyword">print</span>)</span><br><span class="line"><span class="comment">##方法2.通过列表</span></span><br><span class="line">list = [<span class="string">"Hadoop"</span>,<span class="string">"Spark"</span>,<span class="string">"Hive"</span>,<span class="string">"Spark"</span>]</span><br><span class="line">rdd = sc.parallelize(list)</span><br><span class="line">pairRDD = rdd.map(<span class="keyword">lambda</span> word : (word,<span class="number">1</span>))</span><br><span class="line">pairRDD.foreach(<span class="keyword">print</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#输出</span></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="string">(Hadoop,1)</span></span><br><span class="line"><span class="string">(Spark,1)</span></span><br><span class="line"><span class="string">(Hive,1)</span></span><br><span class="line"><span class="string">(Spark,1)</span></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#-----------------------------常用的键值对转换操作------------------------------</span></span><br><span class="line"><span class="comment">#reduceByKey()、groupByKey()、sortByKey()、join()、cogroup()等</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#==============================reduceByKey()==================================</span></span><br><span class="line"><span class="comment">#用func函数合并具有相同键的值</span></span><br><span class="line">pairRDD.reduceByKey(<span class="keyword">lambda</span> a,b : a+b).foreach(<span class="keyword">print</span>) <span class="comment">#a,b都表示键对应的value,表示按照键合并,将值相加</span></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="string">输出</span></span><br><span class="line"><span class="string">(Spark,2)</span></span><br><span class="line"><span class="string">(Hive,1)</span></span><br><span class="line"><span class="string">(Hadoop,1)</span></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#==============================groupByKey()==================================</span></span><br><span class="line"><span class="comment">#按照键进行分组</span></span><br><span class="line">pairRDD.groupByKey().foreach(<span class="keyword">print</span>)</span><br><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="string">输出</span></span><br><span class="line"><span class="string">(Spark,(1,1))</span></span><br><span class="line"><span class="string">(Hive,(1,))</span></span><br><span class="line"><span class="string">(Hadoop,(1,))</span></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#==============================keys()==================================</span></span><br><span class="line">pairRDD.keys().foreach(<span class="keyword">print</span>) <span class="comment">#&#123;“spark”,”spark”,”hadoop”,”hadoop”&#125;</span></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="string">输出</span></span><br><span class="line"><span class="string">hadoop</span></span><br><span class="line"><span class="string">spark</span></span><br><span class="line"><span class="string">hive</span></span><br><span class="line"><span class="string">spark</span></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#==============================values()==================================</span></span><br><span class="line">pairRDD.values().foreach(<span class="keyword">print</span>)<span class="comment">#&#123;1,2,3,5&#125;</span></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="string">输出</span></span><br><span class="line"><span class="string">1</span></span><br><span class="line"><span class="string">2</span></span><br><span class="line"><span class="string">3</span></span><br><span class="line"><span class="string">5</span></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#==============================sortByKey()==================================</span></span><br><span class="line">pairRDD.sortByKey()  <span class="comment">#返回根据键排序的RDD</span></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="string">输出</span></span><br><span class="line"><span class="string">(Hadoop,1)</span></span><br><span class="line"><span class="string">(Hive,1)</span></span><br><span class="line"><span class="string">(Spark,1)</span></span><br><span class="line"><span class="string">(Spark,1)</span></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#==============================mapValues()==================================</span></span><br><span class="line">pairRDD.mapValues(<span class="keyword">lambda</span> x : x+<span class="number">1</span>)  <span class="comment">#对RDD键值对的所有value做相同的处理</span></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="string">输出</span></span><br><span class="line"><span class="string">(Hadoop,2)</span></span><br><span class="line"><span class="string">(Spark,2)</span></span><br><span class="line"><span class="string">(Hive,2)</span></span><br><span class="line"><span class="string">(Spark,2)</span></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#==============================join()==================================</span></span><br><span class="line">pairRDD1 = sc.parallelize([(<span class="string">'spark'</span>,<span class="number">1</span>),(<span class="string">'spark'</span>,<span class="number">2</span>),(<span class="string">'hadoop'</span>,<span class="number">3</span>),(<span class="string">'hadoop'</span>,<span class="number">5</span>)])</span><br><span class="line">pairRDD2 = sc.parallelize([(<span class="string">'spark'</span>,<span class="string">'fast'</span>)])</span><br><span class="line">pairRDD1.join(pairRDD2).foreach(<span class="keyword">print</span>)   <span class="comment">#join默认内连接,相同的键才会返回</span></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="string">输出</span></span><br><span class="line"><span class="string">('spark',1,'fast')</span></span><br><span class="line"><span class="string">('spark',2,'fast')</span></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#===================================实例===================================</span></span><br><span class="line"><span class="comment">#计算每个键对应的平均值</span></span><br><span class="line">rdd = sc.parallelize([(<span class="string">"spark"</span>,<span class="number">2</span>),(<span class="string">"hadoop"</span>,<span class="number">6</span>),(<span class="string">"hadoop"</span>,<span class="number">4</span>),(<span class="string">"spark"</span>,<span class="number">6</span>)])</span><br><span class="line">rdd.mapValues(<span class="keyword">lambda</span> x : (x,<span class="number">1</span>)).reduceByKey(<span class="keyword">lambda</span> x,y : (x[<span class="number">0</span>]+y[<span class="number">0</span>],x[<span class="number">1</span>] + y[<span class="number">1</span>])).mapValues(<span class="keyword">lambda</span> x : (x[<span class="number">0</span>] / x[<span class="number">1</span>])).collect()</span><br><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="string">输出:</span></span><br><span class="line"><span class="string">[('hadoop', 5.0), ('spark', 4.0)]</span></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"></span><br><span class="line">collect()是一个行动操作，功能是以数组的形式返回数据集中的所有元素，当我们要实时查看一个RDD中的元素内容时，就可以调用collect()函数。</span><br></pre></td></tr></table></figure>
+<p>#####共享变量</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">目的:要在多个任务之间共享变量，或者在任务（Task）和任务控制节点（Driver Program）之间共享变量</span><br><span class="line">Spark提供了两种类型的变量：广播变量（broadcast variables）和累加器（accumulators）</span><br><span class="line">广播变量:用来把变量在所有节点的内存之间进行共享。</span><br><span class="line">累加器:则支持在所有不同节点之间进行累加计算（比如计数或者求和）。</span><br></pre></td></tr></table></figure>
+<h6 id="1-广播变量"><a href="#1-广播变量" class="headerlink" title="1.广播变量"></a>1.广播变量</h6><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">通过广播方式进行传播的变量，会经过序列化，然后在被任务使用时再进行反序列化。</span><br><span class="line"></span><br><span class="line">broadcastVar = sc.broadcast([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>])</span><br><span class="line">broadcastVar.value</span><br><span class="line"></span><br><span class="line">一旦广播变量创建后，普通变量v的值就不能再发生修改，从而确保所有节点都获得这个广播变量的相同的值。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">用途:经常需要把两个数据集组合起来获取结果数据集</span><br><span class="line">    方法1:可以直接以rdd形式连接两个数据集====&gt;但是可能会导致数据混洗(shuffle),代价很大</span><br><span class="line">    方法<span class="number">2</span>:将小的数据集初始化为广播变量,原理是将将变量复制到所有节点上</span><br><span class="line"></span><br><span class="line">目的:进程间共享数据</span><br><span class="line">    </span><br><span class="line"></span><br><span class="line">要点:</span><br><span class="line">    <span class="number">1.</span>使用广播变量避免了数据混洗</span><br><span class="line">    <span class="number">2.</span>每个节点复制一份数据而非每个任务复制一次</span><br><span class="line">    <span class="number">3.</span>广播变量可以被多个任务多次使用(广播变量的好处，不需要每个task带上一份变量副本，而是变成每个节点的executor才一份副本)</span><br></pre></td></tr></table></figure>
+<h6 id="2-累加器"><a href="#2-累加器" class="headerlink" title="2.累加器"></a>2.累加器</h6><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">通常可以被用来实现计数器（counter）和求和（sum）</span><br><span class="line">accum = sc.accumulator(<span class="number">0</span>)</span><br><span class="line">sc.parallelize([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>]).foreach(<span class="keyword">lambda</span> x : accum.add(x))</span><br><span class="line">accum.value</span><br></pre></td></tr></table></figure>
+<h5 id="RDD打印数据"><a href="#RDD打印数据" class="headerlink" title="RDD打印数据"></a>RDD打印数据</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1.rdd.foreach(print)</span><br><span class="line">2.rdd.collect()  ==可能导致内存溢出</span><br><span class="line">3.rdd.take(100)</span><br></pre></td></tr></table></figure>
+<p>##### </p>
+<p>RDD运行原理—-阶段的划分和RDD的运行过程</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">宽依赖窄依赖</span><br><span class="line">	宽依赖：父RDD的分区被子RDD的多个分区使用(一对一,多对一)</span><br><span class="line">	窄依赖：父RDD的每个分区都只被子RDD的一个分区使用 (一对多)</span><br><span class="line">shuffle操作:洗牌</span><br></pre></td></tr></table></figure>
+<p>fork and join机制</p>
+<p>####standalone环境配置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line">Spark standalone部署配置</span><br><span class="line">1.在home路径下创建文件夹spark,然后cd spark-----&gt;这个文件夹需要所有用户都可以使用</span><br><span class="line">1.配置JAVA环境</span><br><span class="line">(1)在spark文件夹下,创建java文件夹,然后cd java</span><br><span class="line">(2)将压缩包jdk-15.0.1_linux-x64_bin.tar.gz 上传到java目录下</span><br><span class="line">(3)解压缩jdk包.使用命令tar -xvf jdk-15.0.1_linux-x64_bin.tar.gz 会出现一个文件夹jdk-15.0.1</span><br><span class="line">(4)cd jdk-15.0.1 进入文件夹下,使用pwd命令查看当前路径,并记住路径,下面要用</span><br><span class="line">(5)打开配置文件 vim /etc/profile(非管理 ~/.bashrc),加入下面配置,JAVA_HOME为(4)输出的路径</span><br><span class="line">JAVA_HOME=/home/spark/java/jdk-15.0.1</span><br><span class="line">CLASSPATH=$JAVA_HOME/lib:$JAVA_HOME/jre/lib</span><br><span class="line">PATH=$PATH:$JAVA_HOME/bin:$JAVA_HOME/jre/bin</span><br><span class="line"></span><br><span class="line">(export JAVA_HOME=/home/spark/java/jdk-15.0.1</span><br><span class="line">export PATH=$JAVA_HOME/bin:$PATH</span><br><span class="line">export CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar   上面那个如果没成功试试这个)</span><br><span class="line">(6)source /etc/profile 保存修改</span><br><span class="line">(7)输入javac,未报错即成功配置java环境</span><br><span class="line">(8)执行两次cd .. 进入spark目录下</span><br><span class="line"></span><br><span class="line">2.配置spark环境</span><br><span class="line">(1)在spark目录下创建pyspark文件夹,mkdir pyspark</span><br><span class="line">(2)cd pyspark,然后将压缩包spark-3.0.1-bin-hadoop3.2.tgz 上传到pyspark目录下</span><br><span class="line">(3)解压缩tar -xvf spark-3.0.1-bin-hadoop3.2.tgz</span><br><span class="line">(4)cd spark-3.0.1-bin-hadoop3.2/conf ,进入文件夹,可看到以下文件</span><br><span class="line"></span><br><span class="line">(5)cp spark-env.sh.template spark-env.sh ,复制一个spark-env.sh文件</span><br><span class="line">(6)然后vim spark-env.sh,在末尾加入配置</span><br><span class="line">export PYSPARK_PYTHON=/usr/bin/python3</span><br><span class="line">(7)source spark-env.sh</span><br><span class="line"></span><br><span class="line">(8)打开配置文件 vim /etc/profile(非管理vim ~/.bashrc   vi ~/.bash_profile),加入下面配置,SPARK_HOME为spark的安装路径</span><br><span class="line">SPARK_HOME=/home/spark/pyspark/spark-3.0.1-bin-hadoop3.2</span><br><span class="line">export PATH=$PATH:$SPARK_HOME/bin</span><br><span class="line">export PYSPARK_PYTHON=python3</span><br><span class="line">(9)source /etc/profile</span><br><span class="line">(10)pip3 install pyspark -i https://pypi.tuna.tsinghua.edu.cn/simple</span><br><span class="line">(11)输入pyspark,进入下面的页面即成功</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">注意:</span><br><span class="line">1.需要在227,231和217分别进行相同的配置</span><br><span class="line">2.创建的文件夹spark,需要所有用户均可操作(用以启动服务,跑代码)</span><br><span class="line"></span><br><span class="line">当三台全部配置好的时候:</span><br><span class="line">	进入217:</span><br><span class="line">1.cd  /home/spark/pyspark/spark-3.0.1-bin-hadoop3.2/sbin</span><br><span class="line">2.执行 ./start-master.sh</span><br><span class="line">   进入231:</span><br><span class="line">1. cd  /home/spark/pyspark/spark-3.0.1-bin-hadoop3.2/sbin</span><br><span class="line">2. 执行 ./start-slave.sh spark://192.168.0.217:7077</span><br><span class="line">	进入227:</span><br><span class="line">1. cd  /home/spark/pyspark/spark-3.0.1-bin-hadoop3.2/sbin</span><br><span class="line">2. 执行 ./start-slave.sh spark://192.168.0.217:7077</span><br><span class="line"></span><br><span class="line">export JAVA_HOME=/home/kuailiang/2020/java/jdk1.8.0_281</span><br><span class="line">export PATH=$JAVA_HOME/bin:$PATH</span><br><span class="line">export CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar</span><br></pre></td></tr></table></figure>
+<h5 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">1.Spark在计算的过程中，是不是特别消耗内存？</span><br><span class="line">  	不是。Spark是在管道中计算的，而管道中不是特别耗内存。即使有很多管道同时进行，也不是特别耗内存。</span><br><span class="line">2.什么样的场景最耗内存？</span><br><span class="line">  	使用控制类算子的时候耗内存，特别是使用cache时最耗内存。</span><br><span class="line">3.如果管道中有cache逻辑，他是如何缓存数据的？</span><br><span class="line">	有cache时，会在一个task运行成功时（遇到action类算子时），将这个task的运行结果缓存到内存中</span><br><span class="line">4.RDD（弹性分布式数据集），为什么他不存储数据还叫数据集？</span><br><span class="line">    虽然RDD不具备存储数据的能力，但是他具备操作数据的能力。</span><br><span class="line">5.如果有1T数据，单机运行需要30分钟，但是使用Saprk计算需要两个小时（4node），为什么？</span><br><span class="line">	1）、发生了计算倾斜。大量数据给少量的task计算。少量数据却分配了大量的task。</span><br><span class="line">	2）、开启了推测执行机制</span><br><span class="line">6.</span><br></pre></td></tr></table></figure>
+<h5 id="运行spark程序"><a href="#运行spark程序" class="headerlink" title="运行spark程序"></a>运行spark程序</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sc.master可以查看当前的运行模式</span><br><span class="line">1.本地运行pyspark程序</span><br><span class="line">pyspark --master local[4]  ====&gt;local[4]表示在本地运行,使用四个线程,local[*]表示尽可能多的使用核心</span><br><span class="line"></span><br><span class="line">   pyspark --master spark://192.168.0.217:7077   暂时有问题不知道是不是231ip问题,后面重启后在尝试一下</span><br></pre></td></tr></table></figure>
+<h5 id="pandas的DF和spark的DF对比"><a href="#pandas的DF和spark的DF对比" class="headerlink" title="pandas的DF和spark的DF对比"></a>pandas的DF和spark的DF对比</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">两者的异同：</span><br><span class="line"></span><br><span class="line">Pyspark DataFrame是在分布式节点上运行一些数据操作，而pandas是不可能的；</span><br><span class="line">Pyspark DataFrame的数据反映比较缓慢，没有Pandas那么及时反映；</span><br><span class="line">Pyspark DataFrame的数据框是不可变的，不能任意添加列，只能通过合并进行；</span><br><span class="line">pandas比Pyspark DataFrame有更多方便的操作以及很强大</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">有效专利:针对一件专利,从申请日期开始,一直到失效日期都是有效的,若专利没有失效日期,需要结合当前状态去判断,如果当前状态为授权状态/再审状态,按照最大年限去认定失效日期,发明为20年,新型为10年.如果当前状态为失效,则判断不了具体失效时间,不做统计(总共只有一条).</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">,没有失效日期的按照最大年限去考虑,如发明专利,从申请日期开始往后20年都是有效的</span><br></pre></td></tr></table></figure>
+<h5 id="spark-sql架构"><a href="#spark-sql架构" class="headerlink" title="spark sql架构"></a>spark sql架构</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1.列式存储</span><br><span class="line"></span><br><span class="line">2.dataframe api</span><br><span class="line"></span><br><span class="line">3.DAG部分执行(pde),让我们在执行时根据处理过程中发现的一些数据动态修改和优化DAG.</span><br></pre></td></tr></table></figure>
+<h4 id="jupyter-notebook连接spark"><a href="#jupyter-notebook连接spark" class="headerlink" title="jupyter notebook连接spark"></a>jupyter notebook连接spark</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span>  os</span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line">spark_name = <span class="string">'/home/spark/pyspark/spark-3.0.1-bin-hadoop3.2'</span></span><br><span class="line">sys.path.insert(<span class="number">0</span>,os.path.join(spark_name,<span class="string">'python'</span>))</span><br><span class="line">sys.path.insert(<span class="number">0</span>,os.path.join(spark_name,<span class="string">'python/lib/py4j-0.10.9-src.zip'</span>))</span><br><span class="line">exec(open(os.path.join(spark_name,<span class="string">'python/pyspark/shell.py'</span>)).read())</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/计算/" rel="tag"># 计算</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/12/04/距离和相似度/" rel="next" title="距离和相似度">
+                <i class="fa fa-chevron-left"></i> 距离和相似度
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/12/30/Xgboost算法/" rel="prev" title="Xgboost算法">
+                Xgboost算法 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC80NDExNC8yMDY0OQ=="></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/head.jpg" alt="kl">
+            
+              <p class="site-author-name" itemprop="name">kl</p>
+              <div class="site-description motion-element" itemprop="description">66其实不太6</div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">113</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                      <a href="/categories/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">30</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">48</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#Apache重要的三个基金会项目-hadoop-spark-storm"><span class="nav-number">1.</span> <span class="nav-text">Apache重要的三个基金会项目(hadoop,spark,storm)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#spark的概念"><span class="nav-number">2.</span> <span class="nav-text">spark的概念</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#RDD详解-待补充"><span class="nav-number">3.</span> <span class="nav-text">RDD详解(待补充)</span></a></li></ol><li class="nav-item nav-level-3"><a class="nav-link" href="#pass"><span class="nav-number"></span> <span class="nav-text">pass</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#spark运行架构"><span class="nav-number">1.</span> <span class="nav-text">spark运行架构</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#spark运行基本流程"><span class="nav-number">2.</span> <span class="nav-text">spark运行基本流程</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#spark-on-standalone流程"><span class="nav-number">3.</span> <span class="nav-text">spark on standalone流程</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#spark部署"><span class="nav-number">4.</span> <span class="nav-text">spark部署</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#spark相对hadoop的优势"><span class="nav-number">5.</span> <span class="nav-text">spark相对hadoop的优势</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#spark生态"><span class="nav-number">6.</span> <span class="nav-text">spark生态</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#在pyspark中执行词频统计"><span class="nav-number">7.</span> <span class="nav-text">在pyspark中执行词频统计</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#编写独立应用程序执行词频统计"><span class="nav-number">8.</span> <span class="nav-text">编写独立应用程序执行词频统计</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#在集群上运行spark"><span class="nav-number">9.</span> <span class="nav-text">在集群上运行spark</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Jupyter-Notebook调试PySpark"><span class="nav-number">10.</span> <span class="nav-text">Jupyter Notebook调试PySpark</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#RDD的弹性"><span class="nav-number">11.</span> <span class="nav-text">RDD的弹性</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#RDD运行原理"><span class="nav-number">12.</span> <span class="nav-text">RDD运行原理</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#RDD可以实现高效计算的原因"><span class="nav-number">13.</span> <span class="nav-text">RDD可以实现高效计算的原因</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#RDD之间的依赖关系"><span class="nav-number">14.</span> <span class="nav-text">RDD之间的依赖关系</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#RDD编程"><span class="nav-number">15.</span> <span class="nav-text">RDD编程</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#2-通过并行集合-数组-创建RDD"><span class="nav-number">15.1.</span> <span class="nav-text">2.通过并行集合(数组)创建RDD</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#RDD操作"><span class="nav-number">16.</span> <span class="nav-text">RDD操作</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#1-转换操作"><span class="nav-number">16.1.</span> <span class="nav-text">1.转换操作</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#2-行动操作"><span class="nav-number">16.2.</span> <span class="nav-text">2.行动操作</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#4-持久化"><span class="nav-number">16.3.</span> <span class="nav-text">4.持久化</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#5-键值对RDD"><span class="nav-number">16.4.</span> <span class="nav-text">5,键值对RDD</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#1-广播变量"><span class="nav-number">16.5.</span> <span class="nav-text">1.广播变量</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#2-累加器"><span class="nav-number">16.6.</span> <span class="nav-text">2.累加器</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#RDD打印数据"><span class="nav-number">17.</span> <span class="nav-text">RDD打印数据</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#问题"><span class="nav-number">18.</span> <span class="nav-text">问题</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#运行spark程序"><span class="nav-number">19.</span> <span class="nav-text">运行spark程序</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#pandas的DF和spark的DF对比"><span class="nav-number">20.</span> <span class="nav-text">pandas的DF和spark的DF对比</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#spark-sql架构"><span class="nav-number">21.</span> <span class="nav-text">spark sql架构</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#jupyter-notebook连接spark"><span class="nav-number"></span> <span class="nav-text">jupyter notebook连接spark</span></a></li></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+    
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2023</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">kl</span>
+
+  
+
+  
+</div>
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-user"></i>
+    </span>
+    <span class="site-uv" title="总访客量">
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+  
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-eye"></i>
+    </span>
+    <span class="site-pv" title="总访问量">
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    
+    
+      
+    
+  
+  <script color="0,0,0" opacity="0.8" zindex="-1" count="66" src="//cdn.jsdelivr.net/gh/theme-next/theme-next-canvas-nest@1/canvas-nest.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.1.1"></script>
+
+  <script src="/js/motion.js?v=7.1.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/affix.js?v=7.1.1"></script>
+
+  <script src="/js/schemes/pisces.js?v=7.1.1"></script>
+
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.1.1"></script>
+<script src="/js/post-details.js?v=7.1.1"></script>
+
+
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.1.1"></script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+    <script>
+  window.livereOptions = {
+    refer: '2020/12/24/spark入门/'
+  };
+  (function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+    if (typeof LivereTower === 'function') { return; }
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+    e.parentNode.insertBefore(j, e);
+  })(document, 'script');
+</script>
+
+  
+
+
+  
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
+<script type="text/javascript" src="/js/src/clicklove.js"></script>
+<!-- <script type="text/javascript" src="/js/src/fish.js"></script> -->
+<!-- <script src='https://blog-static.cnblogs.com/files/elkyo/star.js'></script> -->
+<!-- 雪花特效 -->
+<!-- 雪花特效 -->
+<!-- <script type="text/javascript" src="\js\snow.js"></script> -->

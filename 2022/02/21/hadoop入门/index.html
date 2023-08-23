@@ -1,0 +1,1424 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.1.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.1.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.1.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.1.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.1.1" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.1.1',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="hadoop基础知识12345678910111213141516171819202122232425262728293031323334353637hadoop:分为1.0、2.0和3.0版本.目前企业最常见的是2.0版本. 1.0版本由hdfs和mapreduce构成,2.0在hdfs的上层添加了yarn,并且计算框架也由单一的mapreduce,添加了其他计算框架如spark,Mr等hado">
+<meta name="keywords" content="大数据">
+<meta property="og:type" content="article">
+<meta property="og:title" content="hadoop入门">
+<meta property="og:url" content="http://kl66.top/2022/02/21/hadoop入门/index.html">
+<meta property="og:site_name" content="Mr kuai">
+<meta property="og:description" content="hadoop基础知识12345678910111213141516171819202122232425262728293031323334353637hadoop:分为1.0、2.0和3.0版本.目前企业最常见的是2.0版本. 1.0版本由hdfs和mapreduce构成,2.0在hdfs的上层添加了yarn,并且计算框架也由单一的mapreduce,添加了其他计算框架如spark,Mr等hado">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://kl66.top/2022/02/21/hadoop入门/yarn架构图.png">
+<meta property="og:image" content="http://kl66.top/2022/02/21/hadoop入门/yarn流程图.png">
+<meta property="og:image" content="http://kl66.top/2022/02/21/hadoop入门/流程描述.png">
+<meta property="og:image" content="http://kl66.top/2022/02/21/hadoop入门/1646213144225.png">
+<meta property="og:updated_time" content="2022-06-27T07:56:25.851Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="hadoop入门">
+<meta name="twitter:description" content="hadoop基础知识12345678910111213141516171819202122232425262728293031323334353637hadoop:分为1.0、2.0和3.0版本.目前企业最常见的是2.0版本. 1.0版本由hdfs和mapreduce构成,2.0在hdfs的上层添加了yarn,并且计算框架也由单一的mapreduce,添加了其他计算框架如spark,Mr等hado">
+<meta name="twitter:image" content="http://kl66.top/2022/02/21/hadoop入门/yarn架构图.png">
+
+
+
+
+
+  
+  
+  <link rel="canonical" href="http://kl66.top/2022/02/21/hadoop入门/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>hadoop入门 | Mr kuai</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Mr kuai</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">追忆似水流年</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-meh-o"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-legal"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-ravelry"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-snowflake-o"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://kl66.top/2022/02/21/hadoop入门/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="kl">
+      <meta itemprop="description" content="66其实不太6">
+      <meta itemprop="image" content="/images/head.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mr kuai">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">hadoop入门
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2022-02-21 10:55:04" itemprop="dateCreated datePublished" datetime="2022-02-21T10:55:04+08:00">2022-02-21</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2022-06-27 15:56:25" itemprop="dateModified" datetime="2022-06-27T15:56:25+08:00">2022-06-27</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/java/" itemprop="url" rel="index"><span itemprop="name">java</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon">
+            <i class="fa fa-eye"></i>
+             阅读次数： 
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h5 id="hadoop基础知识"><a href="#hadoop基础知识" class="headerlink" title="hadoop基础知识"></a>hadoop基础知识</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">hadoop:分为<span class="number">1.0</span>、<span class="number">2.0</span>和<span class="number">3.0</span>版本.目前企业最常见的是<span class="number">2.0</span>版本. <span class="number">1.0</span>版本由hdfs和mapreduce构成,<span class="number">2.0</span>在hdfs的上层添加了yarn,并且计算框架也由单一的mapreduce,添加了其他计算框架如spark,Mr等</span><br><span class="line"></span><br><span class="line">hadoop 是在nutch distributed file System的基础上开发的.</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="number">1</span>.hdfs架构的组成:namenode和datanode,然后数据是分块的存储在datanode中(block),namenode相当于一个大管家进行整体的控制.除此之外进行的备份策略,有个secondary namenode,定期和namenode联系进行备份,防止节点挂了影响整体功能.secondnameode 会定期整合fsimage和fsedits发送给namenode)</span><br><span class="line">  fsimage:元数据的镜像文件</span><br><span class="line">  fsedits:元数据的操作日志</span><br><span class="line">(并非 NameNode 的热备。当NameNode 挂掉的时候，它并不能马上替换 NameNode 并提供服务。)</span><br><span class="line">      </span><br><span class="line">namenode:</span><br><span class="line">	<span class="number">1</span>.管理hdfs的命名空间</span><br><span class="line">	<span class="number">2</span>.控制数据块的映射</span><br><span class="line">	<span class="number">3</span>.配置备份策略</span><br><span class="line">	<span class="number">4</span>.管理读写语句</span><br><span class="line"></span><br><span class="line">datanode:</span><br><span class="line">	<span class="number">1</span>.存储分块数据</span><br><span class="line">	<span class="number">2</span>.进行数据的读写操作</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">hadoop本身是具有高吞吐量,高扩展性等优点,但是不具备快速查询功能,可使用hbase实现</span><br><span class="line"></span><br><span class="line">secondnamenode 是namenode 的冷备份</span><br><span class="line">	热备份:一个节点坏了后,宁一个节点可以直接替换这个节点继续工作,称为热节点</span><br><span class="line">	冷备份:一个节点坏了后,宁一个节点不能直接替换工作,只是为了减少损失</span><br><span class="line"></span><br><span class="line">每次重启namenode都会从fsimage读取元文件,然后经过edits中记录的操作,当edits中记录很多时候,namenode启动会非常慢,因而需要定时的合并fsimage文件和edits文件,同时清空edits文件.</span><br><span class="line"></span><br><span class="line">合并fsimage和edits文件是在secondaryname中实现的,会让namenode暂停写入edits,然后从namenode中获取fsimage和edits文件,合并后得到新的fsimage和edits传输给namenode,</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">视频学习流程:</span><br><span class="line">	hadoop发展----&gt;hadoop架构解释及面试问题----&gt;hadoop命令----&gt;namenode和datenode详解---&gt;edits文件详解---&gt;fsimage文件详解---&gt;hdfsApi操作-----&gt;hdfs流程图(写入,写出,删除操作流程)----&gt;hadoop源码详解----&gt;租约锁和hadoop特点(见:https:<span class="comment">//blog.csdn.net/sinat_35667067/article/details/104250251?utm_medium=distribute.pc_relevant.none-task-blog-2~default~baidujs_title~default-0.pc_relevant_default&amp;spm=1001.2101.3001.4242.1&amp;utm_relevant_index=2)</span></span><br><span class="line"></span><br><span class="line">                                                                                   hive是建立在hadoop基础上的数据仓库,会将hdfs中的文件映射到表中,提供sql查询和mapreduce功能.Hive本身不存储和计算数据,依靠于hadoop的hdfs和mapreduce,只是一种映射</span><br><span class="line">                                                                                   hbase是物理表,简单理解为，hive是文件的视图，hbase是建了索引的key-value表。</span><br></pre></td></tr></table></figure>
+<h5 id="hadoop-API"><a href="#hadoop-API" class="headerlink" title="hadoop API"></a>hadoop API</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> HDFS.learnself;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"><span class="keyword">import</span> java.net.URI;</span><br><span class="line"><span class="keyword">import</span> java.net.URISyntaxException;</span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.conf.Configuration;</span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.fs.FSDataOutputStream;</span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.fs.FileSystem;</span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.fs.Hdfs;</span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.fs.Path;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Write</span> </span>&#123;</span><br><span class="line"> <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException, InterruptedException, URISyntaxException </span>&#123;</span><br><span class="line">  <span class="comment">//1.加载hdfs的配置文件</span></span><br><span class="line">  Configuration conf=<span class="keyword">new</span> Configuration();</span><br><span class="line">  <span class="comment">//2.获取hdfs的操作对象</span></span><br><span class="line">  FileSystem fs=FileSystem.get(<span class="keyword">new</span> URI(<span class="string">"hdfs://hdp02:9000"</span>), conf, <span class="string">"hdp02"</span>);</span><br><span class="line">  <span class="comment">//3.文件路径</span></span><br><span class="line">  Path File=<span class="keyword">new</span> Path(<span class="string">"hdfs://hdp02:9000/test/cao.txt"</span>);</span><br><span class="line">  <span class="comment">//4.创建FSDataOutputStream对象</span></span><br><span class="line">  FSDataOutputStream out=fs.create(File);</span><br><span class="line">  <span class="comment">//5.写入数据</span></span><br><span class="line">  out.writeUTF(<span class="string">"Hello world!"</span>);</span><br><span class="line">  out.close();</span><br><span class="line">  System.out.println(<span class="string">"数据写入成功！"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+<h4 id="hadoop特点"><a href="#hadoop特点" class="headerlink" title="hadoop特点"></a>hadoop特点</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>.分布式存储架构,支持海量数据(GB,PB,TB级别)</span><br><span class="line"><span class="number">2</span>.高容错性,数据块存在多个副本,副本丢失自动恢复</span><br><span class="line"><span class="number">3</span>.低成本部署,可在廉价机器上搭建</span><br><span class="line"><span class="number">4</span>.能够检测和快速应对硬件故障,通过rpc心跳机制来实现</span><br><span class="line"><span class="number">5</span>.hdfs不能实现低延迟数据访问(毫秒级),hadoop的优势是高吞吐量(单位时间内产生的数据流),低延迟可通过hbase实现</span><br><span class="line"><span class="number">6</span>.hadoop不支持数据修改,适用于:一次写入,多次读取.但是允许追加数据</span><br><span class="line"><span class="number">7</span>.hadoop不适合存储海量小文件,会浪费namenode 的内存空间</span><br></pre></td></tr></table></figure>
+<h5 id="map-reduce"><a href="#map-reduce" class="headerlink" title="map reduce"></a>map reduce</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">任务分成:map任务和reduce任务。map操作完后会进行shuffle操作,将相同key的分发到一起,同一个reduce任务中</span><br><span class="line">mapreduce阶段:泛型对应 String ----&gt;Text,Integer----&gt;Intwritable,Long-----&gt;LongWritable</span><br><span class="line">原因: 在map完了之后,需要将数据传递给reduce,这时候涉及到了序列化和反序列化,但是jdk自带的效率较慢,因而hadoop自己实现了序列化接口.</span><br><span class="line"> * hadoop为jdk中的常用基本类型Long String Integer Float等数据类型封住了自己的实现了hadoop序列化接口的类型：LongWritable,Text,IntWritable,FloatWritable</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">####map阶段</span><br><span class="line"><span class="number">1</span>.明确输入的键值是什么类型,输出的键值是什么类型</span><br><span class="line">案例:</span><br><span class="line"> * KEYIN ：是map task读取到的数据的key的类型，是一行的起始偏移量Long</span><br><span class="line"> * VALUEIN:是map task读取到的数据的value的类型，是一行的内容String</span><br><span class="line"> * </span><br><span class="line"> * KEYOUT：是用户的自定义map方法要返回的结果kv数据的key的类型，在wordcount逻辑中，我们需要返回的是单词String</span><br><span class="line"> * VALUEOUT:是用户的自定义map方法要返回的结果kv数据的value的类型，在wordcount逻辑中，我们需要返回的是整数Integer</span><br><span class="line"></span><br><span class="line">map_task的数量会根据切片的大小自动分配,reduce_task的数量可以指定,默认<span class="number">1</span></span><br><span class="line"></span><br><span class="line">Map是对分块的每一行操作还是需要遍历?是对每一行操作的,不需要遍历</span><br><span class="line"></span><br><span class="line">map和reduce间的分区,默认的是键的hash值与reducetask的数量取模得到,也可以通过partitioner自定义划分到哪一个分区(分区数等于reduce_task数量),通常一个reduce任务中数据已经经过键排序过了,当需要全局排序,一方面可通过一个reduce task实现,但是会影响整体的效率,宁一方面就是重构parpartitioner来实现</span><br><span class="line"></span><br><span class="line">每个reduce_task 生成一个文件</span><br><span class="line"></span><br><span class="line">要点:输出对象,分区指定,序列化指定</span><br><span class="line"></span><br><span class="line">####################################job任务的执行流程##########################</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">多进程和多线程的区别</span><br><span class="line"><span class="number">1</span>.多进程占用内存多,cpu利用率低;多线程占用内存少,cpu利用率高</span><br><span class="line"><span class="number">2</span>.多线程进程间不会互相影响,多线程一个断了则全断</span><br></pre></td></tr></table></figure>
+<h5 id="Yarn架构"><a href="#Yarn架构" class="headerlink" title="Yarn架构"></a>Yarn架构</h5><p><img src="/2022/02/21/hadoop入门/yarn架构图.png" alt></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">yarn:是在hadoop1.0的基础上衍生出来的,为了缓解jobtracker的压力.主要进行资源调度和任务分配.</span><br><span class="line">yarn的三大组件:resourceManager(rm),nodemanager(nm),applicantionmaster</span><br><span class="line">rm主要进行资源分配,applicationmaster主要进行任务调度</span><br><span class="line"></span><br><span class="line"> ResourceManager主要有两个组件：Scheduler和ApplicationManager</span><br><span class="line"> 	Scheduler:负责资源的分配,纯调度</span><br><span class="line"> 	ApplicationManager:为应用分配container来运行applicantionmaster,并且负责监控applicantionmaster</span><br><span class="line"> </span><br><span class="line">NodeManager是yarn节点的一个“工作进程”代理，管理hadoop集群中独立的计算节点，主要负责与ResourceManager通信，负责启动和管理应用程序的container的生命周期，监控它们的资源使用情况（cpu和内存），跟踪节点的监控状态，管理日志等。并报告给RM。</span><br><span class="line"></span><br><span class="line">container:一个抽象资源对象,封装了程序运行需要的资源(如内存,cpu,磁盘等)</span><br><span class="line">    </span><br><span class="line">ApplicationMaster: ApplicationMaster负责与scheduler协商合适的container，跟踪应用程序的状态，以及监控它们的进度，ApplicationMaster是协调集群中应用程序执行的进程。每个应用程序都有自己的ApplicationMaster，负责与ResourceManager协商资源（container）和NodeManager协同工作来执行和监控任务 。</span><br></pre></td></tr></table></figure>
+<h5 id="yarn的调度流程"><a href="#yarn的调度流程" class="headerlink" title="yarn的调度流程"></a>yarn的调度流程</h5><p><img src="/2022/02/21/hadoop入门/yarn流程图.png" alt></p>
+<p><img src="/2022/02/21/hadoop入门/流程描述.png" alt></p>
+<h5 id="Flume"><a href="#Flume" class="headerlink" title="Flume"></a>Flume</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Flume:海量日志采集、聚合和传输的系统。最主要的作用是实时读取服务器本地磁盘的数据，将数据写入到HDFS中。</span><br><span class="line">Flume架构:webserver---&gt;Agent----&gt;HDFS</span><br><span class="line">	Agent(Source、channel、sink)</span><br><span class="line">    Agent：Jvm的一个进程，以事务的形式将数据从源头送到目的</span><br><span class="line">	Source:责任是将数据传输到Flume Agent的一个组件;</span><br><span class="line">	channel: 解耦合,具有缓冲的作用.Flume自带两个channel,一个memory channel 和File channel,前者存在内存,存在数据丢失风险,速度快.后者存在磁盘上,安全性高,速度慢</span><br><span class="line">	sink:不断轮询channel并删除,然后将这些事件批量写入存储或者索引系统(如hdfs,hbase,avro等)</span><br><span class="line">        一个source对应多个channel,一个sink只能对应一个channel,一个channel对应多个sink</span><br><span class="line">    channel功能:一个是数据传输的可靠性,一个是数据流入流出的异步执行.前面一句是因为只有当数据确认到到目的地或者下一个agent时才会删除channel内对应的event.</span><br><span class="line">	source可实现扇出,即一个source对应多个channel,然后方式有两种,一个是复制,即每个channel的数据都一样.一个是选择(多路复用),即event有选择的流入哪个channel</span><br></pre></td></tr></table></figure>
+<p><img src="/2022/02/21/hadoop入门/1646213144225.png" alt="1646213144225"></p>
+<h5 id="Kafka"><a href="#Kafka" class="headerlink" title="Kafka"></a>Kafka</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">快速了解:https:<span class="comment">//max.book118.com/html/2021/1027/8005064135004025.shtm</span></span><br><span class="line">定义:一个分布式的流媒体平台(需要具备三个功能)</span><br><span class="line">    <span class="number">1</span>.发布和订阅记录流</span><br><span class="line">    <span class="number">2</span>.以容错的方式永久订阅记录流</span><br><span class="line">    <span class="number">3</span>.记录发生时处理流</span><br><span class="line">通用:用在实时数据平台上,由flume到kafka到storm</span><br><span class="line">kafka应用场景:</span><br><span class="line">kafaka特点:</span><br><span class="line">	<span class="number">1</span>. poll模式.消费的速率由下游的消费者(计算框架决定)</span><br><span class="line">    <span class="number">2</span>. Kafka提供了消费的持久化机制,无论消费者是否消费都会存储,通过副本冗余机制提供数据的冗余机制</span><br></pre></td></tr></table></figure>
+<h4 id="hive"><a href="#hive" class="headerlink" title="hive"></a>hive</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">hive是数据仓库的一种</span><br><span class="line">数据仓库的特点:</span><br><span class="line">	<span class="number">1</span>.存放的是历史数据</span><br><span class="line">	<span class="number">2</span>. 存储大容量数据,gb,tb甚至pb	</span><br><span class="line">hive本身并不存储数据,而是hadoop中hdfs的映射,进行hql操作时候实际操作的是hdfs的文件夹,且数据源需要配置mysql,hql默认会使用mr,针对数据倾斜问题,一个是group by 一个是join,只需要在当前session改两个配置即可.然后分成外部表和内部表.分区表既可以是外部表也可以是内部表,通常是以时间来作为分区依据,分区的好处是避免全表扫描,(实际上是每个分区键都有对应的文件夹,只到对应文件夹下去读取数据.</span><br><span class="line"></span><br><span class="line">hive知识点梳理</span><br><span class="line"><span class="number">1</span>. 内部表、外部表 和分桶表（用来随机抽样用的）</span><br><span class="line"><span class="number">2</span>. metastore： hive元数据，存放在关系型数据库中，如derby和mysql</span><br><span class="line"><span class="number">3</span>. hive复杂数据结构：array、map、struct</span><br><span class="line"><span class="number">4</span>. hive常用的字符串操作函数</span><br><span class="line"><span class="number">5</span>. hive 的udf函数</span><br><span class="line"><span class="number">6</span>. hive数据倾斜问题及优化（①group by ②join ③count)</span><br><span class="line"><span class="number">7</span>. hive 的优化:大概七八个吧①map参数 ②reduce参数 ③jvm重用 ④严格模式</span><br><span class="line"><span class="number">8</span>. sqoop mysql&lt;-&gt;hdfs</span><br><span class="line"><span class="number">9</span>. hive api接口:①client ②代码jdbc ③可视化 webui</span><br></pre></td></tr></table></figure>
+<p>sqoop既可以实现数仓到关系型数据库,也可以实现关系型数据库到数仓</p>
+<p>大数据创建总共分成两种一种是离线批处理一种是实时处理</p>
+<p>离线批处理流程:</p>
+<pre><code>  1. 日志通过flume进行采集
+2. 将数据存入hdfs中
+  3. 通过hive进行处理
+    1. 建立总表
+  4. 建立清洗表,实现etl
+  5. 建立业务表,清洗业务字段
+  6. 建立多维度表
+  7. sqoop将清洗完的数据导入mysql,进行可视化
+</code></pre><p>####Scala</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br></pre></td><td class="code"><pre><span class="line">函数定义:</span><br><span class="line"><span class="keyword">var</span> f1 = (x:<span class="type">Int</span>) =&gt; x*<span class="number">2</span></span><br><span class="line"><span class="keyword">var</span> f2 : (<span class="type">Int</span>,<span class="type">Int</span>)=&gt;(<span class="type">Int</span>) = (x,y) =&gt; x*y</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">fu</span></span>(name:<span class="type">String</span>):<span class="type">Unit</span> = &#123;println(name)&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">match</span> <span class="keyword">case</span>  <span class="keyword">break</span>,<span class="keyword">continue</span> (导包:<span class="keyword">import</span> util.control.<span class="type">Breaks</span>._)</span><br><span class="line">kl <span class="keyword">match</span>&#123;<span class="keyword">case</span> <span class="string">"kl"</span> =&gt; println(<span class="number">2</span>) <span class="keyword">case</span> <span class="string">"sd"</span> =&gt; println(<span class="number">3</span>)&#125;</span><br><span class="line"><span class="keyword">break</span>写法:</span><br><span class="line">    <span class="type">Breaks</span>.breakable(</span><br><span class="line">     |       <span class="keyword">for</span> (i &lt;- <span class="number">1</span> to <span class="number">10</span>)&#123;</span><br><span class="line">     |         <span class="keyword">if</span> (i==<span class="number">5</span>)&#123;</span><br><span class="line">     |           <span class="type">Breaks</span>.<span class="keyword">break</span>()</span><br><span class="line">     |         &#125;</span><br><span class="line">     |         println(i)</span><br><span class="line">     |       &#125;</span><br><span class="line">     |     )</span><br><span class="line"><span class="keyword">continue</span>写法:</span><br><span class="line">	<span class="keyword">for</span> (i&lt;- <span class="number">1</span> to <span class="number">5</span>)</span><br><span class="line">     |     &#123;<span class="type">Breaks</span>.breakable(<span class="keyword">if</span> (i==<span class="number">3</span>) <span class="type">Breaks</span>.<span class="keyword">break</span>() <span class="keyword">else</span> println(i))&#125;</span><br><span class="line">区别就是<span class="keyword">break</span>是写在循环外的,cntinue是写在循环里的,写法是一样的</span><br><span class="line"><span class="keyword">try</span> <span class="keyword">catch</span> <span class="keyword">finally</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">//==============================函数===========================</span></span><br><span class="line">可变参数    </span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">people</span></span>(name:<span class="type">String</span>*)===&gt;在类型后加一个星号表示可变,实际是个容器,放了同一类型的多个数据,可通过</span><br><span class="line">遍历获取出来   </span><br><span class="line">函数返回值:<span class="type">Unit</span>表示没有返回值,可以不写返回值的类型,会自己推断(前提是有等号,等号不写,全都默认没有返回值)</span><br><span class="line">scala的泛型使用中括号[],不同于java的尖括号&lt;&gt;</span><br><span class="line">函数体只有一行的时候可以简写</span><br><span class="line">匿名函数  <span class="keyword">var</span> a = (x:<span class="type">Int</span>,y:<span class="type">Int</span>)=&gt;x*y    (x,y)=&gt;x*y  x=&gt;x**<span class="number">2</span>   </span><br><span class="line">函数支持公开</span><br><span class="line">函数中调用匿名函数</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">f2</span></span>(a:<span class="type">Int</span>,b:<span class="type">Int</span>,f:(<span class="type">Int</span>,<span class="type">Int</span>)=&gt;&#123;<span class="type">Int</span>&#125;) = &#123;f(a,b)&#125;</span><br><span class="line"></span><br><span class="line">f2(<span class="number">2</span>,<span class="number">3</span>,(x,y)=&gt;x+y)</span><br><span class="line">最简化版本: f2(<span class="number">2</span>,<span class="number">3</span>,_*_)   其中_指代的是参数</span><br><span class="line">匿名函数和高阶函数</span><br><span class="line"></span><br><span class="line">println(<span class="string">s"Lines with a: <span class="subst">$numAs</span>, Lines with b: <span class="subst">$numBs</span>"</span>)</span><br><span class="line"></span><br><span class="line">    </span><br><span class="line">scala完全面向对象,因而去掉了java中的非面向对象的元素,如static和void</span><br><span class="line">scala无static关键字,通过<span class="class"><span class="keyword">object</span><span class="title">实现类似静态方法的功能</span></span></span><br><span class="line"><span class="class"><span class="title">void</span> <span class="title">无返回值scala通过Unit实现</span></span></span><br><span class="line"><span class="class"><span class="title">类中使用BeanProperty修饰表示该变量会自动生成get和set方法</span> <span class="title">@BeanProperty</span> <span class="title">var</span> <span class="title">age</span> </span>= <span class="number">20</span></span><br><span class="line"></span><br><span class="line">伴生类和伴生对象,名称相同,伴生对象可以使用伴生类的所有东西(即<span class="class"><span class="keyword">object</span><span class="title">和class</span>),<span class="title">又因为不支持静态方法</span>,<span class="title">这样在编译时候就会生成两个同名的文件</span>,<span class="title">加$符号的是伴生对象的生成类</span>,<span class="title">不加$是入口类</span></span></span><br><span class="line"><span class="class"></span></span><br><span class="line"><span class="class"><span class="title">scala的数据类型</span></span>:<span class="type">Any</span>:包含<span class="type">Anyval</span>和<span class="type">Anyref</span>(即引用和数值),anyref包含:scala classes 和 other scala classes 和 all java classes.然后all java classes又包含<span class="literal">null</span>,<span class="literal">null</span>的下一级为<span class="type">Nothing</span></span><br><span class="line">anyval:包含<span class="type">Unit</span>、stringops（java中string的增强）、char、boolean、<span class="type">Double</span>（下属float-&gt;long-&gt;int&gt;short-&gt;byte）下一级为<span class="type">Nothing</span></span><br><span class="line">通常<span class="type">Unit</span>表示函数没有返回值,<span class="type">Null</span>表示的是对象为空(必须是引用类型),<span class="type">Nothing</span>表示没有任何返回值,不同于<span class="literal">null</span>和<span class="type">Unit</span>,通常用在函数内抛出异常时使用</span><br><span class="line">数据类型转化分为隐式转换和显示转换,隐式转换表名低阶可以自动转换成高阶,高阶转换成低阶需要调用方法如toInt等</span><br><span class="line"></span><br><span class="line">数值转换成字符串 ①<span class="number">2.</span>toString ②<span class="number">2</span>+<span class="string">""</span></span><br><span class="line"></span><br><span class="line">scala循环推荐使用<span class="keyword">for</span>循环而非<span class="keyword">while</span>和do <span class="keyword">while</span>,且scala中没有<span class="keyword">break</span>和<span class="keyword">continue</span>关键字,要想实现需要调用方法:scala终止循环实际上是通过抛出异常实现的,不同的是调方法是进行了封装</span><br><span class="line">    <span class="keyword">try</span>&#123;</span><br><span class="line">        <span class="keyword">for</span>(i &lt;- <span class="number">1</span> to <span class="number">10</span>; j = <span class="number">20</span> - i)&#123;</span><br><span class="line">          <span class="keyword">if</span> (i == <span class="number">9</span>)&#123;</span><br><span class="line">          <span class="keyword">throw</span> <span class="keyword">new</span> <span class="type">RuntimeException</span></span><br><span class="line">          &#125;</span><br><span class="line">        println(<span class="string">"i+j="</span>+i+j)</span><br><span class="line">  &#125;&#125; <span class="keyword">catch</span> &#123;<span class="keyword">case</span> exception: <span class="type">Exception</span> =&gt;&#125;</span><br><span class="line">    println(<span class="string">"结束了"</span>)</span><br><span class="line"></span><br><span class="line">    <span class="type">Breaks</span>.breakable(</span><br><span class="line">    <span class="keyword">for</span> (i &lt;- <span class="number">1</span> until <span class="number">10</span>)&#123;</span><br><span class="line">      <span class="keyword">if</span> (i ==<span class="number">6</span>)&#123;</span><br><span class="line">        <span class="type">Breaks</span>.<span class="keyword">break</span>()</span><br><span class="line">      &#125;</span><br><span class="line">      println(i)</span><br><span class="line">    &#125;)</span><br><span class="line"></span><br><span class="line">匿名函数化简:</span><br><span class="line">	<span class="number">1.</span>参数类型可以省略 (x:<span class="type">Int</span>)=&gt;&#123;x+<span class="number">1</span>&#125; 变成(x)=&gt;&#123;x+<span class="number">1</span>&#125;</span><br><span class="line">	<span class="number">2.</span>参数只有一个时候括号可以省略 x=&gt;&#123;x+<span class="number">1</span>&#125;</span><br><span class="line">	<span class="number">3.</span>函数体只有一行,花括号可以省略 x =&gt; x+<span class="number">1</span></span><br><span class="line">	<span class="number">4.</span>如果参数只出现一次可以使用_代替  (x,y) =&gt; x+y 变成 _ + _</span><br><span class="line">闭包和柯里化</span><br><span class="line">scala导包 com.公司名.项目名.模块名  或者<span class="keyword">package</span>&#123;&#125;三层嵌套也可以</span><br><span class="line"></span><br><span class="line">面向对象:</span><br><span class="line"> scala的构造器分为主构造器和辅助构造器,主构造器是在类名上加参数,辅助构造器是重载<span class="keyword">this</span>方法</span><br><span class="line">构造器参数修饰,<span class="keyword">var</span>可变参数,<span class="keyword">val</span>不可变参数,只能访问不能修改</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">集合:</span><br><span class="line">	<span class="type">Array</span>:</span><br><span class="line">		可变的添加:a.+=(<span class="number">2</span>) 或者a.append(<span class="number">2</span>)</span><br><span class="line">		插入:a.insert(<span class="number">0</span>,<span class="number">2</span>)</span><br><span class="line">		赋值:a(<span class="number">1</span>) = <span class="number">3</span></span><br><span class="line">		可变与不可变的转换a.toBuffer a.toArray</span><br><span class="line">	创建多维矩阵 <span class="type">Array</span>.ofDim[<span class="type">Double</span>](<span class="number">3</span>,<span class="number">4</span>)</span><br></pre></td></tr></table></figure>
+<h4 id="spark操作"><a href="#spark操作" class="headerlink" title="spark操作"></a>spark操作</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">val a = sc.parallelize(Array((<span class="number">1</span>,<span class="string">"xaioming"</span>),(<span class="number">2</span>,<span class="string">"dsada"</span>),(<span class="number">3</span>,<span class="string">"sda"</span>)))</span><br><span class="line">val b = a.toDF(<span class="string">"ID"</span>,<span class="string">"name"</span>)</span><br><span class="line">b.filter($<span class="string">"name"</span> === <span class="string">"sda"</span>).show()</span><br><span class="line">b.filter($<span class="string">"name"</span>.isin(<span class="string">"sads"</span>,<span class="string">"dsda"</span>))</span><br><span class="line">b.filter($<span class="string">"name"</span>.contains(<span class="string">"sads"</span>))</span><br></pre></td></tr></table></figure>
+<h5 id="自定义Spark累加器"><a href="#自定义Spark累加器" class="headerlink" title="自定义Spark累加器"></a>自定义Spark累加器</h5><figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.benying.spark</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.apache.spark.util.<span class="type">AccumulatorV2</span></span><br><span class="line"><span class="keyword">import</span> org.apache.spark.&#123;<span class="type">SparkConf</span>, <span class="type">SparkContext</span>&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.lang</span><br><span class="line"><span class="keyword">import</span> scala.collection.mutable</span><br><span class="line"></span><br><span class="line"><span class="comment">/*accumulator自定义操作*/</span></span><br><span class="line"><span class="class"><span class="keyword">object</span> <span class="title">Accumulator_learning</span> </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">main</span></span>(args: <span class="type">Array</span>[<span class="type">String</span>]): <span class="type">Unit</span> = &#123;</span><br><span class="line">    <span class="keyword">val</span> conf: <span class="type">SparkConf</span> = <span class="keyword">new</span> <span class="type">SparkConf</span>().setMaster(<span class="string">"local[*]"</span>).setAppName(<span class="string">"spark"</span>)</span><br><span class="line">    <span class="keyword">val</span> sc = <span class="keyword">new</span> <span class="type">SparkContext</span>(conf)</span><br><span class="line">    <span class="keyword">val</span> rdd1 = sc.makeRDD(<span class="type">List</span>(<span class="string">"Hello"</span>,<span class="string">"Spark"</span>,<span class="string">"Scala"</span>,<span class="string">"hello"</span>,<span class="string">"Spark"</span>),<span class="number">2</span>)</span><br><span class="line">    <span class="comment">//自定义累加器</span></span><br><span class="line">    <span class="keyword">val</span> myacc = <span class="keyword">new</span> <span class="type">MyAccumulator_</span>()</span><br><span class="line">    sc.register(myacc,<span class="string">"spark_ACC"</span>)</span><br><span class="line"></span><br><span class="line">    rdd1.foreach(word=&gt;myacc.add(word))</span><br><span class="line"></span><br><span class="line">    println(myacc.value)</span><br><span class="line">    <span class="comment">//关闭</span></span><br><span class="line">    sc.stop()</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="class"><span class="keyword">class</span> <span class="title">MyAccumulator_</span> <span class="keyword">extends</span> <span class="title">AccumulatorV2</span>[<span class="type">String</span>, mutable.<span class="type">Map</span>[<span class="type">String</span>,<span class="type">Long</span>]]</span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">val</span> word_map = mutable.<span class="type">Map</span>[<span class="type">String</span>,<span class="type">Long</span>]()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">def</span> <span class="title">isZero</span></span>: <span class="type">Boolean</span> = &#123;</span><br><span class="line">      word_map.isEmpty</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">def</span> <span class="title">copy</span></span>(): <span class="type">AccumulatorV2</span>[<span class="type">String</span>, mutable.<span class="type">Map</span>[<span class="type">String</span>,<span class="type">Long</span>]] = &#123;</span><br><span class="line">      <span class="keyword">new</span> <span class="type">MyAccumulator_</span>()</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">def</span> <span class="title">reset</span></span>(): <span class="type">Unit</span> = &#123;</span><br><span class="line">      word_map.clear()</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">def</span> <span class="title">add</span></span>(word: <span class="type">String</span>): <span class="type">Unit</span> = &#123;</span><br><span class="line">      <span class="keyword">val</span> num:<span class="type">Long</span> = word_map.getOrElse(word,<span class="number">0</span>L) + <span class="number">1</span></span><br><span class="line">      word_map.update(word,num)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">def</span> <span class="title">merge</span></span>(other: <span class="type">AccumulatorV2</span>[<span class="type">String</span>, mutable.<span class="type">Map</span>[<span class="type">String</span>,<span class="type">Long</span>]]): <span class="type">Unit</span> = &#123;</span><br><span class="line">      <span class="keyword">val</span> other_value: mutable.<span class="type">Map</span>[<span class="type">String</span>, <span class="type">Long</span>] = other.value</span><br><span class="line">      other_value.foreach&#123;</span><br><span class="line">        <span class="keyword">case</span> (word,num) =&gt;</span><br><span class="line">          <span class="keyword">val</span> new_num:<span class="type">Long</span> = word_map.getOrElse(word,<span class="number">0</span>L) + num</span><br><span class="line">          word_map.update(word,new_num)</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">def</span> <span class="title">value</span></span>: mutable.<span class="type">Map</span>[<span class="type">String</span>,<span class="type">Long</span>] = &#123;</span><br><span class="line">      word_map</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>FLUME–HIVE–KAFKA–HBASE–STORM–SPARK</p>
+<p>zookeeper:贯穿全部</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/大数据/" rel="tag"># 大数据</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2022/01/07/java学习code/" rel="next" title="java学习code">
+                <i class="fa fa-chevron-left"></i> java学习code
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2022/03/15/java基础/" rel="prev" title="java基础">
+                java基础 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC80NDExNC8yMDY0OQ=="></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/head.jpg" alt="kl">
+            
+              <p class="site-author-name" itemprop="name">kl</p>
+              <div class="site-description motion-element" itemprop="description">66其实不太6</div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">113</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                      <a href="/categories/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">30</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">48</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#hadoop基础知识"><span class="nav-number">1.</span> <span class="nav-text">hadoop基础知识</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#hadoop-API"><span class="nav-number">2.</span> <span class="nav-text">hadoop API</span></a></li></ol><li class="nav-item nav-level-4"><a class="nav-link" href="#hadoop特点"><span class="nav-number"></span> <span class="nav-text">hadoop特点</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#map-reduce"><span class="nav-number">1.</span> <span class="nav-text">map reduce</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Yarn架构"><span class="nav-number">2.</span> <span class="nav-text">Yarn架构</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#yarn的调度流程"><span class="nav-number">3.</span> <span class="nav-text">yarn的调度流程</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Flume"><span class="nav-number">4.</span> <span class="nav-text">Flume</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Kafka"><span class="nav-number">5.</span> <span class="nav-text">Kafka</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#hive"><span class="nav-number"></span> <span class="nav-text">hive</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#spark操作"><span class="nav-number"></span> <span class="nav-text">spark操作</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#自定义Spark累加器"><span class="nav-number">1.</span> <span class="nav-text">自定义Spark累加器</span></a></li></ol></li></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+    
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2023</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">kl</span>
+
+  
+
+  
+</div>
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-user"></i>
+    </span>
+    <span class="site-uv" title="总访客量">
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+  
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-eye"></i>
+    </span>
+    <span class="site-pv" title="总访问量">
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    
+    
+      
+    
+  
+  <script color="0,0,0" opacity="0.8" zindex="-1" count="66" src="//cdn.jsdelivr.net/gh/theme-next/theme-next-canvas-nest@1/canvas-nest.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.1.1"></script>
+
+  <script src="/js/motion.js?v=7.1.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/affix.js?v=7.1.1"></script>
+
+  <script src="/js/schemes/pisces.js?v=7.1.1"></script>
+
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.1.1"></script>
+<script src="/js/post-details.js?v=7.1.1"></script>
+
+
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.1.1"></script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+    <script>
+  window.livereOptions = {
+    refer: '2022/02/21/hadoop入门/'
+  };
+  (function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+    if (typeof LivereTower === 'function') { return; }
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+    e.parentNode.insertBefore(j, e);
+  })(document, 'script');
+</script>
+
+  
+
+
+  
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
+<script type="text/javascript" src="/js/src/clicklove.js"></script>
+<!-- <script type="text/javascript" src="/js/src/fish.js"></script> -->
+<!-- <script src='https://blog-static.cnblogs.com/files/elkyo/star.js'></script> -->
+<!-- 雪花特效 -->
+<!-- 雪花特效 -->
+<!-- <script type="text/javascript" src="\js\snow.js"></script> -->

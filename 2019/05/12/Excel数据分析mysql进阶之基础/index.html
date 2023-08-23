@@ -1,0 +1,1535 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.1.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.1.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.1.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.1.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.1.1" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.1.1',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="数据库与数据仓库的区别数据仓库(DataWareHouse,DW或DWH):是一种面向主题,集成的,稳定的,反映历史变化的数据集合,用于支持管理决策.面向主题:数据仓库中的数据按照一定的主题域进行组织.集成:原有分散的数据库数据经过系统加工,消除源数据中的不一致性相对稳定:指一旦某个数据进入数据仓库后只需定期的加载和更新反映历史变化:指通过信息,对企业未来趋势定量做出分析预测. 数据仓库与数据库区">
+<meta name="keywords" content="Excel">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Excel数据分析mysql进阶之基础">
+<meta property="og:url" content="http://kl66.top/2019/05/12/Excel数据分析mysql进阶之基础/index.html">
+<meta property="og:site_name" content="Mr kuai">
+<meta property="og:description" content="数据库与数据仓库的区别数据仓库(DataWareHouse,DW或DWH):是一种面向主题,集成的,稳定的,反映历史变化的数据集合,用于支持管理决策.面向主题:数据仓库中的数据按照一定的主题域进行组织.集成:原有分散的数据库数据经过系统加工,消除源数据中的不一致性相对稳定:指一旦某个数据进入数据仓库后只需定期的加载和更新反映历史变化:指通过信息,对企业未来趋势定量做出分析预测. 数据仓库与数据库区">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-11-04T01:18:18.298Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Excel数据分析mysql进阶之基础">
+<meta name="twitter:description" content="数据库与数据仓库的区别数据仓库(DataWareHouse,DW或DWH):是一种面向主题,集成的,稳定的,反映历史变化的数据集合,用于支持管理决策.面向主题:数据仓库中的数据按照一定的主题域进行组织.集成:原有分散的数据库数据经过系统加工,消除源数据中的不一致性相对稳定:指一旦某个数据进入数据仓库后只需定期的加载和更新反映历史变化:指通过信息,对企业未来趋势定量做出分析预测. 数据仓库与数据库区">
+
+
+
+
+
+  
+  
+  <link rel="canonical" href="http://kl66.top/2019/05/12/Excel数据分析mysql进阶之基础/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Excel数据分析mysql进阶之基础 | Mr kuai</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Mr kuai</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">追忆似水流年</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-meh-o"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-legal"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-ravelry"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-snowflake-o"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://kl66.top/2019/05/12/Excel数据分析mysql进阶之基础/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="kl">
+      <meta itemprop="description" content="66其实不太6">
+      <meta itemprop="image" content="/images/head.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mr kuai">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Excel数据分析mysql进阶之基础
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-05-12 14:06:16" itemprop="dateCreated datePublished" datetime="2019-05-12T14:06:16+08:00">2019-05-12</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-11-04 09:18:18" itemprop="dateModified" datetime="2019-11-04T09:18:18+08:00">2019-11-04</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/python/" itemprop="url" rel="index"><span itemprop="name">python</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon">
+            <i class="fa fa-eye"></i>
+             阅读次数： 
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="数据库与数据仓库的区别"><a href="#数据库与数据仓库的区别" class="headerlink" title="数据库与数据仓库的区别"></a>数据库与数据仓库的区别</h3><p><strong>数据仓库(DataWareHouse,DW或DWH)</strong>:是一种面向主题,集成的,稳定的,反映历史变化的数据集合,用于支持管理决策.面向主题:数据仓库中的数据按照一定的主题域进行组织.集成:原有分散的数据库数据经过系统加工,消除源数据中的不一致性相对稳定:指一旦某个数据进入数据仓库后只需定期的加载和更新反映历史变化:指通过信息,对企业未来趋势定量做出分析预测.</p>
+<p><strong>数据仓库与数据库区别</strong>:1.数据库是面向事务的,而数据仓库是面向主题设计的2.数据库中存储的一般为实时数据,而数据仓库一般为历史数据3.数据库设计尽量避免冗余,而数据仓库是有意引入冗余4.数据库是为了存储数据设计的,而数据仓库是为了分析数据引入的.</p>
+<h3 id="检索单个列"><a href="#检索单个列" class="headerlink" title="检索单个列"></a>检索单个列</h3><p>  <code>select name from user</code></p>
+<h3 id="检索多个列"><a href="#检索多个列" class="headerlink" title="检索多个列"></a>检索多个列</h3><p>  <code>select id,name,age,sex from user</code></p>
+<h3 id="检索所有列"><a href="#检索所有列" class="headerlink" title="检索所有列"></a>检索所有列</h3><p>  <code>select * from user</code><br>  使用通配符 一般除非你确实需要表中的每个列，否则最好别使用*通配符</p>
+<h3 id="检索不同的行-DISTINCT"><a href="#检索不同的行-DISTINCT" class="headerlink" title="检索不同的行 DISTINCT"></a>检索不同的行 DISTINCT</h3><p>  <code>select distinct classid from user</code><br>类似于group by 分组<br>  例如: <code>select distinct a,b,c from tableA;</code> 等同于 <code>select a,b,c from tableA group by a,b,c</code></p>
+<h3 id="限制结果-LIMIT"><a href="#限制结果-LIMIT" class="headerlink" title="限制结果 LIMIT"></a>限制结果 LIMIT</h3><p>  <code>select * from user limit 3,4</code><br>   LIMIT 3, 4的含义是从行3开始的4行.(跳过前3行,取4行)</p>
+<h3 id="使用完全限定的表名"><a href="#使用完全限定的表名" class="headerlink" title="使用完全限定的表名"></a>使用完全限定的表名</h3><p>  <code>select name from user</code><br>  <code>select user.name from user</code><br>  <code>select user.name from itxdl.user</code></p>
+<h3 id="排序数据-ORDER-BY"><a href="#排序数据-ORDER-BY" class="headerlink" title="排序数据 ORDER BY"></a>排序数据 ORDER BY</h3><p>  <code>select * from user order by age</code><br>    默认升序asc，降序desc</p>
+<h3 id="按多个列排序"><a href="#按多个列排序" class="headerlink" title="按多个列排序"></a>按多个列排序</h3><p>  <code>select * from user order by classid,age</code><br>  在需要对多列数据进行排序时,使用逗号分隔列名,并会按照前后顺序依次对比排序</p>
+<h3 id="过-滤-数-据-WHERE"><a href="#过-滤-数-据-WHERE" class="headerlink" title="过 滤 数 据 WHERE"></a>过 滤 数 据 WHERE</h3><p>  在SELECT语句中，数据根据WHERE子句中指定的搜索条件进行过滤。<br>  <code>select name from user where age = 22</code><br> 在同时使用ORDER BY和WHERE子句时，应该让ORDER BY位于WHERE之后，否则将会产生错误</p>
+<h3 id="WHERE子句操作符"><a href="#WHERE子句操作符" class="headerlink" title="WHERE子句操作符"></a>WHERE子句操作符</h3><table>
+<thead>
+<tr>
+<th>操作符</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>=</td>
+<td>等于</td>
+</tr>
+<tr>
+<td>&lt;&gt;    !=</td>
+<td>不等于</td>
+</tr>
+<tr>
+<td>&lt;</td>
+<td>小于</td>
+</tr>
+<tr>
+<td>&lt;=</td>
+<td>小于等于</td>
+</tr>
+<tr>
+<td>&gt;</td>
+<td>大于</td>
+</tr>
+<tr>
+<td>&gt;=</td>
+<td>大于等于</td>
+</tr>
+<tr>
+<td>BETWEEN</td>
+<td>指定两个值之间</td>
+</tr>
+<tr>
+<td>IS NULL</td>
+<td>空值</td>
+</tr>
+</tbody>
+</table>
+<h3 id="AND与OR"><a href="#AND与OR" class="headerlink" title="AND与OR"></a>AND与OR</h3><p>SQL在处理OR操作符前，优先处理AND操作符。<br>  <code>select name from user where (classid=18 or classid =19) and sex=&#39;m&#39;</code><br>  因为圆括号具有较AND或OR操作符高的计算次序，数据库首先过滤圆括号内的OR条件。</p>
+<h3 id="IN与NOT"><a href="#IN与NOT" class="headerlink" title="IN与NOT"></a>IN与NOT</h3><p>  <code>select name from user where classid in (18,19)</code><br>IN WHERE子句中用来指定要匹配值的清单的关键字，功能与OR相当<br>  <code>select user from user where classid not in (18,19)</code><br>在与IN操作符联合使用时，NOT使找出与条件列表不匹配的行非常简单。</p>
+<h3 id="LIKE与通配符"><a href="#LIKE与通配符" class="headerlink" title="LIKE与通配符"></a>LIKE与通配符</h3><ul>
+<li>百分号（%）通配符 在搜索串中，%表示任何字符出现任意次数<br><code>select name from user where name like &#39;a%&#39;</code></li>
+<li>下划线（_）通配符 下划线的用途与%一样，但下划线只匹配单个字符而不是多个字符</li>
+</ul>
+<h4 id="了解下MySQL的正则-REGEXP"><a href="#了解下MySQL的正则-REGEXP" class="headerlink" title="了解下MySQL的正则 REGEXP"></a>了解下MySQL的正则 REGEXP</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt; 所有种类的程序设计语言、文本编辑器、操作系统等都支持正则表达式</span><br><span class="line">&gt; mysql没有\d\w等</span><br><span class="line">`select name from user where name regexp &apos;[0-5]abc&apos;`</span><br></pre></td></tr></table></figure>
+<h4 id="拼接-Concat"><a href="#拼接-Concat" class="headerlink" title="拼接 Concat"></a>拼接 Concat</h4><p>  解决办法是把两个列拼接起来。在MySQL的SELECT语句中，可使用Concat()函数来拼接两个列<br>  <code>select concat(vend_name,&#39;(&#39;,vend_country&#39;)&#39;) from vendors order by vend_name</code><br>     起别名:<br>  <code>select concat(vend_name,&#39;(&#39;,vend_country&#39;)&#39;) as vend_title from vendors order by vend_name</code></p>
+<h3 id="函数的使用"><a href="#函数的使用" class="headerlink" title="函数的使用"></a>函数的使用</h3><h4 id="文本处理函数"><a href="#文本处理函数" class="headerlink" title="文本处理函数"></a>文本处理函数</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">| 函数        | 说明             |</span><br><span class="line">| ----------- | ---------------- |</span><br><span class="line">| Left()      | 返回串左边的字符 |</span><br><span class="line">| Length()    | 返回串的长度     |</span><br><span class="line">| Locate()    | 找出串的一个子串 |</span><br><span class="line">| Lower()     | 将串转换为小写   |</span><br><span class="line">| LTrim()     | 去掉串左边的空格 |</span><br><span class="line">| Right()     | 返回串右边的字符 |</span><br><span class="line">| RTrim()     | 去掉串右边的空格 |</span><br><span class="line">| SubString() | 返回子串的字符   |</span><br><span class="line">| Upper()     | 将串转换为大写   |</span><br><span class="line">| Concat      | 拼接字符串       |</span><br></pre></td></tr></table></figure>
+<h4 id="日期和时间处理函数"><a href="#日期和时间处理函数" class="headerlink" title="日期和时间处理函数"></a>日期和时间处理函数</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">| 函数          | 说明                           |</span><br><span class="line">| ------------- | ------------------------------ |</span><br><span class="line">| AddTime()     | 增加一个时间（时、分等）       |</span><br><span class="line">| CurDate()     | 返回当前日期                   |</span><br><span class="line">| CurTime()     | 返回当前时间                   |</span><br><span class="line">| Date()        | 返回日期时间的日期部分         |</span><br><span class="line">| DateDiff()    | 计算两个日期之差               |</span><br><span class="line">| Date_Add()    | 高度灵活的日期运算函数         |</span><br><span class="line">| Date_Format() | 返回一个格式化的日期或时间串   |</span><br><span class="line">| Day()         | 返回一个日期的天数部分         |</span><br><span class="line">| DayOfWeek()   | 对于一个日期，返回对应的星期几 |</span><br><span class="line">| Hour()        | 返回一个时间的小时部分         |</span><br><span class="line">| Minute()      | 返回一个时间的分钟部分         |</span><br><span class="line">| Month()       | 返回一个日期的月份部分         |</span><br><span class="line">| Now()         | 返回当前日期和时间             |</span><br><span class="line">| Second()      | 返回一个时间的秒部分           |</span><br><span class="line">| Time()        | 返回一个日期时间的时间部分     |</span><br><span class="line">| Year()        | 返回一个日期的年份部分         |</span><br></pre></td></tr></table></figure>
+<h4 id="数值处理函数"><a href="#数值处理函数" class="headerlink" title="数值处理函数"></a>数值处理函数</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">| 函 数  | 说 明              |</span><br><span class="line">| ------ | ------------------ |</span><br><span class="line">| Abs()  | 返回一个数的绝对值 |</span><br><span class="line">| Cos()  | 返回一个角度的余弦 |</span><br><span class="line">| Exp()  | 返回一个数的指数值 |</span><br><span class="line">| Mod()  | 返回除操作的余数   |</span><br><span class="line">| Pi()   | 返回圆周率         |</span><br><span class="line">| Rand() | 返回一个随机数     |</span><br><span class="line">| Sin()  | 返回一个角度的正弦 |</span><br><span class="line">| Sqrt() | 返回一个数的平方根 |</span><br><span class="line">| Tan()  | 返回一个角度的正切 |</span><br></pre></td></tr></table></figure>
+<h3 id="聚集函数的使用"><a href="#聚集函数的使用" class="headerlink" title="聚集函数的使用"></a>聚集函数的使用</h3><table>
+<thead>
+<tr>
+<th>函数</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>AVG()</td>
+<td>返回某列的平均值</td>
+</tr>
+<tr>
+<td>COUNT()</td>
+<td>返回某列的行数</td>
+</tr>
+<tr>
+<td>MAX()</td>
+<td>返回某列的最大值</td>
+</tr>
+<tr>
+<td>MIN()</td>
+<td>返回某列的最小值</td>
+</tr>
+<tr>
+<td>SUM()</td>
+<td>返回某列值之和</td>
+</tr>
+</tbody>
+</table>
+<h4 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h4><p>  在使用count时,如果指定列名，则指定列的值为空的行被忽略，但如果COUNT()函数中用的是星号（*），则不忽略</p>
+<h3 id="数据分组-GROUP-BY与HAVING"><a href="#数据分组-GROUP-BY与HAVING" class="headerlink" title="数据分组 GROUP BY与HAVING"></a>数据分组 GROUP BY与HAVING</h3><ul>
+<li>GROUP BY<br><code>select vend_id,count(*) as num_prods from products group by vend_id</code></li>
+<li>HAVING<br><code>select cust_id,count(*) as orders from orders group by cust_id having count(*) &gt;= 2;</code></li>
+</ul>
+<h3 id="总结SELECT子句及其顺序"><a href="#总结SELECT子句及其顺序" class="headerlink" title="总结SELECT子句及其顺序"></a>总结SELECT子句及其顺序</h3><table>
+<thead>
+<tr>
+<th>子句</th>
+<th>说明</th>
+<th>是否必须</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SELECT</td>
+<td>要返回的列或表达式</td>
+<td>是</td>
+</tr>
+<tr>
+<td>FROM</td>
+<td>从中检索数据的表</td>
+<td>仅在从表选择数据时使用</td>
+</tr>
+<tr>
+<td>WHERE</td>
+<td>行级过滤</td>
+<td>否</td>
+</tr>
+<tr>
+<td>GROUP BY</td>
+<td>分组说明</td>
+<td>仅在按组计算聚集时使用</td>
+</tr>
+<tr>
+<td>HAVING</td>
+<td>组级过滤</td>
+<td>否</td>
+</tr>
+<tr>
+<td>ORDER BY</td>
+<td>输出排序顺序</td>
+<td>否</td>
+</tr>
+<tr>
+<td>LIMIT</td>
+<td>要检索的行数</td>
+<td>否</td>
+</tr>
+</tbody>
+</table>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Excel/" rel="tag"># Excel</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/05/10/Excel数据分析基本技能/" rel="next" title="Excel数据分析基本技能">
+                <i class="fa fa-chevron-left"></i> Excel数据分析基本技能
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/05/12/爬虫阶段网页和网络基本知识/" rel="prev" title="爬虫阶段网页和网络基本知识">
+                爬虫阶段网页和网络基本知识 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC80NDExNC8yMDY0OQ=="></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/head.jpg" alt="kl">
+            
+              <p class="site-author-name" itemprop="name">kl</p>
+              <div class="site-description motion-element" itemprop="description">66其实不太6</div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">113</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                      <a href="/categories/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">30</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">48</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#数据库与数据仓库的区别"><span class="nav-number">1.</span> <span class="nav-text">数据库与数据仓库的区别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#检索单个列"><span class="nav-number">2.</span> <span class="nav-text">检索单个列</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#检索多个列"><span class="nav-number">3.</span> <span class="nav-text">检索多个列</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#检索所有列"><span class="nav-number">4.</span> <span class="nav-text">检索所有列</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#检索不同的行-DISTINCT"><span class="nav-number">5.</span> <span class="nav-text">检索不同的行 DISTINCT</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#限制结果-LIMIT"><span class="nav-number">6.</span> <span class="nav-text">限制结果 LIMIT</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用完全限定的表名"><span class="nav-number">7.</span> <span class="nav-text">使用完全限定的表名</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#排序数据-ORDER-BY"><span class="nav-number">8.</span> <span class="nav-text">排序数据 ORDER BY</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#按多个列排序"><span class="nav-number">9.</span> <span class="nav-text">按多个列排序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#过-滤-数-据-WHERE"><span class="nav-number">10.</span> <span class="nav-text">过 滤 数 据 WHERE</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#WHERE子句操作符"><span class="nav-number">11.</span> <span class="nav-text">WHERE子句操作符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#AND与OR"><span class="nav-number">12.</span> <span class="nav-text">AND与OR</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#IN与NOT"><span class="nav-number">13.</span> <span class="nav-text">IN与NOT</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#LIKE与通配符"><span class="nav-number">14.</span> <span class="nav-text">LIKE与通配符</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#了解下MySQL的正则-REGEXP"><span class="nav-number">14.1.</span> <span class="nav-text">了解下MySQL的正则 REGEXP</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#拼接-Concat"><span class="nav-number">14.2.</span> <span class="nav-text">拼接 Concat</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#函数的使用"><span class="nav-number">15.</span> <span class="nav-text">函数的使用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#文本处理函数"><span class="nav-number">15.1.</span> <span class="nav-text">文本处理函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#日期和时间处理函数"><span class="nav-number">15.2.</span> <span class="nav-text">日期和时间处理函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#数值处理函数"><span class="nav-number">15.3.</span> <span class="nav-text">数值处理函数</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#聚集函数的使用"><span class="nav-number">16.</span> <span class="nav-text">聚集函数的使用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#注意"><span class="nav-number">16.1.</span> <span class="nav-text">注意</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据分组-GROUP-BY与HAVING"><span class="nav-number">17.</span> <span class="nav-text">数据分组 GROUP BY与HAVING</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结SELECT子句及其顺序"><span class="nav-number">18.</span> <span class="nav-text">总结SELECT子句及其顺序</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+    
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2023</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">kl</span>
+
+  
+
+  
+</div>
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-user"></i>
+    </span>
+    <span class="site-uv" title="总访客量">
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+  
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-eye"></i>
+    </span>
+    <span class="site-pv" title="总访问量">
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    
+    
+      
+    
+  
+  <script color="0,0,0" opacity="0.8" zindex="-1" count="66" src="//cdn.jsdelivr.net/gh/theme-next/theme-next-canvas-nest@1/canvas-nest.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.1.1"></script>
+
+  <script src="/js/motion.js?v=7.1.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/affix.js?v=7.1.1"></script>
+
+  <script src="/js/schemes/pisces.js?v=7.1.1"></script>
+
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.1.1"></script>
+<script src="/js/post-details.js?v=7.1.1"></script>
+
+
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.1.1"></script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+    <script>
+  window.livereOptions = {
+    refer: '2019/05/12/Excel数据分析mysql进阶之基础/'
+  };
+  (function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+    if (typeof LivereTower === 'function') { return; }
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+    e.parentNode.insertBefore(j, e);
+  })(document, 'script');
+</script>
+
+  
+
+
+  
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
+<script type="text/javascript" src="/js/src/clicklove.js"></script>
+<!-- <script type="text/javascript" src="/js/src/fish.js"></script> -->
+<!-- <script src='https://blog-static.cnblogs.com/files/elkyo/star.js'></script> -->
+<!-- 雪花特效 -->
+<!-- 雪花特效 -->
+<!-- <script type="text/javascript" src="\js\snow.js"></script> -->
