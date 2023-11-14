@@ -1,0 +1,1464 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.1.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.1.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.1.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.1.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.1.1" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.1.1',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="一、Anaconda创建虚拟环境1、查看所有虚拟环境1conda info --envs 或者1conda env list 2、创建名字为ycyh，环境为python3.8的虚拟环境(python3.8为例)1conda create --name ycyh python=3.8 3、激活（进入）虚拟环境 1activate ycyh 1conda activate ycyh 4、删除虚拟环境1">
+<meta name="keywords" content="Python">
+<meta property="og:type" content="article">
+<meta property="og:title" content="anaconda创建虚拟环境">
+<meta property="og:url" content="http://kl66.top/2023/11/14/anaconda创建虚拟环境/index.html">
+<meta property="og:site_name" content="Mr kuai">
+<meta property="og:description" content="一、Anaconda创建虚拟环境1、查看所有虚拟环境1conda info --envs 或者1conda env list 2、创建名字为ycyh，环境为python3.8的虚拟环境(python3.8为例)1conda create --name ycyh python=3.8 3、激活（进入）虚拟环境 1activate ycyh 1conda activate ycyh 4、删除虚拟环境1">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/1643147/1668786280383-e3acd137-548a-43c2-a1d6-3aae98c9979b.png#averageHue=%23f7f3f1&clientId=uafdbca42-2407-4&from=paste&height=314&id=uc9fffb30&originHeight=471&originWidth=989&originalType=binary&ratio=1&rotation=0&showTitle=false&size=50218&status=done&style=none&taskId=u8928fe4d-6aac-4d59-8022-f0ccc7146d0&title=&width=659.3333333333334">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2023/png/1643147/1692952493061-7d417864-5297-4ff0-b474-4b1ad2cb38f4.png#averageHue=%23022b47&clientId=ucfa41739-b5d3-4&from=paste&height=246&id=u4054580d&originHeight=369&originWidth=656&originalType=binary&ratio=1.5&rotation=0&showTitle=false&size=29244&status=done&style=none&taskId=ua0c4938c-5e30-4a4b-bf68-f617adfa06d&title=&width=437.3333333333333">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2023/png/1643147/1692952532193-8cb07f02-5056-4bae-bb8f-551984bee958.png#averageHue=%23012a46&clientId=ucfa41739-b5d3-4&from=paste&height=249&id=u8ab1cdf1&originHeight=373&originWidth=1305&originalType=binary&ratio=1.5&rotation=0&showTitle=false&size=34726&status=done&style=none&taskId=u5b4c2925-df3f-46e5-b649-7fb17e08abd&title=&width=870">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2023/png/1643147/1692952551807-982d880b-c0f6-4fd8-9eef-0ec749d07c7b.png#averageHue=%23012a47&clientId=ucfa41739-b5d3-4&from=paste&height=249&id=u63c53ed7&originHeight=373&originWidth=658&originalType=binary&ratio=1.5&rotation=0&showTitle=false&size=29848&status=done&style=none&taskId=u29006062-ed74-456c-a020-fe725ab4cf7&title=&width=438.6666666666667">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2023/png/1643147/1692952975361-bc8c20ab-438b-4c66-ae09-72497c0ea150.png#averageHue=%23032c4a&clientId=u96f22a0c-6136-4&from=paste&height=125&id=uaa1f6a21&originHeight=156&originWidth=575&originalType=binary&ratio=1.5&rotation=0&showTitle=false&size=17698&status=done&style=none&taskId=u28676497-d390-499b-b23d-02f028af482&title=&width=460">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/1643147/1668786131554-491910d1-2a79-488f-a534-9ef6fe5969e0.png#averageHue=%23042e4b&clientId=uafdbca42-2407-4&from=paste&height=115&id=u50f6b4a6&originHeight=173&originWidth=526&originalType=binary&ratio=1&rotation=0&showTitle=false&size=11685&status=done&style=none&taskId=ua2f89843-babd-4a5d-a390-c9f0b5b0beb&title=&width=350.6666666666667">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2023/png/1643147/1692953071128-64ad61c8-9f85-493d-b30f-7ed7318bcb68.png#averageHue=%23032c49&clientId=u96f22a0c-6136-4&from=paste&height=252&id=wCZcO&originHeight=315&originWidth=821&originalType=binary&ratio=1.5&rotation=0&showTitle=false&size=45917&status=done&style=none&taskId=u9ce4e6e3-d0cb-4d9f-9153-1654a9c4fe5&title=&width=656.8">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2023/png/1643147/1692953085562-a1e71ae2-d7d7-43cc-a19c-acfcd372433c.png#averageHue=%23022b48&clientId=u96f22a0c-6136-4&from=paste&height=118&id=u412f3f7c&originHeight=148&originWidth=863&originalType=binary&ratio=1.5&rotation=0&showTitle=false&size=19412&status=done&style=none&taskId=ueab258bc-92fc-4b6f-9b22-6848ddd5dac&title=&width=690.4">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/1643147/1668786344610-07b2dd91-f5eb-4006-a62a-0ed7918ee8ed.png#averageHue=%23262423&clientId=uafdbca42-2407-4&from=paste&id=ued52f40c&originHeight=137&originWidth=853&originalType=url&ratio=1&rotation=0&showTitle=false&size=61161&status=done&style=none&taskId=u7b5547fe-3af1-4122-8fe5-d3ded8bff9d&title=">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2023/png/1643147/1692944120056-6b42fd27-051e-495e-a4c0-5006b674008c.png#averageHue=%23032d4a&clientId=u29fab278-34d6-4&from=paste&height=83&id=u5ffc5498&originHeight=124&originWidth=696&originalType=binary&ratio=1.5&rotation=0&showTitle=false&size=21170&status=done&style=none&taskId=u20d9bde1-2606-4275-b52c-b202d5f3c6c&title=&width=464">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2023/png/1643147/1692953130224-b70ee270-9098-4184-bd8a-4702a2be9525.png#averageHue=%23042e4c&clientId=u96f22a0c-6136-4&from=paste&height=62&id=u91c78c40&originHeight=78&originWidth=736&originalType=binary&ratio=1.5&rotation=0&showTitle=false&size=16046&status=done&style=none&taskId=u8d1cd5cb-7e91-45af-aa46-161169446d5&title=&width=588.8">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2023/png/1643147/1693741034490-bd83c46c-1b27-4184-be94-1ec1d6129d92.png#averageHue=%23012b4c&clientId=udcd14da2-1d79-4&from=paste&height=351&id=u385061e5&originHeight=527&originWidth=788&originalType=binary&ratio=1.5&rotation=0&showTitle=false&size=56054&status=done&style=none&taskId=u8db51626-1d12-4e69-bbad-acdd207d492&title=&width=525.3333333333334">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2023/png/1643147/1692949769646-851d9dc9-b9ac-4799-9e9a-328b94eb1e53.png#averageHue=%23002b4a&clientId=u40b9ddcb-cfe8-4&from=paste&height=123&id=uf5c43e10&originHeight=185&originWidth=555&originalType=binary&ratio=1.5&rotation=0&showTitle=false&size=16845&status=done&style=none&taskId=uf7e2f132-0cc1-44c9-b86d-81a3199ecb3&title=&width=370">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2023/png/1643147/1693560337055-e9b4700d-a6bf-462c-9273-4fc6ba719e0c.png#averageHue=%23002a48&clientId=u9e09f6a7-02f6-4&from=paste&height=684&id=u5cc38672&originHeight=855&originWidth=1039&originalType=binary&ratio=1.25&rotation=0&showTitle=false&size=93113&status=done&style=none&taskId=u8a652951-65cf-4c38-94a5-e9e37cb30d7&title=&width=831.2">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2023/png/1643147/1693561239794-13b2010f-9484-4a48-8904-530dfa141c6d.png#averageHue=%23032c49&clientId=u02735ece-5e2e-4&from=paste&height=423&id=u291dd6b2&originHeight=529&originWidth=1451&originalType=binary&ratio=1.25&rotation=0&showTitle=false&size=169924&status=done&style=none&taskId=ucbccf51c-8496-4451-960b-852133af6b3&title=&width=1160.8">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2023/png/1643147/1693561383609-6c2f4d65-d82d-4340-a89c-52c7e1d54ebf.png#averageHue=%23f8f7f6&clientId=u02735ece-5e2e-4&from=paste&height=678&id=ub8cf51af&originHeight=848&originWidth=1235&originalType=binary&ratio=1.25&rotation=0&showTitle=false&size=83435&status=done&style=none&taskId=u2209b89e-6fea-47f6-8d10-3d110a62e94&title=&width=988">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2023/png/1643147/1693562309832-1cc29e9e-f107-4184-8088-0d31ef010dfe.png#averageHue=%231f2124&clientId=u55fba1c6-3bcf-4&from=paste&height=268&id=u9325ef11&originHeight=335&originWidth=711&originalType=binary&ratio=1.25&rotation=0&showTitle=false&size=39028&status=done&style=none&taskId=u3bd109d5-a940-49e0-b6c5-5e64a29f01a&title=&width=568.8">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2023/png/1643147/1693562289070-00ff5bf2-c868-4141-9efb-627110f56ad3.png#averageHue=%231f2024&clientId=u55fba1c6-3bcf-4&from=paste&height=262&id=u35338407&originHeight=328&originWidth=705&originalType=binary&ratio=1.25&rotation=0&showTitle=false&size=33670&status=done&style=none&taskId=u7cea7e62-9d5c-46be-8967-e6aa34bbc94&title=&width=564">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2023/png/1643147/1693561865979-1b8453fa-07d3-4c8a-8a92-3317639cc940.png#averageHue=%23212326&clientId=u55fba1c6-3bcf-4&from=paste&height=411&id=ue6d392d7&originHeight=514&originWidth=819&originalType=binary&ratio=1.25&rotation=0&showTitle=false&size=62037&status=done&style=none&taskId=u9e6c69bd-1ea6-4244-afae-96c6535f76d&title=&width=655.2">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2023/png/1643147/1691466123411-bea1b86a-b26e-45bc-9292-0cc4226d5de7.png#averageHue=%233b3a37&clientId=u9393bc7f-e08d-4&from=paste&height=160&id=u613f6f8c&originHeight=200&originWidth=608&originalType=binary&ratio=1.25&rotation=0&showTitle=false&size=57200&status=done&style=none&taskId=ub3b63b9e-be71-4f37-a7d6-0276c1e142f&title=&width=486.4">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2023/png/1643147/1691466147818-d0c7ef38-4113-42c6-84b1-efb53c80a896.png#averageHue=%233d3c3a&clientId=u9393bc7f-e08d-4&from=paste&height=159&id=u551a16fc&originHeight=199&originWidth=899&originalType=binary&ratio=1.25&rotation=0&showTitle=false&size=85157&status=done&style=none&taskId=u0e109cd2-d48b-49b7-812d-7483c4b6e07&title=&width=719.2">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2023/png/1643147/1693562993593-21e494d8-57dd-40b1-bcc1-9ddf77b6476c.png#averageHue=%2307304f&clientId=u55fba1c6-3bcf-4&from=paste&height=456&id=u66122ec4&originHeight=570&originWidth=1155&originalType=binary&ratio=1.25&rotation=0&showTitle=false&size=240435&status=done&style=none&taskId=u349c08ef-2a8e-4a59-8cfe-cc995f119f4&title=&width=924">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2023/png/1643147/1693980364197-6919cb5e-e9f3-47bd-bcd0-c85caa1021fb.png#averageHue=%230a3350&clientId=ubace367a-f443-4&from=paste&height=64&id=u006249aa&originHeight=96&originWidth=932&originalType=binary&ratio=1.5&rotation=0&showTitle=false&size=22523&status=done&style=none&taskId=u505597a3-29ed-451a-b8e4-868e5c8e179&title=&width=621.3333333333334">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2023/png/1643147/1694415967666-1a6182d6-8b93-4aaf-9e4b-1ea00fbece33.png#averageHue=%23032c49&clientId=u209ab1e3-2ec8-4&from=paste&height=89&id=u8c735884&originHeight=111&originWidth=689&originalType=binary&ratio=1.25&rotation=0&showTitle=false&size=13927&status=done&style=none&taskId=u535c9f53-93f2-4bf3-8227-caa9939bd4d&title=&width=551.2">
+<meta property="og:updated_time" content="2023-11-14T09:24:34.010Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="anaconda创建虚拟环境">
+<meta name="twitter:description" content="一、Anaconda创建虚拟环境1、查看所有虚拟环境1conda info --envs 或者1conda env list 2、创建名字为ycyh，环境为python3.8的虚拟环境(python3.8为例)1conda create --name ycyh python=3.8 3、激活（进入）虚拟环境 1activate ycyh 1conda activate ycyh 4、删除虚拟环境1">
+<meta name="twitter:image" content="https://cdn.nlark.com/yuque/0/2022/png/1643147/1668786280383-e3acd137-548a-43c2-a1d6-3aae98c9979b.png#averageHue=%23f7f3f1&clientId=uafdbca42-2407-4&from=paste&height=314&id=uc9fffb30&originHeight=471&originWidth=989&originalType=binary&ratio=1&rotation=0&showTitle=false&size=50218&status=done&style=none&taskId=u8928fe4d-6aac-4d59-8022-f0ccc7146d0&title=&width=659.3333333333334">
+
+
+
+
+
+  
+  
+  <link rel="canonical" href="http://kl66.top/2023/11/14/anaconda创建虚拟环境/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>anaconda创建虚拟环境 | Mr kuai</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Mr kuai</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">追忆似水流年</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-meh-o"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-legal"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-ravelry"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-snowflake-o"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://kl66.top/2023/11/14/anaconda创建虚拟环境/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="kl">
+      <meta itemprop="description" content="66其实不太6">
+      <meta itemprop="image" content="/images/head.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mr kuai">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">anaconda创建虚拟环境
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2023-11-14 17:20:05 / 修改时间：17:24:34" itemprop="dateCreated datePublished" datetime="2023-11-14T17:20:05+08:00">2023-11-14</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/环境搭建/" itemprop="url" rel="index"><span itemprop="name">环境搭建</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon">
+            <i class="fa fa-eye"></i>
+             阅读次数： 
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="一、Anaconda创建虚拟环境"><a href="#一、Anaconda创建虚拟环境" class="headerlink" title="一、Anaconda创建虚拟环境"></a>一、Anaconda创建虚拟环境</h2><p>1、查看所有虚拟环境<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda info --envs</span><br></pre></td></tr></table></figure></p>
+<p>或者<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda env list</span><br></pre></td></tr></table></figure></p>
+<p>2、创建名字为ycyh，环境为python3.8的虚拟环境(python3.8为例)<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda create --name ycyh python=3.8</span><br></pre></td></tr></table></figure></p>
+<p>3、激活（进入）虚拟环境</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">activate ycyh</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda activate ycyh</span><br></pre></td></tr></table></figure>
+<p>4、删除虚拟环境<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda remove --name your_env_name --all</span><br></pre></td></tr></table></figure></p>
+<p>5、退出环境<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">deactivate</span><br></pre></td></tr></table></figure></p>
+<h2 id="二、修改环境名"><a href="#二、修改环境名" class="headerlink" title="二、修改环境名"></a>二、修改环境名</h2><p>1、进入旧环境<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda activate old_name</span><br></pre></td></tr></table></figure></p>
+<p>2、克隆旧环境<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">conda create -n new_name --clone old_name</span><br><span class="line"><span class="meta">#</span>示例</span><br><span class="line">conda create -n yc --clone base</span><br></pre></td></tr></table></figure></p>
+<p>3、退出旧环境<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda deactivate</span><br></pre></td></tr></table></figure></p>
+<p>4、删除旧环境<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda remove -n old_name</span><br></pre></td></tr></table></figure></p>
+<p>5、查看最终结果<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda info --envs</span><br></pre></td></tr></table></figure></p>
+<h2 id="三、分享环境"><a href="#三、分享环境" class="headerlink" title="三、分享环境"></a>三、分享环境</h2><p>1、进入要分享的环境：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">activate target_env_name</span><br></pre></td></tr></table></figure></p>
+<p>2、输入命令：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda env export &gt; environment.yml</span><br></pre></td></tr></table></figure></p>
+<p>会在当前目录下生成environment.yml文件，别人拿到environment.yml文件，在cmd中进入目录文件下可以通过以下命令从该文件创建环境conda env create -f environment.yml</p>
+<h2 id="四、安装第三方库"><a href="#四、安装第三方库" class="headerlink" title="四、安装第三方库"></a>四、安装第三方库</h2><p>1、查看当前环境下安装的第三方库：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda list</span><br></pre></td></tr></table></figure></p>
+<p>2、 给当前环境安装第三方库：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda install package_name</span><br></pre></td></tr></table></figure></p>
+<p>3、给指定环境安装第三方库：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda install -n env_name package_name</span><br></pre></td></tr></table></figure></p>
+<h2 id="1、安装Anaconda3"><a href="#1、安装Anaconda3" class="headerlink" title="1、安装Anaconda3"></a>1、安装Anaconda3</h2><p>打开<a href="https://www.anaconda.com/" target="_blank" rel="noopener">Anaconda</a>官网，下载Anaconda对应的Linux文件，并将文件拖进Linux系统中。<br><img src="https://cdn.nlark.com/yuque/0/2022/png/1643147/1668786280383-e3acd137-548a-43c2-a1d6-3aae98c9979b.png#averageHue=%23f7f3f1&amp;clientId=uafdbca42-2407-4&amp;from=paste&amp;height=314&amp;id=uc9fffb30&amp;originHeight=471&amp;originWidth=989&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=50218&amp;status=done&amp;style=none&amp;taskId=u8928fe4d-6aac-4d59-8022-f0ccc7146d0&amp;title=&amp;width=659.3333333333334" alt="image.png"><br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#创建anaconda用户并设置密码。</span></span><br><span class="line">useradd anaconda</span><br><span class="line"><span class="comment">#修改anaconda密码为anaconda</span></span><br><span class="line">echo anaconda|passwd <span class="comment">--stdin anaconda</span></span><br></pre></td></tr></table></figure></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 切换用户</span></span><br><span class="line">su - anaconda</span><br><span class="line"></span><br><span class="line"><span class="comment"># 开始安装</span></span><br><span class="line">bash Anaconda3-2022.10-Linux-x86_64.sh</span><br></pre></td></tr></table></figure>
+<p>随后开始anaconda的安装，只需按照提示不断安装即可。<br><img src="https://cdn.nlark.com/yuque/0/2023/png/1643147/1692952493061-7d417864-5297-4ff0-b474-4b1ad2cb38f4.png#averageHue=%23022b47&amp;clientId=ucfa41739-b5d3-4&amp;from=paste&amp;height=246&amp;id=u4054580d&amp;originHeight=369&amp;originWidth=656&amp;originalType=binary&amp;ratio=1.5&amp;rotation=0&amp;showTitle=false&amp;size=29244&amp;status=done&amp;style=none&amp;taskId=ua0c4938c-5e30-4a4b-bf68-f617adfa06d&amp;title=&amp;width=437.3333333333333" alt="image.png"><br><img src="https://cdn.nlark.com/yuque/0/2023/png/1643147/1692952532193-8cb07f02-5056-4bae-bb8f-551984bee958.png#averageHue=%23012a46&amp;clientId=ucfa41739-b5d3-4&amp;from=paste&amp;height=249&amp;id=u8ab1cdf1&amp;originHeight=373&amp;originWidth=1305&amp;originalType=binary&amp;ratio=1.5&amp;rotation=0&amp;showTitle=false&amp;size=34726&amp;status=done&amp;style=none&amp;taskId=u5b4c2925-df3f-46e5-b649-7fb17e08abd&amp;title=&amp;width=870" alt="image.png"><br><img src="https://cdn.nlark.com/yuque/0/2023/png/1643147/1692952551807-982d880b-c0f6-4fd8-9eef-0ec749d07c7b.png#averageHue=%23012a47&amp;clientId=ucfa41739-b5d3-4&amp;from=paste&amp;height=249&amp;id=u63c53ed7&amp;originHeight=373&amp;originWidth=658&amp;originalType=binary&amp;ratio=1.5&amp;rotation=0&amp;showTitle=false&amp;size=29848&amp;status=done&amp;style=none&amp;taskId=u29006062-ed74-456c-a020-fe725ab4cf7&amp;title=&amp;width=438.6666666666667" alt="image.png"><br><img src="https://cdn.nlark.com/yuque/0/2023/png/1643147/1692952975361-bc8c20ab-438b-4c66-ae09-72497c0ea150.png#averageHue=%23032c4a&amp;clientId=u96f22a0c-6136-4&amp;from=paste&amp;height=125&amp;id=uaa1f6a21&amp;originHeight=156&amp;originWidth=575&amp;originalType=binary&amp;ratio=1.5&amp;rotation=0&amp;showTitle=false&amp;size=17698&amp;status=done&amp;style=none&amp;taskId=u28676497-d390-499b-b23d-02f028af482&amp;title=&amp;width=460" alt="image.png"><br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">conda -V</span><br><span class="line">anaconda -V</span><br></pre></td></tr></table></figure></p>
+<p>即可查看安装结果<br><img src="https://cdn.nlark.com/yuque/0/2022/png/1643147/1668786131554-491910d1-2a79-488f-a534-9ef6fe5969e0.png#averageHue=%23042e4b&amp;clientId=uafdbca42-2407-4&amp;from=paste&amp;height=115&amp;id=u50f6b4a6&amp;originHeight=173&amp;originWidth=526&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=11685&amp;status=done&amp;style=none&amp;taskId=ua2f89843-babd-4a5d-a390-c9f0b5b0beb&amp;title=&amp;width=350.6666666666667" alt="image.png"></p>
+<h2 id="2、配置Jupyter-Notebook"><a href="#2、配置Jupyter-Notebook" class="headerlink" title="2、配置Jupyter Notebook"></a>2、配置Jupyter Notebook</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jupyter notebook --generate-config</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd /home/anaconda/anaconda3/bin/python</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">from notebook.auth import passwd</span><br><span class="line">passwd()</span><br></pre></td></tr></table></figure>
+<p><img src="https://cdn.nlark.com/yuque/0/2023/png/1643147/1692953071128-64ad61c8-9f85-493d-b30f-7ed7318bcb68.png#averageHue=%23032c49&amp;clientId=u96f22a0c-6136-4&amp;from=paste&amp;height=252&amp;id=wCZcO&amp;originHeight=315&amp;originWidth=821&amp;originalType=binary&amp;ratio=1.5&amp;rotation=0&amp;showTitle=false&amp;size=45917&amp;status=done&amp;style=none&amp;taskId=u9ce4e6e3-d0cb-4d9f-9153-1654a9c4fe5&amp;title=&amp;width=656.8" alt="image.png"><br>按照提示设置jupyter登录密码，随后会出现如下图所示的秘钥，复制此秘钥，随后会使用到。执行完毕后输入exit()退出。<br><img src="https://cdn.nlark.com/yuque/0/2023/png/1643147/1692953085562-a1e71ae2-d7d7-43cc-a19c-acfcd372433c.png#averageHue=%23022b48&amp;clientId=u96f22a0c-6136-4&amp;from=paste&amp;height=118&amp;id=u412f3f7c&amp;originHeight=148&amp;originWidth=863&amp;originalType=binary&amp;ratio=1.5&amp;rotation=0&amp;showTitle=false&amp;size=19412&amp;status=done&amp;style=none&amp;taskId=ueab258bc-92fc-4b6f-9b22-6848ddd5dac&amp;title=&amp;width=690.4" alt="image.png"><br><img src="https://cdn.nlark.com/yuque/0/2022/png/1643147/1668786344610-07b2dd91-f5eb-4006-a62a-0ed7918ee8ed.png#averageHue=%23262423&amp;clientId=uafdbca42-2407-4&amp;from=paste&amp;id=ued52f40c&amp;originHeight=137&amp;originWidth=853&amp;originalType=url&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=61161&amp;status=done&amp;style=none&amp;taskId=u7b5547fe-3af1-4122-8fe5-d3ded8bff9d&amp;title=" alt="image.png"><br>下面开始配置文件。</p>
+<p>在anaconda安装目录下创建文件夹fin<br><img src="https://cdn.nlark.com/yuque/0/2023/png/1643147/1692944120056-6b42fd27-051e-495e-a4c0-5006b674008c.png#averageHue=%23032d4a&amp;clientId=u29fab278-34d6-4&amp;from=paste&amp;height=83&amp;id=u5ffc5498&amp;originHeight=124&amp;originWidth=696&amp;originalType=binary&amp;ratio=1.5&amp;rotation=0&amp;showTitle=false&amp;size=21170&amp;status=done&amp;style=none&amp;taskId=u20d9bde1-2606-4275-b52c-b202d5f3c6c&amp;title=&amp;width=464" alt="image.png"><br><img src="https://cdn.nlark.com/yuque/0/2023/png/1643147/1692953130224-b70ee270-9098-4184-bd8a-4702a2be9525.png#averageHue=%23042e4c&amp;clientId=u96f22a0c-6136-4&amp;from=paste&amp;height=62&amp;id=u91c78c40&amp;originHeight=78&amp;originWidth=736&amp;originalType=binary&amp;ratio=1.5&amp;rotation=0&amp;showTitle=false&amp;size=16046&amp;status=done&amp;style=none&amp;taskId=u8d1cd5cb-7e91-45af-aa46-161169446d5&amp;title=&amp;width=588.8" alt="image.png"><br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim  /home/anaconda/.jupyter/jupyter_notebook_config.py</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">c.NotebookApp.ip=<span class="string">'*'</span>                     <span class="comment"># 就是设置所有ip皆可访问</span></span><br><span class="line">c.NotebookApp.password = <span class="string">'sha1:be76b1960e3b:dd47c1dfc46654e354114c7df0eaf871be92e8cc'</span>     <span class="comment"># 上面复制的那个sha密文'</span></span><br><span class="line">c.NotebookApp.open_browser = False       <span class="comment"># 禁止自动打开浏览器</span></span><br><span class="line">c.NotebookApp.port =8888                 <span class="comment"># 端口，默认8888</span></span><br><span class="line">c.NotebookApp.notebook_dir = <span class="string">'/home/anaconda/fin/indicators'</span>  <span class="comment">#设置Notebook启动进入的目录</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://cdn.nlark.com/yuque/0/2023/png/1643147/1693741034490-bd83c46c-1b27-4184-be94-1ec1d6129d92.png#averageHue=%23012b4c&amp;clientId=udcd14da2-1d79-4&amp;from=paste&amp;height=351&amp;id=u385061e5&amp;originHeight=527&amp;originWidth=788&amp;originalType=binary&amp;ratio=1.5&amp;rotation=0&amp;showTitle=false&amp;size=56054&amp;status=done&amp;style=none&amp;taskId=u8db51626-1d12-4e69-bbad-acdd207d492&amp;title=&amp;width=525.3333333333334" alt="image.png"><br><img src="https://cdn.nlark.com/yuque/0/2023/png/1643147/1692949769646-851d9dc9-b9ac-4799-9e9a-328b94eb1e53.png#averageHue=%23002b4a&amp;clientId=u40b9ddcb-cfe8-4&amp;from=paste&amp;height=123&amp;id=uf5c43e10&amp;originHeight=185&amp;originWidth=555&amp;originalType=binary&amp;ratio=1.5&amp;rotation=0&amp;showTitle=false&amp;size=16845&amp;status=done&amp;style=none&amp;taskId=uf7e2f132-0cc1-44c9-b86d-81a3199ecb3&amp;title=&amp;width=370" alt="image.png"><br><img src="https://cdn.nlark.com/yuque/0/2023/png/1643147/1693560337055-e9b4700d-a6bf-462c-9273-4fc6ba719e0c.png#averageHue=%23002a48&amp;clientId=u9e09f6a7-02f6-4&amp;from=paste&amp;height=684&amp;id=u5cc38672&amp;originHeight=855&amp;originWidth=1039&amp;originalType=binary&amp;ratio=1.25&amp;rotation=0&amp;showTitle=false&amp;size=93113&amp;status=done&amp;style=none&amp;taskId=u8a652951-65cf-4c38-94a5-e9e37cb30d7&amp;title=&amp;width=831.2" alt="image.png"><br>随后:wq写入保存</p>
+<h2 id="3、运行JupyterLab"><a href="#3、运行JupyterLab" class="headerlink" title="3、运行JupyterLab"></a>3、运行JupyterLab</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sh jupyter-lab-start.sh</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">export PYTHONPATH=/home/anaconda/fin</span><br><span class="line"></span><br><span class="line">cd /home/anaconda/fin/indicators </span><br><span class="line"></span><br><span class="line">nohup jupyter-lab --ip 0.0.0.0 --port 8888 --no-browser &gt;/dev/null 2&gt;&amp;1 &amp;</span><br></pre></td></tr></table></figure>
+<p>效果如图<br><img src="https://cdn.nlark.com/yuque/0/2023/png/1643147/1693561239794-13b2010f-9484-4a48-8904-530dfa141c6d.png#averageHue=%23032c49&amp;clientId=u02735ece-5e2e-4&amp;from=paste&amp;height=423&amp;id=u291dd6b2&amp;originHeight=529&amp;originWidth=1451&amp;originalType=binary&amp;ratio=1.25&amp;rotation=0&amp;showTitle=false&amp;size=169924&amp;status=done&amp;style=none&amp;taskId=ucbccf51c-8496-4451-960b-852133af6b3&amp;title=&amp;width=1160.8" alt="image.png"><br>打开浏览器，输入<a href="http://192.168.60.48:8888/" target="_blank" rel="noopener">http://192.168.60.48:8888/</a>，输入密码，即可进入jupyter<br><img src="https://cdn.nlark.com/yuque/0/2023/png/1643147/1693561383609-6c2f4d65-d82d-4340-a89c-52c7e1d54ebf.png#averageHue=%23f8f7f6&amp;clientId=u02735ece-5e2e-4&amp;from=paste&amp;height=678&amp;id=ub8cf51af&amp;originHeight=848&amp;originWidth=1235&amp;originalType=binary&amp;ratio=1.25&amp;rotation=0&amp;showTitle=false&amp;size=83435&amp;status=done&amp;style=none&amp;taskId=u2209b89e-6fea-47f6-8d10-3d110a62e94&amp;title=&amp;width=988" alt="image.png"></p>
+<h2 id="4、下载金融算法依赖"><a href="#4、下载金融算法依赖" class="headerlink" title="4、下载金融算法依赖"></a>4、下载金融算法依赖</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">pip install numpy==1.21.5 -i https://pypi.mirrors.ustc.edu.cn/simple</span><br><span class="line">pip install pandas==1.4.0 -i https://pypi.mirrors.ustc.edu.cn/simple</span><br><span class="line">pip install xlrd==2.0.1 -i https://pypi.mirrors.ustc.edu.cn/simple</span><br><span class="line">pip install scipy==1.6.3 -i https://pypi.mirrors.ustc.edu.cn/simple</span><br><span class="line">pip install connexion==2.14.0 -i https://pypi.mirrors.ustc.edu.cn/simple</span><br><span class="line">pip install flask==2.1.2 -i https://pypi.mirrors.ustc.edu.cn/simple</span><br><span class="line">pip install flask_cors==3.0.10 -i https://pypi.mirrors.ustc.edu.cn/simple</span><br><span class="line">pip install jupyterlab==3.4.3 -i https://pypi.mirrors.ustc.edu.cn/simple</span><br><span class="line">pip install jupyter -i https://pypi.mirrors.ustc.edu.cn/simple</span><br><span class="line">pip install jupyter notebook -i https://pypi.mirrors.ustc.edu.cn/simple</span><br><span class="line">pip install jupyter-server==1.18.1 -i https://pypi.mirrors.ustc.edu.cn/simple</span><br><span class="line">pip install pymysql==1.0.2 -i https://pypi.mirrors.ustc.edu.cn/simple</span><br><span class="line">pip install dbutils==3.0.2 -i https://pypi.mirrors.ustc.edu.cn/simple</span><br><span class="line">pip install py_eureka_client==0.10.0 -i https://pypi.mirrors.ustc.edu.cn/simple</span><br><span class="line">pip install clickhouse-driver==0.2.4 -i https://pypi.mirrors.ustc.edu.cn/simple</span><br><span class="line">pip install empyrical==0.5.5 -i https://pypi.mirrors.ustc.edu.cn/simple</span><br><span class="line">pip install flask_restful==0.3.9 -i https://pypi.mirrors.ustc.edu.cn/simple </span><br><span class="line">pip install flask_restplus==0.13.0 -i https://pypi.mirrors.ustc.edu.cn/simple</span><br><span class="line">pip install flask_moment==1.0.2 -i https://pypi.mirrors.ustc.edu.cn/simple</span><br><span class="line">pip install pycryptodome==3.15.0 -i https://pypi.mirrors.ustc.edu.cn/simple</span><br><span class="line">pip install python-dotenv==0.20.0 -i https://pypi.mirrors.ustc.edu.cn/simple</span><br><span class="line">pip install sklearn==0.0 -i https://pypi.mirrors.ustc.edu.cn/simple</span><br><span class="line">pip install statsmodels==0.12.2 -i https://pypi.mirrors.ustc.edu.cn/simple</span><br><span class="line">pip install apscheduler==3.9.1 -i https://pypi.mirrors.ustc.edu.cn/simple</span><br><span class="line">pip install pypinyin==0.46.0  -i https://pypi.mirrors.ustc.edu.cn/simple</span><br><span class="line">pip install xlsxwriter==1.4.4 -i https://pypi.mirrors.ustc.edu.cn/simple</span><br><span class="line">pip install gevent==21.12.0 -i https://pypi.mirrors.ustc.edu.cn/simple</span><br><span class="line">pip install psycopg2==2.9.3 -i https://pypi.mirrors.ustc.edu.cn/simple</span><br><span class="line">pip install StrEnum==0.4.8 -i https://pypi.mirrors.ustc.edu.cn/simple</span><br><span class="line">pip install xlwt==1.3.0 -i https://pypi.mirrors.ustc.edu.cn/simple</span><br><span class="line">pip install flask_socketio==5.2.0 -i https://pypi.mirrors.ustc.edu.cn/simple</span><br><span class="line">pip install werkzeug==2.0.3 -i https://pypi.mirrors.ustc.edu.cn/simple</span><br><span class="line">pip install sql_metadata==2.6.0 -i https://pypi.mirrors.ustc.edu.cn/simple</span><br><span class="line">pip install sqlparse==0.4.2 -i https://pypi.mirrors.ustc.edu.cn/simple</span><br><span class="line">pip install SQLAlchemy==1.4.39 -i https://pypi.mirrors.ustc.edu.cn/simple</span><br><span class="line">pip install joblib==1.1.0 -i https://pypi.mirrors.ustc.edu.cn/simple</span><br><span class="line">pip install crypto==1.4.1 -i https://pypi.mirrors.ustc.edu.cn/simple</span><br><span class="line">pip install cryptography==37.0.4 -i https://pypi.mirrors.ustc.edu.cn/simple</span><br></pre></td></tr></table></figure>
+<h2 id="5、配置文件修改"><a href="#5、配置文件修改" class="headerlink" title="5、配置文件修改"></a>5、配置文件修改</h2><ul>
+<li>假设项目所全路径为 &lt;DIR/fin_indicators&gt;</li>
+<li>修改 &lt;DIR/fin_indicators&gt;/settings.ini文件，根据实际数据库连接信息修改如下变量<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">[PostgreSQL]</span><br><span class="line">DB_ENABLE = True</span><br><span class="line">DB_SERVER = <span class="number">192.168</span>.<span class="number">70.144</span></span><br><span class="line">DB_PORT = <span class="number">5432</span></span><br><span class="line">DB_NAME = cebrisk</span><br><span class="line"><span class="comment"># 官方推荐用户名跟schemaName保持相同cebrisk/cebrisk</span></span><br><span class="line">DB_SCHEMA = cebrisk</span><br><span class="line">DB_USER = cebrisk</span><br><span class="line">DB_PWD = <span class="number">9</span>fd81959a8285c074cb1a52e99e5d39a</span><br><span class="line">DB_MAX_CONNECTIONS = <span class="number">10</span></span><br><span class="line">DB_MIN_CACHED = <span class="number">3</span></span><br><span class="line">DB_MAX_SHARED = <span class="number">5</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><img src="https://cdn.nlark.com/yuque/0/2023/png/1643147/1693562309832-1cc29e9e-f107-4184-8088-0d31ef010dfe.png#averageHue=%231f2124&amp;clientId=u55fba1c6-3bcf-4&amp;from=paste&amp;height=268&amp;id=u9325ef11&amp;originHeight=335&amp;originWidth=711&amp;originalType=binary&amp;ratio=1.25&amp;rotation=0&amp;showTitle=false&amp;size=39028&amp;status=done&amp;style=none&amp;taskId=u3bd109d5-a940-49e0-b6c5-5e64a29f01a&amp;title=&amp;width=568.8" alt="image.png"><br><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">[ClickHouse]</span><br><span class="line">CH_ENABLE = True</span><br><span class="line">CH_HOST = <span class="number">192.168</span>.<span class="number">70.144</span></span><br><span class="line">CH_PORT = <span class="number">9000</span></span><br><span class="line">CH_DATABASE = chdb</span><br><span class="line">CH_USER = cebrisk</span><br><span class="line">CH_PASSWORD = <span class="number">9</span>fd81959a8285c074cb1a52e99e5d39a</span><br><span class="line">CH_MAX_CONNECTIONS = <span class="number">10</span></span><br><span class="line">CH_MIN_CACHED = <span class="number">3</span></span><br><span class="line">CH_MAX_SHARED = <span class="number">5</span></span><br><span class="line">CH_BATCH_SIZE = <span class="number">2000</span></span><br></pre></td></tr></table></figure></p>
+<p><img src="https://cdn.nlark.com/yuque/0/2023/png/1643147/1693562289070-00ff5bf2-c868-4141-9efb-627110f56ad3.png#averageHue=%231f2024&amp;clientId=u55fba1c6-3bcf-4&amp;from=paste&amp;height=262&amp;id=u35338407&amp;originHeight=328&amp;originWidth=705&amp;originalType=binary&amp;ratio=1.25&amp;rotation=0&amp;showTitle=false&amp;size=33670&amp;status=done&amp;style=none&amp;taskId=u7cea7e62-9d5c-46be-8967-e6aa34bbc94&amp;title=&amp;width=564" alt="image.png"><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">SERVER_HOST = &apos;DESKTOP-K6CGD0K&apos;</span><br><span class="line">SERVER_PORT = 8000</span><br><span class="line">JUPYTER_LAB_URL = &apos;http://localhost:8888/lab/tree/&apos;</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># 注册中心信息</span><br><span class="line">EUREKA_SERVER = &apos;http://localhost:8761/eureka/&apos;</span><br><span class="line">EUREKA_ENABLE = False</span><br></pre></td></tr></table></figure>
+<p><img src="https://cdn.nlark.com/yuque/0/2023/png/1643147/1693561865979-1b8453fa-07d3-4c8a-8a92-3317639cc940.png#averageHue=%23212326&amp;clientId=u55fba1c6-3bcf-4&amp;from=paste&amp;height=411&amp;id=ue6d392d7&amp;originHeight=514&amp;originWidth=819&amp;originalType=binary&amp;ratio=1.25&amp;rotation=0&amp;showTitle=false&amp;size=62037&amp;status=done&amp;style=none&amp;taskId=u9e6c69bd-1ea6-4244-afae-96c6535f76d&amp;title=&amp;width=655.2" alt="image.png"></p>
+<h2 id="6、修改Anaconda3配置文件"><a href="#6、修改Anaconda3配置文件" class="headerlink" title="6、修改Anaconda3配置文件"></a>6、修改Anaconda3配置文件</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim /home/anaconda/anaconda3/lib/python3.9/site-packages/werkzeug/__init__.py</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> werkzeug.utils <span class="keyword">import</span> cached_property</span><br></pre></td></tr></table></figure>
+<p><img src="https://cdn.nlark.com/yuque/0/2023/png/1643147/1691466123411-bea1b86a-b26e-45bc-9292-0cc4226d5de7.png#averageHue=%233b3a37&amp;clientId=u9393bc7f-e08d-4&amp;from=paste&amp;height=160&amp;id=u613f6f8c&amp;originHeight=200&amp;originWidth=608&amp;originalType=binary&amp;ratio=1.25&amp;rotation=0&amp;showTitle=false&amp;size=57200&amp;status=done&amp;style=none&amp;taskId=ub3b63b9e-be71-4f37-a7d6-0276c1e142f&amp;title=&amp;width=486.4" alt="image.png"><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim /home/anaconda/anaconda3/lib/python3.9/site-packages/flask_restplus/api.py</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#from flask.helpers import _endpoint_from_view_func</span></span><br><span class="line"><span class="keyword">import</span> flask.scaffold</span><br><span class="line">flask.helpers._endpoint_from_view_func = flask.scaffold._endpoint_from_view_func</span><br><span class="line"><span class="keyword">import</span> flask_restful</span><br></pre></td></tr></table></figure>
+<p><img src="https://cdn.nlark.com/yuque/0/2023/png/1643147/1691466147818-d0c7ef38-4113-42c6-84b1-efb53c80a896.png#averageHue=%233d3c3a&amp;clientId=u9393bc7f-e08d-4&amp;from=paste&amp;height=159&amp;id=u551a16fc&amp;originHeight=199&amp;originWidth=899&amp;originalType=binary&amp;ratio=1.25&amp;rotation=0&amp;showTitle=false&amp;size=85157&amp;status=done&amp;style=none&amp;taskId=u0e109cd2-d48b-49b7-812d-7483c4b6e07&amp;title=&amp;width=719.2" alt="image.png"></p>
+<h2 id="7、运行指标库微服务"><a href="#7、运行指标库微服务" class="headerlink" title="7、运行指标库微服务"></a>7、运行指标库微服务</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sh fin_start.sh</span><br></pre></td></tr></table></figure>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/bin/bash</span></span><br><span class="line">nohup sh -c <span class="string">"python3 job_convert.py &amp;&amp; python3 run_service.py"</span> &gt;/dev/null <span class="number">2</span>&gt;&amp;<span class="number">1</span> &amp;</span><br></pre></td></tr></table></figure>
+<p><img src="https://cdn.nlark.com/yuque/0/2023/png/1643147/1693562993593-21e494d8-57dd-40b1-bcc1-9ddf77b6476c.png#averageHue=%2307304f&amp;clientId=u55fba1c6-3bcf-4&amp;from=paste&amp;height=456&amp;id=u66122ec4&amp;originHeight=570&amp;originWidth=1155&amp;originalType=binary&amp;ratio=1.25&amp;rotation=0&amp;showTitle=false&amp;size=240435&amp;status=done&amp;style=none&amp;taskId=u349c08ef-2a8e-4a59-8cfe-cc995f119f4&amp;title=&amp;width=924" alt="image.png"></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install conda-pack</span><br></pre></td></tr></table></figure>
+<p><img src="https://cdn.nlark.com/yuque/0/2023/png/1643147/1693980364197-6919cb5e-e9f3-47bd-bcd0-c85caa1021fb.png#averageHue=%230a3350&amp;clientId=ubace367a-f443-4&amp;from=paste&amp;height=64&amp;id=u006249aa&amp;originHeight=96&amp;originWidth=932&amp;originalType=binary&amp;ratio=1.5&amp;rotation=0&amp;showTitle=false&amp;size=22523&amp;status=done&amp;style=none&amp;taskId=u505597a3-29ed-451a-b8e4-868e5c8e179&amp;title=&amp;width=621.3333333333334" alt="image.png"><br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda pack -n ycyh</span><br></pre></td></tr></table></figure></p>
+<p>如下图，正在对环境进行打包，还是很快的。最后打包成·后缀为.tar.gz的压缩文件。<br><img src="https://cdn.nlark.com/yuque/0/2023/png/1643147/1694415967666-1a6182d6-8b93-4aaf-9e4b-1ea00fbece33.png#averageHue=%23032c49&amp;clientId=u209ab1e3-2ec8-4&amp;from=paste&amp;height=89&amp;id=u8c735884&amp;originHeight=111&amp;originWidth=689&amp;originalType=binary&amp;ratio=1.25&amp;rotation=0&amp;showTitle=false&amp;size=13927&amp;status=done&amp;style=none&amp;taskId=u535c9f53-93f2-4bf3-8227-caa9939bd4d&amp;title=&amp;width=551.2" alt="image.png"><br>第三步“还原环境”<br>现在已经ycyh.tar.gz上传到无网的服务器了，现在将ycyh.tar.gz解压到/home/fundApp/anaconda3/envs下</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkdir ycyh</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar -xzvf ycyh.tar.gz -C /home/fundApp/anaconda3/envs/ycyh</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda info -e</span><br></pre></td></tr></table></figure>
+<p>虚拟环境已迁移完毕</p>
+<p>进入虚拟环境，就可以使用了<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda activate ycyh</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Python/" rel="tag"># Python</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2023/08/24/日常工作常用/" rel="next" title="日常工作常用">
+                <i class="fa fa-chevron-left"></i> 日常工作常用
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC80NDExNC8yMDY0OQ=="></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/head.jpg" alt="kl">
+            
+              <p class="site-author-name" itemprop="name">kl</p>
+              <div class="site-description motion-element" itemprop="description">66其实不太6</div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">119</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                      <a href="/categories/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">32</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">49</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、Anaconda创建虚拟环境"><span class="nav-number">1.</span> <span class="nav-text">一、Anaconda创建虚拟环境</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、修改环境名"><span class="nav-number">2.</span> <span class="nav-text">二、修改环境名</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、分享环境"><span class="nav-number">3.</span> <span class="nav-text">三、分享环境</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四、安装第三方库"><span class="nav-number">4.</span> <span class="nav-text">四、安装第三方库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1、安装Anaconda3"><span class="nav-number">5.</span> <span class="nav-text">1、安装Anaconda3</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2、配置Jupyter-Notebook"><span class="nav-number">6.</span> <span class="nav-text">2、配置Jupyter Notebook</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3、运行JupyterLab"><span class="nav-number">7.</span> <span class="nav-text">3、运行JupyterLab</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4、下载金融算法依赖"><span class="nav-number">8.</span> <span class="nav-text">4、下载金融算法依赖</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5、配置文件修改"><span class="nav-number">9.</span> <span class="nav-text">5、配置文件修改</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6、修改Anaconda3配置文件"><span class="nav-number">10.</span> <span class="nav-text">6、修改Anaconda3配置文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7、运行指标库微服务"><span class="nav-number">11.</span> <span class="nav-text">7、运行指标库微服务</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+    
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2023</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">kl</span>
+
+  
+
+  
+</div>
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-user"></i>
+    </span>
+    <span class="site-uv" title="总访客量">
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+  
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-eye"></i>
+    </span>
+    <span class="site-pv" title="总访问量">
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    
+    
+      
+    
+  
+  <script color="0,0,0" opacity="0.8" zindex="-1" count="66" src="//cdn.jsdelivr.net/gh/theme-next/theme-next-canvas-nest@1/canvas-nest.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.1.1"></script>
+
+  <script src="/js/motion.js?v=7.1.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/affix.js?v=7.1.1"></script>
+
+  <script src="/js/schemes/pisces.js?v=7.1.1"></script>
+
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.1.1"></script>
+<script src="/js/post-details.js?v=7.1.1"></script>
+
+
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.1.1"></script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+    <script>
+  window.livereOptions = {
+    refer: '2023/11/14/anaconda创建虚拟环境/'
+  };
+  (function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+    if (typeof LivereTower === 'function') { return; }
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+    e.parentNode.insertBefore(j, e);
+  })(document, 'script');
+</script>
+
+  
+
+
+  
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
+<script type="text/javascript" src="/js/src/clicklove.js"></script>
+<!-- <script type="text/javascript" src="/js/src/fish.js"></script> -->
+<!-- <script src='https://blog-static.cnblogs.com/files/elkyo/star.js'></script> -->
+<!-- 雪花特效 -->
+<!-- 雪花特效 -->
+<!-- <script type="text/javascript" src="\js\snow.js"></script> -->
